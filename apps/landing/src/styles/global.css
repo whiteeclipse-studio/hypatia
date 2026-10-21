@@ -1,0 +1,21 @@
+html {
+    background: #f6f4ef;
+    color-scheme: light;
+}
+
+body {
+    margin: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background: #211f26;
+        color-scheme: dark;
+    }
+}

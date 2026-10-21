@@ -1,0 +1,14 @@
+.eyebrow {
+    font-family: var(--code-font-family);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.sectionTitle {
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    font-weight: 400;
+}

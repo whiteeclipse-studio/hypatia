@@ -1,0 +1,76 @@
+.surface {
+    --weave: color-mix(in srgb, var(--gray-12) 3%, transparent);
+    --orbit-ink: color-mix(in srgb, var(--gray-12) 7%, transparent);
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    background-color: var(--gray-1);
+}
+
+/* Keep the existing mockup's texture and geometry fixed while the content scrolls. */
+.surface::before,
+.surface::after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.surface::before {
+    inset: 0;
+    background-image:
+        linear-gradient(var(--weave) 1px, transparent 1px),
+        linear-gradient(90deg, var(--weave) 1px, transparent 1px);
+    background-size: 6px 6px;
+}
+
+/* The square drawing anchors the diagonal and the paired arcs to the same centre. */
+.surface::after {
+    --orbit-radius: clamp(280px, 35vw, 560px);
+    top: 0;
+    right: 0;
+    width: max(100vw, 100vh);
+    height: max(100vw, 100vh);
+    background-image:
+        radial-gradient(circle at 100% 0%,
+            transparent calc(var(--orbit-radius) - 1px),
+            var(--orbit-ink) var(--orbit-radius) calc(var(--orbit-radius) + 1px),
+            transparent calc(var(--orbit-radius) + 2px) calc(var(--orbit-radius) + 79px),
+            var(--orbit-ink) calc(var(--orbit-radius) + 80px) calc(var(--orbit-radius) + 81px),
+            transparent calc(var(--orbit-radius) + 82px)),
+        linear-gradient(135deg,
+            transparent calc(50% - 82px),
+            var(--orbit-ink) calc(50% - 81px) calc(50% - 79px),
+            transparent calc(50% - 78px) calc(50% - 1px),
+            var(--orbit-ink) 50% calc(50% + 2px),
+            transparent calc(50% + 3px) calc(50% + 79px),
+            var(--orbit-ink) calc(50% + 80px) calc(50% + 82px),
+            transparent calc(50% + 83px));
+}
+
+.page {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 24px 48px 0;
+}
+
+.skipLink {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 1;
+    padding: 12px 16px;
+    color: var(--gray-12);
+    background: var(--gray-1);
+    transform: translateY(-200%);
+}
+
+.skipLink:focus-visible {
+    transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding: 20px 24px 0;
+    }
+}
