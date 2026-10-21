@@ -1,0 +1,299 @@
+/* Catalogue layout stays local: only the shared CoreTheme owns reusable tokens. */
+.study-frame {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 32px;
+    max-width: 1280px;
+    padding: 32px;
+}
+
+.study-candidate {
+    min-width: 0;
+}
+
+.study-title {
+    margin: 0 0 24px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.study-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    min-width: 0;
+}
+
+.study-row,
+.primitive-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.study-end {
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.study-padding {
+    padding: 20px;
+}
+
+.study-panel,
+.study-context-target,
+.study-portal-host {
+    padding: 20px;
+    border: 1px solid var(--gray-7);
+    background-color: var(--gray-2);
+}
+
+.study-context-target {
+    min-height: 120px;
+}
+
+.study-aspect {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    background-color: var(--gray-3);
+    border: 1px solid var(--gray-7);
+}
+
+.study-fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.study-label-strong {
+    font-weight: 600;
+}
+
+.study-note {
+    font-size: 12px;
+    color: var(--gray-11);
+}
+
+.study-error {
+    color: var(--red-11);
+    font-size: 14px;
+}
+
+.study-nested-theme {
+    min-height: 0;
+    padding: 20px;
+}
+
+.study-icon-set svg {
+    width: 20px;
+    height: 20px;
+}
+
+.study-icon-set[data-treatment='muted'] {
+    color: var(--gray-11);
+}
+
+/* Unstyled Primitives use the same neutral vocabulary as the Themes examples.
+ * data-treatment changes appearance while Radix retains focus and state handling.
+ */
+.primitive-trigger,
+.primitive-toggle,
+.primitive-input,
+.primitive-code-input,
+.primitive-slotted {
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1px solid var(--gray-7);
+    border-radius: 0;
+    background-color: var(--gray-2);
+    color: var(--gray-12);
+    font: inherit;
+}
+
+.primitive-trigger,
+.primitive-toggle,
+.primitive-slotted {
+    cursor: pointer;
+}
+
+.primitive-slotted {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.primitive-trigger {
+    width: 100%;
+    text-align: start;
+}
+
+.primitive-input {
+    min-width: 0;
+    width: 100%;
+}
+
+.primitive-code-input {
+    width: 44px;
+    text-align: center;
+}
+
+[data-treatment='outline'] > .primitive-input,
+[data-treatment='outline'] > .primitive-code-input,
+[data-treatment='outline'] > .primitive-toggle,
+.primitive-slotted[data-treatment='outline'],
+.study-context-target[data-treatment='outline'],
+.study-panel[data-treatment='outline'] {
+    background-color: transparent;
+}
+
+.primitive-accordion[data-treatment='outline'] .primitive-trigger,
+.primitive-collapsible[data-treatment='outline'] .primitive-content {
+    background-color: transparent;
+    border-color: var(--gray-9);
+}
+
+.primitive-accordion h3 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.primitive-content {
+    padding: 16px;
+    background-color: var(--gray-2);
+    border: 1px solid var(--gray-6);
+    border-top: 0;
+}
+
+.primitive-toggle[data-state='on'],
+.primitive-toggle[data-state='open'] {
+    background-color: var(--gray-12);
+    color: var(--gray-1);
+}
+
+.primitive-trigger[data-disabled],
+.primitive-toggle:disabled,
+.primitive-input:disabled,
+.primitive-code-input:disabled,
+.primitive-menu-item[data-disabled] {
+    color: var(--gray-8);
+    cursor: default;
+}
+
+.primitive-separator {
+    width: 1px;
+    align-self: stretch;
+    background-color: var(--gray-7);
+}
+
+.primitive-rule {
+    height: 1px;
+    background-color: var(--gray-6);
+    margin-block: 8px;
+}
+
+.primitive-link {
+    color: var(--gray-12);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Portalled primitive menus need their own theme boundary because they leave
+ * the canvas DOM subtree. Unlike the canvas, that boundary must not fill the viewport.
+ */
+.primitive-portal.core-ui {
+    min-height: 0;
+}
+
+.primitive-popup {
+    z-index: 30;
+    padding: 12px;
+    border: 1px solid var(--gray-7);
+    background-color: var(--gray-2);
+    color: var(--gray-12);
+    min-width: 200px;
+    max-width: min(360px, calc(100vw - 32px));
+}
+
+.primitive-popup[data-treatment='outline'] {
+    background-color: var(--gray-1);
+    border-color: var(--gray-12);
+}
+
+.primitive-menu-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.primitive-menu-item[data-highlighted]:not([data-disabled]) {
+    background-color: var(--gray-12);
+    color: var(--gray-1);
+    outline: none;
+}
+
+.primitive-navigation {
+    position: relative;
+}
+
+.primitive-navigation ul {
+    padding: 0;
+    list-style: none;
+}
+
+/* Toasts are user-triggered and transient; previews do not persist or send data. */
+.primitive-toast-viewport {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 40;
+    width: min(360px, calc(100vw - 48px));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.primitive-toast {
+    display: grid;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid var(--gray-9);
+    background-color: var(--gray-2);
+    color: var(--gray-12);
+}
+
+@media (max-width: 720px) {
+    .study-frame {
+        grid-template-columns: 1fr;
+        padding: 24px;
+    }
+}
+
+/* Portalled Themes candidates vary the actual panel as well as its trigger. */
+.study-popup {
+    border: 1px solid var(--gray-7);
+    background-color: var(--gray-2);
+}
+
+.study-popup[data-treatment='outline'] {
+    border-color: var(--gray-12);
+    background-color: var(--gray-1);
+}
+
+.study-stack[data-treatment='outline'] .primitive-input {
+    background-color: transparent;
+    border-color: var(--gray-12);
+}
+
+.primitive-toast[data-treatment='outline'] {
+    background-color: var(--gray-1);
+    border-color: var(--gray-12);
+}
+
+.primitive-toast-viewport[data-treatment='outline'] {
+    left: 24px;
+    right: auto;
+}

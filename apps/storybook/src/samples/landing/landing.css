@@ -1,0 +1,363 @@
+.landing-reference {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 24px 48px 0;
+}
+
+.landing-header,
+.landing-footer {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding-block: 0 24px;
+}
+
+.landing-brand,
+.landing-language,
+.landing-navigation,
+.landing-footer-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.landing-brand {
+    gap: 16px;
+    margin-right: auto;
+}
+
+.landing-eyebrow,
+.landing-navigation {
+    font-family: var(--code-font-family);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.landing-wordmark {
+    font-family: var(--brand-font-family);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.landing-navigation {
+    font-size: 12px;
+}
+
+.landing-language {
+    gap: 14px;
+}
+
+/* Keep temporary transparent artwork separate from the component backgrounds.
+ * Intrinsic image dimensions never determine the reserved layout footprint.
+ */
+.landing-artwork {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    object-fit: contain;
+}
+
+.landing-studio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.landing-logo {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.landing-hero {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 40px;
+    align-items: center;
+    padding-block: 64px 60px;
+}
+
+.landing-hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+}
+
+.landing-eyebrow {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.landing-title {
+    font-size: clamp(40px, 5.4vw, 68px);
+    line-height: 1.04;
+    letter-spacing: -0.055em;
+    font-weight: 400;
+}
+
+.landing-description {
+    max-width: 430px;
+    line-height: 1.5;
+}
+
+.landing-action {
+    min-width: min(100%, 350px);
+    justify-content: space-between;
+}
+
+.landing-portfolio {
+    display: grid;
+    gap: 18px;
+    scroll-margin-top: 24px;
+}
+
+.landing-orbits {
+    aspect-ratio: 1.2;
+}
+
+.landing-studio {
+    padding-block: 36px 40px;
+}
+
+.landing-studio-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-block: 32px 40px;
+}
+
+/* Reserve the eclipse beside the statement, rather than layering a new visual
+ * behind readable text. Its footprint contracts with the available column.
+ */
+.landing-studio-statement {
+    display: grid;
+    grid-template-columns: 1fr minmax(70px, 0.36fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+.landing-section-title {
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    font-weight: 400;
+}
+
+.landing-eclipse {
+    height: 100%;
+    max-height: 240px;
+}
+
+.landing-studio-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 26px;
+}
+
+.landing-services {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    scroll-margin-top: 24px;
+}
+
+.landing-service {
+    display: grid;
+    align-content: start;
+    gap: 16px;
+    padding-inline: 28px;
+    border-left: 1px solid var(--gray-6);
+}
+
+.landing-service:first-child {
+    padding-left: 0;
+    border-left: 0;
+}
+
+.landing-service:last-child {
+    padding-right: 0;
+}
+
+.landing-service-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 4px;
+    color: var(--gray-12);
+}
+
+.landing-next-steps {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    padding-block: 40px;
+}
+
+.landing-next-steps > section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-right: 48px;
+    scroll-margin-top: 24px;
+}
+
+.landing-next-steps > section + section {
+    padding-right: 0;
+    padding-left: 48px;
+    border-left: 1px solid var(--gray-6);
+}
+
+.landing-next-steps .landing-eyebrow {
+    margin-bottom: 8px;
+}
+
+.landing-next-steps .rt-Button {
+    margin-top: 8px;
+    gap: 32px;
+}
+
+.landing-footer-art {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    object-position: 50% 65%;
+}
+
+/* Graphite orbit lines need more luminance against the dark theme. Keep the
+ * spheres coloured instead of inverting the whole generated illustration.
+ */
+.dark .landing-artwork {
+    filter: brightness(1.8);
+}
+
+.landing-footer {
+    padding-block: 24px;
+}
+
+/* Keep the navigation visible while allowing it a second row on tablets. */
+@media (max-width: 1000px) {
+    .landing-header {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .landing-navigation {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .landing-hero,
+    .landing-studio-intro {
+        gap: 32px;
+    }
+
+    .landing-services {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px 0;
+    }
+
+    .landing-service:nth-child(odd) {
+        border-left: 0;
+        padding-left: 0;
+    }
+
+    .landing-footer {
+        flex-wrap: wrap;
+    }
+}
+
+/* Stack content in reading order on phones; reserved artwork still occupies
+ * real space so a later illustration cannot silently change the page flow.
+ */
+@media (max-width: 640px) {
+    .landing-reference {
+        padding: 20px 24px 0;
+    }
+
+    .landing-header {
+        column-gap: 12px;
+    }
+
+    .landing-brand {
+        gap: 10px;
+    }
+
+    .landing-wordmark {
+        font-size: 13px;
+    }
+
+    .landing-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .landing-language {
+        gap: 10px;
+    }
+
+    .landing-navigation {
+        gap: 12px;
+        font-size: 10px;
+    }
+
+    .landing-hero,
+    .landing-studio-intro,
+    .landing-next-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-hero {
+        padding-block: 40px;
+    }
+
+    .landing-title {
+        font-size: clamp(34px, 9vw, 48px);
+    }
+
+    .landing-orbits {
+        aspect-ratio: 1.5;
+    }
+
+    .landing-service {
+        padding-inline: 16px;
+    }
+
+    .landing-next-steps > section,
+    .landing-next-steps > section + section {
+        padding-inline: 0;
+        border-left: 0;
+    }
+
+    .landing-next-steps > section + section {
+        margin-top: 36px;
+        padding-top: 36px;
+        border-top: 1px solid var(--gray-6);
+    }
+
+    .landing-footer {
+        gap: 24px;
+    }
+
+    .landing-footer > .landing-brand {
+        width: 100%;
+    }
+
+    .landing-footer-links {
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 380px) {
+    .landing-services {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-service {
+        padding-inline: 0;
+        border-left: 0;
+    }
+}
