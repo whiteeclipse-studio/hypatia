@@ -1,0 +1,10 @@
+{
+  "accentColor": "#292b2e",
+  "interfaceFontFamily": "Inter",
+  "monospaceFontFamily": "JetBrains Mono",
+  "translucency": true,
+  "showViewHeader": true,
+  "showRibbon": true,
+  "cssTheme": "White Eclipse",
+  "theme": "system"
+}

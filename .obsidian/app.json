@@ -1,0 +1,16 @@
+{
+  "showInlineTitle": false,
+  "strictLineBreaks": true,
+  "propertiesInDocument": "visible",
+  "showLineNumber": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "docs",
+  "attachmentFolderPath": "./assets",
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": true,
+  "userIgnoreFilters": [
+    "apps/",
+    "packages/",
+    "node_modules/"
+  ]
+}
