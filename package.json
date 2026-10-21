@@ -1,0 +1,16 @@
+{
+    "name": "hypatia",
+    "private": true,
+    "type": "module",
+    "workspaces": [
+        "apps/*",
+        "packages/platform/*"
+    ],
+    "scripts": {
+        "landing": "bun run --cwd apps/landing dev",
+        "storybook": "bun run --cwd apps/storybook dev",
+        "build": "bun run typecheck && bun run --cwd packages/platform/core-ui build && bun run --cwd apps/storybook build && bun run --cwd apps/landing build",
+        "typecheck": "bun run --cwd packages/platform/core-ui typecheck && bun run --cwd apps/storybook typecheck && bun run --cwd apps/landing typecheck",
+        "check:catalogue": "bun run --cwd apps/storybook check:catalogue"
+    }
+}
