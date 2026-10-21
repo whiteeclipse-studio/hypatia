@@ -1,0 +1,210 @@
+/* Load the requested web fonts with readable fallbacks while they download. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&family=Outfit:wght@300..700&display=swap");
+/* Load Radix first so the scoped overrides below take precedence. */
+@import '@radix-ui/themes/styles.css';
+
+/* Provisional values for the draft Core UI proposal. */
+/* Radix creates nested Theme boundaries for portalled menus and dialogs.
+ * Include those boundaries so tokens and flat surfaces survive the portal.
+ */
+.radix-themes:is(.core-ui, [data-is-root-theme='false']) {
+    --default-font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --display-font-family: 'Outfit', 'Inter', sans-serif;
+    --brand-font-family: var(--display-font-family);
+    --heading-font-family: var(--default-font-family);
+    --code-font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    --em-font-family: var(--default-font-family);
+    --quote-font-family: var(--default-font-family);
+    --cursor-button: pointer;
+    /* Flat surfaces are shared defaults, not per-story experiments. */
+    --shadow-1: none;
+    --shadow-2: none;
+    --shadow-3: none;
+    --shadow-4: none;
+    --shadow-5: none;
+    --shadow-6: none;
+}
+
+/* Display hierarchy follows semantic heading levels, including plain Markdown HTML. */
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) :is(h1, h2) {
+    font-family: var(--display-font-family);
+}
+
+/*
+ * Radix supplies the appearance classes. :where() keeps these defaults easy
+ * to override on the CoreTheme root and Radix-created nested theme boundaries.
+ */
+.core-ui:where(.light, .light-theme),
+.radix-themes[data-is-root-theme='false']:where(.light, .light-theme) {
+    /* Opaque scale: surfaces, borders, solid controls, and foreground text. */
+    --gray-1: #f6f4ef;
+    --gray-2: #eeece5;
+    --gray-3: #e6e3da;
+    --gray-4: #dedbd0;
+    --gray-5: #d4d0c3;
+    --gray-6: #c7c2b4;
+    --gray-7: #b5ae9f;
+    --gray-8: #948c7d;
+    --gray-9: #45413b;
+    --gray-10: #36322e;
+    --gray-11: #625c52;
+    --gray-12: #211f26;
+
+    /* Alpha scale: translucent strokes and overlays on the active surface. */
+    --gray-a1: #3c300004;
+    --gray-a2: #3c30000c;
+    --gray-a3: #3c300016;
+    --gray-a4: #3c300021;
+    --gray-a5: #3c30002e;
+    --gray-a6: #3c300041;
+    --gray-a7: #3c300057;
+    --gray-a8: #3c300080;
+    --gray-a9: #211f26d6;
+    --gray-a10: #211f26e8;
+    --gray-a11: #211f26b3;
+    --gray-a12: #211f26;
+
+    /* Semantic aliases consumed by the Radix components and page surfaces. */
+    --gray-contrast: #f6f4ef;
+    --gray-surface: #eeece5;
+    --gray-indicator: var(--gray-9);
+    --gray-track: var(--gray-9);
+    --color-background: var(--gray-1);
+    --color-panel-solid: var(--gray-2);
+    --color-panel-translucent: var(--gray-2);
+    --color-surface: var(--gray-2);
+}
+
+/* The same token roles in dark appearance; consumers keep using the aliases. */
+.core-ui:where(.dark, .dark-theme),
+.radix-themes[data-is-root-theme='false']:where(.dark, .dark-theme) {
+    /* Opaque scale: surfaces, borders, solid controls, and foreground text. */
+    --gray-1: #211f26;
+    --gray-2: #29272e;
+    --gray-3: #333138;
+    --gray-4: #3c3940;
+    --gray-5: #46424a;
+    --gray-6: #534e57;
+    --gray-7: #69636c;
+    --gray-8: #837b85;
+    --gray-9: #d4d0c3;
+    --gray-10: #e2ded3;
+    --gray-11: #b9b3bb;
+    --gray-12: #f6f4ef;
+
+    /* Alpha scale: translucent strokes and overlays on the active surface. */
+    --gray-a1: #f6f4ef05;
+    --gray-a2: #f6f4ef0a;
+    --gray-a3: #f6f4ef14;
+    --gray-a4: #f6f4ef1f;
+    --gray-a5: #f6f4ef29;
+    --gray-a6: #f6f4ef38;
+    --gray-a7: #f6f4ef52;
+    --gray-a8: #f6f4ef73;
+    --gray-a9: #f6f4efd9;
+    --gray-a10: #f6f4efeb;
+    --gray-a11: #f6f4efb3;
+    --gray-a12: #f6f4ef;
+
+    /* Semantic aliases consumed by the Radix components and page surfaces. */
+    --gray-contrast: #211f26;
+    --gray-surface: #29272e;
+    --gray-indicator: var(--gray-9);
+    --gray-track: var(--gray-9);
+    --color-background: var(--gray-1);
+    --color-panel-solid: var(--gray-2);
+    --color-panel-translucent: var(--gray-2);
+    --color-surface: var(--gray-2);
+}
+
+/* A subtle inset rule adds definition without introducing raised surfaces.
+ * Story-specific corner treatments override this shadow in preview.css.
+ */
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) :where(.rt-Button) {
+    box-shadow: inset 0 0 0 1px var(--gray-a6);
+}
+
+/* Corner-framed plus/minus markers are decorative; controls retain their semantics.
+ * Primitive disclosures opt in without adding markers to menus or other buttons.
+ */
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) :where(summary, .core-ui-disclosure-trigger) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) summary::-webkit-details-marker {
+    display: none;
+}
+
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) summary::marker {
+    content: '';
+}
+
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) :where(summary, .core-ui-disclosure-trigger)::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 1px;
+    --disclosure-corner: 3px;
+    --disclosure-line: linear-gradient(currentColor, currentColor);
+    --disclosure-vertical: var(--disclosure-line);
+    background-image:
+        var(--disclosure-line), var(--disclosure-line),
+        var(--disclosure-line), var(--disclosure-line),
+        var(--disclosure-line), var(--disclosure-line),
+        var(--disclosure-line), var(--disclosure-line),
+        var(--disclosure-line), var(--disclosure-vertical);
+    background-origin: content-box;
+    background-clip: content-box;
+    background-position:
+        top left, top right, bottom left, bottom right,
+        top left, top right, bottom left, bottom right,
+        center, center;
+    background-size:
+        var(--disclosure-corner) 1px, var(--disclosure-corner) 1px,
+        var(--disclosure-corner) 1px, var(--disclosure-corner) 1px,
+        1px var(--disclosure-corner), 1px var(--disclosure-corner),
+        1px var(--disclosure-corner), 1px var(--disclosure-corner),
+        7px 1px, 1px 7px;
+    background-repeat: no-repeat;
+    transition: background-size 180ms ease-out;
+    pointer-events: none;
+}
+
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) :where(details[open] > summary, .core-ui-disclosure-trigger[data-state='open'])::before {
+    --disclosure-vertical: linear-gradient(transparent, transparent);
+}
+
+/* Match button frames: opposing corner strokes meet, then retract on exit. */
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) :where(summary, .core-ui-disclosure-trigger):is(:hover, :focus-visible):not(:disabled, [data-disabled], [aria-disabled='true'])::before {
+    --disclosure-corner: 50%;
+}
+
+/* Keep a visible keyboard-focus ring independent of hover/selection styling. */
+:is(.core-ui, .radix-themes[data-is-root-theme='false']) :focus-visible {
+    outline: 2px solid var(--gray-12);
+    outline-offset: 3px;
+}
+
+/* Override component and pseudo-element transitions, including Radix motion.
+ * Near-zero durations preserve animation completion events without visible motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+    :is(.core-ui, .radix-themes[data-is-root-theme='false']) *,
+    :is(.core-ui, .radix-themes[data-is-root-theme='false']) *::before,
+    :is(.core-ui, .radix-themes[data-is-root-theme='false']) *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
