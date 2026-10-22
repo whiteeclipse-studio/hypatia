@@ -10,6 +10,7 @@ import { SiteLayout } from "../../layouts/site/site-layout";
 import { Hero } from "../../layouts/landing/hero";
 import { Studio } from "../../layouts/landing/studio";
 import { NextSteps } from "../../layouts/landing/next-steps";
+import { Documentation } from "../../layouts/landing/documentation";
 import { Services } from "../../layouts/landing/services";
 import { ServiceCard } from "../../components/service-card/service-card";
 import { faCode, faGears, faTableCellsLarge } from "@fortawesome/free-solid-svg-icons";
@@ -56,6 +57,8 @@ export function LandingPage(): ReactElement {
                     />
                 </Services>
             </Studio>
+            <Separator size="4" />
+            <Documentation />
             <Separator size="4" />
             <NextSteps />
         </SiteLayout>

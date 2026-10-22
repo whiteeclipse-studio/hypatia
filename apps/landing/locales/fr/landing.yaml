@@ -29,12 +29,17 @@ services:
     development:
         title: Développements choisis
         description: Nos propres outils, projets open source et expérimentations.
+documentation:
+    label: "02 [ Documentation ]"
+    title: Le savoir en partage.
+    description: Découvrez la documentation de nos projets, nos choix techniques et nos standards communs.
+    action: Lire la documentation
 blog:
-    label: "02 [ Le blog ]"
+    label: "03 [ Le blog ]"
     title: À lire sur le blog.
     description: Réflexions sur le logiciel, les systèmes et ce que nous apprenons en chemin.
 contact:
-    label: "03 [ Engageons la conversation ]"
+    label: "04 [ Engageons la conversation ]"
     titleFirst: Construisons
     titleSecond: la suite ensemble.
     description: Vous avez un projet en tête ? Parlez-nous de ce sur quoi vous travaillez.

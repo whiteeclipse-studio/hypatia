@@ -1,0 +1,35 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+.section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 64px;
+    padding-block: 40px;
+    scroll-margin-top: 24px;
+}
+
+.heading,
+.copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    min-width: 0;
+}
+
+@media (max-width: 1000px) {
+    .section {
+        gap: 32px;
+    }
+}
+
+@media (max-width: 640px) {
+    .section {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}

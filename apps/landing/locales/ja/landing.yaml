@@ -29,12 +29,17 @@ services:
     development:
         title: 独自の開発
         description: 自社ツール、オープンソースプロジェクト、さまざまな実験。
+documentation:
+    label: "02 [ ドキュメント ]"
+    title: 知識を、共有する。
+    description: プロジェクトのドキュメント、技術的な判断、共通の標準をご覧ください。
+    action: ドキュメントを読む
 blog:
-    label: "02 [ ブログ ]"
+    label: "03 [ ブログ ]"
     title: ブログから。
     description: ソフトウェアやシステム、日々の学びについての記録。
 contact:
-    label: "03 [ お話ししませんか ]"
+    label: "04 [ お話ししませんか ]"
     titleFirst: 次の一歩を、
     titleSecond: 一緒につくりましょう。
     description: プロジェクトのアイデアをお持ちですか？取り組んでいることをお聞かせください。
