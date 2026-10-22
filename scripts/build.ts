@@ -34,7 +34,7 @@ async function run(args: readonly string[]): Promise<void> {
 
 await run(["run", "typecheck"]);
 await run(["run", "--cwd", "packages/platform/core-ui", "build"]);
-await run(["run", "--cwd", "apps/storybook", "build"]);
+// await run(["run", "--cwd", "apps/storybook", "build"]);
 await run(["run", "--cwd", "apps/landing", "build:static"]);
 await run(["run", "--cwd", "apps/documentation", "build"]);
 await assembleSite(root);

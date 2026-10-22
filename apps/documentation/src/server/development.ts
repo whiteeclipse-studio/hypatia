@@ -44,7 +44,11 @@ function isRenderModule(value: unknown): value is RenderModule {
 }
 
 // Remote snapshots are refreshed once at startup, never as a side effect of requesting a page.
-const sources = await loadRepositories(repositories, documentationCache);
+// Hypatia uses its live working tree in development; release builds import its remote main like every other source.
+const sources = await loadRepositories(
+    repositories.filter(repository => repository.name !== "hypatia"),
+    documentationCache,
+);
 const remoteCatalogues: DocumentationCatalogue[] = [];
 try {
     for (const repository of sources.repositories) {

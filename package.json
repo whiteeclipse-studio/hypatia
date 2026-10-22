@@ -7,7 +7,7 @@
         "packages/*/*"
     ],
     "scripts": {
-        "build": "bun install && bun scripts/build.ts",
+        "build": "bun scripts/build.ts",
         "check:catalogue": "bun run --cwd apps/storybook check:catalogue",
         "documentation": "bun run --cwd apps/documentation dev",
         "format": "prettier . --write",
