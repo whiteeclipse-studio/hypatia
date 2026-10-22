@@ -26,6 +26,7 @@ function SwitchPreview({ treatment, label, defaultChecked, disabled, ...props }:
 
 /** Presents one switch treatment with enabled and disabled on/off examples. */
 function SwitchTreatment({ treatment, label, size }: Pick<SwitchPreviewProps, 'treatment' | 'label' | 'size'>) {
+    const sizing = size === undefined ? {} : { size };
     const title = treatment === 'filled' ? 'Filled track' : 'Corner frame';
 
     return (
@@ -33,19 +34,19 @@ function SwitchTreatment({ treatment, label, size }: Pick<SwitchPreviewProps, 't
             <h2>{title}</h2>
             <div className="button-states">
                 <div>
-                    <SwitchPreview treatment={treatment} label={label} size={size} />
+                    <SwitchPreview treatment={treatment} label={label} {...sizing} />
                     <span>Starts off</span>
                 </div>
                 <div>
-                    <SwitchPreview treatment={treatment} label={label} size={size} defaultChecked />
+                    <SwitchPreview treatment={treatment} label={label} {...sizing} defaultChecked />
                     <span>Starts on</span>
                 </div>
                 <div>
-                    <SwitchPreview treatment={treatment} label={label} size={size} disabled />
+                    <SwitchPreview treatment={treatment} label={label} {...sizing} disabled />
                     <span>Disabled off</span>
                 </div>
                 <div>
-                    <SwitchPreview treatment={treatment} label={label} size={size} defaultChecked disabled />
+                    <SwitchPreview treatment={treatment} label={label} {...sizing} defaultChecked disabled />
                     <span>Disabled on</span>
                 </div>
             </div>

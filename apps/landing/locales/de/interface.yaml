@@ -1,0 +1,30 @@
+# Copyright © 2026 White Eclipse. Released under the MIT Licence.
+navigation:
+    label: Hauptnavigation
+    portfolio: Portfolio
+    services: Leistungen
+    blog: Blog
+    contact: Kontakt
+actions:
+    explorePortfolio: Portfolio ansehen
+    meetStudio: Das Studio kennenlernen
+    readBlog: Blog lesen
+    getInTouch: Kontakt aufnehmen
+accessibility:
+    skipToContent: Zum Inhalt springen
+    socialPlaceholders: Nicht verfügbare Social-Media-Links
+language:
+    label: Sprache
+    en: Englisch
+    fr: Französisch
+    de: Deutsch
+    ja: Japanisch
+    changeFailed: Die Sprache konnte nicht geändert werden. Bitte erneut versuchen.
+placeholders:
+    blog: Blog-Link noch nicht verfügbar
+    contact: Kontakt-Link noch nicht verfügbar
+
+loading: Oberfläche wird geladen…
+social:
+    github: GitHub
+    linkedin: LinkedIn

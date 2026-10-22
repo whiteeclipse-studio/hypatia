@@ -1,3 +1,8 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 

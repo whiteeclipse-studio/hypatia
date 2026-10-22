@@ -26,6 +26,7 @@ function IconButtonPreview({ treatment, label, ...props }: IconButtonPreviewProp
 
 /** Presents one icon-button treatment across its available action states. */
 function IconButtonPreviewTreatment({ treatment, label, size }: Pick<IconButtonPreviewProps, 'treatment' | 'label' | 'size'>) {
+    const sizing = size === undefined ? {} : { size };
     const title = treatment === 'corners' ? 'Corners' : 'Filled';
 
     return (
@@ -33,15 +34,15 @@ function IconButtonPreviewTreatment({ treatment, label, size }: Pick<IconButtonP
             <h2>{title}</h2>
             <div className="button-states">
                 <div>
-                    <IconButtonPreview treatment={treatment} label={label} size={size} />
+                    <IconButtonPreview treatment={treatment} label={label} {...sizing} />
                     <span>Default</span>
                 </div>
                 <div>
-                    <IconButtonPreview treatment={treatment} label={label} size={size} disabled />
+                    <IconButtonPreview treatment={treatment} label={label} {...sizing} disabled />
                     <span>Disabled</span>
                 </div>
                 <div>
-                    <IconButtonPreview treatment={treatment} label={label} size={size} loading />
+                    <IconButtonPreview treatment={treatment} label={label} {...sizing} loading />
                     <span>Loading</span>
                 </div>
             </div>

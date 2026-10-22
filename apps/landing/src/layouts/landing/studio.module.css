@@ -1,0 +1,45 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+.studio {
+    padding-block: 36px 40px;
+}
+
+.intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-block: 32px 40px;
+}
+
+.statement {
+    display: grid;
+    grid-template-columns: 1fr minmax(70px, 0.36fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+.eclipse {
+    height: 100%;
+    max-height: 240px;
+}
+
+.copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 26px;
+}
+
+@media (max-width: 1000px) {
+    .intro {
+        gap: 32px;
+    }
+}
+@media (max-width: 640px) {
+    .intro {
+        grid-template-columns: 1fr;
+    }
+}

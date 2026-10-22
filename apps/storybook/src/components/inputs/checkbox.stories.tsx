@@ -47,9 +47,10 @@ function CheckboxSample({ caption, ...props }: CheckboxSampleProps) {
 
 /** Presents one treatment across unchecked, checked, mixed, and disabled states. */
 function CheckboxTreatment({ treatment, label, size }: Pick<CheckboxPreviewProps, 'treatment' | 'label' | 'size'>) {
+    const sizing = size === undefined ? {} : { size };
     const title = treatment === 'square' ? 'Square' : 'Corner frame';
     const samples = checkboxStates.map((state) => (
-        <CheckboxSample key={state.caption} {...state} treatment={treatment} label={label} size={size} />
+        <CheckboxSample key={state.caption} {...state} treatment={treatment} label={label} {...sizing} />
     ));
 
     return (

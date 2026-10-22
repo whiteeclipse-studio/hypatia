@@ -12,7 +12,7 @@ type RadioOptionProps = {
     value: string;
     label: string;
     treatment: RadioGroupPreviewProps['treatment'];
-    disabled?: boolean;
+    disabled?: boolean | undefined;
 };
 
 /** Renders a labelled radio option within the active single-selection group. */

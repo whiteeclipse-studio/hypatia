@@ -1,3 +1,8 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
 /** Shared exploratory theme and its configuration contract. */
 export { CoreTheme, type CoreThemeProps } from './theme';
 

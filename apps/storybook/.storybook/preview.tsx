@@ -20,7 +20,7 @@ const preview: Preview = {
     initialGlobals: { theme: 'light' },
     decorators: [
         (Story, context) => (
-            <CoreTheme appearance={context.globals.theme === 'dark' ? 'dark' : 'light'}>
+            <CoreTheme appearance={context.globals['theme'] === 'dark' ? 'dark' : 'light'}>
                 <Story />
             </CoreTheme>
         ),

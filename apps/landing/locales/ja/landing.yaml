@@ -1,0 +1,40 @@
+# Copyright © 2026 White Eclipse. Released under the MIT Licence.
+brand:
+    name: White Eclipse
+    tagline: ソフトウェア開発・技術コンサルティング
+metadata:
+    title: White Eclipse — ソフトウェア開発・技術コンサルティング
+    description: White Eclipseはソフトウェア開発と技術コンサルティングを提供します。プロジェクト、スタジオ、私たちの取り組みをご覧ください。
+hero:
+    label: "[ 私たちの取り組み ]"
+    titleFirst: 好奇心は同じ。
+    titleSecond: 軌道はそれぞれ。
+    description: プロジェクトや実験、オープンソースへの取り組みを集めたポートフォリオ、Cydoniaをご覧ください。
+    portfolioLabel: Cydonia / ポートフォリオ
+studio:
+    label: "01 [ スタジオ ]"
+    title: 実社会に価値を届ける、実践的な開発。
+    description: 保守性、自動化、長期的な価値を大切にしながら、信頼できるソフトウェアの設計・開発・運用を支援します。
+    servicesLabel: "[ 私たちのサービス ]"
+services:
+    consulting:
+        title: コンサルティング
+        description: アーキテクチャや技術戦略の策定から、実践的な開発支援まで。
+    modernisation:
+        title: モダナイゼーション
+        description: より信頼できるシステムへ。セキュリティと開発体験を改善します。
+    automation:
+        title: 自動化・AI
+        description: ワークフローの自動化、AIを活用したツール、ナレッジシステム。
+    development:
+        title: 独自の開発
+        description: 自社ツール、オープンソースプロジェクト、さまざまな実験。
+blog:
+    label: "02 [ ブログ ]"
+    title: ブログから。
+    description: ソフトウェアやシステム、日々の学びについての記録。
+contact:
+    label: "03 [ お話ししませんか ]"
+    titleFirst: 次の一歩を、
+    titleSecond: 一緒につくりましょう。
+    description: プロジェクトのアイデアをお持ちですか？取り組んでいることをお聞かせください。

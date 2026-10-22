@@ -13,6 +13,7 @@ function PrimaryButton({ treatment, ...props }: PrimaryButtonProps) {
 
 /** Presents one treatment across default, disabled, and loading states. */
 function PrimaryButtonTreatment({ treatment, children, size }: Pick<PrimaryButtonProps, 'treatment' | 'children' | 'size'>) {
+    const sizing = size === undefined ? {} : { size };
     const title = treatment === 'plain' ? 'Plain' : 'With marker';
 
     return (
@@ -20,15 +21,15 @@ function PrimaryButtonTreatment({ treatment, children, size }: Pick<PrimaryButto
             <h2>{title}</h2>
             <div className="button-states">
                 <div>
-                    <PrimaryButton treatment={treatment} size={size}>{children}</PrimaryButton>
+                    <PrimaryButton treatment={treatment} {...sizing}>{children}</PrimaryButton>
                     <span>Default</span>
                 </div>
                 <div>
-                    <PrimaryButton treatment={treatment} size={size} disabled>{children}</PrimaryButton>
+                    <PrimaryButton treatment={treatment} {...sizing} disabled>{children}</PrimaryButton>
                     <span>Disabled</span>
                 </div>
                 <div>
-                    <PrimaryButton treatment={treatment} size={size} loading>{children}</PrimaryButton>
+                    <PrimaryButton treatment={treatment} {...sizing} loading>{children}</PrimaryButton>
                     <span>Loading</span>
                 </div>
             </div>

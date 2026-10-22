@@ -1,0 +1,40 @@
+# Copyright © 2026 White Eclipse. Released under the MIT Licence.
+brand:
+    name: White Eclipse
+    tagline: Software engineering & consulting
+metadata:
+    title: White Eclipse — Software engineering & consulting
+    description: White Eclipse — software engineering and consulting. Explore our work, our studio, and our approach.
+hero:
+    label: "[ Explore our work ]"
+    titleFirst: Same curiosity.
+    titleSecond: Different orbits.
+    description: Explore Cydonia, our portfolio of projects, experiments and open-source work.
+    portfolioLabel: Cydonia / Portfolio
+studio:
+    label: "01 [ The studio ]"
+    title: Pragmatic engineering for real-world impact.
+    description: We help organisations design, build and operate reliable software, with a focus on maintainability, automation and long-term value.
+    servicesLabel: "[ What we do ]"
+services:
+    consulting:
+        title: Consulting
+        description: Architecture, technical strategy and hands-on engineering support.
+    modernisation:
+        title: Modernisation
+        description: More reliable systems. Better security and developer experience.
+    automation:
+        title: Automation & AI
+        description: Workflow automation, AI-assisted tools and knowledge systems.
+    development:
+        title: Selected development
+        description: Our own tools, open-source projects and experiments.
+blog:
+    label: "02 [ The blog ]"
+    title: From the blog.
+    description: Notes on software, systems and the things we learn along the way.
+contact:
+    label: "03 [ Start a conversation ]"
+    titleFirst: Let’s build
+    titleSecond: what’s next.
+    description: Have a project in mind? Tell us what you’re working on.

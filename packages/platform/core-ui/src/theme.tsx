@@ -1,3 +1,8 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
 import { Theme } from '@radix-ui/themes';
 import type { ComponentProps } from 'react';
 

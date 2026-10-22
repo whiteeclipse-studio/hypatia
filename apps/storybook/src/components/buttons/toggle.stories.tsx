@@ -9,8 +9,9 @@ type TogglePreviewProps = ComponentProps<typeof Toggle> & {
 
 /** Renders a selectable-action candidate with Radix pressed-state behaviour. */
 function TogglePreview({ treatment, size, defaultPressed, ...props }: TogglePreviewProps) {
+    const sizing = size === undefined ? {} : { size };
     return (
-        <Button asChild variant="solid" size={size} className="primary-button toggle-button" data-treatment={treatment}>
+        <Button asChild variant="solid" {...sizing} className="primary-button toggle-button" data-treatment={treatment}>
             <Toggle key={String(defaultPressed)} defaultPressed={defaultPressed} {...props} />
         </Button>
     );

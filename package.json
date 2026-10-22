@@ -4,13 +4,26 @@
     "type": "module",
     "workspaces": [
         "apps/*",
-        "packages/platform/*"
+        "packages/platform/*",
+        "packages/libraries/*"
     ],
     "scripts": {
-        "landing": "bun run --cwd apps/landing dev",
-        "storybook": "bun run --cwd apps/storybook dev",
         "build": "bun run typecheck && bun run --cwd packages/platform/core-ui build && bun run --cwd apps/storybook build && bun run --cwd apps/landing build",
-        "typecheck": "bun run --cwd packages/platform/core-ui typecheck && bun run --cwd apps/storybook typecheck && bun run --cwd apps/landing typecheck",
-        "check:catalogue": "bun run --cwd apps/storybook check:catalogue"
+        "check:catalogue": "bun run --cwd apps/storybook check:catalogue",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check",
+        "landing": "bun run --cwd apps/landing dev",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "storybook": "bun run --cwd apps/storybook dev",
+        "typecheck": "tsc -p tsconfig.json && bun run --cwd packages/libraries/toolchain typecheck && bun run --cwd packages/libraries/i18next typecheck && bun run --cwd packages/platform/core-ui typecheck && bun run --cwd apps/storybook typecheck && bun run --cwd apps/landing typecheck"
+    },
+    "devDependencies": {
+        "@types/node": "26.6.5",
+        "@whiteeclipse/toolchain": "workspace:*",
+        "eslint": "10.10.0",
+        "jiti": "2.6.1",
+        "prettier": "3.9.6",
+        "typescript": "~5.9.3"
     }
 }

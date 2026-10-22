@@ -1,0 +1,9 @@
+# Generated build output and dependency metadata.
+**/dist/
+**/storybook-static/
+**/coverage/
+bun.lock
+
+# Local editor and knowledge-base state.
+.idea/
+.obsidian/

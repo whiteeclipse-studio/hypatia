@@ -1,0 +1,30 @@
+# Copyright © 2026 White Eclipse. Released under the MIT Licence.
+navigation:
+    label: メインナビゲーション
+    portfolio: ポートフォリオ
+    services: サービス
+    blog: ブログ
+    contact: お問い合わせ
+actions:
+    explorePortfolio: ポートフォリオを見る
+    meetStudio: スタジオについて
+    readBlog: ブログを読む
+    getInTouch: お問い合わせ
+accessibility:
+    skipToContent: 本文へスキップ
+    socialPlaceholders: 未公開のソーシャルリンク
+language:
+    label: 言語
+    en: 英語
+    fr: フランス語
+    de: ドイツ語
+    ja: 日本語
+    changeFailed: 言語を変更できませんでした。もう一度お試しください。
+placeholders:
+    blog: ブログへのリンクは準備中です
+    contact: お問い合わせへのリンクは準備中です
+
+loading: インターフェースを読み込み中…
+social:
+    github: GitHub
+    linkedin: LinkedIn
