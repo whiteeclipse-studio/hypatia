@@ -1,0 +1,41 @@
+# Copyright © 2026 White Eclipse. Released under the MIT Licence.
+metadata:
+    title: "White Eclipse Dokumentation"
+    description: "Dokumentation der White Eclipse Projekte."
+brand:
+    home: "White Eclipse Startseite"
+    documentation: "Dokumentation"
+    tagline: "Technisches Wissen an einem Ort."
+navigation:
+    source: "{{repository}} Dokumentation"
+    tree: "Dokumentationsbaum"
+    project: "Projekt"
+    repository: "Repository"
+    otherRepositories: "Weitere Repositories — nicht geladen"
+    preview: "Vorschau · Repositories nicht geladen"
+    structure: "Quellstruktur, gemeinsame Oberfläche."
+    pending: "Dokumente erscheinen hier, sobald die Repositories geladen sind."
+    empty: "Keine Dokumente geladen."
+    onThisPage: "Auf dieser Seite"
+    browse: "Dokumentation durchsuchen"
+    breadcrumb: "Brotkrümelnavigation"
+    backToTop: "Nach oben"
+overview:
+    title: "Übersicht"
+    description: "Dokumentationsübersicht"
+    preview: "Navigationsvorschau"
+    heading: "Projektdokumentation."
+    pending: "Wählen Sie ein Dokument in der Navigation aus, um mit dem Lesen zu beginnen."
+accessibility:
+    skipToContent: "Zum Inhalt springen"
+language:
+    label: "Sprache"
+    en: "Englisch"
+    fr: "Französisch"
+    de: "Deutsch"
+    ja: "Japanisch"
+    changeFailed: "Die Sprache konnte nicht geändert werden. Bitte erneut versuchen."
+loading: "Oberfläche wird geladen…"
+content:
+    languages: "Dokumentsprachen"
+    translation: "Dies ist eine Übersetzung. Die englische Quelle ist maßgeblich."

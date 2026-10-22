@@ -293,3 +293,6 @@ Temporary Items
 
 # Storybook generated catalogue
 storybook-static/
+
+# Documentation repository snapshots and build staging
+/apps/documentation/.cache/

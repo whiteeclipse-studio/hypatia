@@ -1,0 +1,41 @@
+# Copyright © 2026 White Eclipse. Released under the MIT Licence.
+metadata:
+    title: "White Eclipse ドキュメント"
+    description: "White Eclipse のプロジェクトドキュメント。"
+brand:
+    home: "White Eclipse ホーム"
+    documentation: "ドキュメント"
+    tagline: "技術知識を、一か所に。"
+navigation:
+    source: "{{repository}} ドキュメント"
+    tree: "ドキュメントツリー"
+    project: "プロジェクト"
+    repository: "リポジトリ"
+    otherRepositories: "その他のリポジトリ — 未読み込み"
+    preview: "プレビュー · リポジトリ未読み込み"
+    structure: "ソースの構造を、共通の画面で。"
+    pending: "リポジトリの読み込み後、ここにドキュメントが表示されます。"
+    empty: "ドキュメントはまだ読み込まれていません。"
+    onThisPage: "このページの内容"
+    browse: "ドキュメントを参照"
+    breadcrumb: "パンくずリスト"
+    backToTop: "ページ上部へ"
+overview:
+    title: "概要"
+    description: "ドキュメントの概要"
+    preview: "ナビゲーションプレビュー"
+    heading: "プロジェクトのドキュメント。"
+    pending: "ナビゲーションからドキュメントを選択してください。"
+accessibility:
+    skipToContent: "本文へスキップ"
+language:
+    label: "言語"
+    en: "英語"
+    fr: "フランス語"
+    de: "ドイツ語"
+    ja: "日本語"
+    changeFailed: "言語を変更できませんでした。もう一度お試しください。"
+loading: "インターフェースを読み込み中…"
+content:
+    languages: "ドキュメントの言語"
+    translation: "この文書は翻訳です。英語の原文が優先されます。"

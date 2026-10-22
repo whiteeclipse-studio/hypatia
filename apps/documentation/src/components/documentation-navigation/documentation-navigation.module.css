@@ -1,0 +1,146 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+.sidebar {
+    padding: 32px 24px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gray-11);
+}
+
+.project {
+    position: relative;
+    display: grid;
+    gap: 8px;
+    font-size: 12px;
+    margin-top: 22px;
+    color: var(--gray-11);
+}
+
+.project select {
+    appearance: none;
+    width: 100%;
+    border: 1px solid var(--gray-7);
+    border-radius: 0;
+    padding: 10px 32px 10px 10px;
+    background: var(--gray-2);
+    color: var(--gray-12);
+    font: inherit;
+    font-size: 14px;
+}
+
+.project::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    bottom: 16px;
+    width: 6px;
+    height: 6px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.source {
+    font-size: 10px;
+    color: var(--gray-11);
+    margin: 12px 0 32px;
+}
+
+.tree {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 13px;
+}
+
+.tree li {
+    margin-block: 8px;
+}
+
+.tree details > :not(summary) {
+    margin-left: 16px;
+}
+
+.tree summary {
+    position: relative;
+    padding: 8px 8px 8px 32px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+    transition:
+        background-color 160ms ease-out,
+        color 160ms ease-out;
+}
+
+.tree summary::before {
+    position: absolute;
+    left: 8px;
+}
+
+.tree summary:is(:hover, :focus-visible) {
+    color: var(--gray-1);
+    background-color: var(--gray-12);
+}
+
+.tree a {
+    position: relative;
+    display: block;
+    padding: 8px 6px 8px 32px;
+    border: 1px solid transparent;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.tree a::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    background-color: currentColor;
+    opacity: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.tree a:is(:hover, :focus-visible, [aria-current="page"]) {
+    color: var(--gray-1);
+    background: var(--gray-12);
+    border-color: currentColor;
+    text-decoration: none;
+}
+
+.tree a:is(:hover, :focus-visible, [aria-current="page"])::before {
+    opacity: 1;
+}
+
+.empty {
+    font-size: 11px;
+    color: var(--gray-11);
+    padding: 8px;
+}
+
+.note {
+    border-top: 1px solid var(--gray-6);
+    margin-top: 36px;
+    padding-top: 20px;
+}
+
+.note p + p {
+    margin-top: 12px;
+}
+
+@media (max-width: 700px) {
+    .sidebar {
+        padding: 24px 0 0;
+    }
+}
