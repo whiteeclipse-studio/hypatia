@@ -7,6 +7,6 @@ import type { RepositoryConfiguration } from "./types";
 
 /** Exploratory source registry under draft RFC-0002; hooks must be imported from application-owned code. */
 export const repositories: readonly RepositoryConfiguration[] = [
-    { name: "ryugu", title: "Ryugu", url: "https://github.com/whiteeclipse-studio/ryugu.git" },
     { name: "hypatia", title: "Hypatia", url: "https://github.com/whiteeclipse-studio/hypatia.git" },
+    { name: "ryugu", title: "Ryugu", url: "https://github.com/whiteeclipse-studio/ryugu.git" },
 ];
