@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
-  <!-- Original vector study of the reference's flag, fine stem and ring terminal. -->
-  <path d="M5 3 22 10 5 17Z" fill="black"/>
-  <path d="M5 4V21" fill="none" stroke="black" stroke-width="1.25"/>
-  <circle cx="5" cy="23" r="2.25" fill="none" stroke="black" stroke-width="1.25"/>
-</svg>

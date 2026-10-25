@@ -1,2 +1,0 @@
-# Temporary build-time renderer; only dist/ is deployable.
-.prerender-*/

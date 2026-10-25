@@ -296,3 +296,6 @@ storybook-static/
 
 # Documentation repository snapshots and build staging
 /apps/documentation/.cache/
+
+# Obsidian configuration
+.obsidian/
