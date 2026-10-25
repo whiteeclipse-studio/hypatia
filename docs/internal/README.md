@@ -47,6 +47,9 @@ This document is released under the MIT License. See the project's root [LICENCE
 | [internal/designs/core-ui/inspirations/radix-primitives.md](designs/core-ui/inspirations/radix-primitives.md) | Reference for component interaction and keyboard behaviour.                                                                                                     |
 | [internal/reference/storybook-prototype.md](reference/storybook-prototype.md)                                 | Exploratory workspace usage, samples, and historical checks.                                                                                                    |
 | [internal/packages/core-ui/README.md](packages/core-ui/README.md)                                             | Exploratory workspace package usage and current distribution limits.                                                                                            |
+| [internal/packages/toolchain/README.md](packages/toolchain/README.md) | Shared ESLint and Prettier configuration, workspace setup, exports, and limitations. |
+| [internal/packages/toolchain/interfaces.md](packages/toolchain/interfaces.md) | Toolchain public configuration exports, extension examples, and import constraints. |
+| [internal/packages/toolchain/configuration.md](packages/toolchain/configuration.md) | Toolchain defaults, file coverage, overrides, execution, and troubleshooting. |
 
 Design images and wireframes reside in `internal/designs/core-ui/assets/` and are described by the mockups document. Obsolete exploratory assets will be dropped during the Core UI rewrite.
 
@@ -55,3 +58,4 @@ Design images and wireframes reside in `internal/designs/core-ui/assets/` and ar
 | Revision | Date       | Author               | Description                                                                   |
 | -------- | ---------- | -------------------- | ----------------------------------------------------------------------------- |
 | 1        | 2026-10-22 | Akane SHIMOKA, Codex | Initial draft, including the completed RFC-0003 proposal awaiting acceptance. |
+| 2 | 2026-10-25 | Codex | Index the toolchain package README and interface and configuration references. |

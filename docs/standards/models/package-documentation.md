@@ -3,274 +3,157 @@ id: model-package-documentation
 standard_revision: 1
 ---
 
-# Published package documentation model
+# Package documentation model
 
-This model supports the [category standard](../categories/package-documentation.md), the [root documentation standard](../README.md), and [project governance](../GOVERNANCE.md). Those standards define the requirements; this model supplies authoring guidance.
+This model provides starting points for proposed revision 2 of the [package documentation standard](../categories/package-documentation.md). It does not establish adoption or add requirements.
 
 ## Copyright and licence
 
 Copyright © 2026 White Eclipse.
 
-This model is released under the MIT License. See the project's root [LICENCE](../../../LICENCE) file for the complete licence text.
+Released under the MIT License. See the root [LICENCE](https://github.com/whiteeclipse-studio/hypatia/blob/main/LICENCE).
 
 ## Using this model
 
-Entry-file templates declare `standard_revision: 1` for revision 1 of their category standard. Review and deliberately change this pin when targeting a different adopted revision. Supporting pages inherit the pin from the main entrypoint and do not repeat it. The model document itself follows the shared documentation standard.
+Start with the README and add only the references the package needs. Keep explanations short and focused on using the package. Replace placeholders, remove unused links, and adjust paths to the final location. Supporting pages inherit version coverage and the standard pin from the README.
 
-This model describes separate documentation sets under `docs/internal/packages/<package-key>/<version>`, where `<version>` is the first package version covered by the set. Start with the README, then copy only the reference or guide templates needed by the package. Public interfaces should normally have a separate reference; concise material may remain inline as permitted by the standard. The templates are not sections to concatenate into one README.
+The README template targets proposed revision 2. Use it only for work explicitly targeting that proposal until the revision is adopted. Existing revision-1 documents retain their pins; the [earlier model](https://github.com/whiteeclipse-studio/hypatia/blob/5d2c7989adbfdd848791614e730348a8b16607d7/docs/standards/models/package-documentation.md) remains available for them.
 
-Replace identifiers, titles, notices, revision placeholders, and guidance with actual content. Every authored document needs a unique `id`, its own notice, and its own final revision table. Replace `set` in the example IDs with a stable kebab-case qualifier that distinguishes separate documentation sets; identifiers do not need to encode package versions. Keep each document's required sections in order and adjust links to its location. Version coverage is defined only by the directory path and main README; all other documents inherit it without repeating it. Migration guides still identify the transition's source and target versions. Translations follow the shared mirrored-tree and English-source-reference rules.
-
-The example layout for `@whiteeclipse/log` is:
-
-```text
-docs/internal/packages/log/
-├── README.md                  # Optional index of version ranges
-├── 1.0.0/                     # Covers 1.0.0 through 2.3.4, inclusive
-│   ├── README.md
-│   └── interfaces.md
-└── 3.0.0/                     # Covers 3.0.0 onward, open-ended
-    ├── README.md
-    ├── interfaces.md
-    ├── configuration.md       # When needed
-    ├── migrations/            # When needed
-    │   └── v2-to-v3.md
-    └── guides/                # Optional
-        └── task.md
-```
-
-Each range has its own entrypoint and documents. Its README states the inclusive coverage bounds or explicitly identifies an open-ended range. Coverage can span major versions; the directory name always identifies the first covered release. The optional package index links to these range entrypoints and follows the shared metadata, notice, and revision rules.
-
-The templates below assume a versioned root. A single unversioned set is also allowed: omit `<version>/` from the paths and remove one `../` from each template's licence link. Adjust other relative links for the chosen layout. When starting a new range from an existing set, update IDs, the main README coverage, links, and examples rather than carrying over the previous range's identity or scope.
-
-Larger references can replace a single file with a directory containing an index and linked pages. Keep only links to documents that actually exist. For an authored package-local entrypoint, shorten the README template to the shape allowed by the standard and link to the accessible published documentation. Adjust its licence link for the actual package location.
+Each template needs its own unique ID, copyright notice, and revision history. Licence URL, year, holder, author, date, and package details below are placeholders. Do not copy another person's authorship.
 
 ## README
 
-Copy to `docs/internal/packages/<package-key>/<version>/README.md` as the canonical entrypoint for that version range.
+Copy to `docs/internal/packages/<package-key>/README.md`. For separate version ranges, add a `<version>` directory as described by the standard.
 
 ```markdown
 ---
-id: package-subject-set
-standard_revision: 1
+id: package-subject
+standard_revision: 2
 ---
 
-# Subject
+# Package name
 
 ## Overview
 
-Give the exact published package name, purpose, intended consumers, and main responsibilities.
+What the package does and who it is for.
 
 ## Copyright and licence
 
 Copyright © YYYY Copyright Holder.
 
-This document is released under Licence Name. See the project's root [LICENCE](../../../../../LICENCE) file for the complete licence text.
+Released under Licence Name. See the root [LICENCE](https://example.com/project/LICENCE).
 
 ## Applicability
 
-State the covered package versions: the first release must match the directory name. Give an inclusive last version, such as `1.0.0` through `2.3.4`, or explicitly state an open-ended range such as `3.0.0` onward. Identify runtime and dependency requirements and compatibility or stability expectations. Link to migration guidance when needed.
+Covered package versions and required runtimes or dependencies.
 
 ## Installation and quick start
 
-Provide installation, access, setup, and a minimal working example. Link to longer procedures rather than expanding this into a full reference.
+Installation, essential setup, and a minimal working example.
 
 ## Documentation index
 
-Link to the documentation that exists, with a short description of each destination. For example:
-
-- [Public interfaces](interfaces.md): supported entrypoints and interface contracts.
-- [Configuration and behaviour](configuration.md): settings and runtime behaviour.
-- [Migration guide](migrations/v2-to-v3.md): the applicable migration path.
-- [Task guide](guides/task.md): a longer workflow or example.
-
-Remove unused links or replace them with actual reference entrypoints or inline anchors.
+- [Public interfaces](interfaces.md): exports and usage examples.
+- [Configuration](configuration.md): defaults, behaviour, and troubleshooting.
 
 ## Support and related resources
 
-Link to accessible release information, support routes, and other relevant consumer resources.
+Useful source, support, or release links.
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | YYYY-MM-DD | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author      | Description      |
+| -------- | ---------- | ----------- | ---------------- |
+| 1        | YYYY-MM-DD | Author Name | Initial version. |
 ```
 
-## Public interface references
+For a package-local README, use the same basic shape, omit detailed reference material, and link to the published canonical documentation. Applicability and support may be left to that documentation.
 
-Copy to `docs/internal/packages/<package-key>/<version>/interfaces.md` when this document is needed.
+## Public interface reference
+
+Copy to `interfaces.md` beside the canonical README.
 
 ```markdown
 ---
-id: package-subject-set-interfaces
+id: package-subject-interfaces
 ---
 
-# Subject
+# Package public interfaces
 
 ## Overview
 
-Identify the interface groups covered and explain how to navigate the reference.
+The public interfaces covered here. Return to the [package README](README.md).
 
 ## Copyright and licence
 
 Copyright © YYYY Copyright Holder.
 
-This document is released under Licence Name. See the project's root [LICENCE](../../../../../LICENCE) file for the complete licence text.
+Released under Licence Name. See the root [LICENCE](https://example.com/project/LICENCE).
 
 ## Interface reference
 
-Add one subsection per supported interface or group, or link to dedicated pages. Describe supported names and import or invocation paths, inputs and defaults, results, side effects, resource lifecycle, errors, examples, and deprecation or migration guidance where relevant.
+### Export name
+
+How to import or invoke it, what it does, and the inputs and results consumers need to understand.
 
 ## Examples
 
-Provide representative interactions with expected results and relevant failures. Identify prerequisites and placeholders.
-
-## Constraints and errors
-
-Describe cross-cutting limits, error behaviour, side effects, and recovery. Link to configuration or migration details.
+A short working example with its expected result. Examples can instead sit beside the relevant interface.
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | YYYY-MM-DD | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author      | Description      |
+| -------- | ---------- | ----------- | ---------------- |
+| 1        | YYYY-MM-DD | Author Name | Initial version. |
 ```
-
-## Configuration and behaviour references
-
-Copy to `docs/internal/packages/<package-key>/<version>/configuration.md` when this document is needed.
-
-```markdown
----
-id: package-subject-set-configuration
----
-
-# Subject
-
-## Overview
-
-Identify the configuration or runtime behaviour covered by this document.
-
-## Copyright and licence
-
-Copyright © YYYY Copyright Holder.
-
-This document is released under Licence Name. See the project's root [LICENCE](../../../../../LICENCE) file for the complete licence text.
-
-## Prerequisites
-
-Identify relevant environments and required setup or dependencies.
 
 ## Configuration reference
 
-Document each setting, including name, type, allowed values, default, purpose, sources, precedence, interactions, and relevant examples.
-
-## Runtime behaviour
-
-Describe relevant initialization, resource lifecycle, cleanup, concurrency, limits, side effects, and recovery; state what does not apply.
-
-## Troubleshooting
-
-Explain symptoms, configuration mistakes, diagnostics, and practical recovery or support routes.
-
-## Revisions
-
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | YYYY-MM-DD | Akane SHIMOKA | Initial draft |
-```
-
-## Migration guides
-
-Copy to `docs/internal/packages/<package-key>/<version>/migrations/v2-to-v3.md` when this document is needed.
+Copy to `configuration.md` beside the canonical README.
 
 ```markdown
 ---
-id: package-subject-set-migration
+id: package-subject-configuration
 ---
 
-# Subject
+# Package configuration
 
 ## Overview
 
-Describe the migration and the consumers who need it.
+The settings covered here. Return to the [package README](README.md).
 
 ## Copyright and licence
 
 Copyright © YYYY Copyright Holder.
 
-This document is released under Licence Name. See the project's root [LICENCE](../../../../../../LICENCE) file for the complete licence text.
+Released under Licence Name. See the root [LICENCE](https://example.com/project/LICENCE).
 
-## Versions and prerequisites
+## Configuration reference
 
-Identify source and target versions, supported paths, required runtimes or dependencies, access, and preparation.
-
-## Breaking changes
-
-Explain affected interfaces, defaults, configuration, and behaviour. Include concrete before-and-after examples where useful.
-
-## Migration steps
-
-Give ordered consumer changes, including relevant configuration or data transformations and dependencies between steps.
-
-## Validation and recovery
-
-Describe checks for success and recovery or rollback options. Identify irreversible changes or recovery limitations.
-
-## Revisions
-
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | YYYY-MM-DD | Akane SHIMOKA | Initial draft |
-```
-
-## Task guides and examples
-
-Copy to `docs/internal/packages/<package-key>/<version>/guides/task.md` when this document is needed.
-
-```markdown
----
-id: package-subject-set-guide-task
----
-
-# Subject
-
-## Overview
-
-Identify the task and intended outcome.
-
-## Copyright and licence
-
-Copyright © YYYY Copyright Holder.
-
-This document is released under Licence Name. See the project's root [LICENCE](../../../../../../LICENCE) file for the complete licence text.
-
-## Prerequisites
-
-Identify required setup, permissions, dependencies, and knowledge.
-
-## Instructions
-
-Provide complete ordered actions or a worked example, explaining inputs, choices, and consequential operations.
-
-## Expected results
-
-Describe the observable result and how consumers verify success.
+Useful settings, defaults, and their purpose. Group related rules and explain why they are enabled. Link to upstream documentation for general option details.
 
 ## Troubleshooting
 
-Describe likely failures and practical recovery or support routes, or state that none apply.
+Realistic problems and short, actionable fixes. Omit this section if it adds no useful information.
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | YYYY-MM-DD | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author      | Description      |
+| -------- | ---------- | ----------- | ---------------- |
+| 1        | YYYY-MM-DD | Author Name | Initial version. |
 ```
 
+## Migration and task guides
+
+Add `migrations/<subject>.md` when consumers need upgrade instructions, or `guides/<task>.md` for a longer workflow. Use the shared document metadata, notice, and revision history. Link back to the package README, adjusting the relative path for the guide's location.
+
+A migration guide identifies source and target versions, the required changes, and checks for success. Include recovery instructions when changes affect data or cannot be easily undone.
+
+A task guide states the goal, necessary setup, steps, and expected result. Use headings that help readers complete the task rather than adding empty sections.
+
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-16 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                                                               |
+| -------- | ---------- | ------------- | ------------------------------------------------------------------------- |
+| 1        | 2026-10-16 | Akane SHIMOKA | Initial draft                                                             |
+| 2        | 2026-10-25 | Codex         | Align templates with the proposed concise package documentation standard. |

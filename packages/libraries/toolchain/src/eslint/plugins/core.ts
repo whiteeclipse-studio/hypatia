@@ -73,7 +73,6 @@ export default defineConfig(
             "no-useless-escape": "error",
             "no-useless-return": "error",
             "no-var": "error",
-            // RFC-0002 permits discarding results; typed checks still reject floating promises.
             "no-void": ["error", { allowAsStatement: true }],
             "no-warning-comments": ["error", { terms: ["FIXME"], location: "anywhere" }],
             "object-shorthand": ["error", "always", { avoidQuotes: true, avoidExplicitReturnArrows: true }],

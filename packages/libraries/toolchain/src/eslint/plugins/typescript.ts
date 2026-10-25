@@ -43,10 +43,6 @@ export default defineConfig(
                 },
             ],
             "@typescript-eslint/no-useless-empty-export": "error",
-            // "@typescript-eslint/prefer-readonly-parameter-types": [
-            //     "error",
-            //     { allow: [{ from: "lib", name: "HTMLElement" }], treatMethodsAsReadonly: true },
-            // ],
             "@typescript-eslint/promise-function-async": ["error", { allowAny: false }],
             "@typescript-eslint/require-array-sort-compare": "error",
             "@typescript-eslint/strict-void-return": "error",
