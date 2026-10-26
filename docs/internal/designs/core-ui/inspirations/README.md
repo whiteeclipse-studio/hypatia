@@ -14,13 +14,14 @@ This part documents the inspirations for White Eclipse's shared visual identity 
 
 Copyright © 2026 White Eclipse.
 
-This document is released under the MIT License. See the project's root [LICENCE](../../../../../LICENCE) file for the complete licence text.
+This document is released under the MIT License. See the root [LICENCE](https://github.com/whiteeclipse-studio/hypatia/blob/main/LICENCE) file for the complete licence text.
 
 ## Sources
 
 - [NieR: Automata](nier-automata.md): primary visual inspiration and its connection to the White Eclipse identity.
 - [Bootstrap](bootstrap.md): guide to useful component types, with Core UI's scope determined by project needs.
-- [Radix Primitives](radix-primitives.md): reference for component behaviour, focus management, and keyboard interactions.
+- [Obsidian styling](https://docs.obsidian.md/Reference/CSS%20variables/About%20styling) and [theme guidelines](https://github.com/obsidianmd/obsidian-developer-docs/blob/main/en/Themes/App%20themes/Theme%20guidelines.md): native variable-based adaptation, local assets, and respect for user customization.
+- [Radix Themes](radix-primitives.md): styled foundation, shared tokens, and component behaviour; Primitives support lower-level gaps.
 
 ### Prototype and supplied material
 
@@ -34,16 +35,17 @@ This document is released under the MIT License. See the project's root [LICENCE
 
 NieR: Automata provides the primary visual direction: a coherent, purposeful interface with warm neutral colours, flat surfaces, precise graphic details, readable typography, and smooth, restrained transitions. Core UI translates these qualities into a shared White Eclipse vocabulary that can support both concise interfaces and longer reading experiences.
 
-Bootstrap and Radix Primitives complement this direction. Bootstrap offers a guide to useful component types, while Radix provides examples of interaction behaviour, focus management, and keyboard navigation. Together, they inform a focused component suite shaped by White Eclipse's project needs. 
+Bootstrap informs useful component families. Radix Themes provides the proposed styled foundation, while Primitives support interactions where needed. Core UI owns the final defaults and common compositions, including the language switch.
 
-The extracted design uses flat rectangular controls, four-corner frames that complete on hover/focus, persistent selection symbols, system sans-serif reading text, monospace short annotations, and optional fixed geometric texture. The supplied logo remains an independent brand symbol. Exact values and behaviour are maintained in [implementation rules](../implementation-rules.md), with alternatives retained in the [component catalogue](../components.md).
+The extracted design uses flat rectangular controls, four-corner frames that complete on hover/focus, persistent selection symbols, Inter reading text, monospace short annotations, and optional fixed geometric texture. The supplied logo remains an independent brand symbol. Exact values and behaviour are maintained in [implementation rules](../implementation-rules.md), with alternatives retained in the [component catalogue](../components.md).
 
 ## Boundaries
 
-These references guide the proposal without selecting a technical stack, requiring parity with another library, or reproducing game assets and effects. Core UI's [draft component contracts](../components.md), accessibility requirements, and visual rules determine the proposed interpretation. No source screenshot or prototype default by itself records an accepted choice. The landing's content/layout and generated images remain illustrative; the final landing page needs its own application design.
+These references guide the design without requiring parity with another library or reproducing game assets and effects. The updated technical direction is proposed in draft [RFC-0002](0002-tech-stack.md#core-ui-theme-and-component-library), not accepted by this page. Core UI's [draft component contracts](../components.md), accessibility requirements, and visual rules determine the proposed interpretation. No source screenshot or prototype default by itself records an accepted choice. The landing's content/layout and generated images remain illustrative; the final landing page needs its own application design.
 
 ## Revisions
 
-| Revision | Date | Author | Description |
-| --- | --- | --- | --- |
-| 1 | 2026-10-17 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                                                                                 |
+| -------- | ---------- | ------------- | ------------------------------------------------------------------------------------------- |
+| 1        | 2026-10-17 | Akane SHIMOKA | Initial draft                                                                               |
+| 2        | 2026-10-25 | Akane SHIMOKA | Align the foundation with Radix Themes, owned compositions, and native Obsidian adaptation. |

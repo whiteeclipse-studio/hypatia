@@ -3,23 +3,19 @@ id: model-api-reference
 standard_revision: 1
 ---
 
-# Public API reference model
+# API reference model
 
-This model supports the [category standard](../categories/public-documentation.md), the [root documentation standard](../README.md), and [project governance](../GOVERNANCE.md). Those standards define the requirements; this model supplies authoring guidance.
-
-## Copyright and licence
-
-Copyright © 2026 White Eclipse.
-
-This model is released under the MIT License. See the project's root [LICENCE](../../../LICENCE) file for the complete licence text.
+An optional starting point for API documentation. See the [standards entrypoint](../README.md) and [API documentation standard](../categories/api-documentation.md).
 
 ## Using this model
 
-Entry-file templates declare `standard_revision: 1` for revision 1 of their category standard. Review and deliberately change this pin when targeting a different adopted revision. Supporting pages inherit the pin from the main entrypoint and do not repeat it. The model document itself follows the shared documentation standard.
+Copy the template to `docs/public/api/<id>.md` or `docs/public/api/<id>/README.md`, matching `<id>` to the document identifier. Replace placeholders and select the adopted standards entrypoint revision.
 
-Copy the template to `docs/public/api/subject.md`. Replace its identifier, title, notice, revision placeholders, and guidance with actual content. Keep the required sections in order and explicitly state when a section does not apply. Adjust links, including the licence link, for the final location. Translations follow the shared mirrored-tree and English-source-reference rules.
+For HTTP APIs, store the specification in an adjacent `assets` folder, using filenames prefixed with the document identifier. The example uses `assets/api-subject-openapi.yaml`; additional YAML files can be connected through OpenAPI references.
 
-Keep revision history in the final table. Examples of paths in this model do not establish applicability or completed verification.
+Generate the HTTP API's Documentation section from those assets. The comment below marks where generated content belongs; it does not define a generator directive. For non-HTTP APIs, replace the generated source reference and placeholder with authored Markdown.
+
+Use the folder form whenever companion Markdown files are needed, and index them in the README summary. Adjust links for the final location.
 
 ## Copyable template
 
@@ -29,44 +25,36 @@ id: api-subject
 standard_revision: 1
 ---
 
-# Subject
+# API name
 
-## Overview
+Briefly explain the API's purpose and intended consumers.
 
-Identify the interface, consumers, boundary, and covered subset.
+<!-- For folder-based references, link to any companion documents here. -->
+
+## Documentation
+
+Generated from the [OpenAPI specification](./assets/api-subject-openapi.yaml).
+
+<!-- Insert generated API reference content here. Do not edit it independently. -->
 
 ## Copyright and licence
 
 Copyright © YYYY Copyright Holder.
 
-This document is released under Licence Name. See the project's root [LICENCE](../../../LICENCE) file for the complete licence text.
-
-## Applicability
-
-Identify the documented versions, stability, compatibility scope, and any planned or deprecated behaviour.
-
-## Access and setup
-
-Describe connection or loading, authentication, authorization, and required setup; state what does not apply.
-
-## Interface contract
-
-Describe operations, inputs, outputs, defaults, constraints, side effects, and relevant pagination, ordering, retry, idempotency, or concurrency behaviour. Link to authoritative contracts.
-
-## Examples
-
-Give representative valid interactions and results, including relevant failures. Identify placeholders and use no live credentials.
-
-## Errors and limits
-
-Describe error conditions, representations, applicable codes and limits, recovery, and relevant migration links.
+Released under [Licence Name](https://example.com/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | YYYY-MM-DD | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author       | Description   |
+| -------- | ---------- | ------------ | ------------- |
+| 1        | YYYY-MM-DD | Human Author | Initial draft |
 ```
+
+## Copyright and licence
+
+Copyright © 2026 White Eclipse.
+
+Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 

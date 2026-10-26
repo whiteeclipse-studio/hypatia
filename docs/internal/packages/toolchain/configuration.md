@@ -3,7 +3,6 @@ id: package-toolchain-configuration
 ---
 
 # Toolchain configuration and behaviour
-## Overview
 
 This reference describes the shared ESLint and Prettier settings, consumer overrides, and execution behaviour.
 

@@ -3,7 +3,6 @@ id: package-toolchain-interfaces
 ---
 
 # Toolchain public interfaces
-## Overview
 
 This reference describes the two public configuration exports of `@whiteeclipse/toolchain`.
 

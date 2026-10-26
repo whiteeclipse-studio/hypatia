@@ -8,101 +8,105 @@ status: draft
 
 ## Summary
 
-Core UI proposes White Eclipse's shared interface language: warm off-white and charcoal surfaces, readable typography, flat controls, precise corner frames, restrained geometric backgrounds, and predictable interactions. It supports the company's websites and reading experiences through reusable components, rather than prescribing a single application layout.
+Core UI proposes a complete White Eclipse theme, a styled React component library built on Radix Themes, and a native Obsidian theme. Applications receive the shared palette, typography, controls, and common compositions rather than assembling an interface from raw primitives.
 
-This draft extracts the design explored in the component catalogue and landing sample. It records concrete values and behaviours for review, retains alternative component treatments, and distinguishes existing prototype observations from proposed requirements. The landing page is a **Core UI mockup, not the definitive design of White Eclipse's landing page**.
+The components provide the visual starting point: warm off-white and charcoal surfaces, flat controls, precise corner frames, and restrained motion. Core UI will also own repeated controls such as the language switch. Consumers must be able to include only the components and styles they use.
 
 ## Copyright and licence
 
 Copyright © 2026 White Eclipse.
 
-This document is released under the MIT License. See the project's root [LICENCE](../../../../LICENCE) file for the complete licence text.
+Released under the MIT License. See the root [LICENCE](https://github.com/whiteeclipse-studio/hypatia/blob/main/LICENCE).
 
 ## Requirement terminology
 
-Uppercase requirement keywords follow IETF **BCP 14**, as defined by [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119) and clarified by [RFC 8174](https://www.rfc-editor.org/rfc/rfc8174). **MUST**, **MUST NOT**, **REQUIRED**, **SHALL**, **SHALL NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**, **NOT RECOMMENDED**, **MAY**, and **OPTIONAL** carry those meanings only when written entirely in uppercase. Requirements in this draft express the proposed design; they do not record owner acceptance.
+Uppercase requirement keywords follow IETF BCP 14, as defined by [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119) and [RFC 8174](https://www.rfc-editor.org/rfc/rfc8174). They carry those meanings only when written entirely in uppercase. Requirements in this draft do not record owner acceptance.
 
 ## Context and scope
 
-The foundation serves visitors, readers, and people operating White Eclipse interfaces, as well as the designers and developers composing those interfaces. Initial consumers include the company website, Hypatia's documentation experience, and Cydonia's portfolio. Long-form content and compact controls share the same visual identity while retaining appropriate density and semantics.
+Core UI serves White Eclipse's websites and applications. It supplies a consistent interface while leaving page content, routes, data, and deployment to each application.
 
 The proposal covers:
 
-- Light/dark colour roles, typography, spacing, borders, iconography, brand placement, motion, and an optional decorative background treatment.
-- A component catalogue grouped into Buttons, Content, Disclosure, Feedback, Inputs, Layout, Navigation, Overlays, Typography, and Utilities.
-- Component states, keyboard and pointer behaviour, theme inheritance, readable adaptations, and review criteria.
-- Component-rendered samples demonstrating the foundation in context.
+- A complete light/dark theme with shared colour, typography, spacing, focus, and motion rules.
+- Styled controls, typography, layout components, and overlays based on Radix Themes.
+- Core UI-owned components, starting with `LanguageSwitch`, `WhiteEclipseBrand`, and `ActionLink`.
+- Modular delivery so a small consumer can omit unrelated component code and styles.
+- A native Obsidian app theme sharing the same visual foundations, with light/dark reading and editing surfaces.
 
-The mockup's copy, section order, service offerings, navigation destinations, language availability, editorial sizing, and portfolio artwork are illustrative. They do not establish a final landing-page information architecture, business commitment, translation policy, or interactive solar-system experience. Generated images remain temporary application artwork. Company logo files are supplied assets; redesigning their fragmentation mark is outside this proposal.
+Radix Primitives MAY be used internally when Themes has no suitable component. Applications MUST NOT need raw primitives to use the supported Core UI library. Core UI MUST expose explicit supported components rather than a blanket upstream namespace.
 
-React, Vite, Bun, Radix Themes/Primitives, and the current workspace arrangement are exploratory implementation choices. [RFC-0001](../../rfcs/0001-repository-structure.md) is still a draft; [RFC-0002](../../rfcs/0002-tech-stack.md) is also a draft proposing technical choices and the public documentation pipeline. These samples do not accept either RFC.
+The web and Obsidian themes share semantic colour and typography roles. Obsidian retains its native layout, editing behaviour, preferences, and controls; it does not load React or Radix components.
 
-### Post-exploration rewrite
+The theme is prescriptive about visual defaults and interaction states. Applications select documented variants and compose their own pages; they do not need to recreate the brand styling for each control.
 
-After the exploratory phase, the entire Core UI documentation set MUST be rewritten from scratch, including this proposal and its supporting pages, package documentation, and Storybook prototype reference. Existing descriptions and verification reports remain exploratory material until that rewrite. Obsolete exploratory captures and assets MUST be dropped during the rewrite.
+The landing and documentation samples illustrate composition. Their copy, routes, artwork, and page measurements are not required application layouts. The language switch presents a supplied locale and available choices; application localization owns changing language, persistence, and translated-document navigation.
 
-Once the rewrite is under way, consolidate exact behaviour and visual values in the implementation rules. Mockups should describe depicted states and approximations and link to those rules; package documentation should describe current usage without maintaining a duplicate design specification.
+### Rewrite and historical reference
+
+The previous implementation was removed for the repository rewrite. Its [source snapshot](https://github.com/whiteeclipse-studio/hypatia/tree/25f35669fe3116680d11e7040f38eea9e47edd3f) and retained captures remain design references. They are not a working catalogue or evidence that the new library exists.
+
+This revision replaces the earlier extraction-only direction. Shared values and behaviour remain in the implementation rules; historical alternatives stay identified as alternatives. No rebuilt components, tree-shaking results, or new browser validation are claimed.
 
 ## Documentation index
 
-- [Inspirations](inspirations/README.md): the visual direction, behavioural references, and boundaries of their use.
-- [Mockups](mockups.md): the illustrative landing and documentation compositions, light/dark samples, scrolled captures, component specimens, and limitations.
-- [Implementation rules](implementation-rules.md): proposed visual values, state rules, accessibility requirements, and verification criteria.
-- [Component catalogue](components.md): all 73 studies, their responsibilities, candidate treatments, and state contracts, organized by area.
-- [Prototype reference](../../reference/storybook-prototype.md): local workflow and exploratory checks.
-
-The implementation rules define proposed shared behaviour. Mockup-specific measurements are explicitly separated there; a screenshot does not override a rule or turn an illustrative value into a universal token.
+- [Inspirations](inspirations/README.md): visual direction and Radix Themes foundation.
+- [Mockups](mockups.md): retained visual samples and their historical limits.
+- [Implementation rules](implementation-rules.md): theme defaults, owned controls, modular delivery, and review criteria.
+- [Component catalogue](components.md): proposed library responsibilities.
 
 ## User journeys
 
-**Review a component.** A reviewer enters `Components / <Area> / <Component>`, compares candidates with matching content, then opens Playground to change supported controls. They exercise focus, hover, activation, selection, disabled/loading conditions, and light/dark appearance. The outcome is a reviewable choice or a recorded discrepancy, not automatic acceptance.
+**Build an interface.** An application imports the Core UI theme and the components it needs. Controls share the intended styling, focus, and states without application-specific copies of those styles. A small page can omit dialogs, menus, optional branding, and decorative backgrounds it does not use.
 
-**Compose an interface.** A designer combines layout, typography, navigation, actions, fields, and feedback from the catalogue. They review the landing mockup for hierarchy and brand expression, then adapt composition to their own content. Unavailable destinations stay clearly identified in exploratory samples; real workflows require their own design and error/recovery paths.
+**Choose a language.** A visitor uses the shared language switch. The selected locale is visible and available choices have accessible names. The application applies the change and supplies the resulting value, pending state, or error. The component does not choose persistence or navigation policy.
 
-**Operate an interface.** A visitor follows a semantic link, activates a button, changes a labelled value, or opens a disclosure/overlay. Current state is visible and exposed to assistive technology. Cancellation, dismissal, and validation errors preserve an understandable route back to the task. Application authorization and data handling remain outside this visual foundation.
+**Use Obsidian.** A user installs the White Eclipse theme, selects light or dark appearance, and reads or edits notes with the same visual identity. Native font preferences, keyboard focus, and note content remain usable offline.
 
-A Storybook-based presentation demo MUST present every component defined by this design and its specified variants, states, and interactions. The 73-study catalogue supplies a starting review scope; it does not mean every state has been implemented or checked.
+**Operate controls.** A visitor follows links, activates actions, changes values, and opens overlays using their expected pointer and keyboard interactions. Selection remains clear after hover ends; dismissal and errors leave an understandable way to continue.
 
-**Read documentation.** The [documentation mockup](mockups.md#documentation-website-reference) explores repository context, source-directory navigation, breadcrumbs, and local article contents. It uses selected public-source excerpts and collapsible directories, with a narrow-screen navigation disclosure. Remote document loading and publication remain outside this exploratory sample.
+**Review the library.** The rebuilt Storybook MUST demonstrate the supported Core UI components, variants, states, and main interactions in both appearances. The review inventory is the Core UI API, not every export of an installed dependency.
 
 ## Consequences and alternatives
 
-Shared tokens and state cues reduce visual drift across projects. Flat surfaces and fine rules keep the interface quiet; visible focus and semantic labels carry interaction meaning. Corner outlines add identity without changing control size. Font Awesome supplies recognizable icons, while the company's supplied logo remains a distinct brand asset.
+A full theme and owned components reduce repeated composition and styling. They also give Core UI responsibility for its public API, accessibility, visual consistency, and dependency upgrades. The library deliberately offers fewer choices than exposing all upstream props and variants.
 
-The textured background adds character but can compete with dense content and low-contrast graphics. It is an optional composition treatment, with flat surfaces available for reading and data entry. Outfit, Inter, and JetBrains Mono establish distinct brand, reading, and code roles. Google Fonts loading adds external requests and may change text wrapping when the fonts replace fallback faces. Keeping several component candidates increases review work until variants are selected. Full upstream catalogue coverage also includes utilities and unstable previews that may never become production design-system contracts.
+Radix Themes provides the styled foundation. Raw primitives remain an internal option for gaps; a primitive-only public toolkit would move too much composition back into applications. An unmodified Themes re-export would preserve the previous application's styling work rather than consolidate it.
 
-Alternatives include an unmodified component-library theme, a token-only visual guide, or separately designed websites. The first offers less brand expression; the second leaves interaction consistency to each project; the third duplicates design and verification work. A plain background remains a deliberate alternative where the decorative treatment harms readability.
+Modular styles require separate attention from JavaScript tree-shaking. A full stylesheet can be offered for convenience, but it cannot be the only way to consume the theme. The exact packaging approach must be validated against the chosen upstream version before it becomes a supported contract.
 
 ## Validation
 
-The deployed Storybook catalogue MUST serve as the validation layer for complete implementation. Review MUST compare the deployed build with this complete proposal, including [component contracts](components.md), [visual and accessibility rules](implementation-rules.md), and repository mockups. It MUST cover every specified component, variant, state, interaction, theme, and adaptation, with discrepancies resolved before acceptance.
+Review MUST cover the [component contracts](components.md), [visual and accessibility rules](implementation-rules.md), and retained mockups. The rebuilt deployed catalogue MUST show the supported controls in light/dark appearance, including keyboard focus, disabled/loading/error states where relevant, narrow layouts, and long labels.
 
-Review criteria are observable: corner frames complete without layout shift; keyboard focus stays visible; controls preserve state cues without relying only on colour; nested and portalled surfaces retain the active theme; background geometry remains fixed and aligned while scrolling; long text and narrow layouts remain usable; feedback and errors have understandable recovery. The landing mockup demonstrates composition, not a required page layout.
+The Obsidian theme MUST be reviewed separately in the native app: light/dark appearance, Reading view, Live Preview, source editing, navigation, settings, and representative note content. Mobile layout and print output also need review; unsupported plugin-specific surfaces must be identified. Browser Storybook checks do not establish native-app compatibility.
 
-Completed exploratory checks on 2026-10-18 include type checks, both builds, installed-export coverage, rendering of the 146 component stories, selected interaction checks, and landing light/dark, narrow-viewport, logo, background-alignment, and scrolling observations. These are recorded in the [prototype reference](../../reference/storybook-prototype.md) and [mockups](mockups.md). Unit/integration and automated accessibility suites were omitted during prototyping. Complete contrast, assistive-technology, cross-browser, long-content, and touch validation remain pending. No deployed review URL or owner approval is recorded.
+The library MUST also be built and consumed through its public package exports. A minimal consumer MUST retain the theme and used control styles while excluding unrelated components, styles, and optional assets. Compare selective imports with a broader consumer and record the resulting module and stylesheet inventories. An ESM export declaration alone does not establish tree-shaking support.
 
-Only after the complete catalogue has been deployed and reviewed may the responsible human owner mark the design accepted. Acceptance MUST record the owner, date, approval reference, reviewed catalogue URL/build, fixed source snapshot, approved README revision, and covered supporting document IDs/revisions/assets. Passing checks, implementing a prototype, or requesting this extraction does not establish acceptance.
+Previous prototype observations are historical only. Rebuilt component, bundle, browser, accessibility, and deployment checks remain planned. Complete review and explicit human acceptance are required before the design is accepted; the decision record must identify the owner, date, approval reference, reviewed catalogue build, fixed source snapshot, approved README revision, and covered supporting document revisions and assets.
 
 ## Open questions
 
-| Question | Boundary and resolution condition |
-| --- | --- |
-| Which candidates become supported variants? | Retain all documented comparisons for review; select or deliberately retain alternatives per component before acceptance. Do not infer a winning treatment from its default story args. |
-| What is the final accessibility and browser support commitment? | WCAG 2.2 AA is proposed as the web review target in the rules. Confirm scope, supported browser/assistive-technology combinations, touch target policy, and validation evidence before acceptance. No conformance is claimed. |
-| Which feedback colours and state treatments are final? | Neutral roles are extracted; destructive/error examples still inherit Radix red, while success/warning/information palettes and all contrast pairings need review. Resolve these before accepting the affected component contracts. |
-| Which upstream components and APIs become a stable Core UI contract? | The 73 studies are the draft review inventory. Resolve production inclusion, preview/unstable fields, final size/variant mappings, and packaging through the relevant design review and future RFC-0002. |
-| Which typography details need adjustment? | The font roles are specified in the implementation rules. Review web-font and fallback rendering, dense text, zoom, and translations before acceptance; the selection alone does not establish visual or accessibility validation. |
-| Where may the decorative background be used? | The landing demonstrates fixed geometry and a fine grid. Check dense reading, data-entry surfaces, forced colours, narrow/tall viewports, and contrast before making it a default beyond this optional treatment. |
-| What happens to the sample landing and generated artwork? | They stay illustrative under this proposal. A definitive landing design, real destinations, translations, and final imagery require separate product design; accepting Core UI does not implicitly accept them. |
+| Question                                                    | Resolution condition                                                                                                                                                                                      |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Which historical variants become supported?                 | Choose and document variants for each exported control. The historical comparison stories do not automatically become public API.                                                                         |
+| How will modular CSS be delivered?                          | Validate a package build that preserves the required theme/component styles and excludes unrelated CSS. Account for upstream CSS dependencies and licence notices.                                        |
+| Which preview components are included?                      | Review form, password, and code-field stability before exposing them. Omit unselected upstream exports.                                                                                                   |
+| Which semantic colours and accessibility support are final? | Resolve feedback colour roles, contrast, supported browsers, and assistive-technology scope before acceptance. WCAG 2.2 AA remains the proposed review target.                                            |
+| Which Obsidian versions and surfaces are supported?         | Confirm the minimum app version, desktop/mobile coverage, font fallback, and plugin limits against the generated theme before release. Community-directory submission is a separate publication decision. |
+| Which composition details need adjustment?                  | Review long locale names, dense content, typography fallbacks, and optional backgrounds in the rebuilt catalogue.                                                                                         |
 
-Material design questions above MUST be resolved before acceptance. Deferred application-specific content remains outside this proposal with the boundaries stated here. Technical decisions and production readiness remain subject to the relevant RFCs.
+The language-switch ownership and presentation contract are proposed in the implementation rules. Its final TypeScript signatures and the packaging implementation remain part of RFC-0002's delivery work. Application content, locale persistence, and routing stay outside Core UI.
 
 ## Decision record
 
-Draft; owner acceptance is pending. No approved revision, approval reference, deployed validation build, or accepted technical RFC is recorded. The current supporting set comprises `core-ui-inspirations` and its linked source pages, `core-ui-mockups`, `core-ui-implementation-rules`, and `core-ui-components`, plus their referenced assets. This identifies review scope only.
+Draft revision 2; owner acceptance is pending. This revision proposes a Radix Themes foundation, an owned component library, selective code/style delivery, and a native Obsidian theme. It does not establish implementation, release, or approval of any RFC.
+
+The review set consists of this README, `core-ui-implementation-rules`, `core-ui-components`, `core-ui-mockups`, `core-ui-inspirations`, its linked source pages, and the referenced assets. Earlier decisions and revision history remain preserved.
 
 ## Revisions
 
-| Revision | Date | Author | Description |
-| --- | --- | --- | --- |
-| 1 | 2026-10-17 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                                                                                                     |
+| -------- | ---------- | ------------- | --------------------------------------------------------------------------------------------------------------- |
+| 1        | 2026-10-17 | Akane SHIMOKA | Initial draft                                                                                                   |
+| 2        | 2026-10-25 | Codex         | Propose the styled component library, selective delivery, owned controls, and a matching native Obsidian theme. |

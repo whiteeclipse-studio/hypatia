@@ -4,7 +4,6 @@ standard_revision: 1
 ---
 
 # Toolchain package
-## Overview
 
 `@whiteeclipse/toolchain` provides shared ESLint and Prettier configuration for White Eclipse's JavaScript and TypeScript workspaces.
 
