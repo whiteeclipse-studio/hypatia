@@ -1,0 +1,20 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+.readingGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: var(--space-5);
+}
+
+.projectCard {
+    background: var(--accent-3);
+}
+
+@media (max-width: 1050px) {
+    .readingGrid {
+        grid-template-columns: 1fr;
+    }
+}

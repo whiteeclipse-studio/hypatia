@@ -1,0 +1,13 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+@import "@whiteeclipse/core-ui/styles.css";
+@import "tailwindcss";
+
+@layer base {
+    body {
+        margin: 0;
+    }
+}

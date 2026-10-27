@@ -1,0 +1,7 @@
+title: Interface translations
+description: Switch languages to explore bundled YAML namespaces and regional fallbacks.
+language: Language
+activeLocale: Active locale
+regionalMessage: This sentence comes from the base language.
+englishOnly: This sentence is only translated in English.
+missingLabel: Untranslated key

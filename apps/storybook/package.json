@@ -1,0 +1,32 @@
+{
+    "name": "@whiteeclipse/storybook",
+    "version": "0.1.0-alpha.1",
+    "private": true,
+    "description": "Exploratory Core UI theme and layout studies.",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "build": "bun run typecheck && storybook build --disable-telemetry",
+        "dev": "storybook dev --host 0.0.0.0 -p 20101 --exact-port --no-open --disable-telemetry",
+        "typecheck": "tsc -p tsconfig.json"
+    },
+    "dependencies": {
+        "@radix-ui/themes": "3.3.0",
+        "@whiteeclipse/core-ui": "workspace:*",
+        "@whiteeclipse/i18next": "workspace:*",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+    },
+    "devDependencies": {
+        "@storybook/addon-a11y": "10.6.2",
+        "@storybook/react-vite": "10.6.2",
+        "@tailwindcss/vite": "4.3.3",
+        "@types/node": "26.6.5",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "storybook": "10.6.2",
+        "tailwindcss": "4.3.3",
+        "typescript": "~5.9.3",
+        "vite": "8.3.4"
+    }
+}

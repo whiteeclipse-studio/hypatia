@@ -1,0 +1,17 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+.controlsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    padding-top: var(--space-5);
+}
+
+@media (max-width: 700px) {
+    .controlsGrid {
+        grid-template-columns: 1fr;
+    }
+}

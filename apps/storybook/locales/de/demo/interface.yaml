@@ -1,0 +1,6 @@
+title: Übersetzungen der Benutzeroberfläche
+description: Wechseln Sie die Sprache, um YAML-Namensräume und regionale Sprachvarianten auszuprobieren.
+language: Sprache
+activeLocale: Aktive Sprache
+regionalMessage: Dieser Satz stammt aus der Basissprache.
+missingLabel: Nicht übersetzter Schlüssel

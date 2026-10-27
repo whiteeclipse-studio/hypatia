@@ -1,0 +1,6 @@
+title: インターフェースの翻訳
+description: 言語を切り替えて、YAMLの名前空間と地域別のフォールバックを確認できます。
+language: 言語
+activeLocale: 現在の言語
+regionalMessage: この文は基本言語の翻訳です。
+missingLabel: 未翻訳のキー

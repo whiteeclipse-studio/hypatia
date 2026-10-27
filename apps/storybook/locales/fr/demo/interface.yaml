@@ -1,0 +1,6 @@
+title: Traductions de l’interface
+description: Changez de langue pour explorer les espaces de noms YAML et les langues régionales.
+language: Langue
+activeLocale: Langue active
+regionalMessage: Cette phrase provient de la langue de base.
+missingLabel: Clé non traduite
