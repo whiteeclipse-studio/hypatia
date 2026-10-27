@@ -6,11 +6,10 @@
         "apps/*",
         "packages/*/*"
     ],
-    "scripts": {
-
-    },
+    "scripts": {},
     "devDependencies": {
         "@types/node": "26.6.5",
+        "@whiteeclipse/documentation-builder": "workspace:*",
         "@whiteeclipse/toolchain": "workspace:*",
         "eslint": "10.10.0",
         "prettier": "3.9.6",
