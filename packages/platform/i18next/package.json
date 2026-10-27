@@ -1,0 +1,64 @@
+{
+    "name": "@whiteeclipse/i18next",
+    "version": "0.1.0-alpha.1",
+    "private": true,
+    "description": "Exploratory React localization and Vite YAML integration for RFC-0004.",
+    "license": "MIT",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "development": "./src/index.ts",
+            "default": "./dist/index.js"
+        },
+        "./vite": {
+            "types": "./dist/vite/index.d.ts",
+            "development": "./src/vite/index.ts",
+            "default": "./dist/vite/index.js"
+        },
+        "./vite/client": {
+            "types": "./dist/vite/client.d.ts",
+            "development": "./src/vite/client.ts",
+            "default": "./dist/vite/client.js"
+        },
+        "./catalogue": {
+            "types": "./dist/catalogue/index.d.ts",
+            "development": "./src/catalogue/index.ts",
+            "default": "./dist/catalogue/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "test": "bun run build && vitest run",
+        "typecheck": "tsc -p tsconfig.json"
+    },
+    "dependencies": {
+        "i18next": "26.5.4",
+        "react-i18next": "16.6.6",
+        "yaml": "2.9.1"
+    },
+    "devDependencies": {
+        "@types/node": "26.6.5",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "happy-dom": "21.0.4",
+        "react": "19.3.1",
+        "react-dom": "19.3.1",
+        "typescript": "~5.9.3",
+        "vite": "8.3.4",
+        "vitest": "4.1.12"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "vite": "^8.0.0"
+    },
+    "peerDependenciesMeta": {
+        "vite": {
+            "optional": true
+        }
+    }
+}
