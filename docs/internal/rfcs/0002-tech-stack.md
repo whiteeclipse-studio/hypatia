@@ -18,16 +18,17 @@ This proposal defines Hypatia's base technologies, its `storybook` and `website`
 
 The repository MUST use the following technologies where applicable:
 
-| Technology  | Responsibility                                                |
-| ----------- | ------------------------------------------------------------- |
-| TypeScript  | Source language                                               |
-| Bun         | Development runtime, package management, and script execution |
-| Vite        | Development server and bundling                               |
-| React       | Application interfaces and reusable UI components             |
-| CSS Modules | Component styling                                             |
-| Storybook   | Component development, examples, and review                   |
+| Technology   | Responsibility                                                                           |
+| ------------ | ---------------------------------------------------------------------------------------- |
+| TypeScript   | Source language                                                                          |
+| Bun          | Development runtime, package management, script execution, and reusable package bundling |
+| Vite         | Application development server and bundling                                              |
+| React        | Application interfaces and reusable UI components                                        |
+| CSS Modules  | Component styling                                                                        |
+| Tailwind CSS | Utility classes for styling                                                              |
+| Storybook    | Component development, examples, and review                                              |
 
-Additional dependencies MAY complement these choices but MUST NOT replace them. Vite MUST be the repository's only bundler.
+Additional dependencies MAY complement these choices but MUST NOT replace them. Applications MUST use Vite for bundling. Reusable package distributions that require bundling MUST use Bun's built-in bundler.
 
 ### Applications
 
@@ -67,6 +68,7 @@ The shared stack supports consistent development and reuse while limiting techno
 ## Delivery and validation
 
 - Both applications build with the declared technologies for static hosting.
+- Reusable package distributions use Bun's built-in bundler; application bundling uses Vite.
 - Generated landing, child, and documentation pages contain their content and custom metadata before client-side JavaScript runs; hydration enables their interactive behaviour.
 - The website emits separate `/landing` and `/docs` folders.
 
@@ -82,6 +84,6 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-19 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                                   |
+| -------- | ---------- | ------------- | --------------------------------------------- |
+| 1        | 2026-10-19 | Akane SHIMOKA | Initial draft                                 |

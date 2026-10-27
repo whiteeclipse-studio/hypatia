@@ -55,7 +55,7 @@ ESLint rules MUST derive from these conventions and cover general code quality, 
 
 Consumers MAY extend the shared configurations but MUST NOT weaken this RFC's mandatory requirements. Rule suppressions MUST be narrowly scoped and justified.
 
-The [existing implementation](https://github.com/whiteeclipse-studio/hypatia/tree/main/packages/libraries/toolchain) and [package documentation](../packages/toolchain/README.md) provide the starting point. Their existence does not establish that all requirements of this proposal have been implemented or validated.
+The [existing implementation](https://github.com/whiteeclipse-studio/hypatia/tree/main/packages/libraries/toolchain) and [package README](https://github.com/whiteeclipse-studio/hypatia/blob/main/packages/libraries/toolchain/README.md) provide the starting point. Their existence does not establish that all requirements of this proposal have been implemented or validated.
 
 #### Execution and CI
 
