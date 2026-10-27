@@ -1,90 +1,9 @@
 /* Copyright © 2026 White Eclipse. Released under the MIT License. */
 import { expect, it } from "bun:test";
 import { rejects } from "node:assert/strict";
-import type { DocumentationPage, GeneratedPageMetadata, SourceFile } from "../types.ts";
-import { resolveLimits } from "../limits.ts";
 import { parseHtml } from "../html.ts";
 import { nodeText } from "../history.ts";
-import { processSources, type PipelineInput, type PipelineOutput } from "./pipeline.ts";
-
-const history = `| Revision | Date | Author | Description |
-| --- | --- | --- | --- |
-| 1 | 2026-10-27 | Fixture author | Initial entry |`;
-
-/**
- * Creates a synthetic authored document with complete metadata.
- *
- * @param path - Virtual source path relative to docs.
- * @param id - Unique fixture identifier.
- * @param notice - Fixture notice Markdown.
- * @param revisions - Fixture revision table.
- * @returns A valid Markdown source.
- */
-function authored(path: string, id: string, notice = "Root notice", revisions = history): SourceFile {
-    return {
-        path,
-        content: new TextEncoder().encode(`---
-id: ${id}
-standard_revision: 1
----
-
-# ${id}
-
-Fixture article.
-
-## Copyright and licence
-
-${notice}
-
-## Revisions
-
-${revisions}
-`),
-    };
-}
-
-/**
- * Runs the complete source pipeline without a filesystem or Git fixture.
- *
- * @param files - Synthetic Markdown sources.
- * @param generatedPages - Optional generated-page overrides.
- * @param licence - Selected root licence format.
- * @returns The validated artifact and diagnostics.
- */
-async function build(
-    files: SourceFile[],
-    generatedPages: Record<string, GeneratedPageMetadata> = {},
-    licence: PipelineInput["licence"] = "none",
-): Promise<PipelineOutput> {
-    return processSources({
-        files,
-        generatedPages,
-        licence,
-        source: {
-            repository: "https://github.com/example/documentation",
-            name: "documentation",
-            commit: "0".repeat(40),
-            dirty: false,
-        },
-        limits: resolveLimits(),
-    });
-}
-
-/**
- * Reads a required fixture output page.
- *
- * @param result - Completed pipeline output.
- * @param path - Expected HTML path.
- * @returns The matching manifest entry.
- * @throws {Error} When the expected page is absent.
- */
-function page(result: PipelineOutput, path: string): DocumentationPage {
-    const found = result.artifact.manifest.pages.find(entry => entry.path === path);
-    if (found === undefined) {
-        throw new Error(`Missing fixture output: ${path}`);
-    }
-    return found;
-}
+import { authored, build, history, page } from "./pipeline.fixtures.ts";
 
 it("inherits disclosures from the nearest authored README with independent relative links", async () => {
     const localHistory = `${history}\n| 2 | 2026-10-27 | Fixture author | Local update |`;

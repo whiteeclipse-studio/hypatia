@@ -53,6 +53,8 @@ Each authored Markdown page needs an ID, an applicable standards revision pin, a
 
 Folders without README pages receive generated indexes. Asset-only folders do not. A root `LICENCE.md` is preferred over `LICENCE`; either becomes `LICENCE.html`. A licence without document metadata receives a generated wrapper, with plain-text licences displayed as escaped text.
 
+Relative source links to the imported repository-root `LICENCE` or `LICENCE.md` become links to `LICENCE.html`, including links in inherited disclosures. Queries and fragments are preserved. Other links leaving `docs` remain rejected; artifact HTML references must stay inside the artifact.
+
 Generated indexes inherit the complete copyright and licence notice and revision table from the nearest authored `README.md` in their folder or an ancestor folder. A generated `LICENCE.html` wrapper inherits those disclosures from `docs/README.md`. Relative disclosure links retain their original README location. Inherited histories describe that source README; the builder does not invent a separate history for generated pages.
 
 IDs default to `generated-` followed by the lowercase output path without `.html`, with non-alphanumeric runs replaced by hyphens. Titles use the folder name with hyphens and underscores replaced by spaces and the first letter capitalized; the root index uses `Documentation`, and the licence wrapper uses `Licence`. Authored pages retain their own metadata.
@@ -188,7 +190,7 @@ Input and expanded sizes are bounded during processing. Raster dimensions are li
 
 Run `bun run typecheck` separately or `bun run build` to type-check and generate the distribution. Shared ESLint and Prettier checks apply to source files. Generated `dist` output is excluded from source checks.
 
-Run `bun test src/source/pipeline.spec.ts` from this package to check generated-page defaults, inherited relative links, explicit overrides, and licence metadata handling. Browser automation and broader behavioral, cross-browser, and security verification remain deferred. Production promotion requires the applicable validation and human decisions; successful tests, type checking, and bundling do not establish security compliance.
+Run `bun test src/source/pipeline.spec.ts src/source/links.spec.ts` from this package to check generated-page defaults, inherited relative links, explicit overrides, licence metadata handling, and root licence link confinement. Browser automation and broader behavioral, cross-browser, and security verification remain deferred. Production promotion requires the applicable validation and human decisions; successful tests, type checking, and bundling do not establish security compliance.
 
 The builder provides no built-in access control. Actual publication, including the draft RFC's public-only policy and its relationship to category restrictions, remains outside this delivery. Website UI, PWA retention, deployment integration, and OpenAPI generation are deferred.
 
@@ -204,3 +206,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | -------- | ---------- | ------------- | ------------------------------------------------------------------ |
 | 1        | 2026-10-27 | Akane SHIMOKA | Add exploratory builder with inherited generated-page metadata     |
 | 2        | 2026-10-27 | Codex         | Align conditional JavaScript, declaration, and development exports |
+| 3        | 2026-10-27 | Codex         | Resolve imported root licence links while preserving confinement   |

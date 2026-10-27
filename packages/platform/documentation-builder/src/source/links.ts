@@ -2,7 +2,8 @@
 import { visit } from "unist-util-visit";
 import type { Root } from "mdast";
 import type { BuildDiagnostic } from "../types.ts";
-import { parseReference } from "../html.ts";
+import { parseReference, type ParsedReference } from "../html.ts";
+import { requireCondition } from "../errors.ts";
 import { parentPath, encodePath } from "../paths.ts";
 import type { PreparedDocument } from "./documents.ts";
 
@@ -12,6 +13,8 @@ export interface LinkContext {
     documents: PreparedDocument[];
     assets: Set<string>;
     diagnostics: BuildDiagnostic[];
+    /** Whether the explicitly imported root licence has a published page. */
+    rootLicence: boolean;
     /** Original Markdown location when a disclosure is inherited from another page. */
     sourcePath?: string;
 }
@@ -43,7 +46,7 @@ export function rewriteLinks(tree: Root, context: LinkContext): void {
  */
 function rewriteDestination(original: string, wiki: boolean, context: LinkContext): string {
     const sourcePath = context.sourcePath ?? context.document.sourcePath;
-    const reference = parseReference(original, sourcePath);
+    const reference = sourceReference(original, sourcePath, context.rootLicence);
     if (
         reference.external ||
         ((original.startsWith("#") || original.startsWith("?")) && sourcePath === context.document.sourcePath)
@@ -61,6 +64,31 @@ function rewriteDestination(original: string, wiki: boolean, context: LinkContex
         message: `Unresolved link preserved: ${original}`,
     });
     return original;
+}
+
+/**
+ * Resolves source links with only the imported repository-root licence outside docs.
+ *
+ * @param original - Authored URL.
+ * @param sourcePath - Original location relative to docs.
+ * @param rootLicence - Whether a root licence page was imported.
+ * @returns An artifact-relative reference, preserving query and fragment suffixes.
+ * @throws {DocumentationError} For references outside docs other than the imported licence.
+ */
+function sourceReference(original: string, sourcePath: string, rootLicence: boolean): ParsedReference {
+    const reference = parseReference(original, `docs/${sourcePath}`);
+    if (reference.external) {
+        return reference;
+    }
+    if (reference.path === "docs" || reference.path.startsWith("docs/")) {
+        return { ...reference, path: reference.path === "docs" ? "" : reference.path.slice("docs/".length) };
+    }
+    requireCondition(
+        rootLicence && (reference.path === "LICENCE" || reference.path === "LICENCE.md"),
+        `Reference escapes artifact: ${original}`,
+        "unsafe-link",
+    );
+    return { ...reference, path: "LICENCE.html" };
 }
 
 /**

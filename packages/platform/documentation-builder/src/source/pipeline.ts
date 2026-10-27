@@ -85,8 +85,9 @@ export async function processSources(input: PipelineInput): Promise<PipelineOutp
     const inventory = await processAssets(sources, files);
     const diagnostics: BuildDiagnostic[] = [];
     const assets = new Set(files.keys());
+    const rootLicence = input.licence !== "none" && documents.some(document => document.path === "LICENCE.html");
     const pages = documents.map(function render(document): DocumentationPage {
-        return renderDocument({ document, documents, assets, diagnostics }, files, inventory);
+        return renderDocument({ document, documents, assets, diagnostics, rootLicence }, files, inventory);
     });
     inventory.push({ path: "manifest.json", kind: "metadata", mediaType: "application/json" });
     const manifest: DocumentationManifest = {
