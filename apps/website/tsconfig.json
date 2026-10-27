@@ -1,0 +1,7 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "types": ["node", "vite/client", "@whiteeclipse/documentation-builder/vite/client"]
+    },
+    "include": ["src", "scripts", "*.ts"]
+}

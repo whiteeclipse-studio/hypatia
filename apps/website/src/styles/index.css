@@ -1,0 +1,53 @@
+/* Copyright © 2026 White Eclipse. Released under the MIT License. */
+@import "@whiteeclipse/core-ui/styles.css";
+@import "tailwindcss";
+
+@theme inline {
+    --breakpoint-desktop: 761px;
+    --color-surface: var(--gray-1);
+    --color-panel: var(--gray-2);
+    --color-hover: var(--gray-3);
+    --color-line: var(--gray-6);
+    --color-ink: var(--gray-12);
+    --color-muted: var(--gray-11);
+    --font-brand: var(--brand-font-family);
+    --font-code: var(--code-font-family);
+    --text-note: var(--font-size-1);
+    --text-label: var(--font-size-2);
+    --text-project: var(--font-size-5);
+}
+
+@layer base {
+    html,
+    body,
+    #root {
+        margin: 0;
+        min-width: 320px;
+        min-height: 100%;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        background: #f6f2e6;
+    }
+    a {
+        color: inherit;
+        text-underline-offset: 0.2em;
+    }
+    a:focus-visible,
+    summary:focus-visible {
+        outline: 2px solid var(--core-ui-focus-color);
+        outline-offset: 3px;
+    }
+    button,
+    summary {
+        cursor: pointer;
+    }
+    [hidden] {
+        display: none !important;
+    }
+    ::selection {
+        background: var(--gray-5);
+    }
+}

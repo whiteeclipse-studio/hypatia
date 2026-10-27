@@ -1,0 +1,141 @@
+/* Copyright © 2026 White Eclipse. Released under the MIT License. */
+.article {
+    color: var(--gray-12);
+    font-size: var(--font-size-3);
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.article > :first-child {
+    margin-top: 0;
+}
+
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+    font-family: var(--heading-font-family);
+    line-height: 1.25;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    scroll-margin-top: 80px;
+}
+
+.article h1 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: var(--space-6);
+}
+
+.article h2 {
+    font-size: var(--font-size-6);
+    margin-top: var(--space-8);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--gray-6);
+}
+
+.article h3 {
+    font-size: var(--font-size-5);
+    margin-top: var(--space-6);
+}
+
+.article h4 {
+    font-size: var(--font-size-4);
+}
+
+.article p,
+.article ul,
+.article ol,
+.article pre,
+.article blockquote,
+.article table {
+    margin-block: var(--space-4);
+}
+
+.article ul,
+.article ol {
+    padding-left: var(--space-6);
+}
+
+.article ul {
+    list-style: disc;
+}
+
+.article ol {
+    list-style: decimal;
+}
+
+.article li + li {
+    margin-top: var(--space-2);
+}
+
+.article a {
+    text-decoration: underline;
+    text-decoration-color: var(--gray-9);
+}
+
+.article a:hover {
+    text-decoration-color: currentcolor;
+}
+
+.article code {
+    font-family: var(--code-font-family);
+    font-size: 0.85em;
+    background: var(--gray-3);
+    padding: 0.15em 0.3em;
+}
+
+.article pre {
+    overflow: auto;
+    padding: var(--space-4);
+    background: var(--gray-3);
+    border: 1px solid var(--gray-6);
+    line-height: 1.65;
+}
+
+.article pre code {
+    padding: 0;
+    background: transparent;
+}
+
+.article blockquote {
+    padding: var(--space-2) var(--space-4);
+    border-left: 3px solid var(--gray-8);
+    background: var(--gray-2);
+}
+
+.article table {
+    border-collapse: collapse;
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    font-size: var(--font-size-2);
+    line-height: 1.6;
+}
+
+.article th,
+.article td {
+    padding: var(--space-3);
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid var(--gray-6);
+}
+
+.article th {
+    background: var(--gray-3);
+    font-weight: 600;
+}
+
+.article img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-block: var(--space-5);
+}
+
+.article hr {
+    margin-block: var(--space-7);
+    border: 0;
+    border-top: 1px solid var(--gray-6);
+}
