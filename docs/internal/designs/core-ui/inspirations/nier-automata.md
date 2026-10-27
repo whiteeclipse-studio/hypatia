@@ -4,17 +4,9 @@ id: core-ui-inspirations-nier-automata
 
 # Core UI — NieR: Automata
 
-Part of the [inspirations](README.md) for the [Core UI design proposal](../README.md).
-
-## Overview
-
 NieR: Automata is the primary visual inspiration for White Eclipse's Core UI and the visual identity of applications built by the company.
 
-## Copyright and licence
-
-Copyright © 2026 White Eclipse.
-
-This document is released under the MIT License. See the project's root [LICENCE](../../../../../LICENCE) file for the complete licence text.
+Part of the [inspirations](README.md) for the [Core UI design proposal](../README.m
 
 ## Brand connection
 
@@ -26,7 +18,7 @@ This document is released under the MIT License. See the project's root [LICENCE
 
 ![NieR: Automata — ruined-city gameplay screenshot](https://www.platinumgames.com/official-blog/wp-content/uploads/sites/2/2016/06/NieR-Automata_201606_SS_RuinedCity_03_ONLINE-1024x576.jpg)
 
-*Official screenshot from [PlatinumGames' E3 2016 presentation](https://www.platinumgames.com/official-blog/article/8507). © SQUARE ENIX CO., LTD. All rights reserved.*
+_Official screenshot from [PlatinumGames' E3 2016 presentation](https://www.platinumgames.com/official-blog/article/8507). © SQUARE ENIX CO., LTD. All rights reserved._
 
 ## Design direction
 
@@ -40,7 +32,7 @@ The menus can be read as a diegetic interface: the player operates the android's
 
 ![NieR: Automata — system menu and its navigation](https://www.platinumgames.com/official-blog/wp-content/uploads/sites/2/2017/08/UI_menu_us-1024x576.png)
 
-*System menu. Source: Kijima's article linked above. © SQUARE ENIX CO., LTD. All rights reserved.*
+_System menu. Source: Kijima's article linked above. © SQUARE ENIX CO., LTD. All rights reserved._
 
 #### Colour austerity and visual simplicity
 
@@ -48,7 +40,7 @@ Warm beige surfaces and dark text establish a narrow tonal range. Hierarchy reli
 
 ![NieR: Automata — status information and restrained colour hierarchy](https://www.platinumgames.com/official-blog/wp-content/uploads/sites/2/2017/08/color_status-EN_.png)
 
-*Status display. Source: Kijima's article linked above. © SQUARE ENIX CO., LTD. All rights reserved.*
+_Status display. Source: Kijima's article linked above. © SQUARE ENIX CO., LTD. All rights reserved._
 
 #### Simple navigation
 
@@ -78,7 +70,7 @@ Use typography to distinguish headings, readable content, and secondary annotati
 
 Draw inspiration from the fluid way NieR: Automata's menus open, close, and move between views. Transitions should connect interface states naturally, supporting continuity and making changes in focus or selection easy to follow. Keep motion responsive and understated so that it complements the flat visual language and lets people act without waiting for an animation to finish.
 
-The [background study](../mockups.md#background-study) applies this direction through a fine woven surface, stationary arcs, and aligned diagonal strokes in White Eclipse colours. The [corner-frame studies](../implementation-rules.md#corner-frame-controls-and-motion) apply precision to controls while preserving readable state and focus cues. These are original CSS/component interpretations; no game background or border asset is copied.
+The background study applies this direction through a fine woven surface, stationary arcs, and aligned diagonal strokes in White Eclipse colours. The corner-frame studies apply precision to controls while preserving readable state and focus cues. These are original CSS/component interpretations; no game background or border asset is copied.
 
 ## Boundaries
 
@@ -88,8 +80,14 @@ The reference's palette and flat menu structure inform the direction without fix
 
 Screen curvature, lens distortion, damage effects, and the game's 3D views are outside this menu-derived foundation. The logo's fragmentation effect is an example of the brand's connection to NieR and is outside Core UI's scope. Game screenshots remain external reference material. White Eclipse's components, icons, and decorative assets will be original interpretations.
 
+## Copyright and licence
+
+Copyright © 2026 White Eclipse.
+
+Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
+
 ## Revisions
 
-| Revision | Date | Author | Description |
-| --- | --- | --- | --- |
-| 1 | 2026-10-17 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description   |
+| -------- | ---------- | ------------- | ------------- |
+| 1        | 2026-10-17 | Akane SHIMOKA | Initial draft |
