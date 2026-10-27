@@ -22,42 +22,49 @@ export function ProjectDirectory({ projects, notFound }: DirectoryProps): ReactE
     const links = projects.map(function projectLink(project) {
         const source = project.manifest.source;
         return (
-            <a
-                className="grid gap-(--space-3) border-y border-(--gray-7) bg-panel p-(--space-5) no-underline hover:bg-hover"
-                key={source.name}
-                href={pageUrl(source.name)}
-            >
-                <strong className="font-brand text-project font-medium">
+            <li key={source.name} className="mt-2">
+                <a href={pageUrl(source.name)} className="hover:underline">
                     {source.name}
-                    <span aria-hidden="true" className="float-right">
-                        {" "}
-                        ↗
-                    </span>
-                </strong>
-                <span className="text-label text-muted">
-                    {project.manifest.pages.length} documents · {source.dirty ? "Working copy" : "Build snapshot"}
-                </span>
-            </a>
+                </a>
+                <span className="ml-3 text-[11px] text-muted">{project.manifest.pages.length} documents</span>
+            </li>
         );
     });
     return (
-        <div className="max-w-[980px] px-[clamp(24px,6vw,80px)] py-[clamp(32px,8vw,100px)]">
-            <Text
-                as="p"
-                className="max-w-[48ch] font-code text-note leading-[1.7] tracking-[0.12em] text-muted uppercase"
-            >
-                White Eclipse / Documentation
+        <div className="mx-auto max-w-[760px] px-12 pt-8 pb-6 max-contents:px-8 max-desktop:px-5 max-desktop:py-6">
+            <nav aria-label="Breadcrumb" className="mb-10 flex flex-wrap gap-3 text-[11px] text-muted max-desktop:mb-7">
+                <a href="/" className="hover:underline">
+                    White Eclipse
+                </a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">{notFound ? "Page not found" : "Overview"}</span>
+            </nav>
+            <Text as="p" className="mb-4 text-[10px] font-semibold tracking-[0.12em] text-muted uppercase">
+                [ Documentation ]
             </Text>
-            <Heading as="h1" size="9" className="my-(--space-5) max-w-[12ch]">
-                {notFound ? "Page not found." : "A place for the details."}
+            <Heading as="h1" className="text-[clamp(36px,4vw,56px)] leading-[1.08] font-medium tracking-[-0.045em]">
+                {notFound ? "Page not found." : "Project documentation."}
             </Heading>
-            <Text as="p" size="4" color="gray" className="max-w-[48ch] leading-[1.7]">
+            <Text as="p" size="4" color="gray" className="mt-5 max-w-[500px] leading-[1.65]">
                 {notFound
                     ? "This document is not part of the current build. Choose a project to keep reading."
-                    : "Explore project guides, technical references, and the decisions behind our work."}
+                    : "Engineering knowledge, in one place."}
             </Text>
-            <div className="mt-(--space-8) grid gap-(--space-4)">{links}</div>
+            <section id="overview" aria-labelledby="overview-title" className="mt-9 scroll-mt-6">
+                <Heading as="h2" size="5" id="overview-title">
+                    {notFound ? "Available projects" : "Overview"}
+                </Heading>
+                <p className="mt-4 text-sm leading-[1.85] text-muted">
+                    Choose a project or a document from the navigation to start reading.
+                </p>
+                <ul className="mt-4 list-disc pl-6">{links}</ul>
+            </section>
             {projects.length === 0 && <p>No documentation projects are configured.</p>}
+            <div className="mt-10 border-t border-line pt-5 text-right text-sm text-muted">
+                <a href="#document" className="hover:underline">
+                    Back to top ↑
+                </a>
+            </div>
         </div>
     );
 }

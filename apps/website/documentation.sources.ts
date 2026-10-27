@@ -8,4 +8,7 @@ export const sources: DocumentationSource[] = [
         local: { repositoryRoot: "../.." },
         artifact: process.env["DOCUMENTATION_ARTIFACT"] ?? "./artifacts/hypatia.tar.gz",
     },
+    {
+        local: { repositoryRoot: "../../../ryugu" },
+    },
 ];

@@ -11,6 +11,18 @@ interface SidebarProps {
     activeId: string;
 }
 
+const abbreviatedCommitLength = 7;
+
+/**
+ * Identifies the documentation snapshot without overwhelming the navigation rail.
+ *
+ * @param source - Validated source identity.
+ * @returns A short commit label with its working-copy status.
+ */
+function snapshotLabel(source: DocumentationProject["manifest"]["source"]): string {
+    return `${source.commit.slice(0, abbreviatedCommitLength)} · ${source.dirty ? "Working copy" : "Build snapshot"}`;
+}
+
 /**
  * Provides independently scrolling navigation and a native mobile disclosure.
  *
@@ -19,61 +31,62 @@ interface SidebarProps {
  */
 export function Sidebar(props: SidebarProps): ReactElement {
     const { projects, project, activeId } = props;
-    const source = project?.manifest.source;
+    const navigationProject = project ?? projects[0];
+    const source = navigationProject?.manifest.source;
     const sidebar = useRef<HTMLDetailsElement>(null);
     useEffect(function restoreDesktopNavigation() {
-        const desktop = window.matchMedia("(min-width: 761px)");
-        /** Reopens navigation when returning from a collapsed mobile layout. */
-        function reopen(): void {
-            if (desktop.matches && sidebar.current !== null) {
-                sidebar.current.open = true;
+        const desktop = window.matchMedia("(min-width: 701px)");
+        /** Opens the desktop rail and collapses navigation when entering a mobile viewport. */
+        function matchViewport(): void {
+            if (sidebar.current !== null) {
+                sidebar.current.open = desktop.matches;
             }
         }
-        desktop.addEventListener("change", reopen);
+        matchViewport();
+        desktop.addEventListener("change", matchViewport);
         /** Removes the viewport listener when the sidebar unmounts. */
         return function cleanup(): void {
-            desktop.removeEventListener("change", reopen);
+            desktop.removeEventListener("change", matchViewport);
         };
     }, []);
     return (
-        <details
-            ref={sidebar}
-            className="group flex h-full min-h-0 flex-col border-r border-line bg-panel max-desktop:h-auto max-desktop:max-h-[38dvh] max-desktop:shrink-0 max-desktop:overflow-auto max-desktop:border-r-0 max-desktop:border-b"
-            open
-        >
-            <summary className="hidden px-(--space-4) py-(--space-3) text-label before:content-['+_'] group-open:before:content-['−_'] max-desktop:block">
-                Browse documentation
-            </summary>
-            <div className="flex h-full min-h-0 flex-col max-desktop:h-auto">
-                <div className="grid gap-(--space-3) p-(--space-5) max-desktop:px-(--space-4) max-desktop:py-(--space-3)">
-                    <span className="font-code text-note tracking-[0.12em] text-muted uppercase">Project</span>
+        <aside className="h-full min-h-0 min-w-0 border-r border-line scrollbar-gutter-stable max-desktop:h-auto max-desktop:shrink-0 max-desktop:border-r-0 max-desktop:border-b">
+            <details
+                ref={sidebar}
+                className="group flex h-full min-h-0 flex-col overflow-hidden open:[&::details-content]:flex max-desktop:h-auto [&::details-content]:min-h-0 [&::details-content]:flex-1 [&::details-content]:flex-col"
+                open
+            >
+                <summary className="hidden shrink-0 px-(--space-4) py-(--space-3) text-label before:content-['+_'] max-desktop:block">
+                    Browse documentation
+                </summary>
+                <div className="grid shrink-0 gap-5 px-6 pt-8 pb-4 max-desktop:px-5 max-desktop:pt-4">
+                    <span className="text-[10px] font-semibold tracking-[0.12em] text-muted uppercase">
+                        [ Project ]
+                    </span>
                     <ProjectSwitcher projects={projects} current={source?.name ?? null} />
+                    {source !== undefined && (
+                        <p className="text-[10px] text-muted" title={source.commit}>
+                            {snapshotLabel(source)}
+                        </p>
+                    )}
                 </div>
-                <div className="min-h-0 flex-1 overflow-auto px-(--space-4) pb-(--space-4) [scrollbar-gutter:stable] max-desktop:flex-auto max-desktop:overflow-visible">
-                    {project === undefined ? (
+                <div className="min-h-0 flex-1 overflow-y-auto px-6 pb-6 scrollbar-gutter-stable max-desktop:px-5">
+                    {navigationProject === undefined ? (
                         <p className="m-(--space-2) text-label text-muted">
                             Choose a project to browse its documentation.
                         </p>
                     ) : (
-                        <Navigation manifest={project.manifest} activeId={activeId} />
+                        <Navigation manifest={navigationProject.manifest} activeId={activeId} />
                     )}
                 </div>
                 {source !== undefined && (
-                    <div className="grid gap-(--space-2) border-t border-line px-(--space-5) py-(--space-4) text-note text-muted max-desktop:hidden">
-                        <span>Build snapshot{source.dirty ? " · Working copy" : ""}</span>
-                        <a href={source.repository}>Source repository ↗</a>
-                        <code title={source.commit} className="block truncate font-code">
-                            {source.commit}
-                        </code>
+                    <div className="mx-6 shrink-0 border-t border-line py-5 text-[11px] text-muted max-desktop:hidden">
+                        <a href={source.repository} className="hover:underline">
+                            Source repository ↗
+                        </a>
                     </div>
                 )}
-                <a
-                    className="block border-t border-line px-(--space-5) py-(--space-4) text-label no-underline max-desktop:hidden"
-                    href="/"
-                >
-                    All projects ↗
-                </a>
-            </div>
-        </details>
+            </details>
+        </aside>
     );
 }

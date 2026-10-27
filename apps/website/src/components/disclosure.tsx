@@ -8,6 +8,7 @@ interface DisclosureProps {
     label: string;
     title: string;
     html: string;
+    accessibleLabel?: string;
 }
 
 /**
@@ -17,13 +18,14 @@ interface DisclosureProps {
  * @param props.label - Trigger text.
  * @param props.title - Disclosure title.
  * @param props.html - Sanitized disclosure HTML.
+ * @param props.accessibleLabel - Optional full label for a compact symbol trigger.
  * @returns A keyboard-accessible modal with focus restoration.
  */
-export function Disclosure({ label, title, html }: DisclosureProps): ReactElement {
+export function Disclosure({ label, title, html, accessibleLabel }: DisclosureProps): ReactElement {
     return (
         <Dialog.Root>
             <Dialog.Trigger>
-                <Button variant="outline" size="1" className="shrink-0">
+                <Button variant="outline" size="1" className="shrink-0" aria-label={accessibleLabel ?? label}>
                     {label}
                 </Button>
             </Dialog.Trigger>

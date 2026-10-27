@@ -1,11 +1,13 @@
 /* Copyright © 2026 White Eclipse. Released under the MIT License. */
 import type { ReactElement } from "react";
-import { Button, Theme } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import type { DocumentationProject } from "@whiteeclipse/documentation-builder/vite";
 import type { WebsitePage } from "./routes.ts";
 import { Document } from "./components/document.tsx";
 import { ProjectDirectory } from "./components/project-directory.tsx";
 import { Sidebar } from "./components/sidebar.tsx";
+import { SiteHeader } from "./components/site-header.tsx";
+import { PageContents } from "./components/page-contents.tsx";
 import { useAppearance } from "./use-appearance.ts";
 
 /** Static and hydrated application inputs use identical builder snapshots. */
@@ -31,47 +33,42 @@ export function App({ projects, state }: AppProps): ReactElement {
         <Theme appearance={appearance} grayColor="sand" accentColor="gray" radius="none">
             <div className="core-ui-background flex h-dvh flex-col overflow-hidden text-ink">
                 <a
-                    className="fixed -top-[100px] left-(--space-5) z-10 bg-surface p-(--space-3) focus:top-(--space-3)"
+                    className="fixed -top-25 left-(--space-5) z-10 bg-surface p-(--space-3)"
                     href="#document"
                 >
                     Skip to content
                 </a>
-                <header className="flex h-[76px] shrink-0 items-center gap-(--space-5) border-b border-line px-(--space-6) max-desktop:h-16 max-desktop:gap-(--space-3) max-desktop:px-(--space-4)">
-                    <a
-                        className="flex items-center gap-(--space-3) whitespace-nowrap font-brand text-[23px] no-underline max-desktop:text-xl"
-                        href="/"
-                        aria-label="White Eclipse documentation home"
-                    >
-                        <span className="text-[32px]" aria-hidden="true">
-                            ◧
-                        </span>{" "}
-                        White Eclipse
-                    </a>
-                    <span className="flex-1 text-label text-muted max-desktop:hidden">Documentation</span>
-                    <Button
-                        variant="outline"
-                        size="1"
-                        className="max-desktop:ml-auto"
-                        onClick={toggle}
-                        aria-label={`Switch to ${appearance === "light" ? "dark" : "light"} appearance`}
-                    >
-                        {appearance === "light" ? "Dark" : "Light"}
-                    </Button>
-                </header>
-                <div className="grid min-h-0 flex-1 grid-cols-[300px_minmax(0,1fr)] max-desktop:flex max-desktop:flex-col">
+                <SiteHeader appearance={appearance} toggle={toggle} />
+                <div className="mx-auto grid min-h-0 w-full flex-1 grid-cols-[350px_minmax(0,1fr)] grid-rows-[minmax(0,1fr)] overflow-hidden max-contents:grid-cols-[260px_minmax(0,1fr)] max-desktop:flex max-desktop:flex-col">
                     <Sidebar projects={projects} project={project} activeId={state.page?.id ?? ""} />
                     <main
                         id="document"
-                        className="min-h-0 min-w-0 overflow-auto scroll-smooth [scrollbar-gutter:stable] motion-reduce:scroll-auto max-desktop:flex-1"
+                        className="min-h-0 min-w-0 overflow-auto scroll-smooth scrollbar-gutter-stable motion-reduce:scroll-auto max-desktop:flex-1"
                         tabIndex={-1}
                     >
-                        {project !== undefined && state.page !== null ? (
-                            <Document project={project} page={state.page} />
-                        ) : (
-                            <ProjectDirectory projects={projects} notFound={state.notFound} />
-                        )}
+                        <div className="grid min-h-full grid-cols-[minmax(0,1fr)_208px] max-contents:block">
+                            <div className="min-w-0">
+                                {project !== undefined && state.page !== null ? (
+                                    <Document project={project} page={state.page} />
+                                ) : (
+                                    <ProjectDirectory projects={projects} notFound={state.notFound} />
+                                )}
+                            </div>
+                            <PageContents page={state.page} projectName={state.projectName} />
+                        </div>
                     </main>
                 </div>
+                <footer className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-line px-9 py-4 text-xs text-muted max-desktop:px-5 max-desktop:py-3">
+                    <span>
+                        Copyright © 2026 White Eclipse ·{" "}
+                        <a href="https://whiteeclipse.dev/LICENCE" className="hover:underline">
+                            MIT License
+                        </a>
+                    </span>
+                    <a href="/" className="hover:underline">
+                        Documentation overview ↗
+                    </a>
+                </footer>
             </div>
         </Theme>
     );

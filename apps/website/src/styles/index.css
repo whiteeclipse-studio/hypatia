@@ -3,7 +3,8 @@
 @import "tailwindcss";
 
 @theme inline {
-    --breakpoint-desktop: 761px;
+    --breakpoint-desktop: 701px;
+    --breakpoint-contents: 1101px;
     --color-surface: var(--gray-1);
     --color-panel: var(--gray-2);
     --color-hover: var(--gray-3);
@@ -15,6 +16,42 @@
     --text-note: var(--font-size-1);
     --text-label: var(--font-size-2);
     --text-project: var(--font-size-5);
+}
+
+/* Original navigation disclosure artwork recovered from 25f3566. */
+@utility navigation-disclosure {
+    --disclosure-corner: 3px;
+    --disclosure-line: linear-gradient(currentColor, currentColor);
+    --disclosure-vertical: var(--disclosure-line);
+    background-image:
+        var(--disclosure-line), var(--disclosure-line), var(--disclosure-line), var(--disclosure-line),
+        var(--disclosure-line), var(--disclosure-line), var(--disclosure-line), var(--disclosure-line),
+        var(--disclosure-line), var(--disclosure-vertical);
+    background-origin: content-box;
+    background-clip: content-box;
+    background-position:
+        top left,
+        top right,
+        bottom left,
+        bottom right,
+        top left,
+        top right,
+        bottom left,
+        bottom right,
+        center,
+        center;
+    background-size:
+        var(--disclosure-corner) 1px,
+        var(--disclosure-corner) 1px,
+        var(--disclosure-corner) 1px,
+        var(--disclosure-corner) 1px,
+        1px var(--disclosure-corner),
+        1px var(--disclosure-corner),
+        1px var(--disclosure-corner),
+        1px var(--disclosure-corner),
+        7px 1px,
+        1px 7px;
+    background-repeat: no-repeat;
 }
 
 @layer base {

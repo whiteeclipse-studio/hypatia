@@ -4,6 +4,20 @@ import { IconButton } from "@radix-ui/themes";
 import type { DocumentationManifest, NavigationEntry } from "@whiteeclipse/documentation-builder/artifact";
 import { pageUrl } from "../routes.ts";
 
+const treeClassName = "m-0 list-none p-0 text-[13px] leading-[1.5] [&_li]:my-[8px]";
+const folderClassName = [
+    "relative text-ink transition-colors duration-160 ease-out motion-reduce:transition-none",
+    "hover:bg-ink hover:text-surface focus-within:bg-ink focus-within:text-surface",
+    "data-[current=true]:bg-ink data-[current=true]:text-surface",
+].join(" ");
+const pageClassName = [
+    "relative block border border-transparent py-[8px] pr-[6px] pl-[32px] text-[12px] font-normal wrap-anywhere text-muted no-underline",
+    "before:pointer-events-none before:absolute before:top-1/2 before:left-[12px] before:size-[6px] before:-translate-y-1/2 before:bg-current before:opacity-0 before:content-['']",
+    "hover:border-current hover:bg-ink hover:text-surface hover:before:opacity-100",
+    "focus-visible:border-current focus-visible:bg-ink focus-visible:text-surface focus-visible:before:opacity-100",
+    "aria-[current=page]:border-current aria-[current=page]:bg-ink aria-[current=page]:text-surface aria-[current=page]:before:opacity-100",
+].join(" ");
+
 /** Inputs for the manifest-driven navigation tree. */
 interface NavigationProps {
     manifest: DocumentationManifest;
@@ -41,7 +55,9 @@ function containsPage(entry: NavigationEntry, id: string): boolean {
  * @returns A navigation row with optional collapsible descendants.
  */
 function NavigationItem({ entry, manifest, activeId }: EntryProps): ReactElement | null {
-    const [expanded, setExpanded] = useState(containsPage(entry, activeId));
+    const [expanded, setExpanded] = useState(
+        containsPage(entry, activeId) || (activeId === "" && manifest.navigation.includes(entry)),
+    );
     const page = manifest.pages.find(function matching(candidate): boolean {
         return candidate.id === entry.pageId;
     });
@@ -56,39 +72,40 @@ function NavigationItem({ entry, manifest, activeId }: EntryProps): ReactElement
         setExpanded(!expanded);
     }
     const listId = `navigation-${entry.pageId}`;
+    const folder = page.path.split("/").pop() === "index.html";
     return (
         <li>
-            <div className="flex items-center gap-(--space-2) py-(--space-1)">
-                {children.length > 0 ? (
+            <div data-current={activeId === page.id} className={folder ? folderClassName : undefined}>
+                {children.length > 0 && (
                     <IconButton
                         size="1"
-                        variant="ghost"
+                        variant="outline"
+                        className="group/navigation-toggle absolute top-1/2 left-1 m-0 size-6 -translate-y-1/2 border-0 bg-transparent bg-none p-1 text-inherit shadow-none"
                         aria-label={`${expanded ? "Collapse" : "Expand"} ${entry.title}`}
                         aria-expanded={expanded}
                         aria-controls={listId}
                         onClick={toggle}
                     >
-                        <span aria-hidden="true">{expanded ? "−" : "+"}</span>
+                        <span
+                            aria-hidden="true"
+                            className="navigation-disclosure pointer-events-none inline-block size-4 shrink-0 box-border p-px transition-[background-size] duration-180 ease-out group-hover/navigation-toggle:[--disclosure-corner:50%] group-focus-visible/navigation-toggle:[--disclosure-corner:50%] group-aria-expanded/navigation-toggle:[--disclosure-vertical:linear-gradient(transparent,transparent)] motion-reduce:transition-none"
+                        />
                     </IconButton>
-                ) : (
-                    <span className="w-6 shrink-0 text-center text-muted" aria-hidden="true">
-                        ·
-                    </span>
                 )}
                 <a
                     href={pageUrl(manifest.source.name, page.path)}
                     aria-current={activeId === page.id ? "page" : undefined}
-                    className="min-w-0 flex-1 p-(--space-2) text-label leading-[1.4] wrap-anywhere no-underline hover:bg-hover aria-[current=page]:bg-ink aria-[current=page]:text-surface aria-[current=page]:hover:bg-ink"
+                    className={
+                        folder
+                            ? "block py-2 pr-2 pl-8 text-[13px] font-medium wrap-anywhere text-inherit no-underline"
+                            : pageClassName
+                    }
                 >
                     {entry.title}
                 </a>
             </div>
             {children.length > 0 && (
-                <ul
-                    id={listId}
-                    hidden={!expanded}
-                    className="m-0 ml-(--space-2) list-none border-l border-line p-0 pl-(--space-4)"
-                >
+                <ul id={listId} hidden={!expanded} className={`${treeClassName} ml-4`}>
                     {children}
                 </ul>
             )}
@@ -110,7 +127,14 @@ export function Navigation({ manifest, activeId }: NavigationProps): ReactElemen
     });
     return (
         <nav aria-label="Documentation">
-            <ul className="m-0 list-none p-0">{entries}</ul>
+            <ul className={treeClassName}>
+                <li>
+                    <a href="/" className={pageClassName} aria-current={activeId === "" ? "page" : undefined}>
+                        Overview
+                    </a>
+                </li>
+                {entries}
+            </ul>
         </nav>
     );
 }
