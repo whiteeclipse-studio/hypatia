@@ -5,10 +5,23 @@
     "description": "Shared ESLint and Prettier configuration of White Eclipse.",
     "type": "module",
     "exports": {
-        "./eslint": "./src/eslint/index.ts",
-        "./prettier": "./src/prettier.ts"
+        "./eslint": {
+            "types": "./dist/eslint/index.d.ts",
+            "development": "./src/eslint/index.ts",
+            "default": "./dist/eslint/index.js"
+        },
+        "./prettier": {
+            "types": "./dist/prettier.d.ts",
+            "development": "./src/prettier.ts",
+            "default": "./dist/prettier.js"
+        }
     },
+    "files": [
+        "dist",
+        "src"
+    ],
     "scripts": {
+        "build": "tsc -p tsconfig.build.json",
         "typecheck": "tsc -p tsconfig.json"
     },
     "dependencies": {
