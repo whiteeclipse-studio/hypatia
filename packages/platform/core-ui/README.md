@@ -71,6 +71,18 @@ The stylesheet loads self-hosted variable fonts through Fontsource: Outfit for R
 
 Fontsource packages retain their upstream font licences. Fallback system fonts apply while web fonts load or if they cannot load. These defaults apply to Radix Theme boundaries, including portalled dialogs.
 
+## Brand assets
+
+The original transparent eclipse logos are available through `@whiteeclipse/core-ui/assets/white-eclipse-light.png` and `@whiteeclipse/core-ui/assets/white-eclipse-dark.png`. Import the light asset for light surfaces and the dark asset for dark surfaces; consuming applications select the appropriate image for their active appearance. Vite bundles these imports into local asset URLs.
+
+```tsx
+import logoLight from "@whiteeclipse/core-ui/assets/white-eclipse-light.png";
+
+<img src={logoLight} alt="" width="64" height="64" />;
+```
+
+These assets were restored unchanged from [the original Core UI assets at commit 25f3566](https://github.com/whiteeclipse-studio/hypatia/tree/25f35669fe3116680d11e7040f38eea9e47edd3f/packages/platform/core-ui/src/assets). Pair the decorative image with a visible company name or an accessible link label.
+
 ## Palette and interaction study
 
 Use `<Theme grayColor="sand" accentColor="gray">` for the exploratory White Eclipse palette. Other neutral scales retain their upstream Radix values so Storybook can compare alternatives. The palette also applies to Radix-created theme boundaries in portals.
@@ -130,7 +142,7 @@ The build follows Obsidian's [theme guidelines](https://github.com/obsidianmd/ob
 
 ## Current coverage
 
-The package exports `@whiteeclipse/core-ui/styles.css` for web consumers and builds a standalone native Obsidian theme. It provides Radix Themes styles, shared fonts, the exploratory warm palette, corner-frame interactions, and an optional geometric background. Other geometry and motion values remain under exploration. No component wrappers or component re-exports are included. The background is drawn in CSS.
+The package exports `@whiteeclipse/core-ui/styles.css` and the light/dark logo assets for web consumers and builds a standalone native Obsidian theme. It provides Radix Themes styles, shared fonts, the exploratory warm palette, corner-frame interactions, and an optional geometric background. Other geometry and motion values remain under exploration. No component wrappers or component re-exports are included. The background is drawn in CSS.
 
 No package build step is needed for web stylesheet imports; Obsidian requires the build above. CSS is marked as a side effect so consumer bundlers retain the imported styles. Visual and accessibility validation of future overrides remains pending; this baseline does not establish compliance of consuming applications.
 
@@ -153,3 +165,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 7        | 2026-10-27 | Codex         | Animate switch thumb fill and border changes                                  |
 | 8        | 2026-10-27 | Akane SHIMOKA | Correct reduced-motion switch transitions and button marker guidance          |
 | 9        | 2026-10-27 | Codex         | Add the exploratory native Obsidian theme and offline build instructions      |
+| 10       | 2026-10-27 | Codex         | Restore the original light and dark eclipse logo assets                       |

@@ -9,7 +9,9 @@
     ],
     "type": "module",
     "exports": {
-        "./styles.css": "./src/styles.css"
+        "./styles.css": "./src/styles.css",
+        "./assets/white-eclipse-light.png": "./src/assets/white-eclipse-light.png",
+        "./assets/white-eclipse-dark.png": "./src/assets/white-eclipse-dark.png"
     },
     "files": [
         "src",
