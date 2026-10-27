@@ -1,0 +1,116 @@
+/* Copyright © 2026 White Eclipse. Released under the MIT License. */
+.inline-title,
+.markdown-rendered :is(h1, h2),
+.HyperMD-header-1,
+.HyperMD-header-2 {
+    letter-spacing: 0.02em;
+}
+
+.markdown-rendered :is(a, .internal-link),
+.cm-link,
+.cm-hmd-internal-link {
+    text-underline-offset: 0.16em;
+}
+
+.markdown-rendered pre {
+    border: 1px solid var(--core-ui-border-color);
+}
+
+.callout {
+    --callout-blend-mode: normal;
+    --callout-radius: 0;
+    --callout-border-width: 1px;
+    border-color: var(--core-ui-border-color);
+    background-color: var(--gray-2);
+}
+
+.callout-title {
+    font-family: var(--core-ui-heading-font);
+}
+
+.callout[data-callout="success"],
+.callout[data-callout="check"],
+.callout[data-callout="done"] {
+    --core-ui-callout-fill: var(--green-9);
+    --core-ui-callout-text: var(--green-contrast);
+    --core-ui-callout-border: var(--green-contrast);
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+    --core-ui-callout-fill: var(--amber-9);
+    --core-ui-callout-text: var(--amber-contrast);
+    --core-ui-callout-border: var(--amber-contrast);
+}
+
+.callout[data-callout="failure"],
+.callout[data-callout="fail"],
+.callout[data-callout="missing"],
+.callout[data-callout="danger"],
+.callout[data-callout="error"],
+.callout[data-callout="bug"] {
+    --core-ui-callout-fill: var(--core-ui-error-fill);
+    --core-ui-callout-text: var(--core-ui-error-text);
+    --core-ui-callout-border: var(--red-9);
+}
+
+.callout:is(
+    [data-callout="success"],
+    [data-callout="check"],
+    [data-callout="done"],
+    [data-callout="warning"],
+    [data-callout="caution"],
+    [data-callout="attention"],
+    [data-callout="failure"],
+    [data-callout="fail"],
+    [data-callout="missing"],
+    [data-callout="danger"],
+    [data-callout="error"],
+    [data-callout="bug"]
+) {
+    border-color: var(--core-ui-callout-border);
+    background-color: var(--core-ui-callout-fill);
+    color: var(--core-ui-callout-text);
+}
+
+.callout:is(
+        [data-callout="success"],
+        [data-callout="check"],
+        [data-callout="done"],
+        [data-callout="warning"],
+        [data-callout="caution"],
+        [data-callout="attention"],
+        [data-callout="failure"],
+        [data-callout="fail"],
+        [data-callout="missing"],
+        [data-callout="danger"],
+        [data-callout="error"],
+        [data-callout="bug"]
+    )
+    :is(.callout-title, .callout-icon, .callout-fold, a, code, .internal-link, strong, em) {
+    color: inherit;
+}
+
+.callout code {
+    background-color: transparent;
+}
+
+@media print {
+    body.theme-light,
+    body.theme-dark {
+        --text-normal: #211f26;
+        --text-muted: #625c52;
+        --background-primary: white;
+        --background-secondary: white;
+    }
+
+    .markdown-rendered,
+    .markdown-rendered :is(h1, h2, h3, h4, h5, h6, a, code, th) {
+        color: #211f26;
+    }
+
+    .markdown-rendered :is(pre, code, th, .callout) {
+        background: transparent;
+    }
+}

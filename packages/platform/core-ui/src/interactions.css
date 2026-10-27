@@ -1,0 +1,175 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+/* Eight corner strokes extend into a full frame, as in the original prototype. */
+@layer radix {
+    .radix-themes {
+        --core-ui-border-color: var(--gray-11);
+        --core-ui-focus-color: var(--gray-11);
+    }
+    .radix-themes :is(.rt-BaseButton, .rt-SelectTrigger),
+    .radix-themes :is(.rt-BaseCheckboxRoot, .rt-BaseRadioRoot, .rt-SwitchRoot)::before {
+        --corner-x: 8px;
+        --corner-y: 8px;
+        --corner-thickness: 1px;
+        --corner-line: linear-gradient(var(--core-ui-border-color), var(--core-ui-border-color));
+        background-image:
+            var(--corner-line), var(--corner-line), var(--corner-line), var(--corner-line), var(--corner-line),
+            var(--corner-line), var(--corner-line), var(--corner-line);
+        background-position:
+            top left,
+            top right,
+            bottom left,
+            bottom right,
+            top left,
+            top right,
+            bottom left,
+            bottom right;
+        background-size:
+            var(--corner-x) var(--corner-thickness),
+            var(--corner-x) var(--corner-thickness),
+            var(--corner-x) var(--corner-thickness),
+            var(--corner-x) var(--corner-thickness),
+            var(--corner-thickness) var(--corner-y),
+            var(--corner-thickness) var(--corner-y),
+            var(--corner-thickness) var(--corner-y),
+            var(--corner-thickness) var(--corner-y);
+        background-repeat: no-repeat;
+        box-shadow: none;
+        border-radius: 0;
+        transition:
+            background-size 180ms ease-out,
+            background-color 180ms ease-out;
+    }
+
+    .radix-themes :is(.rt-BaseCheckboxRoot, .rt-BaseRadioRoot, .rt-SwitchRoot)::before {
+        --corner-x: 4px;
+        --corner-y: 4px;
+    }
+
+    .radix-themes .rt-BaseButton:where(.rt-variant-solid):not(:disabled, [data-disabled]) {
+        background-color: transparent;
+        color: var(--accent-12);
+    }
+
+    .radix-themes .rt-Button:where(.rt-variant-solid):is(:not(:disabled, [data-disabled]), :has(.rt-Spinner))::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        flex-shrink: 0;
+        background-color: currentColor;
+    }
+
+    .radix-themes .rt-BaseButton:not(:disabled, [data-disabled]) {
+        cursor: pointer;
+    }
+
+    .radix-themes
+        .rt-BaseButton:where(.rt-variant-soft, .rt-variant-outline, .rt-variant-ghost):not(:disabled, [data-disabled]) {
+        color: var(--accent-12);
+        background-color: transparent;
+    }
+
+    .radix-themes
+        .rt-Button:where(.rt-variant-soft, .rt-variant-ghost):is(
+            :not(:disabled, [data-disabled]),
+            :has(.rt-Spinner)
+        )::before {
+        content: "";
+        box-sizing: border-box;
+        width: 6px;
+        height: 6px;
+        flex-shrink: 0;
+        border: 1px solid currentColor;
+    }
+
+    .radix-themes .rt-Button:has(.rt-Spinner)::before {
+        visibility: hidden;
+    }
+
+    .radix-themes .rt-BaseButton:where(:disabled, [data-disabled]) {
+        background-color: transparent;
+        color: var(--gray-8);
+    }
+
+    .radix-themes
+        :is(.rt-BaseButton, .rt-SelectTrigger):where(:hover, :focus-visible):not(
+            :disabled,
+            [data-disabled],
+            [aria-disabled="true"]
+        ),
+    .radix-themes
+        :is(.rt-BaseCheckboxRoot, .rt-BaseRadioRoot, .rt-SwitchRoot):where(:hover, :focus-visible):not(
+            :disabled,
+            [data-disabled],
+            [aria-disabled="true"]
+        )::before {
+        --corner-x: 50%;
+        --corner-y: 50%;
+    }
+
+    /* Preserve a separate focus cue even when a selected control has a full frame. */
+    .radix-themes
+        :is(.rt-BaseButton, .rt-SelectTrigger, .rt-BaseCheckboxRoot, .rt-BaseRadioRoot, .rt-SwitchRoot):focus-visible,
+    .radix-themes .rt-TextFieldRoot:focus-within {
+        outline: 2px solid var(--core-ui-focus-color);
+        outline-offset: 3px;
+    }
+
+    .radix-themes .rt-TextFieldRoot:has([aria-invalid="true"]) {
+        --core-ui-field-border-color: var(--red-9);
+    }
+
+    .radix-themes .rt-TextFieldRoot {
+        --core-ui-field-border-color: var(--gray-12);
+        border: 1px solid var(--core-ui-field-border-color);
+        border-radius: 0;
+        box-shadow: none;
+        background: var(--gray-1);
+    }
+
+    .radix-themes .rt-TextFieldInput {
+        color: var(--gray-12);
+    }
+
+    .radix-themes .rt-TextFieldInput::placeholder {
+        color: var(--gray-11);
+        opacity: 1;
+    }
+
+    .radix-themes .rt-TextFieldInput:disabled {
+        color: var(--gray-8);
+    }
+
+    .radix-themes .rt-TextFieldRoot:focus-within {
+        outline-color: var(--gray-12);
+    }
+
+    .radix-themes .rt-TextFieldInput:not(:disabled, [readonly]) {
+        cursor: text;
+    }
+
+    .radix-themes .rt-TextFieldRoot:has([readonly]) {
+        background-color: var(--gray-3);
+    }
+
+    .radix-themes .rt-TextFieldRoot:has(:disabled) {
+        --core-ui-field-border-color: var(--gray-8);
+        background-color: var(--gray-3);
+    }
+
+    .radix-themes
+        :is(.rt-BaseButton, .rt-SelectTrigger):is(:disabled, [data-disabled], [aria-disabled="true"], :has(:disabled)),
+    .radix-themes :is(.rt-BaseCheckboxRoot, .rt-BaseRadioRoot, .rt-SwitchRoot):is(:disabled, [data-disabled])::before {
+        --corner-line: linear-gradient(var(--gray-8), var(--gray-8));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .radix-themes :is(.rt-BaseButton, .rt-SelectTrigger),
+        .radix-themes :is(.rt-BaseCheckboxRoot, .rt-BaseRadioRoot, .rt-SwitchRoot)::before {
+            transition: none;
+        }
+    }
+}

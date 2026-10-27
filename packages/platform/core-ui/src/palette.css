@@ -1,0 +1,89 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+/* Exploratory palette recovered from 25f3566, with warmer ivory surfaces. */
+@layer radix {
+    .radix-themes[data-gray-color="sand"]:where(.light, .light-theme) {
+        /* At least 3:1 against neutral surfaces 1–5, including active fills. */
+        --core-ui-border-color: #796d57;
+        /* Opaque scale: surfaces, borders, solid controls, and foreground text. */
+        --gray-1: #f6f2e6;
+        --gray-2: #eeeadb;
+        --gray-3: #e6e0cf;
+        --gray-4: #ded7c5;
+        --gray-5: #d4ccb8;
+        --gray-6: #c7bea9;
+        --gray-7: #b5aa92;
+        --gray-8: #948970;
+        --gray-9: #45413b;
+        --gray-10: #36322e;
+        --gray-11: #625c52;
+        --gray-12: #211f26;
+
+        /* Alpha scale: translucent strokes and overlays on the active surface. */
+        --gray-a1: #3c300004;
+        --gray-a2: #3c30000c;
+        --gray-a3: #3c300016;
+        --gray-a4: #3c300021;
+        --gray-a5: #3c30002e;
+        --gray-a6: #3c300041;
+        --gray-a7: #3c300057;
+        --gray-a8: #3c300080;
+        --gray-a9: #211f26d6;
+        --gray-a10: #211f26e8;
+        --gray-a11: #211f26b3;
+        --gray-a12: #211f26;
+
+        /* Semantic aliases consumed by the Radix components and page surfaces. */
+        --gray-contrast: #f6f2e6;
+        --gray-surface: #eeeadb;
+        --gray-indicator: var(--gray-9);
+        --gray-track: var(--gray-9);
+        --color-background: var(--gray-1);
+        --color-panel-solid: var(--gray-2);
+        --color-panel-translucent: var(--gray-2);
+        --color-surface: var(--gray-2);
+    }
+    .radix-themes[data-gray-color="sand"]:where(.dark, .dark-theme) {
+        --core-ui-border-color: #9c929d;
+        /* Opaque scale: surfaces, borders, solid controls, and foreground text. */
+        --gray-1: #211f26;
+        --gray-2: #29272e;
+        --gray-3: #333138;
+        --gray-4: #3c3940;
+        --gray-5: #46424a;
+        --gray-6: #534e57;
+        --gray-7: #69636c;
+        --gray-8: #837b85;
+        --gray-9: #d4ccb8;
+        --gray-10: #e2dbc8;
+        --gray-11: #b9b19f;
+        --gray-12: #f6f2e6;
+
+        /* Alpha scale: translucent strokes and overlays on the active surface. */
+        --gray-a1: #f6f2e605;
+        --gray-a2: #f6f2e60a;
+        --gray-a3: #f6f2e614;
+        --gray-a4: #f6f2e61f;
+        --gray-a5: #f6f2e629;
+        --gray-a6: #f6f2e638;
+        --gray-a7: #f6f2e652;
+        --gray-a8: #f6f2e673;
+        --gray-a9: #f6f2e6d9;
+        --gray-a10: #f6f2e6eb;
+        --gray-a11: #f6f2e6b3;
+        --gray-a12: #f6f2e6;
+
+        /* Semantic aliases consumed by the Radix components and page surfaces. */
+        --gray-contrast: #211f26;
+        --gray-surface: #29272e;
+        --gray-indicator: var(--gray-9);
+        --gray-track: var(--gray-9);
+        --color-background: var(--gray-1);
+        --color-panel-solid: var(--gray-2);
+        --color-panel-translucent: var(--gray-2);
+        --color-surface: var(--gray-2);
+    }
+}

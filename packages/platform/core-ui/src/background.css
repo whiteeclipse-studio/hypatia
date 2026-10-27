@@ -1,0 +1,63 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+@layer radix {
+    .core-ui-background {
+        --core-ui-background-weave: color-mix(in srgb, var(--gray-12) 3%, transparent);
+        --core-ui-background-orbit-ink: color-mix(in srgb, var(--gray-12) 7%, transparent);
+        position: relative;
+        isolation: isolate;
+        min-height: 100vh;
+        background-color: var(--gray-1);
+    }
+
+    /* Keep the existing mockup's texture and geometry fixed while the content scrolls. */
+    .core-ui-background::before,
+    .core-ui-background::after {
+        content: "";
+        position: fixed;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .core-ui-background::before {
+        inset: 0;
+        background-image:
+            linear-gradient(var(--core-ui-background-weave) 1px, transparent 1px),
+            linear-gradient(90deg, var(--core-ui-background-weave) 1px, transparent 1px);
+        background-size: 8px 8px;
+    }
+
+    /* The square drawing anchors the diagonal and the paired arcs to the same centre. */
+    .core-ui-background::after {
+        --core-ui-background-orbit-radius: clamp(280px, 35vw, 560px);
+        top: 0;
+        right: 0;
+        width: max(100vw, 100vh);
+        height: max(100vw, 100vh);
+        background-image:
+            radial-gradient(
+                circle at 100% 0%,
+                transparent calc(var(--core-ui-background-orbit-radius) - 1px),
+                var(--core-ui-background-orbit-ink) var(--core-ui-background-orbit-radius)
+                    calc(var(--core-ui-background-orbit-radius) + 1px),
+                transparent calc(var(--core-ui-background-orbit-radius) + 2px)
+                    calc(var(--core-ui-background-orbit-radius) + 79px),
+                var(--core-ui-background-orbit-ink) calc(var(--core-ui-background-orbit-radius) + 80px)
+                    calc(var(--core-ui-background-orbit-radius) + 81px),
+                transparent calc(var(--core-ui-background-orbit-radius) + 82px)
+            ),
+            linear-gradient(
+                135deg,
+                transparent calc(50% - 82px),
+                var(--core-ui-background-orbit-ink) calc(50% - 81px) calc(50% - 79px),
+                transparent calc(50% - 78px) calc(50% - 1px),
+                var(--core-ui-background-orbit-ink) 50% calc(50% + 2px),
+                transparent calc(50% + 3px) calc(50% + 79px),
+                var(--core-ui-background-orbit-ink) calc(50% + 80px) calc(50% + 82px),
+                transparent calc(50% + 83px)
+            );
+    }
+}

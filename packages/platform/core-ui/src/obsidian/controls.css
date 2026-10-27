@@ -1,0 +1,188 @@
+/* Copyright © 2026 White Eclipse. Released under the MIT License. */
+@property --core-ui-frame-length {
+    syntax: "<length-percentage>";
+    inherits: false;
+    initial-value: 8px;
+}
+
+/* Background strokes avoid occupying Obsidian's icon and state pseudo-elements. */
+button:not(.clickable-icon),
+select,
+.dropdown,
+.checkbox-container {
+    --core-ui-frame-length: 8px;
+    --core-ui-frame-ink: var(--core-ui-border-color);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    background-image:
+        linear-gradient(var(--core-ui-frame-ink), var(--core-ui-frame-ink)),
+        linear-gradient(var(--core-ui-frame-ink), var(--core-ui-frame-ink)),
+        linear-gradient(var(--core-ui-frame-ink), var(--core-ui-frame-ink)),
+        linear-gradient(var(--core-ui-frame-ink), var(--core-ui-frame-ink)),
+        linear-gradient(var(--core-ui-frame-ink), var(--core-ui-frame-ink)),
+        linear-gradient(var(--core-ui-frame-ink), var(--core-ui-frame-ink)),
+        linear-gradient(var(--core-ui-frame-ink), var(--core-ui-frame-ink)),
+        linear-gradient(var(--core-ui-frame-ink), var(--core-ui-frame-ink));
+    background-size:
+        var(--core-ui-frame-length) 1px,
+        var(--core-ui-frame-length) 1px,
+        var(--core-ui-frame-length) 1px,
+        var(--core-ui-frame-length) 1px,
+        1px var(--core-ui-frame-length),
+        1px var(--core-ui-frame-length),
+        1px var(--core-ui-frame-length),
+        1px var(--core-ui-frame-length);
+    background-position:
+        top left,
+        top right,
+        bottom left,
+        bottom right,
+        top left,
+        top right,
+        bottom left,
+        bottom right;
+    background-repeat: no-repeat;
+    color: var(--text-normal);
+    transition: --core-ui-frame-length 180ms ease-out;
+}
+
+body button:not(.clickable-icon):hover,
+body button.mod-cta {
+    background-color: transparent;
+    color: var(--text-normal);
+}
+
+:is(button:not(.clickable-icon), select, .dropdown, .checkbox-container):not(
+        :disabled,
+        [aria-disabled="true"],
+        .is-disabled
+    ):is(:hover, :focus-visible, :focus-within) {
+    --core-ui-frame-length: 50%;
+    box-shadow: none;
+}
+
+button.mod-cta:not(:disabled, [aria-disabled="true"])::before {
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    margin-inline-end: 8px;
+    background-color: currentColor;
+}
+
+body button.mod-warning {
+    color: var(--text-error);
+}
+
+:is(button:not(.clickable-icon), select, .dropdown, .checkbox-container):is(
+    :disabled,
+    [aria-disabled="true"],
+    .is-disabled
+) {
+    --core-ui-frame-ink: var(--gray-7);
+    color: var(--text-muted);
+    transition: none;
+}
+
+body
+    :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]), textarea):not(
+        .metadata-container *
+    ) {
+    border: 1px solid var(--gray-12);
+    border-radius: 0;
+    background: var(--gray-1);
+    box-shadow: none;
+    color: var(--text-normal);
+}
+
+body :is(input, textarea)::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+body
+    :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]), textarea):is(
+        :read-only,
+        :disabled
+    ):not(.metadata-container *) {
+    background-color: var(--gray-3);
+}
+
+body :is(input, textarea)[aria-invalid="true"] {
+    border-color: var(--red-9);
+}
+
+body
+    :is(button, select, input, textarea, .dropdown, .checkbox-container, .clickable-icon, [tabindex]):not(
+        .metadata-container *
+    ):focus-visible {
+    outline: 2px solid var(--gray-11);
+    outline-offset: 3px;
+    box-shadow: none;
+}
+
+body :is(input, textarea):not(.metadata-container *):focus {
+    outline: 2px solid var(--gray-12);
+    outline-offset: 3px;
+    box-shadow: none;
+}
+
+body .checkbox-container {
+    --core-ui-frame-length: 4px;
+    --toggle-border-width: 4px;
+    --toggle-thumb-color: transparent;
+    --toggle-thumb-height: 14px;
+    --toggle-thumb-width: 14px;
+    --toggle-s-border-width: 4px;
+    --toggle-s-thumb-height: 14px;
+    --toggle-s-thumb-width: 14px;
+    background-color: var(--gray-2);
+}
+
+body .checkbox-container::after {
+    box-sizing: border-box;
+    border: 1px solid var(--gray-11);
+    border-radius: 0;
+    box-shadow: none;
+    transition:
+        transform 140ms cubic-bezier(0.45, 0.05, 0.55, 0.95),
+        background-color 140ms ease-in-out,
+        border-color 140ms ease-in-out;
+}
+
+body .checkbox-container.is-enabled {
+    --toggle-thumb-color: var(--gray-12);
+    background-color: var(--gray-2);
+}
+
+body .checkbox-container.is-enabled::after {
+    border-color: var(--gray-12);
+}
+
+/* Suppress Obsidian's pressed-thumb enlargement, including modal toggles. */
+body .checkbox-container:active::after {
+    left: 0;
+    width: var(--toggle-s-thumb-width);
+    height: var(--toggle-s-thumb-height);
+    margin-top: var(--toggle-s-border-width);
+}
+
+body .modal .checkbox-container:active::after {
+    width: var(--toggle-thumb-width);
+    height: var(--toggle-thumb-height);
+    margin-top: var(--toggle-border-width);
+}
+
+body select.dropdown {
+    appearance: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body :is(button, select, .dropdown, .checkbox-container),
+    body .checkbox-container::after {
+        transition: none;
+    }
+}

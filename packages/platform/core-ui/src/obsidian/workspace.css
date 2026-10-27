@@ -1,0 +1,46 @@
+/* Copyright © 2026 White Eclipse. Released under the MIT License. */
+.workspace-tab-header.is-active .workspace-tab-header-inner-icon,
+.workspace-tab-header.is-active .workspace-tab-header-inner-close-button {
+    color: var(--gray-1);
+}
+
+.workspace-tab-header.is-active .workspace-tab-header-inner-title::before,
+.nav-file-title.is-active .nav-file-title-content::before,
+.workspace-leaf-content[data-type="outline"] .tree-item-self.is-active .tree-item-inner::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-inline-end: 8px;
+    background: currentColor;
+    vertical-align: middle;
+}
+
+.nav-file-title.is-active .nav-file-title-content {
+    color: var(--nav-item-color-active);
+}
+
+.nav-folder-title-content,
+.view-header-title,
+.status-bar {
+    font-family: var(--font-monospace);
+}
+
+.nav-folder-title-content {
+    letter-spacing: 0.04em;
+}
+
+.view-header,
+.nav-header {
+    border-bottom: 1px solid var(--core-ui-border-color);
+}
+
+.workspace-leaf-content[data-type="markdown"] :is(.markdown-source-view, .markdown-preview-view) {
+    background-color: transparent;
+}
+
+@media print {
+    .workspace-leaf-content[data-type="markdown"] > .view-content {
+        background-image: none;
+    }
+}

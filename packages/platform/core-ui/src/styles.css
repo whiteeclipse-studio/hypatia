@@ -1,0 +1,28 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+@layer theme, base, radix, components, utilities;
+
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/outfit";
+@import "@radix-ui/themes/styles.css" layer(radix);
+@import "./palette.css";
+@import "./feedback.css";
+@import "./interactions.css";
+@import "./switch.css";
+@import "./tabs.css";
+@import "./background.css";
+
+@layer radix {
+    .radix-themes {
+        --default-font-family: "Inter Variable", "Helvetica Neue", Arial, sans-serif;
+        --code-font-family: "JetBrains Mono Variable", Consolas, monospace;
+        --heading-font-family: "Outfit Variable", "Inter Variable", Arial, sans-serif;
+        --brand-font-family: var(--heading-font-family);
+        --em-font-family: var(--default-font-family);
+        --quote-font-family: var(--default-font-family);
+    }
+}

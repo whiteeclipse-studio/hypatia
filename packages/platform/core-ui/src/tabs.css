@@ -1,0 +1,68 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+@layer radix {
+    .radix-themes .rt-TabsList {
+        gap: var(--space-2);
+        padding: var(--space-2);
+        border-bottom: 1px solid var(--core-ui-border-color);
+        box-shadow: none;
+    }
+
+    .radix-themes .rt-TabsTrigger {
+        padding-inline: var(--space-4);
+        border-radius: 0;
+        color: var(--gray-11);
+        cursor: pointer;
+    }
+
+    .radix-themes .rt-TabsTriggerInner {
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .radix-themes :is(.rt-TabsTriggerInner, .rt-TabsTriggerInnerHidden) {
+        gap: var(--space-2);
+    }
+
+    .radix-themes .rt-TabsTrigger[data-state="active"] :is(.rt-TabsTriggerInner, .rt-TabsTriggerInnerHidden)::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        flex-shrink: 0;
+        background: currentColor;
+    }
+
+    .radix-themes .rt-TabsTrigger:where(:hover):not(:disabled, [data-disabled]) {
+        background: var(--gray-3);
+        color: var(--gray-12);
+    }
+
+    .radix-themes .rt-TabsTrigger[data-state="active"] {
+        background: var(--gray-12);
+        color: var(--gray-1);
+    }
+
+    /* Selection uses a filled label rather than the upstream underline. */
+    .radix-themes .rt-TabsTrigger::before {
+        content: none;
+    }
+
+    .radix-themes .rt-TabsTrigger:where(:hover, :focus-visible) .rt-TabsTriggerInner {
+        background: transparent;
+        outline: none;
+    }
+
+    .radix-themes .rt-TabsTrigger:focus-visible {
+        outline: 2px solid var(--core-ui-focus-color);
+        outline-offset: 3px;
+    }
+
+    .radix-themes .rt-TabsTrigger:where(:disabled, [data-disabled]) {
+        background: transparent;
+        color: var(--gray-8);
+        cursor: not-allowed;
+    }
+}
