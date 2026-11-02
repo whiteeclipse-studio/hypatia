@@ -6,6 +6,7 @@
 import { defineConfig } from "eslint/config";
 import JSDoc from "eslint-plugin-jsdoc";
 
+
 export default defineConfig({
     name: "@whiteeclipse/toolchain/eslint/jsdoc",
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}"],
@@ -18,8 +19,11 @@ export default defineConfig({
             {
                 publicOnly: false,
                 enableFixer: false,
-                require: { ArrowFunctionExpression: true, FunctionExpression: true, MethodDefinition: true },
-                contexts: ["TSInterfaceDeclaration"],
+                require: { ArrowFunctionExpression: false, FunctionExpression: false, MethodDefinition: true },
+                contexts: [
+                    "TSInterfaceDeclaration",
+                    ":matches(VariableDeclarator, AssignmentExpression, ExportDefaultDeclaration, PropertyDefinition) > :matches(ArrowFunctionExpression, FunctionExpression)",
+                ],
             },
         ],
         "jsdoc/require-description": "error",

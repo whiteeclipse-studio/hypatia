@@ -7,6 +7,7 @@ import { defineConfig } from "eslint/config";
 import ImportX from "eslint-plugin-import-x";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 
+
 export default defineConfig({
     name: "@whiteeclipse/toolchain/eslint/import-x",
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}"],
@@ -15,7 +16,7 @@ export default defineConfig({
         "import-x/resolver-next": [
             createTypeScriptImportResolver({
                 bun: true,
-                project: ["apps/*/tsconfig.json", "packages/*/*/tsconfig.json"],
+                project: ["tsconfig.json", "apps/*/tsconfig.json", "packages/*/*/tsconfig.json"],
             }),
         ],
     },

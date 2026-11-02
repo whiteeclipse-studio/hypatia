@@ -50,7 +50,18 @@ export { default } from "@whiteeclipse/toolchain/prettier";
 
 ## Running checks
 
-With dependencies installed, run checks from the workspace root:
+With dependencies installed, run `bun run lint` from the repository root to check all packages and applications, or from
+an individual workspace to check only that workspace. The toolchain workspace imports its own source configuration
+directly. Consuming workspaces may load the built entrypoint, so rebuild the toolchain after changing shared rules.
+Passing `--conditions=development` to `bun run` does not propagate that condition to the ESLint subprocess.
+
+To load shared rules from source, invoke ESLint directly from the repository root:
+
+```sh
+bun --conditions=development ./node_modules/.bin/eslint .
+```
+
+For consumers using the built entrypoints, run checks from the workspace root:
 
 ```sh
 bunx --bun --no-install eslint .
@@ -66,7 +77,14 @@ The package exposes two default exports; it has no package-root export:
 - **`@whiteeclipse/toolchain/eslint`:** a flat configuration array combining JavaScript correctness, type-aware TypeScript, import boundaries, promise handling, JSDoc, readability, and JSX checks.
 - **`@whiteeclipse/toolchain/prettier`:** a configuration object using 120-column lines, four-space indentation, double quotes, semicolons, trailing commas, and LF endings. It includes `prettier-plugin-packagejson` for package-file formatting.
 
-Typed linting uses TypeScript's project service, so checked TypeScript files need an appropriate `tsconfig.json`. Import resolution supports Bun and assumes projects at `apps/*/tsconfig.json` and `packages/*/*/tsconfig.json`.
+Typed linting uses TypeScript's project service, so checked TypeScript files need an appropriate `tsconfig.json`. Import
+resolution supports Bun and checks `tsconfig.json` in the current directory as well as projects at
+`apps/*/tsconfig.json` and `packages/*/*/tsconfig.json`. Repository workspace configurations set `tsconfigRootDir` to
+their own directory, and their TypeScript projects include the ESLint configuration and relevant scripts.
+
+JSDoc is required on interfaces, standalone functions, and class methods. Object-literal methods and function-valued
+properties do not require duplicate comments; document their contracts on the corresponding types. Any JSDoc supplied on
+an implementation is still checked.
 
 JavaScript files, configuration files, and scripts receive Node globals. Source files under `src` and Storybook files receive browser globals; overlapping patterns can receive both. Test files relax selected function-name, numeric-literal, and named-capture rules while retaining other checks.
 
@@ -115,8 +133,10 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description                                                |
-| -------- | ---------- | ------------- | ---------------------------------------------------------- |
-| 1        | 2026-10-25 | Akane SHIMOKA | Adds the package README.                                   |
-| 2        | 2026-10-26 | Akane SHIMOKA | Consolidate documentation                                  |
-| 3        | 2026-10-27 | Codex         | Add built JavaScript, declaration, and development exports |
+| Revision | Date       | Author        | Description                                                     |
+|----------|------------|---------------|-----------------------------------------------------------------|
+| 1        | 2026-10-25 | Akane SHIMOKA | Adds the package README.                                        |
+| 2        | 2026-10-26 | Akane SHIMOKA | Consolidate documentation                                       |
+| 3        | 2026-10-27 | Codex         | Add built JavaScript, declaration, and development exports      |
+| 4        | 2026-10-30 | Codex         | Document repository and workspace lint commands                 |
+| 5        | 2026-10-30 | Akane SHIMOKA | Clarify object-literal JSDoc exemptions and shared rule loading |
