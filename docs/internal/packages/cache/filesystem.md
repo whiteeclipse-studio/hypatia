@@ -1,5 +1,8 @@
 ---
 id: cache-filesystem
+parent: ./README.md
+next: ./indexeddb.md
+previous: ./memory.md
 ---
 
 # Filesystem adapter
@@ -58,3 +61,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author        | Description                                           |
 |----------|------------|---------------|-------------------------------------------------------|
 | 1        | 2026-10-29 | Akane SHIMOKA | Document temporary storage and its server-only import |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                         |

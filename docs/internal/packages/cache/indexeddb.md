@@ -1,5 +1,8 @@
 ---
 id: cache-indexeddb
+parent: ./README.md
+next: ./aggregate.md
+previous: ./filesystem.md
 ---
 
 # IndexedDB adapter
@@ -59,3 +62,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author        | Description                                           |
 |----------|------------|---------------|-------------------------------------------------------|
 | 1        | 2026-10-29 | Akane SHIMOKA | Document browser persistence and its dedicated import |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                         |

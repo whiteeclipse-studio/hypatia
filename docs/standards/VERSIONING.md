@@ -1,5 +1,8 @@
 ---
 id: std-versioning
+parent: ./README.md
+next: ./GOVERNANCE.md
+previous: ./PUBLICATION.md
 ---
 
 # Software versioning standard
@@ -49,6 +52,7 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-26 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                   |
+|----------|------------|---------------|-------------------------------|
+| 1        | 2026-10-26 | Akane SHIMOKA | Initial draft                 |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links |

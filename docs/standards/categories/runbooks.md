@@ -1,6 +1,10 @@
 ---
 id: std-runbooks
 standard_revision: 1
+location: docs/internal/runbooks
+parent: ../README.md
+next: ./package-documentation.md
+previous: ./ui-designs.md
 ---
 
 # Operational runbook standard
@@ -56,6 +60,8 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-17 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                            |
+|----------|------------|---------------|----------------------------------------|
+| 1        | 2026-10-17 | Akane SHIMOKA | Initial draft                          |
+| 2        | 2026-10-29 | Akane SHIMOKA | Declare covered documentation location |
+| 3        | 2026-11-02 | Akane SHIMOKA | Add document navigation links          |

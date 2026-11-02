@@ -1,5 +1,7 @@
 ---
 id: core-ui-implementation-rules
+parent: ./README.md
+previous: ./design.md
 ---
 
 # Core UI — Implementation rules
@@ -176,3 +178,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 |----------|------------|---------------|------------------------------------------|
 | 1        | 2026-10-27 | Akane SHIMOKA | Initial draft                            |
 | 2        | 2026-10-29 | Akane SHIMOKA | Remove square markers from ghost buttons |
+| 3        | 2026-11-02 | Akane SHIMOKA | Add document navigation links            |

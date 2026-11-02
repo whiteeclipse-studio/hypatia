@@ -1,5 +1,7 @@
 ---
 id: std-authoring
+parent: ./README.md
+next: ./STRUCTURE.md
 ---
 
 # Documentation authoring standard
@@ -27,13 +29,20 @@ In all files covered by this standard, uppercase requirement keywords follow **B
 
 ### Metadata
 
-Every document MUST begin with YAML front matter. The following fields are REQUIRED where indicated:
+Every document MUST begin with YAML front matter. The following fields are required or optional as indicated:
 
 | Field               | Required on | Value                                                                                           |
-| ------------------- | ----------- | ----------------------------------------------------------------------------------------------- |
+|---------------------|-------------|-------------------------------------------------------------------------------------------------|
 | `id`                | Every file  | A stable, project-unique identifier in lowercase `kebab-case`.                                  |
 | `standard_revision` | Entry files | A positive integer identifying a revision in the [standards entrypoint](./README.md#revisions). |
+| `parent`            | Optional    | A relative link to the logical parent document.                                                 |
+| `next`              | Optional    | A relative link to the next document in a reading sequence.                                     |
+| `previous`          | Optional    | A relative link to the previous document in a reading sequence.                                 |
 
+- Navigation fields MAY be provided independently. Each value MUST be a single non-empty path relative to the current
+  file, pointing to an existing Markdown document. The logical parent MAY differ from the filesystem parent. Fields
+  without a target MUST be omitted; the first document in a sequence SHOULD NOT provide `previous`, and the last SHOULD
+  NOT provide `next`.
 - Entry files are standalone documents or the main entrypoints of independently governed documentation sets. A folder-based set's main entrypoint MUST be its `README.md`.
 - Files without `standard_revision` MUST belong to the nearest enclosing `README.md` that declares one and inherit its standard revision. Lookup MUST start in the file's directory and continue through parent directories, excluding the file itself.
 - Supporting files, including README indexes within a set, do not require their own `standard_revision`.
@@ -78,6 +87,7 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-26 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                                  |
+|----------|------------|---------------|----------------------------------------------|
+| 1        | 2026-10-26 | Akane SHIMOKA | Initial draft                                |
+| 2        | 2026-11-02 | Akane SHIMOKA | Define optional document navigation metadata |

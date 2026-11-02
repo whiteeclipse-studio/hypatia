@@ -1,6 +1,10 @@
 ---
 id: std-public-documentation
 standard_revision: 1
+location: docs/public
+parent: ../README.md
+next: ./user-guides.md
+previous: ./rfcs.md
 ---
 
 # Public documentation standard
@@ -27,6 +31,8 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-16 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                            |
+|----------|------------|---------------|----------------------------------------|
+| 1        | 2026-10-16 | Akane SHIMOKA | Initial draft                          |
+| 2        | 2026-10-29 | Akane SHIMOKA | Declare covered documentation location |
+| 3        | 2026-11-02 | Akane SHIMOKA | Add document navigation links          |

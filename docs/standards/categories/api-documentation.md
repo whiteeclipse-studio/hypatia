@@ -1,6 +1,10 @@
 ---
 id: std-api-documentation
 standard_revision: 1
+location: docs/public/api
+parent: ../README.md
+next: ./internal-documentation.md
+previous: ./user-guides.md
 ---
 
 # API documentation standard
@@ -36,6 +40,8 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-26 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                            |
+|----------|------------|---------------|----------------------------------------|
+| 1        | 2026-10-26 | Akane SHIMOKA | Initial draft                          |
+| 2        | 2026-10-29 | Akane SHIMOKA | Declare covered documentation location |
+| 3        | 2026-11-02 | Akane SHIMOKA | Add document navigation links          |

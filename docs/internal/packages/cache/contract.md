@@ -1,5 +1,7 @@
 ---
 id: cache-contract
+parent: ./README.md
+next: ./memory.md
 ---
 
 # Contract and guarantees
@@ -79,3 +81,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author        | Description                                         |
 |----------|------------|---------------|-----------------------------------------------------|
 | 1        | 2026-10-29 | Akane SHIMOKA | Describe operations, lifetime, and guarantee limits |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                       |

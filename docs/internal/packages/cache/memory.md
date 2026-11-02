@@ -1,5 +1,8 @@
 ---
 id: cache-lru-memory
+parent: ./README.md
+next: ./filesystem.md
+previous: ./contract.md
 ---
 
 # LRU memory adapter
@@ -57,3 +60,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author        | Description                                        |
 |----------|------------|---------------|----------------------------------------------------|
 | 1        | 2026-10-29 | Akane SHIMOKA | Document memory retention and its dedicated import |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                      |

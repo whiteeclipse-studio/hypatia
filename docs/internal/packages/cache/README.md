@@ -1,6 +1,9 @@
 ---
 id: cache-documentation
 standard_revision: 1
+parent: ../../../README.md
+next: ../docs-compiler/README.md
+previous: ../../designs/core-ui/README.md
 ---
 
 # @whiteeclipse/cache
@@ -62,3 +65,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author        | Description                                               |
 |----------|------------|---------------|-----------------------------------------------------------|
 | 1        | 2026-10-29 | Akane SHIMOKA | Introduce cache concepts, guarantees, and adapter imports |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                             |

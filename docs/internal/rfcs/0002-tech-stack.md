@@ -2,6 +2,9 @@
 id: rfc-0002
 standard_revision: 1
 status: draft
+parent: ../../standards/README.md
+next: ./0003-engineering-conventions.md
+previous: ./0001-repository-structure.md
 ---
 
 # rfc-0002 — Technology stack
@@ -84,6 +87,7 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description                                   |
-| -------- | ---------- | ------------- | --------------------------------------------- |
-| 1        | 2026-10-19 | Akane SHIMOKA | Initial draft                                 |
+| Revision | Date       | Author        | Description                   |
+|----------|------------|---------------|-------------------------------|
+| 1        | 2026-10-19 | Akane SHIMOKA | Initial draft                 |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links |

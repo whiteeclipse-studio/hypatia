@@ -1,5 +1,7 @@
 ---
 id: cache-aggregate
+parent: ./README.md
+previous: ./indexeddb.md
 ---
 
 # Aggregate adapter
@@ -70,3 +72,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author        | Description                                            |
 |----------|------------|---------------|--------------------------------------------------------|
 | 1        | 2026-10-29 | Akane SHIMOKA | Document aggregation, ownership, and dedicated imports |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                          |

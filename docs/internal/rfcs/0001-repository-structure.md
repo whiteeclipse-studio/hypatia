@@ -2,6 +2,8 @@
 id: rfc-0001
 standard_revision: 1
 status: draft
+parent: ../../standards/README.md
+next: ./0002-tech-stack.md
 ---
 
 # rfc-0001 — Repository structure
@@ -62,6 +64,7 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-14 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                   |
+|----------|------------|---------------|-------------------------------|
+| 1        | 2026-10-14 | Akane SHIMOKA | Initial draft                 |
+| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links |
