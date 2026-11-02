@@ -50,6 +50,8 @@ These instructions apply to every agent working anywhere in this repository, inc
 - Search for existing implementations, contracts, and documentation before adding equivalents. Reuse appropriate existing capabilities and avoid speculative abstractions.
 - Preserve existing behaviour and public contracts outside the requested scope. Follow accepted decisions governing module responsibilities and boundaries.
 - Use established repository tooling and conventions. Do not infer an adopted stack or toolchain from a draft RFC, an example, or another project's reference file.
+- Wrap code comments at natural phrase or sentence boundaries. Avoid leaving a single character or a short fragment of a
+  sentence isolated on a line.
 - Introduce production dependencies only when necessary for the requested work, and explain their purpose and material impact. Keep broader tooling and architecture decisions subject to the documented decision process.
 - Identify unrelated inconsistencies as follow-up suggestions rather than treating them as permission for wider changes.
 
