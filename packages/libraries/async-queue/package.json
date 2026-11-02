@@ -1,0 +1,33 @@
+{
+    "name": "@whiteeclipse/async-queue",
+    "version": "0.1.0-alpha.1",
+    "private": true,
+    "description": "Sequential asynchronous operations with draining disposal.",
+    "license": "MIT",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./src/index.ts",
+            "development": "./src/index.ts",
+            "default": "./src/index.ts"
+        }
+    },
+    "files": [
+        "src"
+    ],
+    "scripts": {
+        "lint": "bun --conditions=development run --bun eslint .",
+        "test": "vitest run src",
+        "typecheck": "tsc -p tsconfig.json"
+    },
+    "dependencies": {
+        "@whiteeclipse/log": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/node": "catalog:types",
+        "@whiteeclipse/toolchain": "workspace:*",
+        "eslint": "catalog:tooling",
+        "typescript": "catalog:types",
+        "vitest": "catalog:test"
+    }
+}
