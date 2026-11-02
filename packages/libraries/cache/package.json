@@ -1,0 +1,70 @@
+{
+    "name": "@whiteeclipse/cache",
+    "version": "0.1.0-alpha.1",
+    "private": true,
+    "description": "Exploratory byte-oriented cache contracts and filesystem backend work in progress.",
+    "license": "MIT",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./src/index.ts",
+            "development": "./src/index.ts",
+            "default": "./src/index.ts"
+        },
+        "./memory": {
+            "types": "./src/adapters/memory.ts",
+            "development": "./src/adapters/memory.ts",
+            "default": "./src/adapters/memory.ts"
+        },
+        "./indexeddb": {
+            "types": "./src/adapters/indexeddb.ts",
+            "development": "./src/adapters/indexeddb.ts",
+            "default": "./src/adapters/indexeddb.ts"
+        },
+        "./aggregate": {
+            "types": "./src/adapters/aggregate.ts",
+            "development": "./src/adapters/aggregate.ts",
+            "default": "./src/adapters/aggregate.ts"
+        },
+        "./filesystem": {
+            "browser": null,
+            "types": "./src/adapters/filesystem.ts",
+            "node": {
+                "development": "./src/adapters/filesystem.ts",
+                "default": "./src/adapters/filesystem.ts"
+            },
+            "default": null
+        }
+    },
+    "files": [
+        "src"
+    ],
+    "scripts": {
+        "lint": "bun --conditions=development run --bun eslint .",
+        "test": "vitest run src",
+        "typecheck": "tsc -p tsconfig.json"
+    },
+    "dependencies": {
+        "@whiteeclipse/async-queue": "workspace:*",
+        "@whiteeclipse/log": "workspace:*",
+        "idb": "8.0.4"
+    },
+    "devDependencies": {
+        "@types/node": "catalog:types",
+        "@whiteeclipse/toolchain": "workspace:*",
+        "eslint": "catalog:tooling",
+        "fake-indexeddb": "catalog:test",
+        "typescript": "catalog:types",
+        "vite": "catalog:build",
+        "vitest": "catalog:test",
+        "zod": "catalog:types"
+    },
+    "peerDependencies": {
+        "zod": "catalog:types"
+    },
+    "peerDependenciesMeta": {
+        "zod": {
+            "optional": true
+        }
+    }
+}
