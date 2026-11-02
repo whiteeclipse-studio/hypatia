@@ -7,6 +7,7 @@ import { createContext, useContext, useMemo, useSyncExternalStore } from "react"
 import type { i18n } from "i18next";
 import { rememberLocale } from "../preferences/index.ts";
 
+
 /** The stable command target and the locale used to generate this subtree's HTML. */
 export interface LocaleContextValue {
     readonly session: i18n;
@@ -35,7 +36,7 @@ export function useLocale(): { locale: string; session: i18n; changeLocale: Chan
         /**
          * Subscribes to language changes on this session.
          *
-         * @param notify - React's change listener.
+         * @param notify React's change listener.
          * @returns A listener cleanup function.
          */
         const subscribe = (notify: () => void) => {
@@ -59,7 +60,7 @@ export function useLocale(): { locale: string; session: i18n; changeLocale: Chan
         /**
          * Applies and remembers an explicit choice.
          *
-         * @param locale - The desired locale.
+         * @param locale The desired locale.
          * @returns Completion of the language change.
          */
         const changeLocale = async (locale: string): Promise<void> => {

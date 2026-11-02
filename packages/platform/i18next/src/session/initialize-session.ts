@@ -9,6 +9,7 @@ import { baseLanguage } from "../catalogue/base-language.ts";
 import { canonicalLocale } from "../catalogue/canonical-locale.ts";
 import { preserveRequestKey } from "./preserve-request-key.ts";
 
+
 /**
  * Configures lookup behavior without reading preferences or initializing resources.
  *
@@ -31,9 +32,9 @@ export function createConfiguredSession(): i18n {
 /**
  * Initializes a configured engine with its own copy of catalogue resources.
  *
- * @param instance - The configured session to initialize.
- * @param catalogue - Validated translations copied into the session's private store.
- * @param locale - The initial locale, preserving an explicit region even without resources.
+ * @param instance The configured session to initialize.
+ * @param catalogue Validated translations copied into the session's private store.
+ * @param locale The initial locale, preserving an explicit region even without resources.
  * @returns The initialized engine.
  * @rejects If locale normalization or initialization fails.
  */
@@ -52,7 +53,7 @@ export async function initializeSession(
 /**
  * Supplies base-language and English fallbacks after i18next checks the active locale itself.
  *
- * @param locale - The active locale supplied by i18next, when available.
+ * @param locale The active locale supplied by i18next, when available.
  * @returns The base language followed by English, without duplicates.
  */
 function fallbackLocales(locale?: string): string[] {

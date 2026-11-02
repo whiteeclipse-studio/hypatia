@@ -6,7 +6,7 @@
 /**
  * Gives catalogue entries and preferences the same canonical locale identity.
  *
- * @param locale - A source locale identifier.
+ * @param locale A source locale identifier.
  * @returns A canonical BCP 47 locale identifier.
  * @throws {TypeError} If the locale identifier is invalid.
  */

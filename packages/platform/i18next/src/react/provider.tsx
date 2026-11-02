@@ -3,12 +3,13 @@
  * Released under the MIT Licence.
  */
 
-import { Suspense, use, useEffect, useMemo, useState, type ReactElement, type ReactNode } from "react";
+import { type ReactElement, type ReactNode, Suspense, use, useEffect, useMemo, useState } from "react";
 import { I18nextProvider } from "react-i18next";
 import type { i18n } from "i18next";
 import type { TranslationCatalogue } from "../catalogue/index.ts";
 import { readBrowserPreferences, selectLocale } from "../preferences/index.ts";
 import { LocaleContext } from "./locale-context.ts";
+
 
 /** Rendering inputs; initialization and request selection remain outside React. */
 export interface I18nProviderProps {
@@ -25,7 +26,7 @@ export interface I18nProviderProps {
 /**
  * Provides a session with a loading boundary for initialization and translation resources.
  *
- * @param props - The stable session or initialization promise and rendering configuration.
+ * @param props The stable session or initialization promise and rendering configuration.
  * @returns A localized subtree inside Suspense.
  */
 export function I18nProvider(props: I18nProviderProps): ReactElement {
@@ -39,7 +40,7 @@ export function I18nProvider(props: I18nProviderProps): ReactElement {
 /**
  * Applies browser preferences after mounting while retaining each consumer's hydration locale.
  *
- * @param props - Provider inputs, including a promise created outside rendering when pending.
+ * @param props Provider inputs, including a promise created outside rendering when pending.
  * @returns The initialized session's React contexts.
  * @throws {Error} For an uninitialized instance or a failed browser language change.
  */

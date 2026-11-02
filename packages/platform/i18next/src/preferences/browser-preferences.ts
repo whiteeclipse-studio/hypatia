@@ -31,7 +31,7 @@ export function readBrowserPreferences(): string[] {
 /**
  * Remembers an explicit choice after its session has changed language.
  *
- * @param locale - The active locale to save. Storage failures are ignored and never change session state.
+ * @param locale The active locale to save. Storage failures are ignored and never change session state.
  */
 export function rememberLocale(locale: string): void {
     if (typeof window === "undefined") {

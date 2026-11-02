@@ -3,11 +3,12 @@
  * Released under the MIT Licence.
  */
 
-import { mkdtemp, mkdir, writeFile, rm, symlink } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join, dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { afterEach, beforeEach, expect, it } from "vitest";
 import { loadCatalogue } from "./load-catalogue.ts";
+
 
 let directory: string;
 
@@ -22,8 +23,8 @@ afterEach(async () => {
 /**
  * Writes a synthetic translation file within this test's temporary directory.
  *
- * @param path - Relative path below the locales directory.
- * @param source - YAML fixture text.
+ * @param path Relative path below the locales directory.
+ * @param source YAML fixture text.
  * @returns Completion of fixture creation.
  */
 async function writeLocale(path: string, source: string): Promise<void> {

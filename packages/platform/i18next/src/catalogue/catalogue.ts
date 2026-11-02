@@ -6,10 +6,11 @@
 import type { CatalogueEntry, Messages, MessageValue, TranslationCatalogue } from "./types.ts";
 import { canonicalLocale } from "./canonical-locale.ts";
 
+
 /**
  * Collects independent translation sources into an owned, deeply immutable catalogue.
  *
- * @param entries - Parsed message groups identified by locale and namespace.
+ * @param entries Parsed message groups identified by locale and namespace.
  * @returns A catalogue with canonical locale names. An empty catalogue is valid.
  * @throws {TypeError} For invalid locales, empty namespace names, unsupported messages, or cycles.
  * @throws {Error} For duplicate locale–namespace pairs or a locale with no message strings.
@@ -47,7 +48,7 @@ export function createCatalogue(entries: readonly CatalogueEntry[]): Translation
 /**
  * Validates a namespace root and copies its entries without retaining mutable source objects.
  *
- * @param messages - Parsed source data, independent of its file format.
+ * @param messages Parsed source data, independent of its file format.
  * @returns An owned, frozen message mapping.
  * @throws {TypeError} For non-mapping roots, invalid nested values, or cycles.
  */
@@ -62,8 +63,8 @@ function copyMessages(messages: unknown): Messages {
 /**
  * Copies a mapping while preserving keys such as __proto__ as ordinary message entries.
  *
- * @param messages - Mapping being copied.
- * @param ancestors - Containers on the current traversal path.
+ * @param messages Mapping being copied.
+ * @param ancestors Containers on the current traversal path.
  * @returns A frozen mapping whose values are validated, independent copies.
  * @throws {TypeError} For invalid nested values or cycles.
  */
@@ -79,8 +80,8 @@ function copyMapping(messages: Readonly<Record<string, unknown>>, ancestors: Wea
 /**
  * Copies nested message groups and lists, rejecting values that cannot represent message data.
  *
- * @param value - Source message value.
- * @param ancestors - Containers on the current traversal path, allowing non-cyclic shared references.
+ * @param value Source message value.
+ * @param ancestors Containers on the current traversal path, allowing non-cyclic shared references.
  * @returns The string or a deeply frozen copy of the container.
  * @throws {TypeError} For unsupported values, non-plain objects, or cycles.
  */
@@ -117,7 +118,7 @@ function copyValue(value: unknown, ancestors: WeakSet<object>): MessageValue {
 /**
  * Recognizes plain data mappings rather than class instances or collections.
  *
- * @param value - Source value to inspect.
+ * @param value Source value to inspect.
  * @returns Whether the value is a plain mapping, including null-prototype mappings.
  */
 function isMapping(value: unknown): value is Record<string, unknown> {
@@ -132,7 +133,7 @@ function isMapping(value: unknown): value is Record<string, unknown> {
 /**
  * Counts declared string messages, including empty strings; empty containers do not count.
  *
- * @param value - Validated message value or namespace mapping.
+ * @param value Validated message value or namespace mapping.
  * @returns Whether at least one string entry exists anywhere below the value.
  */
 function containsMessage(value: MessageValue): boolean {

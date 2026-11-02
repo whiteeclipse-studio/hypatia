@@ -7,11 +7,12 @@ import type { TranslationCatalogue } from "../catalogue/index.ts";
 import { canonicalLocale } from "../catalogue/canonical-locale.ts";
 import { baseLanguage } from "../catalogue/base-language.ts";
 
+
 /**
  * Chooses the first preference with exact or base-language resources in a validated catalogue.
  *
- * @param preferences - Locale identifiers in priority order; malformed and unsupported values are skipped.
- * @param catalogue - Available translations, produced by createCatalogue.
+ * @param preferences Locale identifiers in priority order; malformed and unsupported values are skipped.
+ * @param catalogue Available translations, produced by createCatalogue.
  * @returns The canonical preferred locale, retaining its region, or English when nothing matches.
  */
 export function selectLocale(preferences: readonly string[], catalogue: TranslationCatalogue): string {

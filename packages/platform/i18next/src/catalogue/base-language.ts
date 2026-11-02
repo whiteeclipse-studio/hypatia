@@ -6,7 +6,7 @@
 /**
  * Reads the base language shared by a locale's regional and script variants.
  *
- * @param locale - A valid locale identifier.
+ * @param locale A valid locale identifier.
  * @returns The base language identifier.
  * @throws {RangeError} If the locale identifier is malformed.
  */

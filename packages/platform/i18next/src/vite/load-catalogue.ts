@@ -6,7 +6,8 @@
 import { readdir, readFile } from "node:fs/promises";
 import { join, relative, sep } from "node:path";
 import { parseDocument } from "yaml";
-import { createCatalogue, type CatalogueEntry, type TranslationCatalogue } from "../catalogue/index.ts";
+import { type CatalogueEntry, createCatalogue, type TranslationCatalogue } from "../catalogue/index.ts";
+
 
 /** A validated catalogue and the YAML sources tracked by the build. */
 export interface LoadedCatalogue {
@@ -17,7 +18,7 @@ export interface LoadedCatalogue {
 /**
  * Loads application YAML files, deriving locale and namespace identities from their paths.
  *
- * @param directory - The application's locales directory, alongside src.
+ * @param directory The application's locales directory, alongside src.
  * @returns A validated catalogue and its source paths; an absent directory produces an empty catalogue.
  * @rejects For invalid paths, YAML, catalogue data, collisions, empty locales, or filesystem failures.
  */
@@ -44,7 +45,7 @@ export async function loadCatalogue(directory: string): Promise<LoadedCatalogue>
 /**
  * Finds YAML sources in stable path order without following symlinks.
  *
- * @param directory - Directory to scan recursively.
+ * @param directory Directory to scan recursively.
  * @returns Sorted YAML file paths.
  * @rejects On filesystem errors other than an absent directory.
  */
@@ -74,7 +75,7 @@ async function yamlFiles(directory: string): Promise<string[]> {
 /**
  * Parses YAML while preserving an empty document as an empty namespace.
  *
- * @param file - YAML source path.
+ * @param file YAML source path.
  * @returns Parsed messages for catalogue validation.
  * @rejects On malformed YAML, duplicate keys, unreadable files, or excessive alias expansion.
  */

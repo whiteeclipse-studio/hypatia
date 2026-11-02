@@ -12,7 +12,7 @@ interface WeightedPreference {
 /**
  * Converts an Accept-Language header into ordered inputs for the locale-selection policy.
  *
- * @param header - The request header, including null or undefined when absent.
+ * @param header The request header, including null or undefined when absent.
  * @returns Preferences ordered by descending quality, preserving header order for equal weights.
  */
 export function parseAcceptLanguage(header?: string | null): string[] {
@@ -28,7 +28,7 @@ export function parseAcceptLanguage(header?: string | null): string[] {
 /**
  * Reads a language range and its optional weight, excluding malformed or zero-quality entries.
  *
- * @param entry - One comma-delimited header entry.
+ * @param entry One comma-delimited header entry.
  * @returns Its locale and weight, or undefined when the entry is empty, excluded, or malformed.
  */
 function parsePreference(entry: string): WeightedPreference | undefined {
@@ -49,7 +49,7 @@ function parsePreference(entry: string): WeightedPreference | undefined {
 /**
  * Reads a quality value from zero to one with at most three decimal places.
  *
- * @param weight - The optional q parameter, allowing surrounding whitespace and case-insensitive parameter names.
+ * @param weight The optional q parameter, allowing surrounding whitespace and case-insensitive parameter names.
  * @returns One when no weight is supplied, or zero for excluded or invalid weights.
  */
 function parseQuality(weight?: string): number {

@@ -6,18 +6,19 @@
 import { isAbsolute, relative, sep } from "node:path";
 import type { ViteDevServer } from "vite";
 
+
 /**
  * Invalidates browser and server catalogues on YAML additions, changes, and removals.
  *
- * @param server - The existing Vite development server.
- * @param directory - The application's locales directory.
- * @param moduleId - Internal identifier of the generated catalogue module.
+ * @param server The existing Vite development server.
+ * @param directory The application's locales directory.
+ * @param moduleId Internal identifier of the generated catalogue module.
  */
 export function watchCatalogue(server: ViteDevServer, directory: string, moduleId: string): void {
     /**
      * Refreshes each environment and requests a page reload for a relevant source event.
      *
-     * @param file - Added, changed, or removed file path.
+     * @param file Added, changed, or removed file path.
      */
     function reload(file: string): void {
         const path = relative(directory, file);

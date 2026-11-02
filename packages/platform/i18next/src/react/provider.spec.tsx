@@ -1,9 +1,9 @@
-// @vitest-environment happy-dom
 /*
  * Copyright © 2026 - White Eclipse
  * Released under the MIT Licence.
  */
 
+// @vitest-environment happy-dom
 import { Storage } from "happy-dom";
 import { act, Suspense, use, useEffect } from "react";
 import { createRoot, hydrateRoot, type Root } from "react-dom/client";
@@ -15,6 +15,7 @@ import { localeStorageKey, readBrowserPreferences, selectLocale } from "../prefe
 import { I18nProvider } from "./provider.tsx";
 import { useLocale } from "./locale-context.ts";
 import { Trans, useTranslation } from "./use-translation.tsx";
+
 
 const catalogue = createCatalogue([
     { locale: "en", namespace: "common", messages: { title: "Hello", rich: "Hello <strong>friend</strong>" } },
@@ -223,7 +224,7 @@ it("preserves the HTML locale for delayed consumers before switching to browser 
             /**
              * Records hydration failures.
              *
-             * @param error - The hydration error.
+             * @param error The hydration error.
              */
             onRecoverableError(error) {
                 errors.push(error);

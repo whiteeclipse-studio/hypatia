@@ -6,11 +6,12 @@
 import { Trans as ReactTrans, useTranslation as useReactTranslation } from "react-i18next";
 import { useLocale } from "./locale-context.ts";
 
+
 /**
  * Binds translation reads to this consumer's hydration locale and actions to the live session.
  *
- * @param ns - Requested namespace or namespaces.
- * @param options - Upstream translation options, including an optional explicit locale.
+ * @param ns Requested namespace or namespaces.
+ * @param options Upstream translation options, including an optional explicit locale.
  * @returns The upstream translation result with the original, stable session instance.
  */
 export const useTranslation: typeof useReactTranslation = (ns, options) => {
@@ -33,7 +34,7 @@ export const useTranslation: typeof useReactTranslation = (ns, options) => {
 /**
  * Renders rich translations using the same locale snapshot as translation hooks.
  *
- * @param props - Upstream Trans inputs.
+ * @param props Upstream Trans inputs.
  * @returns The translated React content.
  */
 export const Trans: typeof ReactTrans = props => {

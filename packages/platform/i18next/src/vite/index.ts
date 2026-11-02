@@ -8,6 +8,7 @@ import type { Plugin } from "vite";
 import { loadCatalogue } from "./load-catalogue.ts";
 import { watchCatalogue } from "./watch-catalogue.ts";
 
+
 const virtualId = "virtual:whiteeclipse-locales";
 const resolvedId = `\0${virtualId}`;
 
@@ -20,7 +21,7 @@ export interface I18nextPluginOptions {
 /**
  * Validates and bundles every locale for browser, server, and static rendering.
  *
- * @param options - Optional application root; defaults to Vite's resolved root.
+ * @param options Optional application root; defaults to Vite's resolved root.
  * @returns The Vite localization plugin.
  */
 export function i18nextPlugin(options: I18nextPluginOptions = {}): Plugin {
@@ -30,7 +31,7 @@ export function i18nextPlugin(options: I18nextPluginOptions = {}): Plugin {
         /**
          * Locates the application translations after Vite resolves its configuration.
          *
-         * @param config - Resolved Vite configuration.
+         * @param config Resolved Vite configuration.
          */
         configResolved(config) {
             directory = resolve(config.root, options.root ?? ".", "locales");
@@ -51,7 +52,7 @@ export function i18nextPlugin(options: I18nextPluginOptions = {}): Plugin {
         /**
          * Resolves the public virtual module to a private Vite identifier.
          *
-         * @param id - Requested import identifier.
+         * @param id Requested import identifier.
          * @returns The private identifier for the catalogue import, otherwise undefined.
          */
         resolveId(id) {
@@ -60,7 +61,7 @@ export function i18nextPlugin(options: I18nextPluginOptions = {}): Plugin {
         /**
          * Emits validated catalogue entries without filesystem or YAML dependencies in application code.
          *
-         * @param id - Resolved module identifier.
+         * @param id Resolved module identifier.
          * @returns Generated source for the catalogue, otherwise undefined.
          * @rejects For invalid translations or unreadable files.
          */
@@ -80,7 +81,7 @@ export function i18nextPlugin(options: I18nextPluginOptions = {}): Plugin {
         /**
          * Watches translations and refreshes all environments without restarting Vite.
          *
-         * @param server - The existing development server.
+         * @param server The existing development server.
          */
         configureServer(server) {
             watchCatalogue(server, directory, resolvedId);
