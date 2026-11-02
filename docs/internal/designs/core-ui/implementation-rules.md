@@ -80,12 +80,12 @@ Frames MUST NOT affect layout. Disabled frames MUST stay muted without hover exp
 
 Buttons MUST be transparent with primary text and corner frames. Markers MUST precede labels in the text colour.
 
-| Variant                                | Marker                          |
-| -------------------------------------- | ------------------------------- |
-| Primary (`solid`)                      | Filled 6px square               |
-| Secondary (`soft`) and ghost          | Hollow 6px square, 1px stroke   |
-| Outline                                | No marker                       |
-| Disabled                               | No marker; muted text and frame |
+| Variant            | Marker                          |
+|--------------------|---------------------------------|
+| Primary (`solid`)  | Filled 6px square               |
+| Secondary (`soft`) | Hollow 6px square, 1px stroke   |
+| Ghost and outline  | No marker                       |
+| Disabled           | No marker; muted text and frame |
 
 Loading buttons MUST use Radix Themes' default loading behaviour: replace visible content with a centred spinner, preserve dimensions and the accessible label, and disable activation while loading.
 
@@ -172,6 +172,7 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-| -------- | ---------- | ------------- | ------------- |
-| 1        | 2026-10-27 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                              |
+|----------|------------|---------------|------------------------------------------|
+| 1        | 2026-10-27 | Akane SHIMOKA | Initial draft                            |
+| 2        | 2026-10-29 | Akane SHIMOKA | Remove square markers from ghost buttons |
