@@ -41,7 +41,10 @@ function getSystemDark(): boolean {
 export const withTheme: Decorator = function WithTheme(Story, context) {
     const systemDark = useSyncExternalStore(subscribe, getSystemDark);
     const selected: unknown = context.globals["appearance"];
-    let appearance: "light" | "dark" = systemDark ? "dark" : "light";
+    let appearance: "light" | "dark" = "light";
+    if (systemDark) {
+        appearance = "dark";
+    }
     if (selected === "light" || selected === "dark") {
         appearance = selected;
     }

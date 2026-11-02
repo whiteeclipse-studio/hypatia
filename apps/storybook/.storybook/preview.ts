@@ -3,13 +3,30 @@
  * Released under the MIT Licence.
  */
 
+import "./logging";
 import type { Preview } from "@storybook/react-vite";
+import { MINIMAL_VIEWPORTS } from "storybook/viewport";
 import { withTheme } from "./theme-preview";
+import { withLocale } from "./locale-preview";
 import "../src/styles/index.css";
 
 const preview: Preview = {
-    initialGlobals: { appearance: "system" },
+    initialGlobals: { appearance: "system", locale: "en" },
     globalTypes: {
+        locale: {
+            description: "Language for stories",
+            toolbar: {
+                title: "Language",
+                icon: "globe",
+                dynamicTitle: true,
+                items: [
+                    { value: "en", title: "English", right: "EN" },
+                    { value: "fr", title: "Français", right: "FR" },
+                    { value: "de", title: "Deutsch", right: "DE" },
+                    { value: "ja", title: "日本語", right: "JA" },
+                ],
+            },
+        },
         appearance: {
             description: "Colour theme for Storybook and its stories",
             toolbar: {
@@ -24,10 +41,12 @@ const preview: Preview = {
             },
         },
     },
-    decorators: [withTheme],
+    decorators: [withTheme, withLocale],
     parameters: {
         layout: "fullscreen",
         controls: { expanded: true },
+        backgrounds: { disable: true },
+        viewport: { options: MINIMAL_VIEWPORTS },
     },
 };
 

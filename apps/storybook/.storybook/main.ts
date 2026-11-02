@@ -1,8 +1,4 @@
-/*
- * Copyright © 2026 - White Eclipse
- * Released under the MIT Licence.
- */
-
+/* Copyright © 2026 White Eclipse. Released under the MIT License. */
 import type { StorybookConfig } from "@storybook/react-vite";
 import tailwindcss from "@tailwindcss/vite";
 import { mergeConfig } from "vite";
@@ -23,10 +19,10 @@ const config: StorybookConfig = {
         ],
     },
     /**
-     * Adds Tailwind's CSS pipeline and bundled YAML locales to Storybook's Vite configuration.
+     * Enables Tailwind utilities and application-local YAML translations in the preview.
      *
-     * @param base - Configuration prepared by Storybook.
-     * @returns The configuration including Tailwind and localization support.
+     * @param base - Storybook's Vite configuration.
+     * @returns The preview configuration with styling and localization support.
      */
     viteFinal(base) {
         return mergeConfig(base, {
