@@ -1,0 +1,67 @@
+{
+    "name": "@whiteeclipse/log",
+    "version": "0.1.0-alpha.1",
+    "private": true,
+    "description": "Exploratory typed LogTape configuration builders and sink factories.",
+    "license": "MIT",
+    "sideEffects": [
+        "./src/default.ts"
+    ],
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./src/index.ts",
+            "development": "./src/index.ts",
+            "default": "./src/index.ts"
+        },
+        "./default": {
+            "types": "./src/default.ts",
+            "development": "./src/default.ts",
+            "default": "./src/default.ts"
+        },
+        "./sink/console": {
+            "types": "./src/configuration/factory/sink/console/index.ts",
+            "development": "./src/configuration/factory/sink/console/index.ts",
+            "default": "./src/configuration/factory/sink/console/index.ts"
+        },
+        "./sink/json": {
+            "types": "./src/configuration/factory/sink/json/index.ts",
+            "development": "./src/configuration/factory/sink/json/index.ts",
+            "default": "./src/configuration/factory/sink/json/index.ts"
+        },
+        "./sink/sentry": {
+            "types": "./src/configuration/factory/sink/sentry/index.ts",
+            "development": "./src/configuration/factory/sink/sentry/index.ts",
+            "default": "./src/configuration/factory/sink/sentry/index.ts"
+        }
+    },
+    "files": [
+        "src"
+    ],
+    "scripts": {
+        "lint": "bun --conditions=development run --bun eslint .",
+        "test": "vitest run src",
+        "typecheck": "tsc -p tsconfig.json"
+    },
+    "dependencies": {
+        "@logtape/logtape": "2.3.4",
+        "@logtape/pretty": "2.3.4"
+    },
+    "devDependencies": {
+        "@logtape/sentry": "2.3.4",
+        "@types/bun": "catalog:types",
+        "@types/node": "catalog:types",
+        "@whiteeclipse/toolchain": "workspace:*",
+        "eslint": "catalog:tooling",
+        "typescript": "catalog:types",
+        "vitest": "catalog:test"
+    },
+    "peerDependencies": {
+        "@logtape/sentry": "2.3.4"
+    },
+    "peerDependenciesMeta": {
+        "@logtape/sentry": {
+            "optional": true
+        }
+    }
+}
