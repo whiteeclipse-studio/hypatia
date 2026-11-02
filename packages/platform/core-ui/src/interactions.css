@@ -72,11 +72,7 @@
         background-color: transparent;
     }
 
-    .radix-themes
-        .rt-Button:where(.rt-variant-soft, .rt-variant-ghost):is(
-            :not(:disabled, [data-disabled]),
-            :has(.rt-Spinner)
-        )::before {
+    .radix-themes .rt-Button:where(.rt-variant-soft):is(:not(:disabled, [data-disabled]), :has(.rt-Spinner))::before {
         content: "";
         box-sizing: border-box;
         width: 6px;

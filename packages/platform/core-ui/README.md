@@ -89,7 +89,24 @@ Use `<Theme grayColor="sand" accentColor="gray">` for the exploratory White Ecli
 
 The starting colours come from the [previous application stylesheet](https://github.com/whiteeclipse-studio/hypatia/blob/25f35669fe3116680d11e7040f38eea9e47edd3f/packages/platform/core-ui/src/styles.css). The off-white moves from `#f6f4ef` to a warmer, yellower ivory `#f6f2e6`, with related stone surfaces adjusted to match. Charcoal `#211f26` is retained; dark appearance uses the warmer ivory for foreground text.
 
-Buttons, select triggers, checkboxes, radio controls, and switches use corner frames that extend into full borders over 180 ms on hover or keyboard focus. Disabled controls retain muted frames without that transition. Frames and decorative dividers use `--core-ui-border-color` (light `#796d57`, dark `#9c929d` for the White Eclipse palette). Focus has an additional outline using `--core-ui-focus-color` (`--gray-11`), and reduced-motion preferences remove the frame transition. Checked indicators and switch thumbs remain supplied by Radix. Enabled switches keep the same panel-colour track and shared control-border corner frames in both states. The square thumb is hollow with a 1px secondary-text-colour border when off, and filled with the primary foreground when on. Its 4px inset leaves room for the corner frames. Thumb position and hollow versus filled treatment distinguish the state; the thumb slides and its fill and border colours transition over 140ms, with `ease-in-out` for colours. Reduced-motion preferences remove these transitions. Disabled switches retain Radix’s muted state treatment. Tabs use square labels with a contrasting fill and a 6px square marker shown only on the selected tab, without reserved marker space on unselected tabs, a quiet hover surface, and a separate focus outline. They have no corner frames. Enabled secondary buttons use transparent surfaces, standard text weight and corner dimensions, and the same text colour (`--accent-12`) and shared border colour as primary buttons. Disabled buttons remain muted; editable text fields use persistent 1px rectangular borders and focus outlines in the primary foreground, primary text, readable secondary-colour placeholders, and the base surface, while read-only and disabled fields use a muted surface. Primary (`solid`) buttons use transparent surfaces with dark or light foregrounds appropriate to the active theme and a filled 6px square before the label. Secondary (`soft`) and ghost buttons use a hollow 6px square with a 1px stroke. Outline buttons omit the marker. Disabled buttons omit the square marker.
+Buttons, select triggers, checkboxes, radio controls, and switches use corner frames that extend into full borders over
+180 ms on hover or keyboard focus. Disabled controls retain muted frames without that transition. Frames and decorative
+dividers use `--core-ui-border-color` (light `#796d57`, dark `#9c929d` for the White Eclipse palette). Focus has an
+additional outline using `--core-ui-focus-color` (`--gray-11`), and reduced-motion preferences remove the frame
+transition. Checked indicators and switch thumbs remain supplied by Radix. Enabled switches keep the same panel-colour
+track and shared control-border corner frames in both states. The square thumb is hollow with a 1px
+secondary-text-colour border when off, and filled with the primary foreground when on. Its 4px inset leaves room for the
+corner frames. Thumb position and hollow versus filled treatment distinguish the state; the thumb slides and its fill
+and border colours transition over 140ms, with `ease-in-out` for colours. Reduced-motion preferences remove these
+transitions. Disabled switches retain Radix’s muted state treatment. Tabs use square labels with a contrasting fill and
+a 6px square marker shown only on the selected tab, without reserved marker space on unselected tabs, a quiet hover
+surface, and a separate focus outline. They have no corner frames. Enabled secondary buttons use transparent surfaces,
+standard text weight and corner dimensions, and the same text colour (`--accent-12`) and shared border colour as primary
+buttons. Disabled buttons remain muted; editable text fields use persistent 1px rectangular borders and focus outlines
+in the primary foreground, primary text, readable secondary-colour placeholders, and the base surface, while read-only
+and disabled fields use a muted surface. Primary (`solid`) buttons use transparent surfaces with dark or light
+foregrounds appropriate to the active theme and a filled 6px square before the label. Secondary (`soft`) buttons use a
+hollow 6px square with a 1px stroke. Ghost and outline buttons omit the marker. Disabled buttons omit the square marker.
 
 These are exploratory visual proposals; colour contrast and interactions still require review in each consuming composition. The control-border colours maintain at least 3:1 contrast against opaque neutral surfaces 1–5 (minimum 3.17:1 light, 3.28:1 dark). Translucent fills must be composited onto their actual backgrounds before checking contrast. Custom surfaces and coloured variants need their own checks; these measurements do not establish full accessibility compliance.
 
@@ -155,7 +172,7 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 ## Revisions
 
 | Revision | Date       | Author        | Description                                                                   |
-| -------- | ---------- | ------------- | ----------------------------------------------------------------------------- |
+|----------|------------|---------------|-------------------------------------------------------------------------------|
 | 1        | 2026-10-26 | Akane SHIMOKA | Add exploratory styles, typography, palette, feedback, frames, and background |
 | 2        | 2026-10-27 | Codex         | Distinguish switch states with contrasting tracks and thumbs                  |
 | 3        | 2026-10-27 | Codex         | Reduce switch thumb size with a 4px inset                                     |
@@ -166,3 +183,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 8        | 2026-10-27 | Akane SHIMOKA | Correct reduced-motion switch transitions and button marker guidance          |
 | 9        | 2026-10-27 | Codex         | Add the exploratory native Obsidian theme and offline build instructions      |
 | 10       | 2026-10-27 | Codex         | Restore the original light and dark eclipse logo assets                       |
+| 11       | 2026-10-29 | Akane SHIMOKA | Remove square markers from ghost buttons                                      |
