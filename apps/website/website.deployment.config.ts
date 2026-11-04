@@ -12,6 +12,7 @@ export default {
         {
             id: "ryugu",
             name: "Ryugu",
+            archiveUrl: "https://github.com/whiteeclipse-studio/ryugu/releases/latest/download/ryugu.tgz",
             source: {
                 kind: "archive",
                 url: "https://github.com/whiteeclipse-studio/ryugu/releases/latest/download/ryugu.tgz",
