@@ -6,7 +6,7 @@
 import { expect, expectTypeOf, it, vi } from "vitest";
 import * as z from "zod";
 import * as mini from "zod/mini";
-import { decodeJson, encodeJson } from "./utility.ts";
+import { decodeJson, encodeJson } from "./utility.js";
 
 
 /**

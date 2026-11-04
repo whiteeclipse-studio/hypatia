@@ -5,7 +5,7 @@
 
 import type { Properties, Root } from "hast";
 import { visit } from "unist-util-visit";
-import type { TransformHookContext } from "../../types";
+import type { TransformHookContext } from "../../types/index.js";
 
 
 /** Local path separated from the verbatim query and fragment suffix. */

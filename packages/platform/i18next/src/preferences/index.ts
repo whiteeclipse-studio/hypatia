@@ -3,6 +3,6 @@
  * Released under the MIT Licence.
  */
 
-export { selectLocale } from "./select-locale.ts";
-export { readBrowserPreferences, rememberLocale, localeStorageKey } from "./browser-preferences.ts";
-export { parseAcceptLanguage } from "./parse-accept-language.ts";
+export { selectLocale } from "./select-locale.js";
+export { readBrowserPreferences, rememberLocale, localeStorageKey } from "./browser-preferences.js";
+export { parseAcceptLanguage } from "./parse-accept-language.js";

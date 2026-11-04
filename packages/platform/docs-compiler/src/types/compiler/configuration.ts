@@ -3,8 +3,8 @@
  * Released under the MIT Licence.
  */
 
-import type { CompilerCacheConfiguration } from "./cache";
-import type { CompilerPlugin } from "./plugin";
+import type { CompilerCacheConfiguration } from "./cache.js";
+import type { CompilerPlugin } from "./plugin/index.js";
 
 
 /** Source location interpreted by a resolver. */

@@ -4,11 +4,11 @@
  */
 
 import type { Root } from "hast";
-import type { Artifact } from "./base.ts";
+import type { Artifact } from "./base.js";
 
 import * as z from "zod";
-import { isHastRoot } from "./hast.ts";
-import { type DocumentRevision, documentRevisionSchema } from "./revision.ts";
+import { isHastRoot } from "./hast.js";
+import { type DocumentRevision, documentRevisionSchema } from "./revision.js";
 
 
 /** A translated documentation page, retained even when its source is absent. */

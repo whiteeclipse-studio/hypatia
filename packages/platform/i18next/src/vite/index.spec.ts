@@ -3,12 +3,13 @@
  * Released under the MIT Licence.
  */
 
-import { mkdtemp, mkdir, writeFile, rm, symlink, realpath } from "node:fs/promises";
+import { mkdir, mkdtemp, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { build, createServer, type ViteDevServer } from "vite";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { i18nextPlugin } from "./index.ts";
+import { i18nextPlugin } from "./index.js";
+
 
 let directory: string;
 let server: ViteDevServer | undefined;

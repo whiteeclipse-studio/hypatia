@@ -5,12 +5,12 @@
 
 import { getConsoleSink, getJsonLinesFormatter, type JsonLinesFormatterOptions } from "@logtape/logtape";
 
-import type { LogJSONSinkFactory } from "./types";
-import { DEFAULT_JSON_FORMATTER_OPTIONS } from "./default";
+import type { LogJSONSinkFactory } from "./types.js";
+import { DEFAULT_JSON_FORMATTER_OPTIONS } from "./default.js";
 import { JSONFormatterKeys, toJsonLinesFormatterOptionMutatorName } from "./options.js";
 
 
-export type * from "./types";
+export type * from "./types.js";
 
 /**
  * Builds a {@link LogJSONSinkFactory}.

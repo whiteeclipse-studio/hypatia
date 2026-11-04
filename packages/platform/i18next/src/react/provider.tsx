@@ -6,9 +6,9 @@
 import { type ReactElement, type ReactNode, Suspense, use, useEffect, useMemo, useState } from "react";
 import { I18nextProvider } from "react-i18next";
 import type { i18n } from "i18next";
-import type { TranslationCatalogue } from "../catalogue/index.ts";
-import { readBrowserPreferences, selectLocale } from "../preferences/index.ts";
-import { LocaleContext } from "./locale-context.ts";
+import type { TranslationCatalogue } from "../catalogue/index.js";
+import { readBrowserPreferences, selectLocale } from "../preferences/index.js";
+import { LocaleContext } from "./locale-context.js";
 
 
 /** Rendering inputs; initialization and request selection remain outside React. */

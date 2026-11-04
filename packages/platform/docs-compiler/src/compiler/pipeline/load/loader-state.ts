@@ -9,8 +9,8 @@ import type {
     HookContext,
     ResolvedCompilerConfiguration,
     ResolveIdHookContext,
-} from "../../../types";
-import type { IncrementalBuild } from "../incremental";
+} from "../../../types/index.js";
+import type { IncrementalBuild } from "../incremental.js";
 
 
 /** Shared request state for one pipeline invocation; owns no external resources. */

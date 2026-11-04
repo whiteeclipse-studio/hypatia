@@ -5,7 +5,7 @@
 
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { makeLogConfigurationBuilder } from "@whiteeclipse/log";
-import { createOperationQueue } from "./index.ts";
+import { createOperationQueue } from "./index.js";
 
 
 /** Captured queue log records. */

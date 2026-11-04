@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import type { TranslationCatalogue } from "../catalogue/index.ts";
-import { canonicalLocale } from "../catalogue/canonical-locale.ts";
-import { baseLanguage } from "../catalogue/base-language.ts";
+import type { TranslationCatalogue } from "../catalogue/index.js";
+import { canonicalLocale } from "../catalogue/canonical-locale.js";
+import { baseLanguage } from "../catalogue/base-language.js";
 
 
 /**

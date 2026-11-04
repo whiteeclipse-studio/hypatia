@@ -4,10 +4,10 @@
  */
 
 import type { Promisable } from "type-fest";
-import type { Input } from "../configuration";
-import type { ArtifactReference, Reference } from "../reference";
-import type { CompilationResult } from "../value";
-import type { HookContext } from "./context";
+import type { Input } from "../configuration.js";
+import type { ArtifactReference, Reference } from "../reference.js";
+import type { CompilationResult } from "../value.js";
+import type { HookContext } from "./context.js";
 
 
 /** Services available during loading. */

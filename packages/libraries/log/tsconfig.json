@@ -1,7 +1,18 @@
 {
     "extends": "../../../tsconfig.base.json",
     "compilerOptions": {
-        "types": ["@total-typescript/ts-reset", "bun", "node"]
+        "types": ["@total-typescript/ts-reset", "bun", "node"],
+        "noEmit": false,
+        "rootDir": ".",
+        "outDir": ".cache/build",
+        "sourceMap": false,
+        "declarationMap": false,
+        "rewriteRelativeImportExtensions": true,
+        "paths": {
+            "@whiteeclipse/log": ["./src/index.ts"],
+            "@whiteeclipse/log/default": ["./src/default.ts"],
+            "@whiteeclipse/log/sink/*": ["./src/configuration/factory/sink/*/index.ts"]
+        }
     },
     "include": ["src"]
 }

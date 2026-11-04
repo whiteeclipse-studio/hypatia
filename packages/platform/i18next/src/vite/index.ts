@@ -5,8 +5,8 @@
 
 import { resolve } from "node:path";
 import type { Plugin } from "vite";
-import { loadCatalogue } from "./load-catalogue.ts";
-import { watchCatalogue } from "./watch-catalogue.ts";
+import { loadCatalogue } from "./load-catalogue.js";
+import { watchCatalogue } from "./watch-catalogue.js";
 
 
 const virtualId = "virtual:whiteeclipse-locales";

@@ -1,5 +1,17 @@
 {
     "extends": "../../../tsconfig.base.json",
-    "compilerOptions": { "types": ["@total-typescript/ts-reset", "node", "bun"] },
+    "compilerOptions": {
+        "types": ["@total-typescript/ts-reset", "node", "bun"],
+        "noEmit": false,
+        "rootDir": ".",
+        "outDir": ".cache/build",
+        "sourceMap": false,
+        "declarationMap": false,
+        "rewriteRelativeImportExtensions": true,
+        "paths": {
+            "#compiler-cache-secondary": ["./src/compiler/cache/filesystem.ts"],
+            "#archive-reader-source": ["./src/plugins/archive-reader/filesystem-source.ts"]
+        }
+    },
     "include": ["src", "*.config.ts", "scripts", "test"]
 }

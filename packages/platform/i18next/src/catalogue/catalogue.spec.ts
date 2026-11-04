@@ -4,7 +4,8 @@
  */
 
 import { expect, it } from "vitest";
-import { createCatalogue } from "./catalogue.ts";
+import { createCatalogue } from "./catalogue.js";
+
 
 it("allows an entirely empty catalogue", () => {
     const catalogue = createCatalogue([]);

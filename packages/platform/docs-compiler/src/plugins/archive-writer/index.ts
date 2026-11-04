@@ -3,13 +3,13 @@
  * Released under the MIT Licence.
  */
 
-import type { CompilerPlugin } from "../../types";
+import type { CompilerPlugin } from "../../types/index.js";
 import {
     type ArchiveWriterConfiguration,
     DEFAULT_ARCHIVE_WRITER_CONFIGURATION,
     resolveConfiguration,
-} from "./configuration";
-import { writeRepositoryArchive } from "./write";
+} from "./configuration.js";
+import { writeRepositoryArchive } from "./write.js";
 
 
 export { DEFAULT_ARCHIVE_WRITER_CONFIGURATION, type ArchiveWriterConfiguration };

@@ -3,8 +3,8 @@
  * Released under the MIT Licence.
  */
 
-import type { RepositoryReference, ResolvedCompilerConfiguration, ResolveIdHookContext } from "../../types";
-import { executeResolveIdHook } from "../hooks";
+import type { RepositoryReference, ResolvedCompilerConfiguration, ResolveIdHookContext } from "../../types/index.js";
+import { executeResolveIdHook } from "../hooks/index.js";
 
 
 /**

@@ -3,10 +3,10 @@
  * Released under the MIT Licence.
  */
 
-import type { Reference } from "../../../types";
-import { LogicalPathSchema } from "../../../paths";
-import { cloneReference, getReferenceKey } from "../reference";
-import type { LoaderState } from "./loader-state";
+import type { Reference } from "../../../types/index.js";
+import { LogicalPathSchema } from "../../../paths.js";
+import { cloneReference, getReferenceKey } from "../reference.js";
+import type { LoaderState } from "./loader-state.js";
 
 
 /**

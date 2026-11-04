@@ -4,10 +4,11 @@
  */
 
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { createCatalogue } from "../catalogue/index.ts";
-import { selectLocale } from "./select-locale.ts";
-import { createSession } from "../session/index.ts";
-import { localeStorageKey, readBrowserPreferences, rememberLocale } from "./browser-preferences.ts";
+import { createCatalogue } from "../catalogue/index.js";
+import { selectLocale } from "./select-locale.js";
+import { createSession } from "../session/index.js";
+import { localeStorageKey, readBrowserPreferences, rememberLocale } from "./browser-preferences.js";
+
 
 const storage = {
     getItem: vi.fn<Storage["getItem"]>(),

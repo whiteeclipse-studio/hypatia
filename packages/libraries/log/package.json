@@ -40,13 +40,8 @@
             "default": "./dist/configuration/factory/sink/sentry/index.js"
         }
     },
-    "files": [
-        "dist",
-        "README.md",
-        "LICENCE"
-    ],
     "scripts": {
-        "build": "bun ../../../scripts/build-package.ts",
+        "build": "rm -rf dist .cache/build && tsc -p tsconfig.json && cp -R .cache/build/src dist && rm -rf .cache/build",
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",
         "test": "vitest run src",

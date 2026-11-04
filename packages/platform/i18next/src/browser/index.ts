@@ -3,4 +3,4 @@
  * Released under the MIT Licence.
  */
 
-export { i18n, initializeBrowser } from "./initialize-browser.ts";
+export { i18n, initializeBrowser } from "./initialize-browser.js";

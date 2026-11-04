@@ -4,10 +4,11 @@
  */
 
 import { expect, it } from "vitest";
-import { createCatalogue } from "../catalogue/index.ts";
-import { selectLocale } from "./select-locale.ts";
-import { createSession } from "../session/index.ts";
-import { parseAcceptLanguage } from "./parse-accept-language.ts";
+import { createCatalogue } from "../catalogue/index.js";
+import { selectLocale } from "./select-locale.js";
+import { createSession } from "../session/index.js";
+import { parseAcceptLanguage } from "./parse-accept-language.js";
+
 
 it("keeps unweighted preferences in their original order and trims whitespace", () => {
     expect(parseAcceptLanguage(" fr-CA , de, ja ")).toEqual(["fr-CA", "de", "ja"]);

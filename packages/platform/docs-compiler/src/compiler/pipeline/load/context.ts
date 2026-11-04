@@ -3,12 +3,18 @@
  * Released under the MIT Licence.
  */
 
-import type { ArtifactReference, CompilationResult, HookContext, LoadHookContext, Reference } from "../../../types";
-import { createLoadHookContext, executeResolveIdHook } from "../../hooks";
-import { getReferenceKey } from "../reference";
-import { observeDependency, recordDependency } from "./dependencies";
-import { registerReference } from "./references";
-import type { LoaderState } from "./loader-state";
+import type {
+    ArtifactReference,
+    CompilationResult,
+    HookContext,
+    LoadHookContext,
+    Reference,
+} from "../../../types/index.js";
+import { createLoadHookContext, executeResolveIdHook } from "../../hooks/index.js";
+import { getReferenceKey } from "../reference.js";
+import { observeDependency, recordDependency } from "./dependencies.js";
+import { registerReference } from "./references.js";
+import type { LoaderState } from "./loader-state.js";
 
 
 /**

@@ -3,8 +3,8 @@
  * Released under the MIT Licence.
  */
 
-import type { Input, Reference, ResolvedCompilerConfiguration, ResolveIdHookContext } from "../../../types";
-import { derivePluginContextLogger } from "../context";
+import type { Input, Reference, ResolvedCompilerConfiguration, ResolveIdHookContext } from "../../../types/index.js";
+import { derivePluginContextLogger } from "../context/index.js";
 
 
 /**

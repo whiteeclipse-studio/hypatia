@@ -9,7 +9,7 @@ import remarkParse from "remark-parse";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
-import type { MarkdownParserConfiguration } from "./configuration";
+import type { MarkdownParserConfiguration } from "./configuration.js";
 
 
 /**

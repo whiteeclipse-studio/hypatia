@@ -3,8 +3,8 @@
  * Released under the MIT Licence.
  */
 
-import type { CatalogueEntry, Messages, MessageValue, TranslationCatalogue } from "./types.ts";
-import { canonicalLocale } from "./canonical-locale.ts";
+import type { CatalogueEntry, Messages, MessageValue, TranslationCatalogue } from "./types.js";
+import { canonicalLocale } from "./canonical-locale.js";
 
 
 /**

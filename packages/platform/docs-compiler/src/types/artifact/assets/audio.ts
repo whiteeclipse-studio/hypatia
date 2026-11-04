@@ -3,8 +3,8 @@
  * Released under the MIT Licence.
  */
 
-import type { Artifact } from "../base.ts";
-import { type AssetArtifact, type AssetArtifactMetadata, AssetArtifactMetadataSchema } from "./base.ts";
+import type { Artifact } from "../base.js";
+import { type AssetArtifact, type AssetArtifactMetadata, AssetArtifactMetadataSchema } from "./base.js";
 import { z } from "zod";
 
 

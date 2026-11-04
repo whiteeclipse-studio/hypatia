@@ -63,13 +63,8 @@
             "default": "./dist/plugins/archive-reader/index.js"
         }
     },
-    "files": [
-        "dist",
-        "README.md",
-        "LICENCE"
-    ],
     "scripts": {
-        "build": "bun ../../../scripts/build-package.ts",
+        "build": "rm -rf dist .cache/build && tsc -p tsconfig.json && cp -R .cache/build/src dist && rm -rf .cache/build",
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",
         "test": "vitest run src",
@@ -92,30 +87,18 @@
         "typescript-event-target": "1.1.2",
         "unified": "11.0.5",
         "unist-util-visit": "5.0.0",
-        "zod": "catalog:types"
+        "zod": "catalog:types",
+        "remark-wiki-link": "2.0.1",
+        "@r4ai/remark-callout": "0.6.2"
     },
     "devDependencies": {
-        "@r4ai/remark-callout": "0.6.2",
         "@total-typescript/ts-reset": "catalog:types",
         "@types/bun": "catalog:types",
         "@whiteeclipse/toolchain": "workspace:*",
         "eslint": "catalog:tooling",
         "hast-util-to-text": "4.0.3",
-        "remark-wiki-link": "2.0.1",
         "typescript": "catalog:types",
         "vitest": "catalog:test"
-    },
-    "peerDependencies": {
-        "@r4ai/remark-callout": "0.6.2",
-        "remark-wiki-link": "2.0.1"
-    },
-    "peerDependenciesMeta": {
-        "@r4ai/remark-callout": {
-            "optional": true
-        },
-        "remark-wiki-link": {
-            "optional": true
-        }
     },
     "engines": {
         "bun": ">=1.4.0"
@@ -123,5 +106,8 @@
     "publishConfig": {
         "access": "public",
         "tag": "alpha"
+    },
+    "bin": {
+        "docs-compiler": "./dist/cli/index.js"
     }
 }

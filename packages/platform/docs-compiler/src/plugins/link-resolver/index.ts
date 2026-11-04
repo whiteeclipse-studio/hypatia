@@ -10,9 +10,9 @@ import {
     isHastRoot,
     type TransformHookContext,
     type TranslationArtifact,
-} from "../../types";
-import { copyMetadata } from "../../compiler/snapshot/metadata";
-import { createDestinationResolver, resolveTree } from "./destinations";
+} from "../../types/index.js";
+import { copyMetadata } from "../../compiler/snapshot/metadata.js";
+import { createDestinationResolver, resolveTree } from "./destinations.js";
 
 
 /**

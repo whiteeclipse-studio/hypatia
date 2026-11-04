@@ -6,10 +6,11 @@
 import { defineConfig } from "eslint/config";
 import globals from "globals";
 
-import core from "./plugins/core.ts";
-import typescript from "./plugins/typescript.ts";
-import importX from "./plugins/import-x.ts";
-import jsdoc from "./plugins/jsdoc.ts";
+import core from "./plugins/core.js";
+import typescript from "./plugins/typescript.js";
+import importX from "./plugins/import-x.js";
+import jsdoc from "./plugins/jsdoc.js";
+
 
 /** Shared checks for source, configuration, and scripts; generated output is excluded. */
 export default defineConfig(

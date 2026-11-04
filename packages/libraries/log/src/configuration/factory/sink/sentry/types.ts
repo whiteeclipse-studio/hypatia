@@ -4,7 +4,7 @@
  */
 
 import type { Sink } from "@logtape/logtape";
-import type { LogSinkFactory } from "../../types";
+import type { LogSinkFactory } from "../../types.js";
 
 
 /** Factory used to configure the {@link Sink} that writes to Sentry. */

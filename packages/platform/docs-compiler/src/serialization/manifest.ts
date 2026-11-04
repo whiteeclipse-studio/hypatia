@@ -4,7 +4,7 @@
  */
 
 import { z } from "zod";
-import { SerializedPathSchema } from "./path";
+import { SerializedPathSchema } from "./path.js";
 
 
 /** Repository identity and artifact inventory stored in an archive's manifest.json. */

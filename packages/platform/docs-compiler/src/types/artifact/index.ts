@@ -3,21 +3,21 @@
  * Released under the MIT Licence.
  */
 
-import type { Artifact, ArtifactData, ArtifactPayload } from "./base.ts";
-import type { AnyAssetArtifact } from "./assets";
-import { type DocumentRevision, documentRevisionSchema } from "./revision.ts";
+import type { Artifact, ArtifactData, ArtifactPayload } from "./base.js";
+import type { AnyAssetArtifact } from "./assets/index.js";
+import { type DocumentRevision, documentRevisionSchema } from "./revision.js";
 
-import type { UnknownArtifact } from "./unknown.ts";
-import { isHastRoot } from "./hast.ts";
-import { type DocumentArtifact, type DocumentArtifactMetadata, documentArtifactMetadataSchema } from "./document.ts";
+import type { UnknownArtifact } from "./unknown.js";
+import { isHastRoot } from "./hast.js";
+import { type DocumentArtifact, type DocumentArtifactMetadata, documentArtifactMetadataSchema } from "./document.js";
 import {
     type TranslationArtifact,
     type TranslationArtifactMetadata,
     translationArtifactMetadataSchema,
-} from "./translation.ts";
+} from "./translation.js";
 
 
-export * from "./assets/index.ts";
+export * from "./assets/index.js";
 
 export type {
     Artifact,

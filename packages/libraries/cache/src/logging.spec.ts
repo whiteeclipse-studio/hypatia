@@ -9,12 +9,12 @@ import { join } from "node:path";
 import { deleteDB, openDB } from "idb";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { makeLogConfigurationBuilder } from "@whiteeclipse/log";
-import { createLruMemoryCacheAdapter } from "./adapters/memory.ts";
-import { createAggregateCacheAdapter } from "./adapters/aggregate.ts";
-import { createFileSystemCacheAdapter } from "./adapters/filesystem.ts";
-import { createIndexedDbCacheAdapter } from "./adapters/indexeddb.ts";
-import { createCacheOperationQueue } from "./operations.ts";
-import type { CacheAdapter } from "./types.ts";
+import { createLruMemoryCacheAdapter } from "./adapters/memory.js";
+import { createAggregateCacheAdapter } from "./adapters/aggregate.js";
+import { createFileSystemCacheAdapter } from "./adapters/filesystem.js";
+import { createIndexedDbCacheAdapter } from "./adapters/indexeddb.js";
+import { createCacheOperationQueue } from "./operations.js";
+import type { CacheAdapter } from "./types.js";
 
 
 /** Captured cache log records. */

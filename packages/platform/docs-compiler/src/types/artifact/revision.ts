@@ -6,7 +6,7 @@
 import type { Root } from "hast";
 
 import * as z from "zod";
-import { isHastRoot } from "./hast.ts";
+import { isHastRoot } from "./hast.js";
 
 
 /** One revision of a document or translation. */

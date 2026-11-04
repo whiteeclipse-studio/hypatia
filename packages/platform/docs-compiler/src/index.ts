@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import "./polyfills";
+import "./polyfills.js";
 
 
-export * from "./compiler";
-export * from "./types";
-export { LogicalPathSchema, toLogicalPath } from "./paths";
+export * from "./compiler/index.js";
+export * from "./types/index.js";
+export { LogicalPathSchema, toLogicalPath } from "./paths.js";

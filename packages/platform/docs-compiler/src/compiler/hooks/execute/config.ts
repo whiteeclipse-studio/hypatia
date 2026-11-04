@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import type { CompilerConfiguration, ConfigHookContext, ResolvedCompilerConfiguration } from "../../../types";
-import { derivePluginContextLogger } from "../context";
-import { mergeCompilationConfiguration } from "../../configuration";
+import type { CompilerConfiguration, ConfigHookContext, ResolvedCompilerConfiguration } from "../../../types/index.js";
+import { derivePluginContextLogger } from "../context/index.js";
+import { mergeCompilationConfiguration } from "../../configuration.js";
 
 
 /**

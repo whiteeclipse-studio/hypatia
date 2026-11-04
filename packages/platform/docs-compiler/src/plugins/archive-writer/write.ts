@@ -6,8 +6,8 @@
 import { Archive } from "bun";
 import { mkdir, mkdtemp, rename, rm } from "node:fs/promises";
 import { basename, join } from "node:path";
-import type { Repository } from "../../types";
-import { encodeRepository } from "../../serialization/encode";
+import type { Repository } from "../../types/index.js";
+import { encodeRepository } from "../../serialization/encode.js";
 
 
 /**

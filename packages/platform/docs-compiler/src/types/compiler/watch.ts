@@ -4,8 +4,8 @@
  */
 
 import type { Promisable } from "type-fest";
-import type { Reference } from "./reference";
-import type { Snapshot } from "../snapshot";
+import type { Reference } from "./reference.js";
+import type { Snapshot } from "../snapshot.js";
 
 
 /**

@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { AnyArtifact } from "./artifact";
+import type { AnyArtifact } from "./artifact/index.js";
 
 
 /**

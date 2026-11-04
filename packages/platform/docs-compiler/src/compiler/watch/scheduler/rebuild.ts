@@ -3,11 +3,11 @@
  * Released under the MIT Licence.
  */
 
-import type { Reference } from "../../../types";
-import { defer } from "../../defer";
-import { cloneReference, getReferenceKey } from "../../pipeline/reference";
-import type { WatchPublication } from "./index";
-import type { SchedulerState } from "./state";
+import type { Reference } from "../../../types/index.js";
+import { defer } from "../../defer.js";
+import { cloneReference, getReferenceKey } from "../../pipeline/reference.js";
+import type { WatchPublication } from "./index.js";
+import type { SchedulerState } from "./state.js";
 
 
 /**

@@ -6,11 +6,11 @@
 import { watch, type WatchEventType } from "node:fs";
 import { stat } from "node:fs/promises";
 import { relative, resolve, sep } from "node:path";
-import type { Reference, WatchSubscriptionContext } from "../../../types";
-import type { ResolvedFilesystemLoaderConfiguration } from "../configuration";
-import { fileReference, type FilesystemRepository, isExcluded, isSelected, isWithin } from "./index";
-import { fileVersion } from "./resolve";
-import { translationsCatalogue } from "../translations";
+import type { Reference, WatchSubscriptionContext } from "../../../types/index.js";
+import type { ResolvedFilesystemLoaderConfiguration } from "../configuration.js";
+import { fileReference, type FilesystemRepository, isExcluded, isSelected, isWithin } from "./index.js";
+import { fileVersion } from "./resolve.js";
+import { translationsCatalogue } from "../translations.js";
 
 
 /**

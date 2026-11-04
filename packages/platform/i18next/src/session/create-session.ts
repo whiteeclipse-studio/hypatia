@@ -4,8 +4,8 @@
  */
 
 import type { i18n } from "i18next";
-import type { TranslationCatalogue } from "../catalogue/index.ts";
-import { createConfiguredSession, initializeSession } from "./initialize-session.ts";
+import type { TranslationCatalogue } from "../catalogue/index.js";
+import { createConfiguredSession, initializeSession } from "./initialize-session.js";
 
 
 /**

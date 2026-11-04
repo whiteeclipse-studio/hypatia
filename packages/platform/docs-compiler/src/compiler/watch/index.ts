@@ -3,13 +3,13 @@
  * Released under the MIT Licence.
  */
 
-import type { HookContext, ResolvedCompilerConfiguration, WatchResult } from "../../types";
-import type { BuildScopes } from "../resources";
-import type { WatchCache } from "./cache";
-import { buildWatchGeneration, type WatchBuildState } from "./build";
-import { createWatchScheduler } from "./scheduler";
-import { createWatchSubscriptions } from "./subscriptions";
-import { getReferenceKey } from "../pipeline/reference";
+import type { HookContext, ResolvedCompilerConfiguration, WatchResult } from "../../types/index.js";
+import type { BuildScopes } from "../resources.js";
+import type { WatchCache } from "./cache.js";
+import { buildWatchGeneration, type WatchBuildState } from "./build.js";
+import { createWatchScheduler } from "./scheduler/index.js";
+import { createWatchSubscriptions } from "./subscriptions.js";
+import { getReferenceKey } from "../pipeline/reference.js";
 
 
 /** Resource owners created and retained by compile. */

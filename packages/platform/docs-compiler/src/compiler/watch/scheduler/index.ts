@@ -4,11 +4,11 @@
  */
 
 import type { Logger } from "@whiteeclipse/log";
-import type { Reference, Snapshot, WatchResult, WatchSubscriptionContext } from "../../../types";
-import { createLatestChannel } from "../channel";
-import { disposeScheduler } from "./dispose";
-import { initialize, invalidate, reportError } from "./rebuild";
-import type { SchedulerState } from "./state";
+import type { Reference, Snapshot, WatchResult, WatchSubscriptionContext } from "../../../types/index.js";
+import { createLatestChannel } from "../channel.js";
+import { disposeScheduler } from "./dispose.js";
+import { initialize, invalidate, reportError } from "./rebuild.js";
+import type { SchedulerState } from "./state.js";
 
 
 /** A prepared generation and cleanup deferred until after publication. */

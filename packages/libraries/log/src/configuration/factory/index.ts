@@ -3,13 +3,13 @@
  * Released under the MIT Licence.
  */
 
-import { manageDisposable } from "./disposal";
+import { manageDisposable } from "./disposal.js";
 
-import type { LogConfigurationFactory } from "./types";
+import type { LogConfigurationFactory } from "./types.js";
 
 
-export * from "./sink";
-export type * from "./types";
+export * from "./sink/index.js";
+export type * from "./types.js";
 
 /**
  * Builds a map of log configuration factories.

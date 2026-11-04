@@ -3,6 +3,6 @@
  * Released under the MIT Licence.
  */
 
-export { I18nProvider, type I18nProviderProps } from "./provider.tsx";
-export { useLocale } from "./locale-context.ts";
-export { useTranslation, Trans } from "./use-translation.tsx";
+export { I18nProvider, type I18nProviderProps } from "./provider.js";
+export { useLocale } from "./locale-context.js";
+export { useTranslation, Trans } from "./use-translation.js";

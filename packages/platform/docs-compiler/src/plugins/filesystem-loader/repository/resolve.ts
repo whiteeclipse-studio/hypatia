@@ -7,9 +7,9 @@ import type { BigIntStats } from "node:fs";
 import { realpath, stat } from "node:fs/promises";
 import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import type { ArtifactReference, Input, Reference } from "../../../types";
-import type { ResolvedFilesystemLoaderConfiguration } from "../configuration";
-import { fileReference, type FilesystemRepository, isExcluded, isWithin } from "./index";
+import type { ArtifactReference, Input, Reference } from "../../../types/index.js";
+import type { ResolvedFilesystemLoaderConfiguration } from "../configuration.js";
+import { fileReference, type FilesystemRepository, isExcluded, isWithin } from "./index.js";
 
 
 /**

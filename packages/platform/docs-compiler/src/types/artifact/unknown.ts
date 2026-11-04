@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { Artifact } from "./base.ts";
+import type { Artifact } from "./base.js";
 
 
 /** An input whose contents could not be interpreted. */

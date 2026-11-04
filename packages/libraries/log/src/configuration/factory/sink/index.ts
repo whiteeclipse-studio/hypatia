@@ -3,5 +3,5 @@
  * Released under the MIT Licence.
  */
 
-export * from "./console";
-export * from "./json";
+export * from "./console/index.js";
+export * from "./json/index.js";

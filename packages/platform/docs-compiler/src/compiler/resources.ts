@@ -4,7 +4,7 @@
  */
 
 import type { Promisable } from "type-fest";
-import { throwIfRejected } from "./errors";
+import { throwIfRejected } from "./errors.js";
 
 
 /**

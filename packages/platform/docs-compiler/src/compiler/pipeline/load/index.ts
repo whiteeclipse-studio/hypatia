@@ -11,19 +11,19 @@ import type {
     Repository,
     RepositoryReference,
     ResolvedCompilerConfiguration,
-} from "../../../types";
+} from "../../../types/index.js";
 import {
     createResolveIdHookContext,
     createTransformHookContext,
     executeLoadHook,
     executeTransformHook,
-} from "../../hooks";
-import { getReferenceKey } from "../reference";
-import { captureCompilationValue, type IncrementalBuild, retainRecord } from "../incremental";
-import type { LoaderState } from "./loader-state";
-import { createSourceContext, queueInclusion } from "./context";
-import { registerReference } from "./references";
-import { defer } from "../../defer";
+} from "../../hooks/index.js";
+import { getReferenceKey } from "../reference.js";
+import { captureCompilationValue, type IncrementalBuild, retainRecord } from "../incremental.js";
+import type { LoaderState } from "./loader-state.js";
+import { createSourceContext, queueInclusion } from "./context.js";
+import { registerReference } from "./references.js";
+import { defer } from "../../defer.js";
 
 
 /**

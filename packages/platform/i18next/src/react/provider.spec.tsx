@@ -9,12 +9,12 @@ import { act, Suspense, use, useEffect } from "react";
 import { createRoot, hydrateRoot, type Root } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { createCatalogue } from "../catalogue/index.ts";
-import { createSession } from "../session/index.ts";
-import { localeStorageKey, readBrowserPreferences, selectLocale } from "../preferences/index.ts";
-import { I18nProvider } from "./provider.tsx";
-import { useLocale } from "./locale-context.ts";
-import { Trans, useTranslation } from "./use-translation.tsx";
+import { createCatalogue } from "../catalogue/index.js";
+import { createSession } from "../session/index.js";
+import { localeStorageKey, readBrowserPreferences, selectLocale } from "../preferences/index.js";
+import { I18nProvider } from "./provider.js";
+import { useLocale } from "./locale-context.js";
+import { Trans, useTranslation } from "./use-translation.js";
 
 
 const catalogue = createCatalogue([

@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import type { HookContext, Reference, WatchSubscription, WatchSubscriptionContext } from "../../types";
-import { getReferenceKey } from "../pipeline/reference";
-import { defer } from "../defer";
+import type { HookContext, Reference, WatchSubscription, WatchSubscriptionContext } from "../../types/index.js";
+import { getReferenceKey } from "../pipeline/reference.js";
+import { defer } from "../defer.js";
 
 
 /** Session subscriptions borrowing their resource stack from compile. */

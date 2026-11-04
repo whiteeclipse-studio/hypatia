@@ -3,5 +3,5 @@
  * Released under the MIT Licence.
  */
 
-export * from "./context";
-export * from "./execute";
+export * from "./context/index.js";
+export * from "./execute/index.js";

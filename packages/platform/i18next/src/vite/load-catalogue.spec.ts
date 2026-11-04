@@ -7,7 +7,7 @@ import { mkdir, mkdtemp, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, expect, it } from "vitest";
-import { loadCatalogue } from "./load-catalogue.ts";
+import { loadCatalogue } from "./load-catalogue.js";
 
 
 let directory: string;

@@ -4,11 +4,11 @@
  */
 
 import type { Root } from "hast";
-import { type CompilerPlugin, isHastRoot } from "../../types";
-import { copyMetadata } from "../../compiler/snapshot/metadata";
-import type { MarkdownParserConfiguration } from "./configuration";
-import { createParser } from "./parse";
-import { extractMetadata } from "./metadata";
+import { type CompilerPlugin, isHastRoot } from "../../types/index.js";
+import { copyMetadata } from "../../compiler/snapshot/metadata.js";
+import type { MarkdownParserConfiguration } from "./configuration.js";
+import { createParser } from "./parse.js";
+import { extractMetadata } from "./metadata.js";
 
 
 export type { MarkdownParserConfiguration };

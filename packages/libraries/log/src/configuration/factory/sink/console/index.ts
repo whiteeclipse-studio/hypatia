@@ -6,12 +6,12 @@
 import { getConsoleSink } from "@logtape/logtape";
 import { getPrettyFormatter, type PrettyFormatterOptions } from "@logtape/pretty";
 
-import type { LogConsoleSinkFactory } from "./types";
+import type { LogConsoleSinkFactory } from "./types.js";
 import { PrettyFormatterKeys, toPrettyFormatterOptionMutatorName } from "./options.js";
-import { DEFAULT_PRETTY_FORMATTER_OPTIONS } from "./default";
+import { DEFAULT_PRETTY_FORMATTER_OPTIONS } from "./default.js";
 
 
-export type * from "./types";
+export type * from "./types.js";
 
 /**
  * Builds a {@link LogConsoleSinkFactory}.

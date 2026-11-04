@@ -4,14 +4,14 @@
  */
 
 import type { Root } from "hast";
-import { copyMetadata } from "../../compiler/snapshot/metadata";
+import { copyMetadata } from "../../compiler/snapshot/metadata.js";
 import {
     type SerializedArtifact,
     SerializedArtifactSchema,
     SerializedDocumentArtifactSchema,
-} from "../../serialization/artifact";
-import { type SerializedManifest, SerializedManifestSchema } from "../../serialization/manifest";
-import type { AnyArtifact, LoadHookContext, Repository } from "../../types";
+} from "../../serialization/artifact.js";
+import { type SerializedManifest, SerializedManifestSchema } from "../../serialization/manifest.js";
+import type { AnyArtifact, LoadHookContext, Repository } from "../../types/index.js";
 
 
 /** A completely validated inventory, before any compiler cache writes. */

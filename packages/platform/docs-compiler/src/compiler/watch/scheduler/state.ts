@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import type { Reference, Snapshot } from "../../../types";
-import type { LatestChannel } from "../channel";
-import type { WatchOperations } from "./index";
+import type { Reference, Snapshot } from "../../../types/index.js";
+import type { LatestChannel } from "../channel.js";
+import type { WatchOperations } from "./index.js";
 
 
 /** Mutable lifecycle coordination shared by scheduling and shutdown operations. */

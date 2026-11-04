@@ -3,12 +3,12 @@
  * Released under the MIT Licence.
  */
 
-import type { Repository, Snapshot } from "../../types";
-import { captureRepository } from "./handles";
-import { assertActive, disposeSnapshot, iterate, type SnapshotState } from "./lifetime";
+import type { Repository, Snapshot } from "../../types/index.js";
+import { captureRepository } from "./handles.js";
+import { assertActive, disposeSnapshot, iterate, type SnapshotState } from "./lifetime.js";
 
 
-export { copyMetadata } from "./metadata";
+export { copyMetadata } from "./metadata.js";
 
 /**
  * Captures a fixed inventory and owns its handles and resource cleanup.

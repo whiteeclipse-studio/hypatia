@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { HookContext, TransformHookContext } from "../../../types";
+import type { HookContext, TransformHookContext } from "../../../types/index.js";
 
 
 /**

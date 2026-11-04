@@ -3,11 +3,11 @@
  * Released under the MIT Licence.
  */
 
-export * from "./config";
-export * from "./config-resolved";
-export * from "./build-start";
-export * from "./resolve-id";
-export * from "./load";
-export * from "./transform";
-export * from "./build-end";
-export * from "./close-bundle";
+export * from "./config.js";
+export * from "./config-resolved.js";
+export * from "./build-start.js";
+export * from "./resolve-id.js";
+export * from "./load.js";
+export * from "./transform.js";
+export * from "./build-end.js";
+export * from "./close-bundle.js";

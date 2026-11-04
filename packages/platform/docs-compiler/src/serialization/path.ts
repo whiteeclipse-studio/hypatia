@@ -4,7 +4,7 @@
  */
 
 import { z } from "zod";
-import { LogicalPathSchema } from "../paths";
+import { LogicalPathSchema } from "../paths.js";
 
 
 /** Validates stored logical paths without rewriting archive keys or artifact paths. */

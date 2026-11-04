@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { Input } from "../../types";
+import type { Input } from "../../types/index.js";
 
 
 /**

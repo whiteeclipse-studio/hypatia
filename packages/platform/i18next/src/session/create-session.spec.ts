@@ -4,9 +4,10 @@
  */
 
 import { expect, it } from "vitest";
-import { createCatalogue } from "../catalogue/index.ts";
-import { selectLocale } from "../preferences/index.ts";
-import { createSession } from "./create-session.ts";
+import { createCatalogue } from "../catalogue/index.js";
+import { selectLocale } from "../preferences/index.js";
+import { createSession } from "./create-session.js";
+
 
 it("applies a selected locale and falls back from region to base language to English", async () => {
     const catalogue = createCatalogue([

@@ -21,13 +21,8 @@
             "default": "./dist/theme.js"
         }
     },
-    "files": [
-        "dist",
-        "README.md",
-        "LICENCE"
-    ],
     "scripts": {
-        "build": "bun ../../../scripts/build-package.ts",
+        "build": "rm -rf dist .cache/build && tsc -p tsconfig.json && cp -R .cache/build/src dist && rm -rf .cache/build && cp src/*.css dist/ && cp -R src/assets src/obsidian dist/",
         "build:obsidian": "bun run typecheck && bun scripts/build-obsidian.ts",
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",

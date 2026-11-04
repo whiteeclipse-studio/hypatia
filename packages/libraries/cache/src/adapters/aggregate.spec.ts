@@ -4,8 +4,8 @@
  */
 
 import { expect, expectTypeOf, it, vi } from "vitest";
-import type { CacheAdapter } from "../types.ts";
-import { createAggregateCacheAdapter } from "./aggregate";
+import type { CacheAdapter } from "../types.js";
+import { createAggregateCacheAdapter } from "./aggregate.js";
 
 
 /**

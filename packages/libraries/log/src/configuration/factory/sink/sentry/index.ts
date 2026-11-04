@@ -5,11 +5,11 @@
 
 import { getSentrySink, type SentryNamespace } from "@logtape/sentry";
 
-import type { LogSentrySinkFactory } from "./types";
+import type { LogSentrySinkFactory } from "./types.js";
 import type { LogLevel } from "@logtape/logtape";
 
 
-export type * from "./types";
+export type * from "./types.js";
 
 /**
  * Builds a {@link LogSentrySinkFactory}.

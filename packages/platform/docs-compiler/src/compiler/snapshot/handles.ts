@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import type { AnyArtifact, Repository } from "../../types";
-import { assertActive, iterate, readArtifact, type SnapshotState } from "./lifetime";
-import { copyMetadata } from "./metadata";
+import type { AnyArtifact, Repository } from "../../types/index.js";
+import { assertActive, iterate, readArtifact, type SnapshotState } from "./lifetime.js";
+import { copyMetadata } from "./metadata.js";
 
 
 /**

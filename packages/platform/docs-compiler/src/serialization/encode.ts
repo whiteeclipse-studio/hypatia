@@ -4,11 +4,11 @@
  */
 
 import { randomUUIDv7 } from "node:crypto";
-import type { Repository } from "../types";
-import { encodeArtifact } from "./encode-artifact";
-import { stringifyJson } from "./json";
-import { type SerializedManifest, SerializedManifestSchema } from "./manifest";
-import { SerializedPathSchema } from "./path";
+import type { Repository } from "../types/index.js";
+import { encodeArtifact } from "./encode-artifact.js";
+import { stringifyJson } from "./json.js";
+import { type SerializedManifest, SerializedManifestSchema } from "./manifest.js";
+import { SerializedPathSchema } from "./path.js";
 
 
 /**

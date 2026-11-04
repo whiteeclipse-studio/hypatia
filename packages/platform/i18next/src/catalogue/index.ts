@@ -3,5 +3,5 @@
  * Released under the MIT Licence.
  */
 
-export { createCatalogue } from "./catalogue.ts";
-export type { CatalogueEntry, Messages, MessageValue, TranslationCatalogue } from "./types.ts";
+export { createCatalogue } from "./catalogue.js";
+export type { CatalogueEntry, Messages, MessageValue, TranslationCatalogue } from "./types.js";

@@ -4,8 +4,9 @@
  */
 
 import { expect, it } from "vitest";
-import { createCatalogue } from "../catalogue/index.ts";
-import { selectLocale } from "./select-locale.ts";
+import { createCatalogue } from "../catalogue/index.js";
+import { selectLocale } from "./select-locale.js";
+
 
 it.each([
     { preferences: ["ja", "fr"], expected: "ja" },

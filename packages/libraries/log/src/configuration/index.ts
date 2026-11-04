@@ -14,7 +14,7 @@ import {
     type Sink,
 } from "@logtape/logtape";
 
-import type { LogConfigurationBuilder } from "./types";
+import type { LogConfigurationBuilder } from "./types.js";
 import {
     buildFactoryMap,
     type LogConsoleSinkFactory,
@@ -22,7 +22,7 @@ import {
     type LogSinkFactory,
     makeLogConsoleSinkFactory,
     makeLogJSONSinkFactory,
-} from "./factory";
+} from "./factory/index.js";
 
 
 export type { LogConfigurationBuilder, LogConsoleSinkFactory, LogFilterFactory, LogSinkFactory };

@@ -4,9 +4,9 @@
  */
 
 import type { Promisable } from "type-fest";
-import type { Reference } from "../reference";
-import type { CompilationResult } from "../value";
-import type { LoadHookContext } from "./load";
+import type { Reference } from "../reference.js";
+import type { CompilationResult } from "../value.js";
+import type { LoadHookContext } from "./load.js";
 
 
 /** Services available during transformation. */

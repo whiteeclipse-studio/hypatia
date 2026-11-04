@@ -4,7 +4,7 @@
  */
 
 import * as z from "zod";
-import type { Artifact } from "../base.ts";
+import type { Artifact } from "../base.js";
 
 
 /** Metadata shared by image, video, audio, and PDF resources. */

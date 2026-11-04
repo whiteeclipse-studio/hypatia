@@ -3,18 +3,18 @@
  * Released under the MIT Licence.
  */
 
-import type { CompilerPlugin } from "../../types";
+import type { CompilerPlugin } from "../../types/index.js";
 import {
     DEFAULT_FILESYSTEM_LOADER_CONFIGURATION,
     type FilesystemLoaderConfiguration,
     resolveConfiguration,
-} from "./configuration";
-import { createRepository, type FilesystemRepository } from "./repository";
-import { resolveArtifact, resolveRepository } from "./repository/resolve";
-import { transformRepository } from "./repository/discover";
-import { loadArtifact } from "./load";
-import { watchRepository } from "./repository/watch";
-import { includeFilesystemTranslations, validateFilesystemTranslations } from "./translations";
+} from "./configuration.js";
+import { createRepository, type FilesystemRepository } from "./repository/index.js";
+import { resolveArtifact, resolveRepository } from "./repository/resolve.js";
+import { transformRepository } from "./repository/discover.js";
+import { loadArtifact } from "./load.js";
+import { watchRepository } from "./repository/watch.js";
+import { includeFilesystemTranslations, validateFilesystemTranslations } from "./translations.js";
 
 
 export { DEFAULT_FILESYSTEM_LOADER_CONFIGURATION, type FilesystemLoaderConfiguration };

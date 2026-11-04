@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { ConfigResolvedHookContext, HookContext } from "../../../types";
+import type { ConfigResolvedHookContext, HookContext } from "../../../types/index.js";
 
 
 /**

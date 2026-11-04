@@ -3,8 +3,13 @@
  * Released under the MIT Licence.
  */
 
-import type { CompilationResult, LoadHookContext, Reference, ResolvedCompilerConfiguration } from "../../../types";
-import { derivePluginContextLogger } from "../context";
+import type {
+    CompilationResult,
+    LoadHookContext,
+    Reference,
+    ResolvedCompilerConfiguration,
+} from "../../../types/index.js";
+import { derivePluginContextLogger } from "../context/index.js";
 
 
 /**

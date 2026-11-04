@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { LoaderState } from "./loader-state";
+import type { LoaderState } from "./loader-state.js";
 
 
 /**

@@ -4,8 +4,8 @@
  */
 
 import type { Promisable } from "type-fest";
-import type { Repository } from "../../repository";
-import type { HookContext } from "./context";
+import type { Repository } from "../../repository.js";
+import type { HookContext } from "./context.js";
 
 
 /** Services available when the pipeline finishes. */

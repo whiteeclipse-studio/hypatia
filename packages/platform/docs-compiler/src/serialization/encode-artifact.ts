@@ -4,9 +4,9 @@
  */
 
 import { randomUUIDv7 } from "node:crypto";
-import type { AnyArtifact, AssetArtifact } from "../types";
-import { type SerializedArtifact, SerializedArtifactSchema, type SerializedAssetArtifact } from "./artifact";
-import { stringifyJson } from "./json";
+import type { AnyArtifact, AssetArtifact } from "../types/index.js";
+import { type SerializedArtifact, SerializedArtifactSchema, type SerializedAssetArtifact } from "./artifact.js";
+import { stringifyJson } from "./json.js";
 
 
 /**

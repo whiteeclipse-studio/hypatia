@@ -4,7 +4,7 @@
  */
 
 import type { Sink } from "@logtape/logtape";
-import type { LogSinkFactory } from "../../types";
+import type { LogSinkFactory } from "../../types.js";
 import type { WithPrettyFormatterOptionMutators } from "./options.js";
 
 

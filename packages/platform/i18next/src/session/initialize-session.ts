@@ -4,10 +4,10 @@
  */
 
 import { createInstance, type i18n } from "i18next";
-import type { TranslationCatalogue } from "../catalogue/index.ts";
-import { baseLanguage } from "../catalogue/base-language.ts";
-import { canonicalLocale } from "../catalogue/canonical-locale.ts";
-import { preserveRequestKey } from "./preserve-request-key.ts";
+import type { TranslationCatalogue } from "../catalogue/index.js";
+import { baseLanguage } from "../catalogue/base-language.js";
+import { canonicalLocale } from "../catalogue/canonical-locale.js";
+import { preserveRequestKey } from "./preserve-request-key.js";
 
 
 /**

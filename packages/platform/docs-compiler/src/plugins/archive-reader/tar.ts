@@ -4,8 +4,8 @@
  */
 
 import { z } from "zod";
-import type { ArchiveReaderConfiguration } from "./configuration";
-import { readBoundedStream } from "./stream";
+import type { ArchiveReaderConfiguration } from "./configuration.js";
+import { readBoundedStream } from "./stream.js";
 
 
 const BLOCK_SIZE = 512;

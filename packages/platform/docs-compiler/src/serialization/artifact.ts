@@ -14,8 +14,8 @@ import {
     isHastRoot,
     type TranslationArtifactMetadata,
     translationArtifactMetadataSchema,
-} from "../types";
-import { SerializedPathSchema } from "./path";
+} from "../types/index.js";
+import { SerializedPathSchema } from "./path.js";
 
 
 /** Canonical document stored completely in its artifacts/<key>.json entry. */

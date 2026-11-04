@@ -3,10 +3,10 @@
  * Released under the MIT Licence.
  */
 
-import type { AssetArtifactMetadata } from "../../../types";
-import { imageDimensions } from "./image";
-import { resolveMimeType } from "./mime";
-import { readRiffChunks } from "./riff";
+import type { AssetArtifactMetadata } from "../../../types/index.js";
+import { imageDimensions } from "./image.js";
+import { resolveMimeType } from "./mime.js";
+import { readRiffChunks } from "./riff.js";
 
 
 /** Optional fields resolved from supported binary headers. */

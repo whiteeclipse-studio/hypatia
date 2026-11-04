@@ -6,10 +6,10 @@
 import { randomUUID } from "node:crypto";
 import { readFile, realpath, stat } from "node:fs/promises";
 import type { CacheAdapter } from "@whiteeclipse/cache";
-import type { ArtifactReference, AssetArtifact, LoadHookContext } from "../../types";
-import { fileVersion } from "./repository/resolve";
-import type { FilesystemRepository } from "./repository";
-import { resolveAssetMetadata } from "./metadata";
+import type { ArtifactReference, AssetArtifact, LoadHookContext } from "../../types/index.js";
+import { fileVersion } from "./repository/resolve.js";
+import type { FilesystemRepository } from "./repository/index.js";
+import { resolveAssetMetadata } from "./metadata/index.js";
 
 
 /**

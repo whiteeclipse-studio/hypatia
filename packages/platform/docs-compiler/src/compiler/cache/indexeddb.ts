@@ -5,8 +5,8 @@
 
 import type { CacheAdapter } from "@whiteeclipse/cache";
 import { createIndexedDbCacheAdapter } from "@whiteeclipse/cache/indexeddb";
-import type { CompilerCacheConfiguration } from "../../types";
-import { DEFAULT_COMPILER_CACHE_CONFIGURATION } from "./configuration";
+import type { CompilerCacheConfiguration } from "../../types/index.js";
+import { DEFAULT_COMPILER_CACHE_CONFIGURATION } from "./configuration.js";
 
 
 /**

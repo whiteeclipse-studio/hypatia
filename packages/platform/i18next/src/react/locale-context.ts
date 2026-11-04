@@ -5,7 +5,7 @@
 
 import { createContext, useContext, useMemo, useSyncExternalStore } from "react";
 import type { i18n } from "i18next";
-import { rememberLocale } from "../preferences/index.ts";
+import { rememberLocale } from "../preferences/index.js";
 
 
 /** The stable command target and the locale used to generate this subtree's HTML. */

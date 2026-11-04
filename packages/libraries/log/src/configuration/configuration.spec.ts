@@ -5,7 +5,7 @@
 
 import { afterEach, describe, expect, expectTypeOf, it, vi } from "vitest";
 import { getLogger, reset, type Sink } from "@logtape/logtape";
-import { makeLogConfigurationBuilder } from "../index";
+import { makeLogConfigurationBuilder } from "../index.js";
 
 
 afterEach(async () => {

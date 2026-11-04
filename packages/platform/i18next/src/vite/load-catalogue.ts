@@ -6,7 +6,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { join, relative, sep } from "node:path";
 import { parseDocument } from "yaml";
-import { type CatalogueEntry, createCatalogue, type TranslationCatalogue } from "../catalogue/index.ts";
+import { type CatalogueEntry, createCatalogue, type TranslationCatalogue } from "../catalogue/index.js";
 
 
 /** A validated catalogue and the YAML sources tracked by the build. */

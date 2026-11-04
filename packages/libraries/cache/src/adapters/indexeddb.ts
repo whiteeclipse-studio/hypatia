@@ -4,8 +4,8 @@
  */
 
 import { type DBSchema, deleteDB, openDB } from "idb";
-import type { CacheAdapter } from "../types.ts";
-import { createCacheOperationQueue } from "../operations.ts";
+import type { CacheAdapter } from "../types.js";
+import { createCacheOperationQueue } from "../operations.js";
 import { getLogger } from "@whiteeclipse/log";
 
 

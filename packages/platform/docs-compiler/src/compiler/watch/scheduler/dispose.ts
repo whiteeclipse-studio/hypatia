@@ -3,8 +3,8 @@
  * Released under the MIT Licence.
  */
 
-import { throwIfRejected } from "../../errors";
-import type { SchedulerState } from "./state";
+import { throwIfRejected } from "../../errors.js";
+import type { SchedulerState } from "./state.js";
 
 
 /**

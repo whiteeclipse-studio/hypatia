@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { HookContext, LoadHookContext } from "../../../types";
+import type { HookContext, LoadHookContext } from "../../../types/index.js";
 
 
 /**

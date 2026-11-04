@@ -4,9 +4,9 @@
  */
 
 import { basename, isAbsolute, matchesGlob, relative, sep } from "node:path";
-import type { AnyArtifact, ArtifactReference, Repository, RepositoryReference } from "../../../types";
-import { toLogicalPath } from "../../../paths";
-import type { ResolvedFilesystemLoaderConfiguration } from "../configuration";
+import type { AnyArtifact, ArtifactReference, Repository, RepositoryReference } from "../../../types/index.js";
+import { toLogicalPath } from "../../../paths.js";
+import type { ResolvedFilesystemLoaderConfiguration } from "../configuration.js";
 
 
 /** Source identity and discovery bookkeeping; holds no content or private cache. */

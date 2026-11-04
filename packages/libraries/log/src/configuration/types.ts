@@ -4,7 +4,7 @@
  */
 
 import type { LoggerConfig } from "@logtape/logtape";
-import type { LogConfigurationFactoriesNames, LogFilterFactory, LogSinkFactory } from "./factory";
+import type { LogConfigurationFactoriesNames, LogFilterFactory, LogSinkFactory } from "./factory/index.js";
 
 // Helper used to extract the names of the factories in a tuple.
 type TypedLoggerConfig<

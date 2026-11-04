@@ -3,17 +3,17 @@
  * Released under the MIT Licence.
  */
 
-import type { HookContext, Repository, ResolvedCompilerConfiguration } from "../../types";
+import type { HookContext, Repository, ResolvedCompilerConfiguration } from "../../types/index.js";
 import {
     createBuildEndHookContext,
     createBuildStartHookContext,
     createResolveIdHookContext,
     executeBuildEndHook,
     executeBuildStartHook,
-} from "../hooks";
-import { resolveRepositories } from "./resolve";
-import { loadRepositories } from "./load";
-import type { IncrementalBuild } from "./incremental";
+} from "../hooks/index.js";
+import { resolveRepositories } from "./resolve.js";
+import { loadRepositories } from "./load/index.js";
+import type { IncrementalBuild } from "./incremental.js";
 
 
 export { resolveRepositories, loadRepositories };

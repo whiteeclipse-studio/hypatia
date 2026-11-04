@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { Repository } from "./repository.ts";
+import type { Repository } from "./repository.js";
 
 
 /**

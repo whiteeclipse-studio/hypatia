@@ -5,7 +5,7 @@
 
 import type { CacheAdapter } from "@whiteeclipse/cache";
 import { createFileSystemCacheAdapter } from "@whiteeclipse/cache/filesystem";
-import type { CompilerCacheConfiguration } from "../../types";
+import type { CompilerCacheConfiguration } from "../../types/index.js";
 
 
 /**

@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import type { ResolvedCompilerConfiguration } from "../configuration";
+import type { ResolvedCompilerConfiguration } from "../configuration.js";
 import type { Promisable } from "type-fest";
-import type { HookContext } from "./context";
+import type { HookContext } from "./context.js";
 
 
 /** Services available after configuration. */

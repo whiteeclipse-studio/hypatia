@@ -4,7 +4,7 @@
  */
 
 import { expect, expectTypeOf, it, vi } from "vitest";
-import { createOperationQueue } from "./index.ts";
+import { createOperationQueue } from "./index.js";
 
 
 it("runs actions in order and preserves inferred return values", async () => {

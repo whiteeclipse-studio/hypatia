@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { Reference } from "../../types";
+import type { Reference } from "../../types/index.js";
 
 
 /**

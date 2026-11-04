@@ -5,7 +5,7 @@
 
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { getConfig, type LogLevel, reset } from "@logtape/logtape";
-import { makeDefaultLogConfigurationBuilder } from "../index";
+import { makeDefaultLogConfigurationBuilder } from "../index.js";
 
 
 beforeEach(() => {

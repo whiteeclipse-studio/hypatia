@@ -5,7 +5,7 @@
 
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { reset } from "@logtape/logtape";
-import { buildFactoryMap } from "./index";
+import { buildFactoryMap } from "./index.js";
 
 
 afterEach(async () => {

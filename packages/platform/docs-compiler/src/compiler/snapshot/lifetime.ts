@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import type { Repository } from "../../types";
-import { defer } from "../defer";
-import { throwIfErrors } from "../errors";
+import type { Repository } from "../../types/index.js";
+import { defer } from "../defer.js";
+import { throwIfErrors } from "../errors.js";
 
 
 /** Invalidation and the shared cleanup outcome for a snapshot's handles. */

@@ -3,15 +3,15 @@
  * Released under the MIT Licence.
  */
 
-import type { HookContext, Reference, ResolvedCompilerConfiguration, Snapshot } from "../../types";
-import type { BuildScopes } from "../resources";
-import { runCompilerPipeline } from "../pipeline";
-import { createIncrementalBuild, type SourceRecord } from "../pipeline/incremental";
-import { getReferenceKey } from "../pipeline/reference";
-import { createSnapshot } from "../snapshot";
-import type { WatchCache } from "./cache";
-import type { WatchPublication } from "./scheduler";
-import type { WatchSubscriptions } from "./subscriptions";
+import type { HookContext, Reference, ResolvedCompilerConfiguration, Snapshot } from "../../types/index.js";
+import type { BuildScopes } from "../resources.js";
+import { runCompilerPipeline } from "../pipeline/index.js";
+import { createIncrementalBuild, type SourceRecord } from "../pipeline/incremental.js";
+import { getReferenceKey } from "../pipeline/reference.js";
+import { createSnapshot } from "../snapshot/index.js";
+import type { WatchCache } from "./cache.js";
+import type { WatchPublication } from "./scheduler/index.js";
+import type { WatchSubscriptions } from "./subscriptions.js";
 
 
 /** Last published state, replaced only after successful snapshot preparation. */

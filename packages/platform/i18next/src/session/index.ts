@@ -3,4 +3,4 @@
  * Released under the MIT Licence.
  */
 
-export { createSession } from "./create-session.ts";
+export { createSession } from "./create-session.js";

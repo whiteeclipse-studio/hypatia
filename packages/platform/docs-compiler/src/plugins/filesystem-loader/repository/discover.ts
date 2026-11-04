@@ -6,10 +6,10 @@
 import { glob, realpath } from "node:fs/promises";
 import { relative, resolve, sep } from "node:path";
 import { pathToFileURL } from "node:url";
-import type { AnyArtifact, Repository, TransformHookContext } from "../../../types";
-import { toLogicalPath } from "../../../paths";
-import type { ResolvedFilesystemLoaderConfiguration } from "../configuration";
-import { createRepository, type FilesystemRepository, isWithin } from "./index";
+import type { AnyArtifact, Repository, TransformHookContext } from "../../../types/index.js";
+import { toLogicalPath } from "../../../paths.js";
+import type { ResolvedFilesystemLoaderConfiguration } from "../configuration.js";
+import { createRepository, type FilesystemRepository, isWithin } from "./index.js";
 
 
 /**

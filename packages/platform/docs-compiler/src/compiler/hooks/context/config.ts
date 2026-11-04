@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { BaseHookContext, ConfigHookContext } from "../../../types";
+import type { BaseHookContext, ConfigHookContext } from "../../../types/index.js";
 
 
 /**

@@ -4,9 +4,9 @@
  */
 
 import type { Promisable } from "type-fest";
-import type { Input } from "../configuration";
-import type { Reference } from "../reference";
-import type { HookContext } from "./context";
+import type { Input } from "../configuration.js";
+import type { Reference } from "../reference.js";
+import type { HookContext } from "./context.js";
 
 
 /** Services available during source resolution. */

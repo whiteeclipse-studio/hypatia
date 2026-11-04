@@ -5,7 +5,7 @@
 
 import { expect, it, vi } from "vitest";
 import type { SentryNamespace } from "@logtape/sentry";
-import { makeLogSentrySinkFactory } from "./index";
+import { makeLogSentrySinkFactory } from "./index.js";
 
 
 it("uses the supplied namespace for breadcrumbs, structured logs, and exceptions", () => {

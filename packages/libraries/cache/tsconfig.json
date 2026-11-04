@@ -1,7 +1,17 @@
 {
     "extends": "../../../tsconfig.base.json",
     "compilerOptions": {
-        "types": ["@total-typescript/ts-reset", "node"]
+        "types": ["@total-typescript/ts-reset", "node"],
+        "noEmit": false,
+        "rootDir": ".",
+        "outDir": ".cache/build",
+        "sourceMap": false,
+        "declarationMap": false,
+        "rewriteRelativeImportExtensions": true,
+        "paths": {
+            "@whiteeclipse/cache": ["./src/index.ts"],
+            "@whiteeclipse/cache/*": ["./src/adapters/*.ts"]
+        }
     },
     "include": ["src", "*.config.ts"]
 }

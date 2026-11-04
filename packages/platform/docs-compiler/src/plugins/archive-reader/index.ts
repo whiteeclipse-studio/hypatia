@@ -4,15 +4,15 @@
  */
 
 import { openSource, resolveSource } from "#archive-reader-source";
-import type { CompilerPlugin } from "../../types";
+import type { CompilerPlugin } from "../../types/index.js";
 import {
     type ArchiveReaderConfiguration,
     DEFAULT_ARCHIVE_READER_CONFIGURATION,
     resolveConfiguration,
-} from "./configuration";
-import { readBoundedStream } from "./stream";
-import { readTar } from "./tar";
-import { decodeRepository } from "./decode";
+} from "./configuration.js";
+import { readBoundedStream } from "./stream.js";
+import { readTar } from "./tar.js";
+import { decodeRepository } from "./decode.js";
 
 
 export { DEFAULT_ARCHIVE_READER_CONFIGURATION, type ArchiveReaderConfiguration };

@@ -6,8 +6,8 @@
 import { createReadStream } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import type { Input } from "../../types";
-import { isArchiveName, openSource as openRemoteSource, resolveSource as resolveRemoteSource } from "./source";
+import type { Input } from "../../types/index.js";
+import { isArchiveName, openSource as openRemoteSource, resolveSource as resolveRemoteSource } from "./source.js";
 
 
 /**

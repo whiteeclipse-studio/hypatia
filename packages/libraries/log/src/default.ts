@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import { makeDefaultLogConfigurationBuilder } from "./configuration";
+import { makeDefaultLogConfigurationBuilder } from "./configuration/index.js";
 import { isLogLevel, type LogLevel } from "@logtape/logtape";
 
 

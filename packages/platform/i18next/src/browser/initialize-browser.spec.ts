@@ -4,8 +4,9 @@
  */
 
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { createCatalogue } from "../catalogue/index.ts";
-import { createSession } from "../session/index.ts";
+import { createCatalogue } from "../catalogue/index.js";
+import { createSession } from "../session/index.js";
+
 
 const catalogue = createCatalogue([
     { locale: "en", namespace: "common", messages: { title: "Hello" } },
@@ -25,7 +26,7 @@ afterEach(() => {
 });
 
 it("exports a configured instance without initializing or reading browser preferences at import time", async () => {
-    const { i18n } = await import("./initialize-browser.ts");
+    const { i18n } = await import("./initialize-browser.js");
 
     expect(i18n.isInitialized).toBeFalsy();
     expect(i18n.options.load).toBe("currentOnly");
@@ -35,7 +36,7 @@ it("exports a configured instance without initializing or reading browser prefer
 
 it("initializes the exported instance from a supported saved preference before navigator preferences", async () => {
     storage.getItem.mockReturnValue("fr-ca");
-    const { i18n, initializeBrowser } = await import("./initialize-browser.ts");
+    const { i18n, initializeBrowser } = await import("./initialize-browser.js");
     const session = await initializeBrowser(catalogue);
 
     expect(session).toBe(i18n);
@@ -47,7 +48,7 @@ it("initializes the exported instance from a supported saved preference before n
 
 it.each([null, "es-MX", "not_a_locale"])("uses navigator preferences when the saved preference is %s", async saved => {
     storage.getItem.mockReturnValue(saved);
-    const { initializeBrowser } = await import("./initialize-browser.ts");
+    const { initializeBrowser } = await import("./initialize-browser.js");
 
     const session = await initializeBrowser(catalogue);
 
@@ -59,7 +60,7 @@ it("continues initializing when saved preferences cannot be read", async () => {
     storage.getItem.mockImplementation(() => {
         throw new Error("Storage blocked");
     });
-    const { initializeBrowser } = await import("./initialize-browser.ts");
+    const { initializeBrowser } = await import("./initialize-browser.js");
 
     const session = await initializeBrowser(catalogue);
 
@@ -67,7 +68,7 @@ it("continues initializing when saved preferences cannot be read", async () => {
 });
 
 it("uses English when no available preference or English resources exist", async () => {
-    const { initializeBrowser } = await import("./initialize-browser.ts");
+    const { initializeBrowser } = await import("./initialize-browser.js");
     const frenchOnly = createCatalogue([{ locale: "fr", namespace: "common", messages: { title: "Bonjour" } }]);
 
     const session = await initializeBrowser(frenchOnly);
@@ -77,7 +78,7 @@ it("uses English when no available preference or English resources exist", async
 });
 
 it("uses the generated locale without reading preferences, even when that locale has no resources", async () => {
-    const { initializeBrowser } = await import("./initialize-browser.ts");
+    const { initializeBrowser } = await import("./initialize-browser.js");
 
     const session = await initializeBrowser(catalogue, "de-at");
 
@@ -87,7 +88,7 @@ it("uses the generated locale without reading preferences, even when that locale
 });
 
 it("rejects malformed explicit locales instead of replacing the generated locale with preferences", async () => {
-    const { i18n, initializeBrowser } = await import("./initialize-browser.ts");
+    const { i18n, initializeBrowser } = await import("./initialize-browser.js");
 
     await expect(initializeBrowser(catalogue, "not_a_locale")).rejects.toThrow(TypeError);
     expect(i18n.isInitialized).toBeFalsy();
@@ -95,7 +96,7 @@ it("rejects malformed explicit locales instead of replacing the generated locale
 });
 
 it("supports runtime changes without affecting independent server sessions or the catalogue", async () => {
-    const { initializeBrowser } = await import("./initialize-browser.ts");
+    const { initializeBrowser } = await import("./initialize-browser.js");
     const browser = await initializeBrowser(catalogue);
     const server = await createSession(catalogue, "fr");
 
@@ -111,7 +112,7 @@ it("supports runtime changes without affecting independent server sessions or th
 it("imports safely without browser globals and rejects browser initialization on the server", async () => {
     vi.stubGlobal("window", undefined);
     vi.stubGlobal("navigator", undefined);
-    const { i18n, initializeBrowser } = await import("./initialize-browser.ts");
+    const { i18n, initializeBrowser } = await import("./initialize-browser.js");
 
     await expect(initializeBrowser(catalogue)).rejects.toThrow("Use createSession");
     expect(i18n.isInitialized).toBeFalsy();

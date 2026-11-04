@@ -6,8 +6,8 @@
 import type { CacheAdapter } from "@whiteeclipse/cache";
 import type { Logger } from "@whiteeclipse/log";
 import type { Promisable } from "type-fest";
-import type { Reference } from "../reference";
-import type { WatchSubscription } from "../watch";
+import type { Reference } from "../reference.js";
+import type { WatchSubscription } from "../watch.js";
 
 
 /** Services shared by compiler hooks. */

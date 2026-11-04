@@ -5,9 +5,9 @@
 
 import type { CacheAdapter } from "@whiteeclipse/cache";
 import { createOperationQueue } from "@whiteeclipse/async-queue";
-import type { ArtifactPayload } from "../../types";
-import type { SourceRecord } from "../pipeline/incremental";
-import { throwIfErrors } from "../errors";
+import type { ArtifactPayload } from "../../types/index.js";
+import type { SourceRecord } from "../pipeline/incremental.js";
+import { throwIfErrors } from "../errors.js";
 
 
 /** A generation's temporary cache use, released after its reads and cleanup finish. */

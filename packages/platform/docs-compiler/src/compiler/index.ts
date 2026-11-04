@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import "../polyfills";
+import "../polyfills.js";
 
 import type {
     CompileConfiguration,
@@ -13,7 +13,7 @@ import type {
     Snapshot,
     WatchConfiguration,
     WatchResult,
-} from "../types";
+} from "../types/index.js";
 import { getLogger } from "@whiteeclipse/log";
 import {
     createCloseBundleHookContext,
@@ -22,18 +22,18 @@ import {
     executeCloseBundleHook,
     executeConfigHook,
     executeConfigResolvedHook,
-} from "./hooks";
-import { runCompilerPipeline } from "./pipeline";
-import { createCompilerCache, DEFAULT_COMPILER_CACHE_CONFIGURATION } from "./cache";
-import { createSnapshot } from "./snapshot";
-import { createBuildScopes } from "./resources";
-import { createWatchCache } from "./watch/cache";
-import { createWatchCompiler } from "./watch";
+} from "./hooks/index.js";
+import { runCompilerPipeline } from "./pipeline/index.js";
+import { createCompilerCache, DEFAULT_COMPILER_CACHE_CONFIGURATION } from "./cache/index.js";
+import { createSnapshot } from "./snapshot/index.js";
+import { createBuildScopes } from "./resources.js";
+import { createWatchCache } from "./watch/cache.js";
+import { createWatchCompiler } from "./watch/index.js";
 
 
-export * from "./hooks";
-export * from "./configuration";
-export * from "./pipeline";
+export * from "./hooks/index.js";
+export * from "./configuration.js";
+export * from "./pipeline/index.js";
 export { DEFAULT_COMPILER_CACHE_CONFIGURATION };
 
 export type { WatchResult };

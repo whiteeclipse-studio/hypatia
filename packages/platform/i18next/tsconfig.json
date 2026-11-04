@@ -1,7 +1,16 @@
 {
     "extends": "../../../tsconfig.base.json",
     "compilerOptions": {
-        "types": ["@total-typescript/ts-reset", "node", "vite/client"]
+        "types": ["@total-typescript/ts-reset", "node", "vite/client"],
+        "noEmit": false,
+        "rootDir": ".",
+        "outDir": ".cache/build",
+        "sourceMap": false,
+        "declarationMap": false,
+        "rewriteRelativeImportExtensions": true,
+        "paths": {
+            "@whiteeclipse/i18next": ["./src/index.ts"]
+        }
     },
     "include": ["src", "*.config.ts"]
 }

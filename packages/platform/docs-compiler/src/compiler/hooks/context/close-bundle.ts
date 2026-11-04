@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { CloseBundleHookContext, HookContext } from "../../../types";
+import type { CloseBundleHookContext, HookContext } from "../../../types/index.js";
 
 
 /**

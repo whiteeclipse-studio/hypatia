@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { CompileConfiguration, CompilerConfiguration, WatchConfiguration } from "../types";
+import type { CompileConfiguration, CompilerConfiguration, WatchConfiguration } from "../types/index.js";
 
 
 /**

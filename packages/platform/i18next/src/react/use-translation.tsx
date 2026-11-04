@@ -4,7 +4,7 @@
  */
 
 import { Trans as ReactTrans, useTranslation as useReactTranslation } from "react-i18next";
-import { useLocale } from "./locale-context.ts";
+import { useLocale } from "./locale-context.js";
 
 
 /**

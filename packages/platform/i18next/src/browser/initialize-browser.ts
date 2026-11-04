@@ -4,9 +4,9 @@
  */
 
 import type { i18n as I18nInstance } from "i18next";
-import type { TranslationCatalogue } from "../catalogue/index.ts";
-import { readBrowserPreferences, selectLocale } from "../preferences/index.ts";
-import { createConfiguredSession, initializeSession } from "../session/initialize-session.ts";
+import type { TranslationCatalogue } from "../catalogue/index.js";
+import { readBrowserPreferences, selectLocale } from "../preferences/index.js";
+import { createConfiguredSession, initializeSession } from "../session/initialize-session.js";
 
 
 /** The configured browser instance; initialize once with application translations before rendering. */

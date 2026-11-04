@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 import { createOperationQueue } from "@whiteeclipse/async-queue";
-import type { CacheAdapter } from "../types.ts";
+import type { CacheAdapter } from "../types.js";
 
 
 /** A cache owning its backing adapter and explicit per-key payload references. */

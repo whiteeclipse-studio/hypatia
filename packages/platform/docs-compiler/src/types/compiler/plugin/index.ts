@@ -3,25 +3,25 @@
  * Released under the MIT Licence.
  */
 
-import type { ConfigHook } from "./config";
-import type { ConfigResolvedHook } from "./config-resolved";
-import type { BuildStartHook } from "./build-start";
-import type { ResolveIdHook } from "./resolve-id";
-import type { LoadHook } from "./load";
-import type { TransformHook } from "./transform";
-import type { BuildEndHook } from "./build-end";
-import type { CloseBundleHook } from "./close-bundle";
+import type { ConfigHook } from "./config.js";
+import type { ConfigResolvedHook } from "./config-resolved.js";
+import type { BuildStartHook } from "./build-start.js";
+import type { ResolveIdHook } from "./resolve-id.js";
+import type { LoadHook } from "./load.js";
+import type { TransformHook } from "./transform.js";
+import type { BuildEndHook } from "./build-end.js";
+import type { CloseBundleHook } from "./close-bundle.js";
 
 
-export type * from "./config";
-export type * from "./config-resolved";
-export type * from "./context";
-export type * from "./build-start";
-export type * from "./resolve-id";
-export type * from "./load";
-export type * from "./transform";
-export type * from "./build-end";
-export type * from "./close-bundle";
+export type * from "./config.js";
+export type * from "./config-resolved.js";
+export type * from "./context.js";
+export type * from "./build-start.js";
+export type * from "./resolve-id.js";
+export type * from "./load.js";
+export type * from "./transform.js";
+export type * from "./build-end.js";
+export type * from "./close-bundle.js";
 
 /** A named participant in the compilation pipeline. */
 export interface CompilerPlugin {

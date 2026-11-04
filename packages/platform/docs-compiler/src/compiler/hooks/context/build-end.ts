@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import type { BuildEndHookContext, HookContext } from "../../../types";
+import type { BuildEndHookContext, HookContext } from "../../../types/index.js";
 
 
 /**

@@ -5,8 +5,8 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { getLogger, reset } from "@logtape/logtape";
-import { makeDefaultLogConfigurationBuilder, makeLogConfigurationBuilder } from "../index";
-import { makeLogConsoleSinkFactory, makeLogJSONSinkFactory } from "./factory/sink";
+import { makeDefaultLogConfigurationBuilder, makeLogConfigurationBuilder } from "../index.js";
+import { makeLogConsoleSinkFactory, makeLogJSONSinkFactory } from "./factory/sink/index.js";
 
 
 beforeEach(() => {

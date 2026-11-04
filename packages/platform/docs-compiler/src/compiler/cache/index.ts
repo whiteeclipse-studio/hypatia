@@ -7,8 +7,8 @@ import type { CacheAdapter } from "@whiteeclipse/cache";
 import { createAggregateCacheAdapter } from "@whiteeclipse/cache/aggregate";
 import { createLruMemoryCacheAdapter } from "@whiteeclipse/cache/memory";
 import { createSecondaryCache } from "#compiler-cache-secondary";
-import type { CompilerCacheConfiguration } from "../../types";
-import { DEFAULT_COMPILER_CACHE_CONFIGURATION } from "./configuration";
+import type { CompilerCacheConfiguration } from "../../types/index.js";
+import { DEFAULT_COMPILER_CACHE_CONFIGURATION } from "./configuration.js";
 
 
 export { DEFAULT_COMPILER_CACHE_CONFIGURATION };

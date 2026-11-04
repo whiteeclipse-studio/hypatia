@@ -10,9 +10,9 @@ import {
     type CompilationResult,
     isHastRoot,
     type Reference,
-} from "../../types";
-import { copyMetadata } from "../snapshot";
-import { getReferenceKey } from "./reference";
+} from "../../types/index.js";
+import { copyMetadata } from "../snapshot/index.js";
+import { getReferenceKey } from "./reference.js";
 
 
 /** A reusable result independent of build-owned handles and resources. */

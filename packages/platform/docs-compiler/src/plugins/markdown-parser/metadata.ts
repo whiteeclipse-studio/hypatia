@@ -11,8 +11,8 @@ import {
     documentRevisionSchema,
     type TranslationArtifactMetadata,
     translationArtifactMetadataSchema,
-} from "../../types";
-import type { MarkdownParserConfiguration } from "./configuration";
+} from "../../types/index.js";
+import type { MarkdownParserConfiguration } from "./configuration.js";
 
 
 /**

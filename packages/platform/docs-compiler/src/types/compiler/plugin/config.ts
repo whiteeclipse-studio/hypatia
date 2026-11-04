@@ -3,9 +3,9 @@
  * Released under the MIT Licence.
  */
 
-import type { CompilerConfiguration } from "../configuration";
+import type { CompilerConfiguration } from "../configuration.js";
 import type { Promisable } from "type-fest";
-import type { BaseHookContext } from "./context";
+import type { BaseHookContext } from "./context.js";
 
 
 /** Services available during configuration. */

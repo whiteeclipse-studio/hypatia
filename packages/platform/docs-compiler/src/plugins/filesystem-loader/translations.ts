@@ -13,9 +13,9 @@ import type {
     Repository,
     RepositoryReference,
     TransformHookContext,
-} from "../../types";
-import type { ResolvedFilesystemLoaderConfiguration } from "./configuration";
-import { type FilesystemRepository, isExcluded, isWithin } from "./repository";
+} from "../../types/index.js";
+import type { ResolvedFilesystemLoaderConfiguration } from "./configuration.js";
+import { type FilesystemRepository, isExcluded, isWithin } from "./repository/index.js";
 
 
 /**

@@ -8,8 +8,8 @@ import { openAsBlob } from "node:fs";
 import { mkdtempDisposable, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { CacheAdapter } from "../types.ts";
-import { createCacheOperationQueue } from "../operations.ts";
+import type { CacheAdapter } from "../types.js";
+import { createCacheOperationQueue } from "../operations.js";
 import { getLogger } from "@whiteeclipse/log";
 
 
