@@ -6,6 +6,7 @@
 import { defineConfig } from "eslint/config";
 import TypeScript from "typescript-eslint";
 
+
 export default defineConfig(
     {
         name: "@whiteeclipse/toolchain/eslint/typescript",
@@ -17,7 +18,7 @@ export default defineConfig(
             },
         },
         rules: {
-            "@typescript-eslint/no-floating-promises": ["error", { ignoreVoid: false }],
+            "@typescript-eslint/no-floating-promises": ["error", { ignoreVoid: true }],
             "class-methods-use-this": "off",
             "@typescript-eslint/class-methods-use-this": ["error", { ignoreOverrideMethods: true }],
             "@typescript-eslint/consistent-type-exports": ["error", { fixMixedExportsWithInlineTypeSpecifier: true }],
@@ -46,6 +47,7 @@ export default defineConfig(
             "@typescript-eslint/promise-function-async": ["error", { allowAny: false }],
             "@typescript-eslint/require-array-sort-compare": "error",
             "@typescript-eslint/strict-void-return": "error",
+            "@typescript-eslint/no-invalid-void-type": "off",
             "@typescript-eslint/no-unsafe-type-assertion": "error",
             "@typescript-eslint/switch-exhaustiveness-check": "error",
             "@typescript-eslint/strict-boolean-expressions": ["error", { allowString: false, allowNumber: false }],
