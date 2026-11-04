@@ -15,7 +15,7 @@ An application can then open that archive to access the compiled documentation, 
 The result is a Repository snapshot: a fixed collection of artifacts whose contents you can read when needed. This gives
 documentation websites and other tools a common starting point for presenting the material.
 
-This README describes the exploratory `0.1.0-alpha.2` implementation
+This README describes the exploratory `0.1.0-alpha.3` workspace implementation
 under [Hypatia draft RFC-0005](https://github.com/whiteeclipse-studio/hypatia/blob/feature/website/docs/internal/rfcs/0005-documentation-publication.md).
 Acceptance and production publication approval remain pending.
 The [complete package reference](https://github.com/whiteeclipse-studio/hypatia/blob/feature/website/docs/internal/packages/docs-compiler/README.md)
@@ -36,7 +36,49 @@ cd packages/platform/docs-compiler
 Examples below run from this package directory. Source compilation, Markdown parsing, and archive writing require Bun
 `>=1.4.0` and the corresponding native APIs. The examples use the public package exports; applications import the
 compiler from `@whiteeclipse/docs-compiler`. Built-in plugins have explicit
-`@whiteeclipse/docs-compiler/packages/<name>` exports. There is no current CLI or Vite integration.
+`@whiteeclipse/docs-compiler/packages/<name>` exports. The package includes a one-shot Bun CLI; there is no Vite
+integration.
+
+## Command-line builds
+
+The exploratory workspace implementation provides a `docs-compiler` executable. After it is published in a new alpha
+release, invoke it with:
+
+```sh
+bunx @whiteeclipse/docs-compiler@alpha
+bunx @whiteeclipse/docs-compiler@alpha ./project-a ./project-b -o ./archives
+bunx @whiteeclipse/docs-compiler@alpha --include 'docs/**/*.md' --no-callouts
+```
+
+From this package directory, use `bun src/cli/index.ts [repositories...] [options]` to run the workspace implementation.
+Without repository arguments it builds `.`. It runs the Markdown parser, filesystem loader, link resolver, and archive
+writer once, then disposes its snapshot. The writer emits one `<repository-name>.tgz` archive per repository into
+`./dist/docs` by default, using the existing writer's lowercase name and replacement behavior.
+
+Translations, wikilinks, and callouts are enabled by default in the CLI. Use `--no-translations`, `--no-wikilinks`, or
+`--no-callouts` to disable their respective plugin options. For repeated boolean switches, the last occurrence wins.
+The programmatic plugin defaults remain unchanged. Both Markdown syntax extensions ship as regular dependencies.
+
+| Option                                 | Effect                                                                            |
+|----------------------------------------|-----------------------------------------------------------------------------------|
+| `--cwd <directory>`, `-C`              | Base for relative repository inputs; defaults to the invocation directory.        |
+| `--include <glob>`                     | Repeatable repository-relative patterns replacing the loader's default selection. |
+| `--exclude <glob>`                     | Repeatable repository-relative exclusions.                                        |
+| `--translations` / `--no-translations` | Enable or disable related-translation discovery; enabled by default.              |
+| `--wikilinks` / `--no-wikilinks`       | Enable or disable wikilink parsing; enabled by default.                           |
+| `--callouts` / `--no-callouts`         | Enable or disable callout parsing; enabled by default.                            |
+| `--output-directory <directory>`, `-o` | Archive destination; defaults to `./dist/docs`.                                   |
+| `--help`, `-h`                         | Show defaults and examples without compiling.                                     |
+
+Relative output directories resolve from the invocation directory, independently of `--cwd`. Quote globs so the shell
+does not expand them. Use `--` before repository paths beginning with a hyphen. The default include patterns are
+`docs/**/*.md`, `LICENCE`, `LICENSE`, `LICENCE.md`, and `LICENSE.md`; no explicit exclusions are supplied by default.
+Disabling translation discovery does not exclude translation files selected directly by include patterns or links;
+add `--exclude 'docs/translations/**'` to omit that tree entirely.
+
+Successful builds and help exit with status `0`; invalid arguments, compilation errors, and cleanup failures report to
+stderr and exit with status `1`. Unknown flags, missing values, and empty string options are rejected.
+Heading aliases remain available through the programmatic Markdown parser configuration.
 
 ## Your first compilation
 
@@ -129,12 +171,12 @@ releases their backing resources when the surrounding scope ends.
 | `/packages/archive-reader`    | `archiveReader(options?)`    | Bounded archive validation and Repository restoration.                     |
 
 Prefix these suffixes with `@whiteeclipse/docs-compiler`. The first, second, and fourth exports are Bun-only. No plugin
-is enabled by default. See
+is enabled by default by the programmatic API. See
 the [plugin reference](https://whiteeclipse.dev/hypatia/docs/internal/packages/docs-compiler/plugins/README.md) for
 options, ordering, custom hooks, and resource ownership.
 
-Markdown supports GFM and disables raw source HTML. `wikilinks` and `callouts` default to false. Install
-`remark-wiki-link@2.0.1` or `@r4ai/remark-callout@0.6.2` before enabling the respective option. Metadata extraction
+Markdown supports GFM and disables raw source HTML. In the programmatic API, `wikilinks` and `callouts` default to
+false; their extension packages are included as regular dependencies. Metadata extraction
 separates article HAST from copyright/licence and revision sections. Parsing does not establish complete
 documentation-standard compliance.
 
@@ -165,11 +207,13 @@ From this package directory:
 ```sh
 bun run typecheck
 bun run lint
+bun run test
+bun run build
 ```
 
 `bun --conditions=development test/compile.ts` reads an existing `dist/docs/hypatia.tgz` and logs translations. It is a
-development fixture, not a command that builds an archive. The `test` script runs Vitest over `src`; no docs-compiler
-source test files are currently supplied.
+development fixture, not a command that builds an archive. The `test` script runs Vitest over `src`; docs-compiler
+source tests now cover CLI argument handling and Bun subprocess archive builds.
 
 Archive schema version 1 is independent of the package version. See
 the [serialization reference](https://whiteeclipse.dev/hypatia/docs/internal/packages/docs-compiler/serialization.md)
@@ -202,3 +246,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 |----------|------------|---------------|------------------------------------------------------------------------|
 | 1        | 2026-11-04 | Akane SHIMOKA | Introduce the compiler, plugins, browser examples, and watch transport |
 | 2        | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging             |
+| 3        | 2026-11-04 | Akane SHIMOKA | Add the one-shot Bun CLI and bundled Markdown extensions               |

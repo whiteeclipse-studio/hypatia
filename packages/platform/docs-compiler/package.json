@@ -1,6 +1,6 @@
 {
     "name": "@whiteeclipse/docs-compiler",
-    "version": "0.1.0-alpha.2",
+    "version": "0.1.0-alpha.3",
     "description": "Hypatia-compatible extensible documentation compiler that produces Unified HAST artifacts.",
     "repository": {
         "type": "git",
@@ -63,14 +63,18 @@
             "default": "./dist/plugins/archive-reader/index.js"
         }
     },
+    "bin": {
+        "docs-compiler": "./dist/cli/index.js"
+    },
     "scripts": {
-        "build": "rm -rf dist .cache/build && tsc -p tsconfig.json && cp -R .cache/build/src dist && rm -rf .cache/build",
+        "build": "rm -rf dist && tsc -p tsconfig.json",
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",
-        "test": "vitest run src",
+        "test": "vitest run --dir src",
         "typecheck": "tsc -p tsconfig.json --noEmit"
     },
     "dependencies": {
+        "@r4ai/remark-callout": "0.6.2",
         "@types/hast": "3.0.5",
         "@types/mdast": "4.0.4",
         "@whiteeclipse/async-queue": "workspace:*",
@@ -83,13 +87,12 @@
         "remark-gfm": "4.0.1",
         "remark-parse": "11.0.0",
         "remark-rehype": "11.1.2",
+        "remark-wiki-link": "2.0.1",
         "type-fest": "catalog:types",
         "typescript-event-target": "1.1.2",
         "unified": "11.0.5",
         "unist-util-visit": "5.0.0",
-        "zod": "catalog:types",
-        "remark-wiki-link": "2.0.1",
-        "@r4ai/remark-callout": "0.6.2"
+        "zod": "catalog:types"
     },
     "devDependencies": {
         "@total-typescript/ts-reset": "catalog:types",
@@ -106,8 +109,5 @@
     "publishConfig": {
         "access": "public",
         "tag": "alpha"
-    },
-    "bin": {
-        "docs-compiler": "./dist/cli/index.js"
     }
 }

@@ -13,7 +13,7 @@ import type { MarkdownParserConfiguration } from "./configuration.js";
 
 
 /**
- * Creates one reusable processor; optional peer dependencies are loaded only when enabled.
+ * Creates one reusable processor; syntax extensions are loaded only when enabled.
  *
  * @param configuration Captured extension flags.
  * @returns A parser producing HAST and inert front matter without resolving links.

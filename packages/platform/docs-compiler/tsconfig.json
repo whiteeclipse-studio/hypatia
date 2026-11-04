@@ -3,8 +3,8 @@
     "compilerOptions": {
         "types": ["@total-typescript/ts-reset", "node", "bun"],
         "noEmit": false,
-        "rootDir": ".",
-        "outDir": ".cache/build",
+        "rootDir": "src",
+        "outDir": "dist",
         "sourceMap": false,
         "declarationMap": false,
         "rewriteRelativeImportExtensions": true,
@@ -13,5 +13,5 @@
             "#archive-reader-source": ["./src/plugins/archive-reader/filesystem-source.ts"]
         }
     },
-    "include": ["src", "*.config.ts", "scripts", "test"]
+    "include": ["src"]
 }
