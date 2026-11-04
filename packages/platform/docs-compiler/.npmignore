@@ -1,0 +1,7 @@
+/*
+!/dist/
+!/README.md
+!/LICENCE
+!/package.json
+/dist/**/*.spec.*
+/dist/**/*.map
