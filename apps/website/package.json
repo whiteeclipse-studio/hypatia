@@ -1,0 +1,46 @@
+{
+    "name": "@whiteeclipse/website",
+    "version": "0.1.0-alpha.1",
+    "private": true,
+    "description": "Exploratory static website and documentation explorer.",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "build": "bun --conditions=development src/build/index.ts",
+        "dev": "bun --conditions=development src/server/dev.ts",
+        "lint": "bun --conditions=development run --bun eslint .",
+        "preview": "bun src/server/preview.ts",
+        "typecheck": "bun run --cwd ../../packages/platform/i18next build && tsc -p tsconfig.json",
+        "verify": "bun run typecheck && bun run build"
+    },
+    "dependencies": {
+        "@radix-ui/react-icons": "^1.3.2",
+        "@radix-ui/themes": "catalog:ui",
+        "@whiteeclipse/cache": "workspace:*",
+        "@whiteeclipse/core-ui": "workspace:*",
+        "@whiteeclipse/docs-compiler": "workspace:*",
+        "@whiteeclipse/i18next": "workspace:*",
+        "hast-util-sanitize": "^5.0.2",
+        "react": "catalog:ui",
+        "react-dom": "catalog:ui",
+        "react-router": "^7.9.6",
+        "rehype-react": "^8.0.0",
+        "unified": "11.0.5",
+        "zod": "catalog:types"
+    },
+    "devDependencies": {
+        "@jspm/core": "^2.1.0",
+        "@tailwindcss/vite": "4.3.3",
+        "@total-typescript/ts-reset": "catalog:types",
+        "@types/bun": "catalog:types",
+        "@types/hast": "3.0.5",
+        "@types/node": "catalog:types",
+        "@types/react": "catalog:types",
+        "@types/react-dom": "catalog:types",
+        "@whiteeclipse/toolchain": "workspace:*",
+        "eslint": "catalog:tooling",
+        "tailwindcss": "4.3.3",
+        "typescript": "catalog:types",
+        "vite": "catalog:build"
+    }
+}

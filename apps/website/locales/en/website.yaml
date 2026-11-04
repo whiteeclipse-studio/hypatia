@@ -1,0 +1,26 @@
+documentation: Documentation
+skip: Skip to content
+language: Language
+project: Project
+filter: Find a page…
+empty: No pages match your search.
+browse: Browse documentation
+breadcrumb: Breadcrumb
+loading: Loading documentation…
+update: Update
+updateFailed: Could not update documentation. Showing the available version.
+contents: On this page
+licence: Copyright and licence
+revisions: Revisions
+revision: Revision
+date: Date
+author: Author
+description: Description
+close: Close
+notFound: Page not found
+englishFallback: This document is shown in English because a translation is not available.
+exploratory: Exploratory implementation
+tagline: Shared knowledge. Room to think.
+expand: Expand {{title}}
+collapse: Collapse {{title}}
+generatedDirectory: This folder index was automatically generated because no README is available.
