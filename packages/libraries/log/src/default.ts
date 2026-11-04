@@ -10,7 +10,7 @@ import { isLogLevel, type LogLevel } from "@logtape/logtape";
 const production = import.meta.env.NODE_ENV?.toLowerCase() === "production";
 
 // Configure the default log level.
-let lowestLevel: LogLevel = "trace";
+let lowestLevel: LogLevel = "debug";
 if (production) {
     lowestLevel = "info";
 }
