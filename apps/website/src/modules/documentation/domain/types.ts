@@ -85,5 +85,6 @@ export function pageKey(index: ProjectIndex, route: string): string {
  * @returns The prepared result.
  */
 export function pageDataUrl(index: ProjectIndex, route: string): string {
-    return `/_data/${index.project.id}/${index.generation}/${encodeURIComponent(route)}.json`;
+    const path = route.replace(/^\/|\/$/g, "");
+    return `/_data/${index.project.id}/${index.generation}/${path}${path === "" ? "" : "/"}index.json`;
 }

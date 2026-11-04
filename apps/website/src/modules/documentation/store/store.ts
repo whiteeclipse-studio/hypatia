@@ -161,7 +161,7 @@ export function createDocumentationStore(bootstrap: Bootstrap): DocumentationSto
                 try {
                     const url = bootstrap.development
                         ? `/__docs/page?project=${encodeURIComponent(index.project.id)}&route=${encodeURIComponent(route)}`
-                        : pageDataUrl(index, route);
+                        : encodeURI(pageDataUrl(index, route));
                     const response = await fetch(url);
                     if (!response.ok) {
                         throw new Error(

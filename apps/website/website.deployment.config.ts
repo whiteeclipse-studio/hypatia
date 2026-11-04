@@ -5,7 +5,7 @@
 import type { WebsiteConfiguration } from "./src/app/configuration";
 
 
-/** Temporary source builds until project documentation archives are published. */
+/** Deploy local Hypatia sources and Ryugu's latest compiled documentation archive. */
 export default {
     projects: [
         { id: "hypatia", name: "Hypatia", source: { kind: "local", path: "../.." } },

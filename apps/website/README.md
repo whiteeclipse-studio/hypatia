@@ -57,10 +57,11 @@ paths
 and project source paths resolve from `apps/website`. The optional file is validated before source loading; invalid or
 missing files fail the build rather than falling back to local defaults.
 
-`website.deployment.config.ts` selects the public domains and temporary source builds. `.do/app.yaml` builds from
-`feature/website`, fetches Ryugu’s `main` branch into `.cache/ryugu`, builds the reusable packages, and emits separate
-landing and documentation static roots. The original domain aliases and redirects are retained. Run the same build
-locally after fetching Ryugu with:
+`website.deployment.config.ts` selects the public domains, local Hypatia sources, and the `ryugu.tgz` asset from Ryugu's
+latest GitHub release. `.do/app.yaml` builds from `feature/website` using one static-site component rooted at
+`apps/website/dist`. Hostname-based ingress rewrites serve `whiteeclipse.fr` from `landing/` and `whiteeclipse.dev` from
+`docs/`. The build copies the documentation fallback to the output root because App Platform requires a root filename
+for its shared error document. The original domain aliases and redirects are retained. Run the same build locally with:
 
 ```sh
 bun run build:packages
@@ -69,7 +70,8 @@ WEBSITE_CONFIG=website.deployment.config.ts bun run --cwd apps/website build
 
 Publication restrictions and production approval remain pending as described above; the prepared spec is not an
 approval.
-The Ryugu archive workflow and the subsequent switch from source builds to archives are separate work.
+Ryugu's release workflow keeps the archive filename stable. A new website build fetches the latest archive; browser
+updates remain disabled because no CORS-enabled `archiveUrl` is configured.
 
 ```ts
 {
@@ -168,4 +170,5 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 3        | 2026-11-04 | Akane SHIMOKA | Document custom configuration and temporary App Platform builds |
 | 4        | 2026-11-04 | Codex         | Document optional parent and reading-sequence navigation        |
 | 5        | 2026-11-04 | Codex         | Document navigation payload regression checks                   |
-| 5        | 2026-11-04 | Codex         | Document development transforms for linked workspace JavaScript |
+| 6        | 2026-11-04 | Codex         | Document development transforms for linked workspace JavaScript |
+| 7        | 2026-11-04 | Akane SHIMOKA | Document single-site deployment and Ryugu release archives      |
