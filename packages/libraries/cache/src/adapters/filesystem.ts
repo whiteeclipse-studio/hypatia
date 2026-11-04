@@ -15,22 +15,20 @@ import { getLogger } from "@whiteeclipse/log";
 
 const logger = getLogger(["whiteeclipse", "cache", "filesystem"]);
 
-/** Ephemeral filesystem cache with borrowed, file-backed Blobs. */
+/** Temporary filesystem cache with borrowed, file-backed Blobs. */
 export interface FileSystemCacheAdapter extends CacheAdapter {
-    /** Absolute path to the temporary directory deleted during disposal. */
+    /** Absolute path to the directory deleted on disposal. */
     readonly directory: string;
 }
 
 /**
- * Creates a temporary, Blob-based filesystem cache.
+ * Creates a temporary filesystem cache.
  *
- * Operations run sequentially in invocation order. Disposal stops admission,
- * waits for admitted operations, then deletes the directory. Returned Blobs
- * are borrowed: replacement, removal, or disposal may invalidate them.
+ * Operations run sequentially. Disposal drains them and deletes the directory.
  *
- * @param location Existing parent directory, defaulting to the system temporary directory.
- * @returns A cache owning a fresh temporary directory.
- * @rejects If the temporary directory cannot be created.
+ * @param location Existing parent directory; defaults to the system temporary directory.
+ * @returns A cache owning a new temporary directory.
+ * @rejects If directory creation fails.
  */
 export async function createFileSystemCacheAdapter(location = tmpdir()): Promise<FileSystemCacheAdapter> {
     const directory = await mkdtempDisposable(join(location, "whiteeclipse-cache-")).catch((error: unknown) => {

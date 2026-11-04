@@ -7,16 +7,16 @@ import { createOperationQueue } from "@whiteeclipse/async-queue";
 import { getLogger } from "@whiteeclipse/log";
 
 
-/** Orders cache operations and records outcomes without configuring logging. */
+/** Logs sequential cache operations. */
 interface CacheOperationQueue extends AsyncDisposable {
     /**
-     * Admits an operation in invocation order and records its outcome.
+     * Queues an operation and logs its outcome.
      *
-     * @param operation Cache operation name.
-     * @param key Opaque resource identifier, recorded only at trace level.
-     * @param action Operation to perform after previous actions settle.
-     * @returns The original operation result.
-     * @rejects With the original failure if disposed or the operation fails.
+     * @param operation Operation name.
+     * @param key Resource identifier, logged at trace level only.
+     * @param action Action to run.
+     * @returns The action's result.
+     * @rejects If disposed or the action fails, preserving the original error.
      */
     run<Result>(
         operation: "read" | "write" | "remove",
@@ -26,12 +26,11 @@ interface CacheOperationQueue extends AsyncDisposable {
 }
 
 /**
- * Adds cache diagnostics to the shared sequential queue and its one-time cleanup.
+ * Adds cache logging to a sequential queue.
  *
- * @param adapter Adapter category suffix.
- * @param cleanup Cleanup invoked once after admitted operations settle.
- * @returns A queue retaining operation ordering and draining disposal.
- * @rejects Returned operations propagate original action and cleanup failures.
+ * @param adapter Logger category suffix.
+ * @param cleanup Runs once after queued operations settle.
+ * @returns The operation queue.
  */
 export function createCacheOperationQueue(adapter: string, cleanup: () => Promise<void>): CacheOperationQueue {
     const logger = getLogger(["whiteeclipse", "cache", adapter]);

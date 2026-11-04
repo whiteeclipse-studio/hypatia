@@ -7,13 +7,11 @@ import type { $ZodType, output } from "zod/v4/core";
 
 
 /**
- * Serializes a JSON-compatible value into an application/json Blob.
+ * Serializes a value to JSON in memory.
  *
- * Serialization materializes the complete JSON representation before returning.
- *
- * @param value JSON-compatible value to serialize.
- * @returns A Blob containing UTF-8 JSON bytes.
- * @throws {unknown} If JSON serialization fails.
+ * @param value JSON-compatible value.
+ * @returns An application/json Blob.
+ * @throws {unknown} If the value cannot be serialized.
  */
 export function encodeJson(value: unknown): Blob {
     // Unsupported root values can produce undefined despite the library typing.
@@ -25,24 +23,21 @@ export function encodeJson(value: unknown): Blob {
 }
 
 /**
- * Parses a JSON Blob without loading Zod.
+ * Parses JSON without loading Zod.
  *
- * @param blob Blob containing UTF-8 JSON bytes.
- * @returns The decoded JSON value.
- * @rejects For Blob read failures or malformed JSON.
+ * @param blob JSON to parse.
+ * @returns The parsed value.
+ * @rejects If reading or parsing fails.
  */
 export function decodeJson(blob: Blob): Promise<unknown>;
 
 /**
- * Parses a JSON Blob and validates it with an optional Zod peer dependency.
+ * Parses JSON and validates it asynchronously with Zod.
  *
- * The complete value is parsed before validation. Schema output is inferred,
- * including asynchronous refinements and transformations.
- *
- * @param blob Blob containing UTF-8 JSON bytes.
- * @param schema Zod 4 or Zod Mini schema used to validate the parsed JSON.
- * @returns The validated schema output.
- * @rejects For Blob read failures, malformed JSON, or schema validation failures.
+ * @param blob JSON to parse.
+ * @param schema Zod 4 or Zod Mini schema; requires the optional Zod peer.
+ * @returns The schema output, including transformations.
+ * @rejects If reading, parsing, or validation fails.
  */
 export function decodeJson<Schema extends $ZodType>(blob: Blob, schema: Schema): Promise<output<Schema>>;
 

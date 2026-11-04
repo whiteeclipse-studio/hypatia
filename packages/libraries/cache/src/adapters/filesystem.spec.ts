@@ -10,12 +10,12 @@ import { createFileSystemCacheAdapter, type FileSystemCacheAdapter } from "@whit
 
 
 /**
- * Retrieves an expected fixture entry.
+ * Reads a required fixture entry.
  *
  * @param cache Adapter under test.
  * @param key Fixture key.
- * @returns A borrowed Blob.
- * @rejects If an expected entry is absent or the cache read fails.
+ * @returns The cached Blob.
+ * @rejects If reading fails or the entry is absent.
  */
 async function readBlob(cache: FileSystemCacheAdapter, key: string): Promise<Blob> {
     const blob = await cache.read(key);

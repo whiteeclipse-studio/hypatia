@@ -10,12 +10,12 @@ import { expect, it } from "vitest";
 
 
 /**
- * Bundles a synthetic consumer using browser package resolution.
+ * Bundles a browser consumer in memory.
  *
- * @param source Consumer module source.
- * @param conditions Additional resolution conditions to exercise.
- * @returns The in-memory Vite build output.
- * @rejects If an import cannot be resolved or bundled.
+ * @param source Consumer source.
+ * @param conditions Additional resolution conditions.
+ * @returns The Vite build output.
+ * @rejects If resolution or bundling fails.
  */
 async function bundleBrowser(source: string, conditions: string[] = []) {
     const entry = resolve(import.meta.dirname, "cache-browser-consumer.ts");
@@ -28,10 +28,10 @@ async function bundleBrowser(source: string, conditions: string[] = []) {
             {
                 name: "cache-browser-consumer",
                 /**
-                 * Supplies the consumer without writing a fixture file.
+                 * Resolves the virtual consumer entry.
                  *
-                 * @param id Requested module identifier.
-                 * @returns The virtual entry identifier when it matches.
+                 * @param id Module identifier.
+                 * @returns The entry identifier if matched.
                  */
                 resolveId(id) {
                     if (id === entry) {
@@ -40,10 +40,10 @@ async function bundleBrowser(source: string, conditions: string[] = []) {
                     return undefined;
                 },
                 /**
-                 * Loads the synthetic consumer module.
+                 * Loads the virtual consumer.
                  *
-                 * @param id Resolved module identifier.
-                 * @returns The consumer source when requested.
+                 * @param id Module identifier.
+                 * @returns The consumer source if matched.
                  */
                 load(id) {
                     if (id === entry) {

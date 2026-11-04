@@ -19,9 +19,9 @@ afterEach(async () => {
 });
 
 /**
- * Allocates an isolated database name for cleanup after each test.
+ * Registers a database for test cleanup.
  *
- * @returns A fresh name for a dedicated test database.
+ * @returns A unique database name.
  */
 function databaseName(): string {
     const name = `hypatia-cache-test-${crypto.randomUUID()}`;
@@ -62,6 +62,34 @@ it("persists committed writes across disposal and reopening", async () => {
     expect(await (await second.read("key"))?.text()).toBe("persistent");
 });
 
+it("drains writes and deletes a temporary database once on disposal", async () => {
+    const name = databaseName();
+    const deletion = vi.spyOn(indexedDB, "deleteDatabase");
+    const cache = await createIndexedDbCacheAdapter(name, { deleteOnDispose: true });
+    const writing = cache.write("key", new Blob(["temporary"]));
+    const disposing = cache[Symbol.asyncDispose]();
+    const repeated = cache[Symbol.asyncDispose]();
+    await expect(cache.read("key")).rejects.toThrow("disposed");
+    await Promise.all([writing, disposing, repeated]);
+    expect(deletion).toHaveBeenCalledExactlyOnceWith(name);
+    expect((await indexedDB.databases()).some(database => database.name === name)).toBe(false);
+    await using reopened = await createIndexedDbCacheAdapter(name);
+    expect(await reopened.read("key")).toBeUndefined();
+});
+
+it("reports deletion blocked by another connection and preserves the disposal failure", async () => {
+    const name = databaseName();
+    const cache = await createIndexedDbCacheAdapter(name, { deleteOnDispose: true });
+    const blocker = await openDB(name, 1);
+    try {
+        await expect(cache[Symbol.asyncDispose]()).rejects.toThrow("blocked by another connection");
+        await expect(cache[Symbol.asyncDispose]()).rejects.toThrow("blocked by another connection");
+    } finally {
+        blocker.close();
+        await deleteDB(name);
+    }
+});
+
 it("isolates named databases while allowing same-name connections to share committed data", async () => {
     const name = databaseName();
     await using first = await createIndexedDbCacheAdapter(name);
@@ -95,7 +123,7 @@ it("rejects incompatible schema versions without overwriting stored data", async
     const name = databaseName();
     const raw = await openDB(name, 2, {
         /**
-         * Installs an unsupported schema version for the fixture.
+         * Creates an incompatible schema fixture.
          *
          * @param db Fixture database.
          */

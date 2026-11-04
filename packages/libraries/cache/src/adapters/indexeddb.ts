@@ -3,7 +3,7 @@
  * Released under the MIT Licence.
  */
 
-import { type DBSchema, openDB } from "idb";
+import { type DBSchema, deleteDB, openDB } from "idb";
 import type { CacheAdapter } from "../types.ts";
 import { createCacheOperationQueue } from "../operations.ts";
 import { getLogger } from "@whiteeclipse/log";
@@ -11,13 +11,19 @@ import { getLogger } from "@whiteeclipse/log";
 
 const logger = getLogger(["whiteeclipse", "cache", "indexeddb"]);
 
-/** Persistent Blob cache scoped to an IndexedDB database name. */
+/** IndexedDB cleanup options. */
+export interface IndexedDbCacheAdapterOptions {
+    /** Delete the entire database on disposal; defaults to false. */
+    readonly deleteOnDispose?: boolean;
+}
+
+/** Blob cache backed by a dedicated IndexedDB database. */
 export interface IndexedDbCacheAdapter extends CacheAdapter {
-    /** Database owned by this adapter; entries survive connection disposal. */
+    /** Dedicated database name. */
     readonly name: string;
 }
 
-/** Version-one schema for a dedicated cache database. */
+/** Version-one cache schema. */
 interface CacheDatabase extends DBSchema {
     entries: {
         key: string;
@@ -26,36 +32,43 @@ interface CacheDatabase extends DBSchema {
 }
 
 /**
- * Opens a dedicated IndexedDB database storing Blobs under opaque string keys.
+ * Opens an IndexedDB cache.
  *
- * Writes resolve after transaction commit. Disposal drains admitted operations
- * and closes this connection without deleting stored entries. Reopening the same
- * name reuses its data. Other connections and browser storage eviction remain
- * outside the adapter's operation queue. A version change closes the connection
- * to allow upgrades or database deletion; subsequent operations reject.
+ * Writes resolve after transaction commit.
  *
- * @param name Database name reserved for this adapter's schema.
- * @returns A persistent cache with an asynchronously disposable connection.
- * @rejects If IndexedDB is unavailable, opening fails, or the database schema is incompatible.
+ * Disposal closes the connection and retains entries unless deleteOnDispose is set.
+ * Deletion rejects on failure or blockage.
+ *
+ * External version changes close the connection; later operations reject.
+ * Other connections and browser storage eviction are outside the queue.
+ *
+ * @param name Database reserved for this adapter's schema.
+ * @param options Cleanup options.
+ * @returns The IndexedDB cache.
+ * @rejects If IndexedDB is unavailable, opening fails, or the schema is incompatible.
  */
-export async function createIndexedDbCacheAdapter(name: string): Promise<IndexedDbCacheAdapter> {
+export async function createIndexedDbCacheAdapter(
+    name: string,
+    options: IndexedDbCacheAdapterOptions = {},
+): Promise<IndexedDbCacheAdapter> {
     if (typeof indexedDB === "undefined") {
         const error = new Error("IndexedDB is unavailable in this environment.");
         logger.error("Cannot open IndexedDB cache.", { error });
         throw error;
     }
 
+    const deleteOnDispose = options.deleteOnDispose ?? false;
     const database = await openDB<CacheDatabase>(name, 1, {
         /**
-         * Initializes the dedicated cache store on first open.
+         * Creates the cache store on first open.
          *
-         * @param db Database being initialized.
+         * @param db Database to initialize.
          */
         upgrade(db) {
             db.createObjectStore("entries");
         },
 
-        /** Releases this connection when another client requests a schema change. */
+        /** Closes the connection for an external schema change. */
         blocking() {
             logger.warn("Closing IndexedDB cache connection for an external version change.");
             database.close();
@@ -75,7 +88,9 @@ export async function createIndexedDbCacheAdapter(name: string): Promise<Indexed
     logger.debug("Opened IndexedDB cache connection.");
     const queue = createCacheOperationQueue("indexeddb", async () => {
         database.close();
-        await Promise.resolve();
+        if (deleteOnDispose) {
+            await deleteDB(name);
+        }
     });
 
     return {

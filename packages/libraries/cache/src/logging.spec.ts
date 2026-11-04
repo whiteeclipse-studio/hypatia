@@ -17,7 +17,7 @@ import { createCacheOperationQueue } from "./operations.ts";
 import type { CacheAdapter } from "./types.ts";
 
 
-/** Captured structured diagnostics used without console or telemetry sinks. */
+/** Captured cache log records. */
 interface RecordedLog {
     level: string;
     category: readonly string[];
@@ -49,12 +49,12 @@ afterEach(async () => {
 });
 
 /**
- * Exercises routine operations and checks trace-level outcomes for an adapter.
+ * Checks operation trace logs.
  *
- * @param cache Adapter owned by the calling test.
+ * @param cache Adapter under test.
  * @param adapter Expected category suffix.
- * @returns Completion of read, write, and removal checks.
- * @rejects If an operation fails unexpectedly.
+ * @returns Completion of the checks.
+ * @rejects If an operation or assertion fails.
  */
 async function checkOperations(cache: CacheAdapter, adapter: string): Promise<void> {
     expect(await cache.read("synthetic-key")).toBeUndefined();

@@ -10,10 +10,10 @@ import { decodeJson, encodeJson } from "./utility.ts";
 
 
 /**
- * Encodes fixture text into a web-compatible Blob.
+ * Creates a text fixture.
  *
- * @param text Serialized fixture text.
- * @returns A fresh stream of UTF-8 bytes.
+ * @param text Fixture content.
+ * @returns A UTF-8 Blob.
  */
 function textBlob(text: string): Blob {
     return new Blob([text]);

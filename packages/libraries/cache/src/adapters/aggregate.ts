@@ -11,46 +11,47 @@ import { getLogger } from "@whiteeclipse/log";
 const logger = getLogger(["whiteeclipse", "cache", "aggregate"]);
 
 /**
- * Reads adapters in order and replicates writes and removals to all adapters.
+ * Cache combining multiple adapters.
  *
- * Reads stop at the first hit and propagate errors rather than treating them as misses.
- * Replicated operations attempt every adapter and reject with an AggregateError after all settle.
- * Replication is not transactional:
- * successful backends are not rolled back when another fails, so their contents may differ.
+ * Reads stop at the first hit or error, in child priority order.
  *
- * Operations run sequentially in invocation order;
- * backends within a replicated operation run concurrently.
- * Disposal stops admission, drains operations, and disposes every distinct child once,
- * reporting all cleanup failures together.
- * The aggregate owns its children; do not dispose or mutate them independently.
+ * Writes and removals run concurrently across distinct children.
+ * Failures are collected in an AggregateError without rollback.
+ *
+ * Operations run sequentially. Disposal drains operations, disposes each distinct
+ * child once, and collects clean-up failures in an AggregateError.
+ *
+ * Owns its children; do not mutate or dispose them independently.
  */
 export interface AggregateCacheAdapter<T extends readonly CacheAdapter[]> extends CacheAdapter {
-    /** The adapters in read-priority order. Do not mutate this list while in use. */
+    /** Children in read-priority order; do not mutate while in use. */
     readonly adapters: T;
 }
 
 /**
- * Creates an aggregate owning the supplied adapters, including their disposal.
+ * Creates an aggregate cache.
  *
- * An empty aggregate always misses; writes, removals, and disposal are no-ops.
+ * An empty aggregate always misses and otherwise does nothing.
  *
- * @param adapters Adapters in read-priority order, whose membership stays fixed.
- * @returns A Blob-based aggregate cache.
- * @rejects Returned operations reject on disposal or backend failures, as described by the interface.
+ * @param adapters Children in read-priority order.
+ * @returns The aggregate cache.
+ * @rejects Returned operations reject if disposed or a child fails.
  */
-export function createAggregateCacheAdapter<T extends readonly CacheAdapter[]>(adapters: T): AggregateCacheAdapter<T> {
+export function createAggregateCacheAdapter<const T extends readonly CacheAdapter[]>(
+    ...adapters: T
+): AggregateCacheAdapter<T> {
     logger.debug("Creating aggregate cache with {childCount} children.", { childCount: adapters.length });
     const queue = createCacheOperationQueue("aggregate", async () =>
         replicate(async adapter => adapter[Symbol.asyncDispose](), "Aggregate cache disposal failed."),
     );
 
     /**
-     * Attempts every child even if an invocation throws synchronously.
+     * Runs an action on each distinct child, collecting all failures.
      *
-     * @param action Operation to invoke on each child.
-     * @param message Description used if one or more children fail.
-     * @returns Completion after every child settles.
-     * @rejects With all failures in adapter order.
+     * @param action Child operation.
+     * @param message Error message.
+     * @returns Completion after all children settle.
+     * @rejects With an AggregateError in child order.
      */
     async function replicate(action: (adapter: CacheAdapter) => Promise<void>, message: string): Promise<void> {
         const results = await Promise.allSettled([...new Set(adapters)].map(async adapter => action(adapter)));

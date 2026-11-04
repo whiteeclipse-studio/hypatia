@@ -10,25 +10,24 @@ import { getLogger } from "@whiteeclipse/log";
 
 const logger = getLogger(["whiteeclipse", "cache", "memory"]);
 
-/** A Blob cache evicting the least recently read or written entry first. */
+/** Blob cache with least-recently-used eviction. */
 export interface LruMemoryCacheAdapter extends CacheAdapter {
-    /** Retained content budget; empty Blobs count as one byte to bound entry count. */
+    /** Retained byte budget; empty Blobs count as one byte. */
     readonly maxBytes: number;
 }
 
 /**
- * Creates a memory cache with a fixed byte budget and least-recently-used eviction.
+ * Creates an LRU memory cache.
  *
- * Accepted writes materialize independent in-memory Blobs.
- * Oversized writes are not retained and remove any older value under the same key.
- * Zero disables retention. Empty Blobs count as one byte so they cannot accumulate unboundedly.
- * The budget excludes keys, object overhead, temporary copies, and caller-held references.
- * Eviction and disposal release the cache's references, not callers'.
+ * Stores independent copies. Eviction and disposal leave caller-held Blobs usable.
  *
- * @param maxBytes Nonnegative safe integer limiting retained content bytes.
- * @returns An asynchronously disposable LRU memory cache.
- * @throws {RangeError} If the budget is not a nonnegative safe integer.
- * @rejects Returned operations reject if disposed or a supplied Blob cannot be read.
+ * Zero disables retention. Oversized writes remove any previous entry.
+ *
+ * The budget excludes keys, object overhead, and temporary or caller-held copies.
+ *
+ * @param maxBytes Retained byte budget; empty Blobs count as one byte.
+ * @returns The memory cache.
+ * @throws {RangeError} If maxBytes is not a nonnegative safe integer.
  */
 export function createLruMemoryCacheAdapter(maxBytes: number): LruMemoryCacheAdapter {
     if (!Number.isSafeInteger(maxBytes) || maxBytes < 0) {
@@ -46,9 +45,9 @@ export function createLruMemoryCacheAdapter(maxBytes: number): LruMemoryCacheAda
     });
 
     /**
-     * Removes a retained entry and releases its accounted capacity.
+     * Removes an entry and frees its budget.
      *
-     * @param key Opaque resource identifier.
+     * @param key Resource identifier.
      */
     function removeEntry(key: string): void {
         const previous = entries.get(key);

@@ -5,13 +5,13 @@
 
 import { expect, expectTypeOf, it, vi } from "vitest";
 import type { CacheAdapter } from "../types.ts";
-import { createAggregateCacheAdapter } from "@whiteeclipse/cache/aggregate";
+import { createAggregateCacheAdapter } from "./aggregate";
 
 
 /**
- * Creates controllable backends to exercise the aggregate's orchestration.
+ * Creates a stub cache.
  *
- * @returns Typed spies for each child operation.
+ * @returns Spies for each operation.
  */
 function child() {
     return {
@@ -28,7 +28,7 @@ it("reads in priority order, returns the first hit, and does not populate earlie
     const third = child();
     const blob = new Blob(["contents"]);
     second.read.mockResolvedValue(blob);
-    await using cache = createAggregateCacheAdapter([first, second, third] as const);
+    await using cache = createAggregateCacheAdapter(first, second, third);
 
     expect(await cache.read("key")).toBe(blob);
     expect(first.read).toHaveBeenCalledWith("key");
@@ -42,7 +42,7 @@ it("reads in priority order, returns the first hit, and does not populate earlie
 it("returns undefined only after every child misses and accepts empty Blobs as hits", async () => {
     const first = child();
     const second = child();
-    await using cache = createAggregateCacheAdapter([first, second]);
+    await using cache = createAggregateCacheAdapter(first, second);
     expect(await cache.read("missing")).toBeUndefined();
     expect(second.read).toHaveBeenCalledWith("missing");
     const empty = new Blob();
@@ -56,7 +56,7 @@ it("propagates read errors without treating them as misses, then accepts later o
     const second = child();
     const failure = new Error("Read failed.");
     first.read.mockRejectedValueOnce(failure);
-    await using cache = createAggregateCacheAdapter([first, second]);
+    await using cache = createAggregateCacheAdapter(first, second);
     await expect(cache.read("key")).rejects.toBe(failure);
     expect(second.read).not.toHaveBeenCalled();
     expect(await cache.read("key")).toBeUndefined();
@@ -67,7 +67,7 @@ it("replicates the same Blob and key to all children", async () => {
     const first = child();
     const second = child();
     const blob = new Blob(["contents"], { type: "text/plain" });
-    await using cache = createAggregateCacheAdapter([first, second]);
+    await using cache = createAggregateCacheAdapter(first, second);
     await cache.write("key", blob);
     await cache.remove("key");
     for (const adapter of [first, second]) {
@@ -91,7 +91,7 @@ it.each(["write", "remove"] as const)("waits for every %s result and preserves a
         return pending.promise;
     });
     third[method].mockRejectedValue("non-Error rejection");
-    await using cache = createAggregateCacheAdapter([first, second, third]);
+    await using cache = createAggregateCacheAdapter(first, second, third);
     const result = method === "write" ? cache.write("key", new Blob()) : cache.remove("key");
     const rejection = expect(result).rejects.toMatchObject({ errors: [failure, "non-Error rejection"] });
     let settled = false;
@@ -112,7 +112,7 @@ it.each(["write", "remove"] as const)("waits for every %s result and preserves a
 });
 
 it("handles an empty aggregate and rejects operations after disposal", async () => {
-    const cache = createAggregateCacheAdapter([]);
+    const cache = createAggregateCacheAdapter();
     expect(await cache.read("key")).toBeUndefined();
     await cache.write("key", new Blob());
     await cache.remove("key");
@@ -131,7 +131,7 @@ it("drains admitted reads before disposing children and rejects new calls immedi
         started.resolve(undefined);
         return reading.promise;
     });
-    const cache = createAggregateCacheAdapter([adapter]);
+    const cache = createAggregateCacheAdapter(adapter);
     const result = cache.read("key");
     await started.promise;
     const disposal = cache[Symbol.asyncDispose]();
@@ -161,7 +161,7 @@ it("disposes every distinct child once, waits for cleanup, and repeats the same 
         return pending.promise;
     });
     third[Symbol.asyncDispose].mockRejectedValue("cleanup rejection");
-    const cache = createAggregateCacheAdapter([first, second, first, third]);
+    const cache = createAggregateCacheAdapter(first, second, first, third);
     const disposal = cache[Symbol.asyncDispose]();
     const rejection = expect(disposal).rejects.toMatchObject({
         errors: [failure, "late cleanup failure", "cleanup rejection"],
@@ -182,7 +182,7 @@ it("attempts each distinct child once and does not roll back partial replication
     const second = child();
     const failure = new Error("Backend write failed.");
     second.write.mockRejectedValue(failure);
-    await using cache = createAggregateCacheAdapter([first, first, second]);
+    await using cache = createAggregateCacheAdapter(first, first, second);
     await expect(cache.write("key", new Blob())).rejects.toMatchObject({ errors: [failure] });
     expect(first.write).toHaveBeenCalledTimes(1);
     expect(second.write).toHaveBeenCalledTimes(1);
