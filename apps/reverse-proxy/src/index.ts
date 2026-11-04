@@ -25,13 +25,18 @@ function responseHeaders(): Headers {
 }
 
 /**
- * Resolves a single repository key to its latest release archive.
+ * Resolves a repository archive filename with a required .tgz extension.
  *
  * @param request The incoming archive request.
  * @returns The fixed-organization GitHub URL, or null for an invalid key.
  */
 function archiveUrl(request: Request): string | null {
-    const repository = new URL(request.url).pathname.slice(1);
+    const path = new URL(request.url).pathname;
+    const extension = ".tgz";
+    if (!path.endsWith(extension)) {
+        return null;
+    }
+    const repository = path.slice(1, -extension.length);
     if (!/^[A-Za-z0-9_.-]{1,100}$/.test(repository) || repository === "." || repository === "..") {
         return null;
     }

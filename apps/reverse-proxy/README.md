@@ -23,16 +23,19 @@ bun install
 bun run --cwd apps/reverse-proxy dev
 ```
 
-Request `http://localhost:8787/ryugu`. Each single-segment path is a repository key under `whiteeclipse-studio`:
+Request `http://localhost:8787/ryugu.tgz`. Each single-segment path must be `<repository>.tgz` under
+`whiteeclipse-studio`:
 
 ```text
-/ryugu   -> https://github.com/whiteeclipse-studio/ryugu/releases/latest/download/ryugu.tgz
-/hypatia -> https://github.com/whiteeclipse-studio/hypatia/releases/latest/download/hypatia.tgz
+/ryugu.tgz   -> https://github.com/whiteeclipse-studio/ryugu/releases/latest/download/ryugu.tgz
+/hypatia.tgz -> https://github.com/whiteeclipse-studio/hypatia/releases/latest/download/hypatia.tgz
 ```
 
 Repositories must be public and publish a stable `<repository>.tgz` asset in the release GitHub considers latest.
 New repositories following this convention need no Worker configuration changes. Repository keys accept 1–100 ASCII
 letters, digits, periods, underscores and hyphens; `.` and `..`, encoded keys and additional path segments are rejected.
+The final `.tgz` extension is required and removed once to determine the repository key. Missing or different
+extensions return HTTP 400 without contacting GitHub.
 Query parameters do not select the upstream. The GitHub organization and permitted browser origin are constants in
 `src/index.ts`.
 
@@ -69,7 +72,7 @@ then run `bun run --cwd apps/reverse-proxy deploy`. Wrangler's local state and d
 After deployment, set the website project's browser update URL to the assigned Worker address:
 
 ```ts
-archiveUrl: "https://hypatia-reverse-proxy.YOUR-SUBDOMAIN.workers.dev/ryugu",
+archiveUrl: "https://hypatia-reverse-proxy.z8hm5znzhn.workers.dev/ryugu.tgz",
 ```
 
 Keep the website's build-time `source.url` pointing directly to GitHub, then rebuild and deploy the website to publish
@@ -102,3 +105,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author | Description                                                         |
 |----------|------------|--------|---------------------------------------------------------------------|
 | 1        | 2026-11-04 | Codex  | Introduce the repository archive Worker and deployment instructions |
+| 2        | 2026-11-04 | Codex  | Require the .tgz extension on archive request URLs                  |
