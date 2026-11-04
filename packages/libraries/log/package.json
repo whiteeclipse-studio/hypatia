@@ -9,7 +9,8 @@
     },
     "license": "MIT",
     "sideEffects": [
-        "./src/default.ts"
+        "./src/default.ts",
+        "./dist/default.js"
     ],
     "type": "module",
     "exports": {
@@ -49,7 +50,7 @@
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",
         "test": "vitest run src",
-        "typecheck": "tsc -p tsconfig.json"
+        "typecheck": "tsc -p tsconfig.json --noEmit"
     },
     "dependencies": {
         "@logtape/logtape": "2.3.4",

@@ -9,7 +9,7 @@
         "build": "bun run typecheck && storybook build --disable-telemetry",
         "dev": "bun run --cwd ../../packages/platform/i18next build && storybook dev --host 0.0.0.0 -p 20101 --exact-port --no-open --disable-telemetry",
         "lint": "bun --conditions=development run --bun eslint .",
-        "typecheck": "bun run --cwd ../../packages/platform/i18next build && tsc -p tsconfig.json"
+        "typecheck": "bun run --cwd ../../packages/platform/i18next build && tsc -p tsconfig.json --noEmit"
     },
     "dependencies": {
         "@radix-ui/themes": "catalog:ui",

@@ -41,7 +41,7 @@
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",
         "test": "bun run build && vitest run",
-        "typecheck": "tsc -p tsconfig.json"
+        "typecheck": "tsc -p tsconfig.json --noEmit"
     },
     "dependencies": {
         "i18next": "26.5.11",

@@ -89,7 +89,7 @@ it("logs memory operations at trace and retention decisions at debug", async () 
 });
 
 it("logs aggregate operations without changing fallback reads", async () => {
-    await using cache = createAggregateCacheAdapter([createLruMemoryCacheAdapter(0), createLruMemoryCacheAdapter(32)]);
+    await using cache = createAggregateCacheAdapter(createLruMemoryCacheAdapter(0), createLruMemoryCacheAdapter(32));
     await checkOperations(cache, "aggregate");
 });
 
@@ -153,7 +153,7 @@ it("warns about partial replication and logs the rejecting aggregate operation",
             await Promise.resolve();
         },
     };
-    await using cache = createAggregateCacheAdapter([createLruMemoryCacheAdapter(32), failing]);
+    await using cache = createAggregateCacheAdapter(createLruMemoryCacheAdapter(32), failing);
     await expect(cache.write("key", new Blob())).rejects.toMatchObject({ errors: [error] });
     expect(records).toContainEqual(
         expect.objectContaining({

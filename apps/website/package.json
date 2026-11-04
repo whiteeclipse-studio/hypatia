@@ -10,7 +10,7 @@
         "dev": "bun --conditions=development src/server/dev.ts",
         "lint": "bun --conditions=development run --bun eslint .",
         "preview": "bun src/server/preview.ts",
-        "typecheck": "bun run --cwd ../../packages/platform/i18next build && tsc -p tsconfig.json",
+        "typecheck": "bun run --cwd ../../packages/platform/i18next build && tsc -p tsconfig.json --noEmit",
         "verify": "bun run typecheck && bun run build"
     },
     "dependencies": {

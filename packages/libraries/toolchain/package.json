@@ -30,7 +30,7 @@
         "build": "bun ../../../scripts/build-package.ts",
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",
-        "typecheck": "tsc -p tsconfig.json"
+        "typecheck": "tsc -p tsconfig.json --noEmit"
     },
     "dependencies": {
         "@eslint/js": "10.0.1",

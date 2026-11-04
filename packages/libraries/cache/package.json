@@ -55,7 +55,7 @@
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",
         "test": "vitest run src",
-        "typecheck": "tsc -p tsconfig.json"
+        "typecheck": "tsc -p tsconfig.json --noEmit"
     },
     "dependencies": {
         "@whiteeclipse/async-queue": "workspace:*",
