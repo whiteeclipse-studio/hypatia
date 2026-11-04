@@ -33,6 +33,15 @@ The repository MUST use the following technologies where applicable:
 
 Additional dependencies MAY complement these choices but MUST NOT replace them. Applications MUST use Vite for bundling. Reusable package distributions that require bundling MUST use Bun's built-in bundler.
 
+### Dependency management
+
+Dependencies used by more than one workspace package MUST be hoisted into a root `package.json` catalogue. Each
+consuming package MUST declare the dependency in its own manifest using the corresponding `catalog:` reference.
+
+Dependencies used by only one workspace package MUST declare their versions directly in that package's manifest and MUST
+NOT appear in root catalogues. This rule governs version declarations; the package manager determines the physical
+installation layout.
+
 ### Applications
 
 #### Storybook
@@ -72,6 +81,8 @@ The shared stack supports consistent development and reuse while limiting techno
 
 - Both applications build with the declared technologies for static hosting.
 - Reusable package distributions use Bun's built-in bundler; application bundling uses Vite.
+- Dependency declarations use root catalogues for shared dependencies and package-local versions for dependencies with a
+  single consumer.
 - Generated landing, child, and documentation pages contain their content and custom metadata before client-side JavaScript runs; hydration enables their interactive behaviour.
 - The website emits separate `/landing` and `/docs` folders.
 
@@ -87,7 +98,6 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description                   |
-|----------|------------|---------------|-------------------------------|
-| 1        | 2026-10-19 | Akane SHIMOKA | Initial draft                 |
-| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links |
+| Revision | Date       | Author        | Description   |
+|----------|------------|---------------|---------------|
+| 1        | 2026-10-19 | Akane SHIMOKA | Initial draft |
