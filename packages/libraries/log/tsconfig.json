@@ -3,8 +3,8 @@
     "compilerOptions": {
         "types": ["@total-typescript/ts-reset", "bun", "node"],
         "noEmit": false,
-        "rootDir": ".",
-        "outDir": ".cache/build",
+        "rootDir": "src",
+        "outDir": "dist",
         "sourceMap": false,
         "declarationMap": false,
         "rewriteRelativeImportExtensions": true,

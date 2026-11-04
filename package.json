@@ -8,11 +8,14 @@
     ],
     "scripts": {
         "build:packages": "bun run --filter \"./packages/*/*\" build",
-        "lint": "bun --conditions=development run --bun eslint ."
+        "lint": "bun --conditions=development run --bun eslint .",
+        "typecheck": "tsc -p tsconfig.json --noEmit && bun run --filter \"./packages/*/*\" typecheck"
     },
     "devDependencies": {
         "@total-typescript/ts-reset": "catalog:types",
+        "@types/bun": "catalog:types",
         "@types/node": "catalog:types",
+        "@whiteeclipse/docs-compiler": "workspace:*",
         "@whiteeclipse/toolchain": "workspace:*",
         "eslint": "catalog:tooling",
         "prettier": "catalog:tooling",

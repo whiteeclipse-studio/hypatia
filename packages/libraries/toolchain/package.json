@@ -22,7 +22,7 @@
         }
     },
     "scripts": {
-        "build": "rm -rf dist .cache/build && tsc -p tsconfig.json && cp -R .cache/build/src dist && rm -rf .cache/build",
+        "build": "rm -rf dist && tsc -p tsconfig.json",
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",
         "typecheck": "tsc -p tsconfig.json --noEmit"

@@ -3,14 +3,15 @@
     "compilerOptions": {
         "types": ["@total-typescript/ts-reset", "node", "vite/client"],
         "noEmit": false,
-        "rootDir": ".",
-        "outDir": ".cache/build",
+        "rootDir": "src",
+        "outDir": "dist",
         "sourceMap": false,
         "declarationMap": false,
         "rewriteRelativeImportExtensions": true,
         "paths": {
             "@whiteeclipse/i18next": ["./src/index.ts"]
-        }
+        },
+        "moduleDetection": "legacy"
     },
-    "include": ["src", "*.config.ts"]
+    "include": ["src"]
 }

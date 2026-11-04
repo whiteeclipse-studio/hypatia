@@ -22,7 +22,7 @@
         }
     },
     "scripts": {
-        "build": "rm -rf dist .cache/build && tsc -p tsconfig.json && cp -R .cache/build/src dist && rm -rf .cache/build && cp src/*.css dist/ && cp -R src/assets src/obsidian dist/",
+        "build": "rm -rf dist && tsc -p tsconfig.json && cp src/*.css dist/ && cp -R src/assets src/obsidian dist/",
         "build:obsidian": "bun run typecheck && bun scripts/build-obsidian.ts",
         "lint": "bun --conditions=development run --bun eslint .",
         "prepack": "bun run build",

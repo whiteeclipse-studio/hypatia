@@ -18,4 +18,10 @@ export default defineConfig(
         files: ["apps/storybook/**/*.{ts,tsx}"],
         rules: { "no-ternary": "error" },
     },
+    {
+        files: ["packages/*/*/*.config.ts"],
+        languageOptions: {
+            parserOptions: { projectService: false, project: "./tsconfig.json" },
+        },
+    },
 );

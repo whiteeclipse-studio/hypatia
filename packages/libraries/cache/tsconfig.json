@@ -3,8 +3,8 @@
     "compilerOptions": {
         "types": ["@total-typescript/ts-reset", "node"],
         "noEmit": false,
-        "rootDir": ".",
-        "outDir": ".cache/build",
+        "rootDir": "src",
+        "outDir": "dist",
         "sourceMap": false,
         "declarationMap": false,
         "rewriteRelativeImportExtensions": true,
@@ -13,5 +13,5 @@
             "@whiteeclipse/cache/*": ["./src/adapters/*.ts"]
         }
     },
-    "include": ["src", "*.config.ts"]
+    "include": ["src"]
 }
