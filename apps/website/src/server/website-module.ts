@@ -2,7 +2,7 @@
  * Copyright © 2026 - White Eclipse
  * Released under the MIT Licence.
  */
-import configuration from "../../website.config";
+import { configuration } from "./configuration";
 import type { Bootstrap } from "../modules/documentation/domain/types";
 
 

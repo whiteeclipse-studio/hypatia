@@ -44,7 +44,24 @@ Development HTML links the SSR-discovered CSS Modules directly, keeping the land
 
 ## Configuration
 
-Edit `website.config.ts`. Existing project entries select local repositories; paths resolve from `apps/website`.
+Edit `website.config.ts`, or set `WEBSITE_CONFIG` to a custom TypeScript configuration file. Relative configuration
+paths
+and project source paths resolve from `apps/website`. The optional file is validated before source loading; invalid or
+missing files fail the build rather than falling back to local defaults.
+
+`website.deployment.config.ts` selects the public domains and temporary source builds. `.do/app.yaml` builds from
+`feature/website`, fetches Ryugu’s `main` branch into `.cache/ryugu`, builds the reusable packages, and emits separate
+landing and documentation static roots. The original domain aliases and redirects are retained. Run the same build
+locally after fetching Ryugu with:
+
+```sh
+bun run build:packages
+WEBSITE_CONFIG=website.deployment.config.ts bun run --cwd apps/website build
+```
+
+Publication restrictions and production approval remain pending as described above; the prepared spec is not an
+approval.
+The Ryugu archive workflow and the subsequent switch from source builds to archives are separate work.
 
 ```ts
 {
@@ -132,7 +149,8 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description                                     |
-|----------|------------|---------------|-------------------------------------------------|
-| 1        | 2026-11-04 | Akane SHIMOKA | Introduce the exploratory documentation website |
-| 2        | 2026-11-04 | Akane SHIMOKA | Restore the landing page and its static output  |
+| Revision | Date       | Author        | Description                                                     |
+|----------|------------|---------------|-----------------------------------------------------------------|
+| 1        | 2026-11-04 | Akane SHIMOKA | Introduce the exploratory documentation website                 |
+| 2        | 2026-11-04 | Akane SHIMOKA | Restore the landing page and its static output                  |
+| 3        | 2026-11-04 | Akane SHIMOKA | Document custom configuration and temporary App Platform builds |

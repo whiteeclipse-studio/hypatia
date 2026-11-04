@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { i18nextPlugin } from "@whiteeclipse/i18next/vite";
 import { fileURLToPath } from "node:url";
-import configuration from "./website.config";
+import { configuration } from "./src/server/configuration";
 
 
 export default defineConfig({

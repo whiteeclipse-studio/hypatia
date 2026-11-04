@@ -5,7 +5,7 @@
 import { createServer as createHttpServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
-import configuration from "../../website.config";
+import { configuration } from "./configuration";
 import { createSources } from "./sources";
 import { documentationHome, normalizedRoute } from "../modules/documentation/domain/routes";
 import type { Bootstrap } from "../modules/documentation/domain/types";

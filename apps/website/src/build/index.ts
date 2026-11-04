@@ -7,7 +7,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { build } from "vite";
 import { z } from "zod";
-import configuration from "../../website.config";
+import { configuration } from "../server/configuration";
 import { createSources } from "../server/sources";
 import { type Bootstrap, pageDataUrl } from "../modules/documentation/domain/types";
 import { renderingModuleSchema } from "../rendering/module";
