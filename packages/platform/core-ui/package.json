@@ -11,7 +11,8 @@
     "exports": {
         "./styles.css": "./src/styles.css",
         "./assets/white-eclipse-light.png": "./src/assets/white-eclipse-light.png",
-        "./assets/white-eclipse-dark.png": "./src/assets/white-eclipse-dark.png"
+        "./assets/white-eclipse-dark.png": "./src/assets/white-eclipse-dark.png",
+        "./theme": "./src/theme.tsx"
     },
     "files": [
         "src",
@@ -30,10 +31,12 @@
     "devDependencies": {
         "@total-typescript/ts-reset": "catalog:types",
         "@types/bun": "catalog:types",
+        "@types/react": "catalog:types",
         "@whiteeclipse/toolchain": "workspace:*",
         "eslint": "catalog:tooling"
     },
     "peerDependencies": {
-        "@radix-ui/themes": "catalog:ui"
+        "@radix-ui/themes": "catalog:ui",
+        "react": "catalog:ui"
     }
 }

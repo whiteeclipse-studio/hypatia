@@ -1,5 +1,7 @@
 {
     "extends": "../../../tsconfig.base.json",
-    "compilerOptions": { "types": ["@total-typescript/ts-reset", "node", "bun"] },
-    "include": ["scripts", "*.config.ts"]
+    "compilerOptions": {
+        "types": ["@total-typescript/ts-reset", "node", "bun"]
+    },
+    "include": ["src", "scripts", "*.config.ts"]
 }

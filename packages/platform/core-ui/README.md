@@ -5,7 +5,9 @@ standard_revision: 1
 
 # @whiteeclipse/core-ui
 
-Shared Radix Themes-compatible styles for White Eclipse applications and a derivative native Obsidian theme. This README covers `0.1.0-alpha.1`, a private workspace package that is not published to a registry.
+Shared Radix Themes-compatible styles and a system-aware React theme boundary for White Eclipse applications, plus a
+derivative native Obsidian theme. This README covers `0.1.0-alpha.1`, a private workspace package that is not published
+to a registry.
 
 This is exploratory pre-production work under the draft [Core UI proposal](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/designs/core-ui/README.md), [RFC 0002](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0002-tech-stack.md), and [RFC 0003](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0003-engineering-conventions.md). Their acceptance remains pending.
 
@@ -26,23 +28,30 @@ The consumer must also install React and React DOM versions compatible with Radi
 
 ## Usage
 
-Import the stylesheet once in the application entrypoint or Storybook preview, then use Radix Themes components directly:
+Import the stylesheet once in the application entrypoint or Storybook preview. Use the shared theme boundary with Radix
+Themes controls:
 
 ```tsx
 import "@whiteeclipse/core-ui/styles.css";
-import { Button, Theme } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
+import { Theme } from "@whiteeclipse/core-ui/theme";
 
 /** Renders a minimal themed control for visual review. */
 export function Example() {
     return (
-        <Theme appearance="light">
+        <Theme>
             <Button>Continue</Button>
         </Theme>
     );
 }
 ```
 
-Use Radix's `Theme` props to compare appearances, palettes, and other theme options. The stylesheet includes Radix Themes' base CSS; consumers do not need to import it separately. Load application-specific overrides after this stylesheet.
+The shared `Theme` starts in light appearance for SSR and the first client render, then follows the system colour
+preference after mounting. It subscribes to preference changes and removes the listener when unmounted. It uses the sand
+neutral scale, gray accent, and square corners. The component accepts `children` and is exported as TSX; the consuming
+toolchain must support React JSX and TypeScript, as Bun and Vite do. Use Radix's `Theme` directly when an explicit
+appearance or other theme options are needed, such as Storybook's review controls. The stylesheet includes Radix Themes'
+base CSS; consumers do not need to import it separately. Load application-specific overrides after this stylesheet.
 
 ## Tailwind CSS
 
@@ -85,7 +94,9 @@ These assets were restored unchanged from [the original Core UI assets at commit
 
 ## Palette and interaction study
 
-Use `<Theme grayColor="sand" accentColor="gray">` for the exploratory White Eclipse palette. Other neutral scales retain their upstream Radix values so Storybook can compare alternatives. The palette also applies to Radix-created theme boundaries in portals.
+The shared `Theme` selects the exploratory White Eclipse palette. With Radix directly, use
+`<Theme grayColor="sand" accentColor="gray">`. Other neutral scales retain their upstream Radix values so Storybook can
+compare alternatives. The palette also applies to Radix-created theme boundaries in portals.
 
 The starting colours come from the [previous application stylesheet](https://github.com/whiteeclipse-studio/hypatia/blob/25f35669fe3116680d11e7040f38eea9e47edd3f/packages/platform/core-ui/src/styles.css). The off-white moves from `#f6f4ef` to a warmer, yellower ivory `#f6f2e6`, with related stone surfaces adjusted to match. Charcoal `#211f26` is retained; dark appearance uses the warmer ivory for foreground text.
 
@@ -131,9 +142,11 @@ Review the reference layout's **Feedback & states** tab in the warm light and da
 The shared stylesheet includes an opt-in `core-ui-background` class. Apply it to a page wrapper inside a Radix `Theme`:
 
 ```tsx
-<Theme appearance="light" grayColor="sand" accentColor="gray">
+import { Theme as RadixTheme } from "@radix-ui/themes";
+
+<RadixTheme appearance="light" grayColor="sand" accentColor="gray">
     <div className="core-ui-background">Page content</div>
-</Theme>
+</RadixTheme>;
 ```
 
 It draws an 8px grid, paired arcs, and diagonal strokes using the active theme's surface and foreground tokens. The decoration stays fixed to the viewport while content scrolls and ignores pointer input. The wrapper provides an isolated stacking context and a minimum height of one viewport. Its `::before` and `::after` pseudo-elements are reserved for the drawing. Use one background wrapper per page and keep opaque panels inside it for reading surfaces.
@@ -159,7 +172,11 @@ The build follows Obsidian's [theme guidelines](https://github.com/obsidianmd/ob
 
 ## Current coverage
 
-The package exports `@whiteeclipse/core-ui/styles.css` and the light/dark logo assets for web consumers and builds a standalone native Obsidian theme. It provides Radix Themes styles, shared fonts, the exploratory warm palette, corner-frame interactions, and an optional geometric background. Other geometry and motion values remain under exploration. No component wrappers or component re-exports are included. The background is drawn in CSS.
+The package exports `@whiteeclipse/core-ui/theme`, `@whiteeclipse/core-ui/styles.css`, and the light/dark logo assets
+for web consumers and builds a standalone native Obsidian theme. It provides Radix Themes styles, shared fonts, the
+exploratory warm palette, corner-frame interactions, and an optional geometric background. Other geometry and motion
+values remain under exploration. The shared `Theme` adds system-preference synchronization and preserves the initial
+hydration appearance; other Radix components are consumed directly. The background is drawn in CSS.
 
 No package build step is needed for web stylesheet imports; Obsidian requires the build above. CSS is marked as a side effect so consumer bundlers retain the imported styles. Visual and accessibility validation of future overrides remains pending; this baseline does not establish compliance of consuming applications.
 
@@ -184,3 +201,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 9        | 2026-10-27 | Codex         | Add the exploratory native Obsidian theme and offline build instructions      |
 | 10       | 2026-10-27 | Codex         | Restore the original light and dark eclipse logo assets                       |
 | 11       | 2026-10-29 | Akane SHIMOKA | Remove square markers from ghost buttons                                      |
+| 12       | 2026-11-04 | Akane SHIMOKA | Move the system-aware React theme boundary into Core UI                       |
