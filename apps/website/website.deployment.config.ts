@@ -9,7 +9,14 @@ import type { WebsiteConfiguration } from "./src/app/configuration";
 export default {
     projects: [
         { id: "hypatia", name: "Hypatia", source: { kind: "local", path: "../.." } },
-        { id: "ryugu", name: "Ryugu", source: { kind: "local", path: "../../.cache/ryugu" } },
+        {
+            id: "ryugu",
+            name: "Ryugu",
+            source: {
+                kind: "archive",
+                url: "https://github.com/whiteeclipse-studio/ryugu/releases/latest/download/ryugu.tgz",
+            },
+        },
     ],
     documentationOrigin: "https://whiteeclipse.dev",
     landingOrigin: "https://whiteeclipse.fr",

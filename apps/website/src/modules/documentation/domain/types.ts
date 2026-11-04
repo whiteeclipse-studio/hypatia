@@ -33,6 +33,7 @@ export interface ProjectIndex {
  */
 export interface DocumentData {
     title: string;
+    navigation?: Partial<Record<"parent" | "previous" | "next", string | undefined>> | undefined;
     tree: Root;
     copyrightAndLicence: Root;
     revisions: readonly DocumentRevision[];

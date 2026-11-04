@@ -26,6 +26,13 @@ const entry = z.object({
 const tree = z.custom<Root>(isHastRoot);
 const document = z.object({
     title: z.string(),
+    navigation: z
+        .object({
+            parent: z.string().optional(),
+            previous: z.string().optional(),
+            next: z.string().optional(),
+        })
+        .optional(),
     tree,
     copyrightAndLicence: tree,
     revisions: z.array(documentRevisionSchema),

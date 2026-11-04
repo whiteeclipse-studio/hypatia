@@ -2,7 +2,12 @@
  * Copyright © 2026 - White Eclipse
  * Released under the MIT Licence.
  */
-import type { DocumentArtifact, Repository, TranslationArtifact } from "@whiteeclipse/docs-compiler";
+import {
+    type DocumentArtifact,
+    type Repository,
+    toLogicalPath,
+    type TranslationArtifact,
+} from "@whiteeclipse/docs-compiler";
 import type { PublicProject } from "../app/configuration";
 import type { Entry, PageData, PreparedProject } from "../modules/documentation/domain/types";
 import { directoryRoutes, documentRoute } from "../modules/documentation/domain/routes";
@@ -105,6 +110,7 @@ async function readDocument(artifact: PageArtifact, entry: Entry, page: PageData
     const result = page;
     result.variants[entry.locale] = {
         title: entry.title,
+        navigation: readNavigation(artifact.path, { ...artifact.metadata }),
         tree: safeTree(tree),
         copyrightAndLicence: safeTree(artifact.metadata.copyrightAndLicence),
         revisions: artifact.metadata.revisions.map(revision => {
@@ -114,6 +120,49 @@ async function readDocument(artifact: PageArtifact, entry: Entry, page: PageData
     if (entry.locale === "en") {
         result.title = entry.title;
     }
+}
+
+/**
+ * Resolves optional frontmatter paths relative to their document, within the repository.
+ *
+ * @param source Logical path of the document declaring the links.
+ * @param metadata Inert compiler metadata, including frontmatter extensions.
+ * @returns Independently resolved navigation paths; invalid values are omitted.
+ */
+function readNavigation(source: string, metadata: Record<string, unknown>) {
+    const navigation: Partial<Record<"parent" | "previous" | "next", string>> = {};
+    for (const field of ["parent", "previous", "next"] as const) {
+        const path = navigationPath(source, metadata[field]);
+        if (path !== undefined) {
+            navigation[field] = path;
+        }
+    }
+    return navigation;
+}
+
+/**
+ * Normalizes a relative Markdown destination without allowing traversal beyond the repository.
+ *
+ * @param source Logical path of the declaring document.
+ * @param value Untrusted frontmatter field.
+ * @returns A logical document path, or undefined for invalid destinations.
+ */
+function navigationPath(source: string, value: unknown): string | undefined {
+    if (typeof value !== "string" || /^(?:\/|\s)|[\\:?#\0]/.test(value) || !/\.md$/i.test(value)) {
+        return undefined;
+    }
+    const segments = source.split("/");
+    segments.pop();
+    for (const segment of value.split("/")) {
+        if (segment === "..") {
+            if (segments.pop() === undefined) {
+                return undefined;
+            }
+        } else if (segment !== "." && segment !== "") {
+            segments.push(segment);
+        }
+    }
+    return toLogicalPath(segments.join("/"));
 }
 
 /**

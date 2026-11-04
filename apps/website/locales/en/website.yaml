@@ -6,6 +6,10 @@ filter: Find a page…
 empty: No pages match your search.
 browse: Browse documentation
 breadcrumb: Breadcrumb
+documentNavigation: Document navigation
+parent: Parent document
+previous: Previous
+next: Next
 loading: Loading documentation…
 update: Update
 updateFailed: Could not update documentation. Showing the available version.

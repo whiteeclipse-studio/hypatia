@@ -13,6 +13,12 @@ the layout, English/French copy and orbital artwork recovered from commit `25f35
 and installed Radix icons. The portfolio and studio links target page sections; blog and contact calls to action
 retain their unavailable placeholder state. The footer contact link remains a working email link.
 The documentation header's White Eclipse brand links to the configured `landingOrigin`.
+Optional frontmatter `parent`, `previous`, and `next` paths resolve relative to the declaring Markdown document.
+The reader shows an upward arrow icon and the parent title above the page title, with previous/next links below the
+article, following the Storybook reader's navigation styling. Each field works independently; missing, invalid, or
+unpublished targets
+produce no link. Target titles follow the selected language with English fallback. The same navigation data is used
+by static pages, client navigation, and archive updates.
 The documentation domain root redirects to `/hypatia`, using an HTTP redirect in development, an HTML refresh with a
 fallback link in static output, and replacement navigation for client-side visits.
 
@@ -41,6 +47,8 @@ reverse proxy can expose documentation at `https://docs.hypatia.local.whiteeclip
 snapshots but server-renders HTML only for the requested route. React Router requests page data for subsequent
 navigation. Local sources update through compiler watches; remote archive sources can be refreshed with Update.
 Development HTML links the SSR-discovered CSS Modules directly, keeping the landing layout styled before hydration.
+Vite also transforms linked workspace JavaScript to the ES2022 target during development, lowering syntax such as
+`await using` before Safari receives the compiler modules.
 
 ## Configuration
 
@@ -134,6 +142,10 @@ Run `typecheck`, `lint`, and `build` from this workspace. Basic browser verifica
 dialogs, responsive layout, and synthetic archive updates. No full unit or integration suite is introduced for this
 exploratory iteration.
 
+Run the navigation payload regression checks with `bun test src/modules/documentation/domain/validation.test.ts`.
+They cover preservation through bootstrap and page-response validation, independently authored links, and malformed
+targets.
+
 Current limitations include title filtering rather than full-text search, English interface messages with
 content-language fallback, no service worker or complete offline application shell, and bundled assets limited to
 signature-checked PNG, JPEG, GIF and WebP. SVG, PDF, audio, video and unknown repository assets are not embedded.
@@ -154,3 +166,6 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 1        | 2026-11-04 | Akane SHIMOKA | Introduce the exploratory documentation website                 |
 | 2        | 2026-11-04 | Akane SHIMOKA | Restore the landing page and its static output                  |
 | 3        | 2026-11-04 | Akane SHIMOKA | Document custom configuration and temporary App Platform builds |
+| 4        | 2026-11-04 | Codex         | Document optional parent and reading-sequence navigation        |
+| 5        | 2026-11-04 | Codex         | Document navigation payload regression checks                   |
+| 5        | 2026-11-04 | Codex         | Document development transforms for linked workspace JavaScript |

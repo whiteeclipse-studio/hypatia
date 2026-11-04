@@ -25,7 +25,12 @@ export default defineConfig({
         resolve: { conditions: ["development", "module", "node"] },
     },
     worker: { format: "es" },
-    oxc: { target: "es2022" },
+    oxc: {
+        target: "es2022",
+        // Linked workspace distributions also need syntax lowering during development.
+        include: /\.[cm]?[jt]sx?$/,
+        exclude: /node_modules/,
+    },
     server: {
         allowedHosts: [
             new URL(configuration.documentationOrigin).hostname,

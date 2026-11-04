@@ -11,6 +11,7 @@ import { useDocumentation } from "../store/use-documentation";
 import { pageKey, type ProjectIndex } from "../domain/types";
 import { DocumentBody } from "../components/document-body";
 import { DocumentContent } from "../components/document-content";
+import { DocumentNavigation } from "../components/document-navigation";
 import { DirectoryListing } from "../components/directory-listing";
 import { Navigation } from "../components/navigation";
 import { Contents } from "../components/contents";
@@ -116,9 +117,14 @@ export function Reader({ index, route }: { index: ProjectIndex; route: string })
                         ) : (
                             <>
                                 <article aria-labelledby="document-title" lang={selected?.locale ?? locale}>
-                                    <Text size="1" color="gray" className="tracking-[0.18em] uppercase">
-                                        {t("documentation")}
-                                    </Text>
+                                    {document !== undefined && (
+                                        <DocumentNavigation
+                                            document={document}
+                                            index={index}
+                                            locale={locale}
+                                            position="top"
+                                        />
+                                    )}
                                     <Heading as="h1" id="document-title" size={{ initial: "7", sm: "8" }} mt="4" mb="6">
                                         {document?.title ?? page.title}
                                     </Heading>
@@ -142,6 +148,14 @@ export function Reader({ index, route }: { index: ProjectIndex; route: string })
                                         </>
                                     )}
                                     {page.directory && <DirectoryListing index={index} route={route} locale={locale} />}
+                                    {document !== undefined && (
+                                        <DocumentNavigation
+                                            document={document}
+                                            index={index}
+                                            locale={locale}
+                                            position="bottom"
+                                        />
+                                    )}
                                 </article>
                                 <div className="mt-10 flex flex-wrap justify-between gap-4 border-t border-(--gray-6) pt-6">
                                     {document !== undefined && (

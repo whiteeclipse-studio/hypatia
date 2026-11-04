@@ -1,7 +1,9 @@
 {
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "types": ["@total-typescript/ts-reset", "vite/client", "bun", "node", "@whiteeclipse/i18next/vite/client"]
+        "types": ["@total-typescript/ts-reset", "vite/client", "bun", "node", "@whiteeclipse/i18next/vite/client"],
+        "module": "ESNext",
+        "moduleResolution": "bundler"
     },
     "include": ["src", "*.ts"]
 }
