@@ -99,14 +99,17 @@ From the package directory, the available checks are:
 ```sh
 bun run typecheck
 bun run lint
+bun run test
+bun run build
 ```
 
 `bun --conditions=development test/compile.ts` runs the current repository-local archive-reading fixture. It expects
 `dist/docs/hypatia.tgz` to exist, restores it through archive-reader, and logs translated artifacts. Its commented
 source pipeline is development material, not an active archive-building command or a supported CLI.
 
-The `test` script invokes Vitest over `src`. No current source test files are supplied for docs-compiler; this script
-does not establish plugin coverage. Exploratory testing remains optional under the repository instructions. Before
+The `test` script invokes Vitest over `src`, including CLI argument tests and Bun subprocess archive builds. These tests
+cover wrapper behavior rather than complete plugin conformance. Exploratory testing remains optional under the
+repository instructions. Before
 production promotion, assess behavior coverage and rendering/security verification separately.
 
 ## Copyright and licence
@@ -117,6 +120,7 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description   |
-|----------|------------|---------------|---------------|
-| 1        | 2026-10-29 | Akane SHIMOKA | Initial draft |
+| Revision | Date       | Author        | Description                                   |
+|----------|------------|---------------|-----------------------------------------------|
+| 1        | 2026-10-29 | Akane SHIMOKA | Initial draft                                 |
+| 2        | 2026-11-04 | Akane SHIMOKA | Describe CLI argument and archive-build tests |

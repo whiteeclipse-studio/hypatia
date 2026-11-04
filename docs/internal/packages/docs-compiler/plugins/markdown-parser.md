@@ -26,9 +26,9 @@ const parser = markdownParser({
 Bun is required because front matter uses `Bun.YAML.parse()`. The package export is disabled for browser and non-Bun
 runtimes. Configuration is copied and deeply frozen.
 
-`wikilinks` and `callouts` default to `false`. Enable them after installing `remark-wiki-link@2.0.1` and
-`@r4ai/remark-callout@0.6.2`, respectively. Disabled features do not import those optional peers. Missing enabled peers
-fail transformation. Wiki links preserve authored destinations and labels. Callouts support custom types, including
+`wikilinks` and `callouts` default to `false` in the programmatic API; the CLI enables both by default. The
+`remark-wiki-link@2.0.1` and `@r4ai/remark-callout@0.6.2` extensions are regular package dependencies and are imported
+only when enabled. Wiki links preserve authored destinations and labels. Callouts support custom types, including
 `outline`, without generating a table of contents.
 
 `headings` supplies additional localized labels; English defaults remain recognized. Matching ignores case and inline
@@ -94,3 +94,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                                                                    |
 | 3        | 2026-11-03 | Akane SHIMOKA | Document Markdown artifacts, optional extensions, and metadata extraction                        |
 | 4        | 2026-11-04 | Akane SHIMOKA | Rebuild parser options, ordering, and metadata reference; default licence files to non-navigable |
+| 5        | 2026-11-04 | Akane SHIMOKA | Document included syntax extensions and CLI defaults                                             |

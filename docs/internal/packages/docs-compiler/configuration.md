@@ -32,6 +32,17 @@ unique when the snapshot is assembled.
 The plugin list defaults to empty and is fixed before configuration hooks run. No built-in plugin is enabled
 automatically. Names are diagnostic labels; duplicate names and repeated plugin entries are not deduplicated.
 
+## Command-line wrapper
+
+The `docs-compiler` executable configures `markdownParser`, `filesystemLoader`, `linkResolver`, and `archiveWriter` for
+one compilation. Repository inputs are positional, defaulting to `.`. Its translations, wikilinks, and callouts options
+default to enabled, independently of programmatic defaults. Positive and `--no-` boolean switches are supported; the
+last occurrence wins. Heading aliases and cache configuration remain programmatic options.
+
+The [package README](https://github.com/whiteeclipse-studio/hypatia/blob/main/packages/platform/docs-compiler/README.md#command-line-builds)
+provides the argument reference, examples, path semantics, and exit statuses. The CLI is exploratory under draft
+RFC-0005 and requires a new alpha release before its registry invocation is available.
+
 ## Configuration merging
 
 `mergeCompilationConfiguration(base, overrides)` replaces `repositories`, appends supplied `plugins`, merges defined
@@ -91,3 +102,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 2        | 2026-10-30 | Akane SHIMOKA | Align inputs, optional plugins, and limits with the prototype |
 | 3        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                                 |
 | 4        | 2026-11-04 | Akane SHIMOKA | Replace obsolete input and limits configuration               |
+| 5        | 2026-11-04 | Akane SHIMOKA | Document the one-shot CLI configuration                       |

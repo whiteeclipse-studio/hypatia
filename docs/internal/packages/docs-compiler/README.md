@@ -7,7 +7,7 @@ parent: ../../../README.md
 # @whiteeclipse/docs-compiler
 
 `@whiteeclipse/docs-compiler` compiles documentation into immutable, disposable Repository snapshots. This documentation
-covers the exploratory `0.1.0-alpha.2` implementation.
+covers the exploratory `0.1.0-alpha.3` workspace implementation.
 
 The model
 follows [Hypatia draft RFC-0005 revision 2](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0005-documentation-publication.md#revisions).
@@ -18,7 +18,8 @@ scope. Neither implementation nor these references establish approval for produc
 
 The [package README](https://github.com/whiteeclipse-studio/hypatia/blob/main/packages/platform/docs-compiler/README.md)
 provides setup and runnable package-local examples. This reference describes current behavior; it does not carry forward
-the removed `documentation-builder` CLI, Vite integration, HTML output, or earlier `createCompiler` API.
+the removed `documentation-builder` interface, Vite integration, HTML output, or earlier `createCompiler` API.
+The current one-shot Bun CLI is described in the [[./configuration.md#Command-line wrapper|configuration reference]].
 
 ## Reference
 
@@ -50,3 +51,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 1        | 2026-10-29 | Akane SHIMOKA | Introduce compiler specifications and plugin index |
 | 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                      |
 | 3        | 2026-11-04 | Akane SHIMOKA | Rebuild current compiler documentation index       |
+| 4        | 2026-11-04 | Akane SHIMOKA | Link the current one-shot Bun CLI reference        |
