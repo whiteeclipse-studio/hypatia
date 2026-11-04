@@ -32,7 +32,11 @@ These conventions cover repository code, its public interfaces, documentation, t
 - Packages SHOULD use [`type-fest`](https://github.com/sindresorhus/type-fest) for reusable utility types and [
   `@total-typescript/ts-reset`](https://www.totaltypescript.com/ts-reset) for safer built-in typings, enabled through
   `compilerOptions.types` in their `tsconfig.json`.
-- Functions and interfaces MUST have JSDoc explaining their behaviour, including relevant inputs, results, side effects, and failures.
+- Functions and interfaces MUST have JSDoc explaining their behaviour, including relevant inputs, results, side effects,
+  and failures. PascalCase React component functions with an explicit `ReactElement` or `React.ReactElement` return
+  annotation, optionally unioned with `null`, MAY omit JSDoc. This exception does not cover inferred return types, type
+  aliases, hooks, or class methods; component summaries MAY omit `@param` and `@returns`, while other checks on supplied
+  documentation still apply.
 - Functions that can throw MUST document the circumstances with `@throws`; asynchronous functions MUST document rejection behaviour. Artificial failure tags are not required where no failure applies.
 - Comments SHOULD clarify what readable code cannot express; they MUST NOT substitute for clear code.
 

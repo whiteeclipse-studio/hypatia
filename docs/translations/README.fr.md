@@ -6,9 +6,6 @@ standard_revision: 1
 
 # Documentation
 
-Traduction française de
-la [documentation en anglais](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/README.md).
-
 L’URL racine canonique de cette documentation est <https://whiteeclipse.dev/hypatia>.
 
 Ce dossier contient la documentation d’Hypatia :
