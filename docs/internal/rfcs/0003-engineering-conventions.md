@@ -29,6 +29,9 @@ These conventions cover repository code, its public interfaces, documentation, t
 #### Type safety and documentation
 
 - Repository code MUST NOT use TypeScript's `any` type.
+- Packages SHOULD use [`type-fest`](https://github.com/sindresorhus/type-fest) for reusable utility types and [
+  `@total-typescript/ts-reset`](https://www.totaltypescript.com/ts-reset) for safer built-in typings, enabled through
+  `compilerOptions.types` in their `tsconfig.json`.
 - Functions and interfaces MUST have JSDoc explaining their behaviour, including relevant inputs, results, side effects, and failures.
 - Functions that can throw MUST document the circumstances with `@throws`; asynchronous functions MUST document rejection behaviour. Artificial failure tags are not required where no failure applies.
 - Comments SHOULD clarify what readable code cannot express; they MUST NOT substitute for clear code.
@@ -57,8 +60,6 @@ A reusable `@whiteeclipse/toolchain` package MUST be provided at `packages/libra
 ESLint rules MUST derive from these conventions and cover general code quality, type-aware TypeScript checks, package import boundaries, JSDoc, and JSX restrictions. Prettier MUST provide consistent formatting through the shared configuration. Tool-specific exceptions MAY accommodate test fixtures without weakening checks for production code.
 
 Consumers MAY extend the shared configurations but MUST NOT weaken this RFC's mandatory requirements. Rule suppressions MUST be narrowly scoped and justified.
-
-The [existing implementation](https://github.com/whiteeclipse-studio/hypatia/tree/main/packages/libraries/toolchain) and [package README](https://github.com/whiteeclipse-studio/hypatia/blob/main/packages/libraries/toolchain/README.md) provide the starting point. Their existence does not establish that all requirements of this proposal have been implemented or validated.
 
 #### Execution and CI
 
@@ -97,7 +98,6 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description                   |
-|----------|------------|---------------|-------------------------------|
-| 1        | 2026-10-26 | Akane SHIMOKA | Initial draft                 |
-| 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links |
+| Revision | Date       | Author        | Description   |
+|----------|------------|---------------|---------------|
+| 1        | 2026-10-26 | Akane SHIMOKA | Initial draft |
