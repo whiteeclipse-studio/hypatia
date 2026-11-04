@@ -11,6 +11,6 @@ export default {
         { id: "hypatia", name: "Hypatia", source: { kind: "local", path: "../.." } },
         { id: "ryugu", name: "Ryugu", source: { kind: "local", path: "../../../ryugu" } },
     ],
-    documentationOrigin: "https://hypatia.local.whiteeclipse.dev",
-    landingOrigin: "https://whiteeclipse.fr",
+    documentationOrigin: "https://docs.hypatia.local.whiteeclipse.dev",
+    landingOrigin: "https://hypatia.local.whiteeclipse.dev",
 } satisfies WebsiteConfiguration;

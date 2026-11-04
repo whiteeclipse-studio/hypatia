@@ -40,19 +40,27 @@ export function App({
     );
     const catalogue = useMemo(() => withContentLocales(locales), [locales]);
     useEffect(() => {
+        if (bootstrap.module === "landing") {
+            return;
+        }
         store.start();
         return () => {
             store.stop();
         };
-    }, [store]);
+    }, [store, bootstrap.module]);
+
     return (
         <I18nProvider session={session} catalogue={catalogue} initialLocale={bootstrap.locale}>
             <Theme>
                 <DocumentationContext value={store}>
                     {bootstrap.module === "landing" ? (
-                        <Landing />
+                        <Landing documentationOrigin={bootstrap.documentationOrigin ?? "https://whiteeclipse.dev"} />
                     ) : (
-                        <SiteFrame languages={Object.keys(catalogue)} headerActions={<UpdateDocumentation />}>
+                        <SiteFrame
+                            landingOrigin={bootstrap.landingOrigin ?? "https://whiteeclipse.fr"}
+                            languages={Object.keys(catalogue)}
+                            headerActions={<UpdateDocumentation />}
+                        >
                             <DocumentationRoutes />
                         </SiteFrame>
                     )}

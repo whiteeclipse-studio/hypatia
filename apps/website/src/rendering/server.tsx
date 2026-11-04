@@ -6,12 +6,14 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import { App } from "../app/app";
 import { createDocumentationStore } from "../modules/documentation/store/store";
-import { createWebsiteSession } from "../shared/i18n/session";
+import { catalogue, createWebsiteSession } from "../shared/i18n/session";
+import { z } from "zod";
 import type { Bootstrap } from "../modules/documentation/domain/types";
 import "../shared/theme/styles.css";
 
 
 const icons = `<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"><link rel="icon" type="image/x-icon" href="/favicon/favicon.ico"><link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">`;
+const landingMetadata = z.object({ title: z.string(), description: z.string() });
 /**
  * Renders one route using isolated documentation and localization state.
  *
@@ -58,10 +60,17 @@ export function htmlDocument(
     options: { assets: string; route: string; origin: string; fallback?: boolean },
 ): string {
     const { assets, route, origin, fallback = false } = options;
-    const title = bootstrap.page?.title ?? "White Eclipse · Documentation";
+    const metadata =
+        bootstrap.module === "landing"
+            ? landingMetadata.parse(
+                  catalogue[bootstrap.locale]?.["landing"]?.["metadata"] ?? catalogue["en"]?.["landing"]?.["metadata"],
+              )
+            : undefined;
+    const title = metadata?.title ?? bootstrap.page?.title ?? "White Eclipse · Documentation";
+    const description = metadata?.description ?? `${title} — White Eclipse documentation`;
     const json = JSON.stringify(bootstrap)
         .replace(/</g, "\\u003c")
         .replace(/\u2028/g, "\\u2028")
         .replace(/\u2029/g, "\\u2029");
-    return `<!doctype html><html lang="${escapeHtml(bootstrap.locale)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="${escapeHtml(title)} — White Eclipse documentation"><title>${escapeHtml(title)}</title><link rel="canonical" href="${escapeHtml(new URL(route, origin).href)}">${icons}${assets}</head><body><div id="root"${fallback ? ' data-fallback="true"' : ""}>${body}</div><script id="bootstrap" type="application/json">${json}</script></body></html>`;
+    return `<!doctype html><html lang="${escapeHtml(bootstrap.locale)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="${escapeHtml(description)}"><title>${escapeHtml(title)}</title><link rel="canonical" href="${escapeHtml(new URL(route, origin).href)}">${icons}${assets}</head><body><div id="root"${fallback ? ' data-fallback="true"' : ""}>${body}</div><script id="bootstrap" type="application/json">${json}</script></body></html>`;
 }

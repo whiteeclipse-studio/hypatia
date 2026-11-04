@@ -49,4 +49,6 @@ export const bootstrapSchema: z.ZodType<Bootstrap> = z.object({
     indexes: indexesSchema,
     page: pageSchema.optional(),
     development: z.boolean(),
+    documentationOrigin: z.url().optional(),
+    landingOrigin: z.url().optional(),
 });

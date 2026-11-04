@@ -1,0 +1,31 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+.page {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 24px 48px 0;
+}
+
+.skipLink {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 1;
+    padding: 12px 16px;
+    color: var(--gray-12);
+    background: var(--gray-1);
+    transform: translateY(-200%);
+}
+
+.skipLink:focus-visible {
+    transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding: 20px 24px 0;
+    }
+}

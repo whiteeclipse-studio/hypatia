@@ -5,6 +5,9 @@
 import type { Entry, ProjectIndex } from "./types";
 
 
+/** Default project destination for the documentation website root. */
+export const documentationHome = "/hypatia";
+
 /**
  * Returns the documentation folder's entry route for project navigation.
  *

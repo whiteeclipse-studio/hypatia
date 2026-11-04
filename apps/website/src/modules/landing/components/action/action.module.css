@@ -1,0 +1,19 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+.portfolio {
+    min-width: min(100%, 350px);
+    justify-content: space-between;
+}
+
+.unavailable {
+    margin-top: 8px;
+    gap: 32px;
+}
+
+.unavailable:focus-visible {
+    outline: 2px solid var(--gray-12);
+    outline-offset: 3px;
+}

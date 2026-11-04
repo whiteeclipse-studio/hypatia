@@ -2,7 +2,7 @@
  * Copyright © 2026 - White Eclipse
  * Released under the MIT Licence.
  */
-import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { build } from "vite";
@@ -11,6 +11,7 @@ import configuration from "../../website.config";
 import { createSources } from "../server/sources";
 import { type Bootstrap, pageDataUrl } from "../modules/documentation/domain/types";
 import { renderingModuleSchema } from "../rendering/module";
+import { documentationHome } from "../modules/documentation/domain/routes";
 
 
 const root = fileURLToPath(new URL("../..", import.meta.url));
@@ -72,13 +73,25 @@ const routes = ["/"];
  * @rejects If loading, validation or resource cleanup fails.
  */
 async function page(route: string, bootstrap: Bootstrap): Promise<void> {
-    const body = await rendering.render(bootstrap, route);
+    const payload: Bootstrap = { ...bootstrap, landingOrigin: configuration.landingOrigin };
+    const body = await rendering.render(payload, route);
     await output(
         `${route}index.html`,
-        rendering.htmlDocument(bootstrap, body, { assets, route, origin: configuration.documentationOrigin }),
+        rendering.htmlDocument(payload, body, { assets, route, origin: configuration.documentationOrigin }),
     );
 }
-await page("/", { module: "documentation", locale: "en", indexes, development: false });
+await output(
+    "/index.html",
+    rendering.htmlDocument(
+        { module: "documentation", locale: "en", indexes: [], development: false },
+        `<main><a href="${documentationHome}">Open Hypatia documentation</a></main>`,
+        {
+            assets: `<meta http-equiv="refresh" content="0;url=${documentationHome}">`,
+            route: documentationHome,
+            origin: configuration.documentationOrigin,
+        },
+    ),
+);
 for (const index of indexes) {
     const project = sources.get(index.project.id);
     if (project === undefined) {
@@ -93,7 +106,13 @@ for (const index of indexes) {
         await output(index.assets[path] ?? "", blob);
     }
 }
-const fallback: Bootstrap = { module: "documentation", locale: "en", indexes: [], development: false };
+const fallback: Bootstrap = {
+    module: "documentation",
+    locale: "en",
+    indexes: [],
+    development: false,
+    landingOrigin: configuration.landingOrigin,
+};
 await output(
     "/404.html",
     rendering.htmlDocument(fallback, "", {
@@ -108,17 +127,29 @@ await output(
     "/sitemap.xml",
     `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes.map(route => `<url><loc>${rendering.escapeHtml(new URL(route, configuration.documentationOrigin).href)}</loc></url>`).join("")}</urlset>`,
 );
-const landing: Bootstrap = { module: "landing", locale: "en", indexes: [], development: false };
+const landing: Bootstrap = {
+    module: "landing",
+    locale: "en",
+    indexes: [],
+    development: false,
+    documentationOrigin: configuration.documentationOrigin,
+};
+await rm(resolve(root, "dist/landing"), { recursive: true, force: true });
 await mkdir(resolve(root, "dist/landing"), { recursive: true });
 await cp(resolve(root, "public/favicon"), resolve(root, "dist/landing/favicon"), { recursive: true });
-// No landing content or client bundle is emitted until that module is implemented.
+await cp(resolve(root, "dist/docs/assets"), resolve(root, "dist/landing/assets"), { recursive: true });
 await writeFile(
     resolve(root, "dist/landing/index.html"),
     rendering.htmlDocument(landing, await rendering.render(landing, "/"), {
-        assets: "",
+        assets,
         route: "/",
         origin: configuration.landingOrigin,
     }),
+);
+await writeFile(resolve(root, "dist/landing/routes.json"), JSON.stringify(["/"]));
+await writeFile(
+    resolve(root, "dist/landing/sitemap.xml"),
+    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${rendering.escapeHtml(new URL("/", configuration.landingOrigin).href)}</loc></url></urlset>`,
 );
 process.stdout.write(
     `Generated ${routes.length} documentation routes. Deploy dist/docs and dist/landing as static roots.\n`,

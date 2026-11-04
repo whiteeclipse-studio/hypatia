@@ -63,6 +63,8 @@ export interface Bootstrap {
     indexes: ProjectIndex[];
     page?: PageData | undefined;
     development: boolean;
+    documentationOrigin?: string | undefined;
+    landingOrigin?: string | undefined;
 }
 /**
  * Identifies a page within one immutable project generation.

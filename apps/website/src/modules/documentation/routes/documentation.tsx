@@ -5,11 +5,11 @@
 
 import type { ReactElement } from "react";
 /* Copyright © 2026 White Eclipse. Released under the MIT License. */
-import { Link, useLocation } from "react-router";
+import { Link, Navigate, useLocation } from "react-router";
 import { Heading } from "@radix-ui/themes";
 import { useTranslation } from "@whiteeclipse/i18next";
 import { useDocumentation } from "../store/use-documentation";
-import { normalizedRoute, projectHome } from "../domain/routes";
+import { documentationHome, normalizedRoute, projectHome } from "../domain/routes";
 import { Reader } from "../layouts/reader";
 
 
@@ -27,6 +27,9 @@ export function DocumentationRoutes(): ReactElement {
         route = normalizedRoute(pathname);
     } catch {
         return <main id="documentation-content">{t("notFound")}</main>;
+    }
+    if (route === "/") {
+        return <Navigate to={documentationHome} replace />;
     }
     const index = state.indexes.find(item => route.startsWith(`/${item.project.id}/`));
     if (index !== undefined) {

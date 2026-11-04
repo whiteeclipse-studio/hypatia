@@ -7,12 +7,14 @@ import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
 import configuration from "../../website.config";
 import { createSources } from "./sources";
-import { normalizedRoute } from "../modules/documentation/domain/routes";
+import { documentationHome, normalizedRoute } from "../modules/documentation/domain/routes";
 import type { Bootstrap } from "../modules/documentation/domain/types";
 import { renderingModuleSchema } from "../rendering/module";
 import { z } from "zod";
 import { parseAcceptLanguage, selectLocale, type TranslationCatalogue } from "@whiteeclipse/i18next";
 import { httpStatus, timing } from "../shared/constants";
+import { websiteModule } from "./website-module";
+import { moduleStylesheets } from "./stylesheets";
 
 
 const defaultPort = 20100;
@@ -136,6 +138,7 @@ async function asset(url: URL, response: ServerResponse): Promise<void> {
  */
 async function renderRequest(request: IncomingMessage, response: ServerResponse, url: URL): Promise<void> {
     const route = normalizedRoute(url.pathname);
+    const landing = websiteModule(url.hostname) === "landing";
     const project = sources.indexes().find(index => route.startsWith(`/${index.project.id}/`));
     const page = project === undefined ? undefined : sources.get(project.project.id)?.pages[route];
     const rendering = renderingModuleSchema.parse(await vite.ssrLoadModule("/src/rendering/server.tsx"));
@@ -149,21 +152,23 @@ async function renderRequest(request: IncomingMessage, response: ServerResponse,
         }
     }
     const bootstrap: Bootstrap = {
-        module: "documentation",
+        module: landing ? "landing" : "documentation",
         locale: selectLocale(parseAcceptLanguage(request.headers["accept-language"]), available),
-        indexes: sources.indexes(),
+        indexes: landing ? [] : sources.indexes(),
         development: true,
+        documentationOrigin: configuration.documentationOrigin,
+        landingOrigin: configuration.landingOrigin,
     };
-    if (page !== undefined) {
+    if (!landing && page !== undefined) {
         bootstrap.page = page;
     }
     const body = await rendering.render(bootstrap, route);
     const html = rendering.htmlDocument(bootstrap, body, {
-        assets: '<link rel="stylesheet" href="/src/shared/theme/styles.css"><script type="module" src="/src/app/client.tsx"></script>',
+        assets: `<link rel="stylesheet" href="/src/shared/theme/styles.css">${moduleStylesheets(vite)}<script type="module" src="/src/app/client.tsx"></script>`,
         route,
-        origin: configuration.documentationOrigin,
+        origin: landing ? configuration.landingOrigin : configuration.documentationOrigin,
     });
-    response.writeHead(route === "/" || page !== undefined ? httpStatus.ok : httpStatus.notFound, {
+    response.writeHead(route === "/" || (!landing && page !== undefined) ? httpStatus.ok : httpStatus.notFound, {
         "Content-Type": "text/html",
         "Cache-Control": "no-store",
     });
@@ -179,7 +184,12 @@ async function renderRequest(request: IncomingMessage, response: ServerResponse,
  * @rejects If loading, validation or resource cleanup fails.
  */
 async function respond(request: IncomingMessage, response: ServerResponse): Promise<void> {
-    const url = new URL(request.url ?? "/", "http://localhost");
+    const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "localhost"}`);
+    if (url.pathname === "/" && websiteModule(url.hostname) === "documentation") {
+        response.writeHead(httpStatus.moved, { Location: documentationHome });
+        response.end();
+        return;
+    }
     if (data(url, request, response)) {
         return;
     }

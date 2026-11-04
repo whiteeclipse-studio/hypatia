@@ -8,7 +8,13 @@ standard_revision: 1
 `@whiteeclipse/website` is the exploratory `0.1.0-alpha.1` application for the White Eclipse landing and documentation
 modules. The documentation explorer uses the Storybook reader's Core UI foundations, compiled HAST, and React Router.
 Project links open `docs/README.md`; project navigation and filtering are rooted at `docs/`. Documents outside that
-folder remain available through authored links. The landing module is reserved; it contains no landing content yet.
+folder remain available through authored links. The landing module restores the current `whiteeclipse.fr` page using
+the layout, English/French copy and orbital artwork recovered from commit `25f3566`. It uses the current Core UI theme
+and installed Radix icons. The portfolio and studio links target page sections; blog and contact calls to action
+retain their unavailable placeholder state. The footer contact link remains a working email link.
+The documentation header's White Eclipse brand links to the configured `landingOrigin`.
+The documentation domain root redirects to `/hypatia`, using an HTTP redirect in development, an HTML refresh with a
+fallback link in static output, and replacement navigation for client-side visits.
 
 This work explores
 draft [RFC-0002](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0002-tech-stack.md), [RFC-0004](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0004-internationalization.md),
@@ -25,10 +31,16 @@ bun install
 bun run --cwd apps/website dev
 ```
 
+Development and preview select the landing module for the hostname configured in `landingOrigin`, and documentation
+for other hosts. Set `WEBSITE_MODULE=landing` or `WEBSITE_MODULE=documentation` to override that selection when using
+localhost. A reverse proxy can route both configured domains to the same server.
+
 The development HTTP port defaults to `20100`; `PORT` overrides it. Vite's development websocket uses the next port. A
-reverse proxy can expose the application at `https://hypatia.local.whiteeclipse.dev`. Development prepares repository
+reverse proxy can expose documentation at `https://docs.hypatia.local.whiteeclipse.dev` and the landing page at
+`https://hypatia.whiteeclipse.dev`. Development prepares repository
 snapshots but server-renders HTML only for the requested route. React Router requests page data for subsequent
 navigation. Local sources update through compiler watches; remote archive sources can be refreshed with Update.
+Development HTML links the SSR-discovered CSS Modules directly, keeping the landing layout styled before hydration.
 
 ## Configuration
 
@@ -74,8 +86,12 @@ generated HTML.
 Serve `dist/docs` at the documentation domain root. Serve directory `index.html` files and use `404.html` as the static
 fallback, retaining the requested URL, so pages added by newer archives can load in the browser. Missing `_data`,
 `_assets`, and application asset requests must return 404 rather than the HTML fallback. No deployed endpoint requires
-SSR. The separate `dist/landing` output contains only the reserved module shell. The SSR build under `.cache/ssg` is
-build tooling and must not be deployed.
+SSR. The separate `dist/landing` output contains the complete English landing HTML, localized title and description,
+canonical URL, favicon, bundled artwork, fonts, styles, hydration scripts, route inventory and sitemap. Serve that
+folder at `landingOrigin`; its documentation action links to `documentationOrigin`. English/French language switching
+hydrates from the generated English snapshot and then applies saved or browser preferences. Preview this output with
+`WEBSITE_MODULE=landing bun run --cwd apps/website preview`. Missing landing routes return 404. The SSR build under
+`.cache/ssg` is build tooling and must not be deployed.
 
 A worker retains one compiler watch session per project. It restores validated archive bytes from a separate durable
 IndexedDB database and invalidates its stable archive input on updates. Failed updates retain usable content; source
@@ -119,3 +135,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author        | Description                                     |
 |----------|------------|---------------|-------------------------------------------------|
 | 1        | 2026-11-04 | Akane SHIMOKA | Introduce the exploratory documentation website |
+| 2        | 2026-11-04 | Akane SHIMOKA | Restore the landing page and its static output  |

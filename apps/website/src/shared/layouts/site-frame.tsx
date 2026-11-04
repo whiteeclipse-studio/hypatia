@@ -3,7 +3,6 @@
  * Released under the MIT Licence.
  */
 import type { ReactElement, ReactNode } from "react";
-import { Link as RouterLink } from "react-router";
 import { Text, useThemeContext } from "@radix-ui/themes";
 import { useLocale, useTranslation } from "@whiteeclipse/i18next";
 import { LanguageSelector } from "../components/language-selector";
@@ -20,15 +19,18 @@ import catalogue from "virtual:whiteeclipse-locales";
  * @param props.children The children input.
  * @param props.headerActions Module actions displayed at the far right of the header.
  * @param props.languages Available interface and content languages.
+ * @param props.landingOrigin The landing page destination for the studio brand.
  */
 export function SiteFrame({
     children,
     headerActions,
+    landingOrigin,
     languages: available = Object.keys(catalogue),
 }: {
     children: ReactNode;
     headerActions?: ReactNode;
     languages?: string[];
+    landingOrigin: string;
 }): ReactElement {
     const { locale } = useLocale();
     const { appearance } = useThemeContext();
@@ -42,8 +44,8 @@ export function SiteFrame({
                 {t("skip")}
             </a>
             <header className="flex min-h-16 shrink-0 flex-wrap items-center gap-x-5 gap-y-2 border-b border-(--gray-6) p-4 md:min-h-19 md:px-8">
-                <RouterLink
-                    to="/"
+                <a
+                    href={landingOrigin}
                     className="flex items-center gap-3 font-(family-name:--brand-font-family) text-base font-light tracking-wider text-inherit uppercase no-underline md:text-xl"
                 >
                     <img
@@ -54,7 +56,7 @@ export function SiteFrame({
                         className="size-16 shrink-0"
                     />
                     <span>White Eclipse</span>
-                </RouterLink>
+                </a>
                 <span className="hidden h-5 border-l border-(--gray-7) sm:block" aria-hidden="true" />
                 <Text size="2" color="gray" className="hidden sm:block">
                     {t("documentation")}

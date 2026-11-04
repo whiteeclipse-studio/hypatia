@@ -1,0 +1,12 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+.eyebrow {
+    font-family: var(--code-font-family);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    line-height: 1.6;
+}

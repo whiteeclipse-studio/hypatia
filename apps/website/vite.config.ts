@@ -6,6 +6,7 @@ import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { i18nextPlugin } from "@whiteeclipse/i18next/vite";
 import { fileURLToPath } from "node:url";
+import configuration from "./website.config";
 
 
 export default defineConfig({
@@ -26,7 +27,11 @@ export default defineConfig({
     worker: { format: "es" },
     oxc: { target: "es2022" },
     server: {
-        allowedHosts: ["docs.hypatia.local.whiteeclipse.dev", "hypatia.local.whiteeclipse.dev"],
+        allowedHosts: [
+            new URL(configuration.documentationOrigin).hostname,
+            new URL(configuration.landingOrigin).hostname,
+            "hypatia.local.whiteeclipse.dev",
+        ],
     },
     build: { target: "es2022", manifest: true, outDir: "dist/docs", rolldownOptions: { input: "src/app/client.tsx" } },
 });
