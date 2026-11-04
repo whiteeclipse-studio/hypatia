@@ -32,12 +32,12 @@ helpers, and development commands.
 
 ## Choose an adapter
 
-| Variant    | Storage and retention                                         | Useful when                                                                                  |
-|------------|---------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| LRU memory | Memory; evicts entries to fit a byte budget                   | Repeated access benefits from keeping a bounded amount of content in memory                  |
-| Filesystem | A fresh temporary directory; removed on disposal              | Large payloads should be read without eagerly loading their bytes into JavaScript buffers    |
-| IndexedDB  | A named browser database; entries survive connection disposal | Cached content should be reusable across browser sessions, subject to browser storage policy |
-| Aggregate  | Child adapters determine storage and retention                | Reads should try several stores in order and writes should reach all of them                 |
+| Variant    | Storage and retention                                     | Useful when                                                                                  |
+|------------|-----------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| LRU memory | Memory; evicts entries to fit a byte budget               | Repeated access benefits from keeping a bounded amount of content in memory                  |
+| Filesystem | A fresh temporary directory; removed on disposal          | Large payloads should be read without eagerly loading their bytes into JavaScript buffers    |
+| IndexedDB  | A named browser database; retained on disposal by default | Cached content should be reusable across browser sessions, subject to browser storage policy |
+| Aggregate  | Child adapters determine storage and retention            | Reads should try several stores in order and writes should reach all of them                 |
 
 Import the shared `CacheAdapter` type and JSON helpers from `@whiteeclipse/cache`. Import constructors and their adapter
 types from the dedicated subpaths:
@@ -66,3 +66,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 |----------|------------|---------------|-----------------------------------------------------------|
 | 1        | 2026-10-29 | Akane SHIMOKA | Introduce cache concepts, guarantees, and adapter imports |
 | 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                             |
+| 3        | 2026-11-03 | Akane SHIMOKA | Clarify default IndexedDB retention                       |

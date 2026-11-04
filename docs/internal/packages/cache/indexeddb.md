@@ -21,8 +21,9 @@ const blob = await cache.read("greeting");
 if (blob !== undefined) console.log(await blob.text());
 ```
 
-`createIndexedDbCacheAdapter(name)` opens a database asynchronously. Its readonly `name` property exposes that name. It
-requires IndexedDB, standard Blob APIs, and asynchronous disposal support. Unavailable IndexedDB rejects rather than
+`createIndexedDbCacheAdapter(name, options?)` opens a database asynchronously. Its readonly `name` property exposes
+that name. It requires IndexedDB, standard Blob APIs, and asynchronous disposal support. Unavailable IndexedDB rejects
+rather than
 falling back to memory.
 
 ## Database and transactions
@@ -42,8 +43,13 @@ database change.
 
 ## Retention and verification limits
 
-Disposal closes the connection after admitted operations finish; it does not delete entries. Opening the same name again
-reuses stored data. `remove` deletes an individual entry. There is no adapter byte budget or TTL.
+By default, disposal closes the connection after admitted operations finish without deleting entries. Opening the same
+name again reuses stored data. `remove` deletes an individual entry. There is no adapter byte budget or TTL.
+
+For temporary storage, pass `{ deleteOnDispose: true }` as the second argument. Disposal then drains admitted
+operations, closes the connection, and deletes the entire database. Reserve the database exclusively for this adapter
+when enabling deletion. Deletion errors or blocking connections reject disposal; repeated calls share the cleanup
+outcome. The option defaults to `false`.
 
 Data remains subject to browser quota, browser eviction, and user clearing. The adapter does not request
 persistent-storage permission or guarantee survival across sessions. Consumers still need a way to recover misses.
@@ -63,3 +69,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 |----------|------------|---------------|-------------------------------------------------------|
 | 1        | 2026-10-29 | Akane SHIMOKA | Document browser persistence and its dedicated import |
 | 2        | 2026-11-02 | Akane SHIMOKA | Add document navigation links                         |
+| 3        | 2026-11-03 | Akane SHIMOKA | Configure database deletion on disposal               |
