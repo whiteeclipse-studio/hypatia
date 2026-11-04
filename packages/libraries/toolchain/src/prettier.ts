@@ -6,6 +6,7 @@
 import { createRequire } from "node:module";
 import type { Config } from "prettier";
 
+
 const require = createRequire(import.meta.url);
 
 /** Shared formatting options, retaining Arcadia's formatting and package key order. */
@@ -22,7 +23,11 @@ const config: Config = {
     bracketSameLine: false,
     arrowParens: "avoid",
     endOfLine: "lf",
-    plugins: [require.resolve("prettier-plugin-packagejson")],
+    plugins: [
+        require.resolve("prettier-plugin-packagejson"),
+        // Tailwind's plugin must be last to preserve compatibility with other plugins.
+        require.resolve("prettier-plugin-tailwindcss"),
+    ],
 };
 
 export default config;

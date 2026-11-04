@@ -75,14 +75,20 @@ Use ESLint's `--fix` or Prettier's `--write` to apply available fixes, then revi
 The package exposes two default exports; it has no package-root export:
 
 - **`@whiteeclipse/toolchain/eslint`:** a flat configuration array combining JavaScript correctness, type-aware TypeScript, import boundaries, promise handling, JSDoc, readability, and JSX checks.
-- **`@whiteeclipse/toolchain/prettier`:** a configuration object using 120-column lines, four-space indentation, double quotes, semicolons, trailing commas, and LF endings. It includes `prettier-plugin-packagejson` for package-file formatting.
+- **`@whiteeclipse/toolchain/prettier`:** a configuration object using 120-column lines, four-space indentation, double
+  quotes, semicolons, trailing commas, and LF endings. It includes `prettier-plugin-packagejson` for package-file
+  formatting and `prettier-plugin-tailwindcss` for automatic utility-class ordering. The Tailwind plugin loads last.
 
 Typed linting uses TypeScript's project service, so checked TypeScript files need an appropriate `tsconfig.json`. Import
 resolution supports Bun and checks `tsconfig.json` in the current directory as well as projects at
 `apps/*/tsconfig.json` and `packages/*/*/tsconfig.json`. Repository workspace configurations set `tsconfigRootDir` to
 their own directory, and their TypeScript projects include the ESLint configuration and relevant scripts.
 
-JSDoc is required on interfaces, standalone functions, and class methods. Object-literal methods and function-valued
+JSDoc is required on interfaces, standalone functions, and class methods. PascalCase function declarations and assigned
+functions with an explicit `ReactElement` or `React.ReactElement` return annotation may omit JSDoc; a union with `null`
+is also supported. Inferred returns, type aliases, hooks, and other return types do not receive this exception. These
+components may also use summary-only JSDoc without `@param` or `@returns`. Other checks, including supplied tag names
+and parameter names, still apply. Object-literal methods and function-valued
 properties do not require duplicate comments; document their contracts on the corresponding types. Any JSDoc supplied on
 an implementation is still checked.
 
@@ -114,6 +120,30 @@ import config from "@whiteeclipse/toolchain/prettier";
 export default { ...config, printWidth: 100 };
 ```
 
+### Tailwind class formatting
+
+Use the shared Prettier configuration to sort utility classes consistently. Tailwind recommends its official plugin
+in [Automatic Class Sorting with Prettier](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier). Sorting
+groups related utilities and state variants; it does not shorten long class lists or automatically split them into
+logical groups.
+
+For Tailwind CSS v4, consuming workspaces must configure `tailwindStylesheet` with the CSS entrypoint, relative to their
+Prettier configuration file:
+
+```js
+import config from "@whiteeclipse/toolchain/prettier";
+
+export default {
+    ...config,
+    tailwindStylesheet: "./src/styles/index.css",
+};
+```
+
+Hypatia's root configuration supplies separate stylesheet overrides for Website and Storybook. See the
+plugin's [stylesheet configuration](https://github.com/tailwindlabs/prettier-plugin-tailwindcss#specifying-your-tailwind-stylesheet-path-tailwind-css-v4)
+and [plugin-order requirement](https://github.com/tailwindlabs/prettier-plugin-tailwindcss#compatibility-with-other-prettier-plugins)
+when extending this setup.
+
 ## Troubleshooting
 
 | Symptom                                                    | Action                                                                                                             |
@@ -133,10 +163,11 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author        | Description                                                     |
-|----------|------------|---------------|-----------------------------------------------------------------|
-| 1        | 2026-10-25 | Akane SHIMOKA | Adds the package README.                                        |
-| 2        | 2026-10-26 | Akane SHIMOKA | Consolidate documentation                                       |
-| 3        | 2026-10-27 | Codex         | Add built JavaScript, declaration, and development exports      |
-| 4        | 2026-10-30 | Codex         | Document repository and workspace lint commands                 |
-| 5        | 2026-10-30 | Akane SHIMOKA | Clarify object-literal JSDoc exemptions and shared rule loading |
+| Revision | Date       | Author        | Description                                                        |
+|----------|------------|---------------|--------------------------------------------------------------------|
+| 1        | 2026-10-25 | Akane SHIMOKA | Adds the package README.                                           |
+| 2        | 2026-10-26 | Akane SHIMOKA | Consolidate documentation                                          |
+| 3        | 2026-10-27 | Codex         | Add built JavaScript, declaration, and development exports         |
+| 4        | 2026-10-30 | Codex         | Document repository and workspace lint commands                    |
+| 5        | 2026-10-30 | Akane SHIMOKA | Clarify object-literal JSDoc exemptions and shared rule loading    |
+| 6        | 2026-11-04 | Akane SHIMOKA | Add Tailwind class sorting and the React component JSDoc exception |
