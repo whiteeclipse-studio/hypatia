@@ -5,13 +5,21 @@ standard_revision: 1
 
 # @whiteeclipse/i18next
 
-Shared interface localization for React applications. This README covers the private `0.1.0-alpha.1` workspace package, currently being reimplemented one responsibility at a time.
+Shared interface localization for React applications. This README covers the exploratory `0.1.0-alpha.1` alpha package,
+currently being reimplemented one responsibility at a time.
 
 This is exploratory pre-production work under draft [RFC-0004 revision 1](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0004-internationalization.md). Acceptance remains pending. The current implementation provides the translation catalogue, language selection, independent localization sessions, browser preferences, request-header preference parsing, React integration, browser bootstrap, and Vite YAML loading. The previous prototype is preserved in `src.old`.
 
 ## Setup
 
-Add `"@whiteeclipse/i18next": "workspace:*"` to the consuming workspace's dependencies and run `bun install` from the repository root. Build the package with `bun run --cwd packages/platform/i18next build` before consuming it. TypeScript entrypoints use conditional exports: `types` selects adjacent declarations in `dist`, `development` selects TypeScript source, and `default` selects built JavaScript in `dist`. Source files are also included for consumers selecting the development condition. The catalogue itself has no runtime dependencies and works without browser APIs, React, or i18next.
+Install the exploratory release with `bun add @whiteeclipse/i18next@0.1.0-alpha.1`; the registry tag is `alpha`.
+The workspace instructions below apply when developing this repository.
+
+Add `"@whiteeclipse/i18next": "workspace:*"` to the consuming workspace's dependencies and run `bun install` from the
+repository root. Build the package with `bun run --cwd packages/platform/i18next build` before consuming it. TypeScript
+entrypoints use conditional exports: `types` selects adjacent declarations in `dist`, `development` and `default` select
+built JavaScript in `dist`. Source files are excluded from published packages. The catalogue itself has no runtime
+dependencies and works without browser APIs, React, or i18next.
 
 Language selection also works without browser APIs, React, or i18next. Localization sessions use i18next and work without browser APIs or React. React integration requires React 19; the optional Vite integration requires Vite 8. YAML parsing and filesystem access remain in the build integration.
 
@@ -258,18 +266,19 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author | Description                                                                |
-| -------- | ---------- | ------ | -------------------------------------------------------------------------- |
-| 1        | 2026-10-27 | Codex  | Add exploratory localization, Vite, and rendering guidance                 |
-| 2        | 2026-10-27 | Codex  | Preserve delayed hydration locales and verify generated-page rendering     |
-| 3        | 2026-10-27 | Codex  | Begin responsibility-based rewrite with an immutable translation catalogue |
-| 4        | 2026-10-27 | Codex  | Colocate unit tests with their sources using spec filenames                |
-| 5        | 2026-10-27 | Codex  | Add pure locale selection from ordered preferences                         |
-| 6        | 2026-10-27 | Codex  | Add isolated localization sessions and strict lookup fallback              |
-| 7        | 2026-10-27 | Codex  | Add browser preference reading and resilient persistence                   |
-| 8        | 2026-10-27 | Codex  | Add request language preference parsing                                    |
-| 9        | 2026-10-27 | Codex  | Group preference handling and consolidate catalogue locale helpers         |
-| 10       | 2026-10-27 | Codex  | Add React rendering, language actions, and delayed hydration coordination  |
-| 11       | 2026-10-27 | Codex  | Add browser bootstrap and share configuration with independent sessions    |
-| 12       | 2026-10-27 | Codex  | Add Vite YAML loading, catalogue modules, and development reloads          |
-| 13       | 2026-10-27 | Codex  | Add conditional distribution exports and Node-compatible source imports    |
+| Revision | Date       | Author        | Description                                                                |
+|----------|------------|---------------|----------------------------------------------------------------------------|
+| 1        | 2026-10-27 | Codex         | Add exploratory localization, Vite, and rendering guidance                 |
+| 2        | 2026-10-27 | Codex         | Preserve delayed hydration locales and verify generated-page rendering     |
+| 3        | 2026-10-27 | Codex         | Begin responsibility-based rewrite with an immutable translation catalogue |
+| 4        | 2026-10-27 | Codex         | Colocate unit tests with their sources using spec filenames                |
+| 5        | 2026-10-27 | Codex         | Add pure locale selection from ordered preferences                         |
+| 6        | 2026-10-27 | Codex         | Add isolated localization sessions and strict lookup fallback              |
+| 7        | 2026-10-27 | Codex         | Add browser preference reading and resilient persistence                   |
+| 8        | 2026-10-27 | Codex         | Add request language preference parsing                                    |
+| 9        | 2026-10-27 | Codex         | Group preference handling and consolidate catalogue locale helpers         |
+| 10       | 2026-10-27 | Codex         | Add React rendering, language actions, and delayed hydration coordination  |
+| 11       | 2026-10-27 | Codex         | Add browser bootstrap and share configuration with independent sessions    |
+| 12       | 2026-10-27 | Codex         | Add Vite YAML loading, catalogue modules, and development reloads          |
+| 13       | 2026-10-27 | Codex         | Add conditional distribution exports and Node-compatible source imports    |
+| 14       | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging                 |

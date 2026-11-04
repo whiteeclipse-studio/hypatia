@@ -6,12 +6,14 @@ standard_revision: 1
 # @whiteeclipse/core-ui
 
 Shared Radix Themes-compatible styles and a system-aware React theme boundary for White Eclipse applications, plus a
-derivative native Obsidian theme. This README covers `0.1.0-alpha.1`, a private workspace package that is not published
-to a registry.
+derivative native Obsidian theme. This README covers `0.1.0-alpha.1`, an exploratory alpha package.
 
 This is exploratory pre-production work under the draft [Core UI proposal](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/designs/core-ui/README.md), [RFC 0002](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0002-tech-stack.md), and [RFC 0003](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0003-engineering-conventions.md). Their acceptance remains pending.
 
 ## Setup
+
+Install the exploratory release with `bun add @whiteeclipse/core-ui@0.1.0-alpha.1`; the registry tag is `alpha`.
+The workspace instructions below apply when developing this repository.
 
 Add the package and its Radix Themes peer to the consuming workspace, then run `bun install`:
 
@@ -48,8 +50,8 @@ export function Example() {
 
 The shared `Theme` starts in light appearance for SSR and the first client render, then follows the system colour
 preference after mounting. It subscribes to preference changes and removes the listener when unmounted. It uses the sand
-neutral scale, gray accent, and square corners. The component accepts `children` and is exported as TSX; the consuming
-toolchain must support React JSX and TypeScript, as Bun and Vite do. Use Radix's `Theme` directly when an explicit
+neutral scale, gray accent, and square corners. The component accepts `children` and is exported as built JavaScript
+with TypeScript declarations. Use Radix's `Theme` directly when an explicit
 appearance or other theme options are needed, such as Storybook's review controls. The stylesheet includes Radix Themes'
 base CSS; consumers do not need to import it separately. Load application-specific overrides after this stylesheet.
 
@@ -202,3 +204,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 10       | 2026-10-27 | Codex         | Restore the original light and dark eclipse logo assets                       |
 | 11       | 2026-10-29 | Akane SHIMOKA | Remove square markers from ghost buttons                                      |
 | 12       | 2026-11-04 | Akane SHIMOKA | Move the system-aware React theme boundary into Core UI                       |
+| 13       | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging                    |

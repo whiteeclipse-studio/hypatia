@@ -5,8 +5,9 @@ standard_revision: 1
 
 # @whiteeclipse/log
 
-Typed LogTape configuration builders and console, JSON, and Sentry sink factories. This README covers the private
-`0.1.0-alpha.1` workspace package. It exposes TypeScript source and is an exploratory port of Arcadia's logging library,
+Typed LogTape configuration builders and console, JSON, and Sentry sink factories. This README covers the
+`0.1.0-alpha.1` alpha package. It provides built JavaScript and TypeScript declarations and is an exploratory port of
+Arcadia's logging library,
 authorized by its author in the 2026-10-30 porting request. Repository placement and tooling follow the exploratory
 scope of draft
 RFCs [0001](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0001-repository-structure.md)
@@ -15,9 +16,12 @@ adoption remains pending.
 
 ## Setup and usage
 
+Install the exploratory release with `bun add @whiteeclipse/log@0.1.0-alpha.1`; the registry tag is `alpha`.
+The workspace instructions below apply when developing this repository.
+
 Add `"@whiteeclipse/log": "workspace:*"` to the consuming workspace's dependencies, then run `bun install` from the
-repository root. Configure logging once in the application entrypoint. No current Hypatia consumers are wired to this
-package.
+repository root. Configure logging once in the application entrypoint. The async queue, cache, and documentation
+compiler use this package for diagnostics.
 
 ```ts
 import { getLogger, makeDefaultLogConfigurationBuilder } from "@whiteeclipse/log";
@@ -137,7 +141,8 @@ Ported with the author's explicit permission and released under the [MIT License
 
 ## Revisions
 
-| Revision | Date       | Author | Description                                                                |
-|----------|------------|--------|----------------------------------------------------------------------------|
-| 1        | 2026-10-30 | Codex  | Port logging builders, environment defaults, and categorized logger access |
-| 2        | 2026-10-30 | Codex  | Export the default configuration handle for application-owned disposal     |
+| Revision | Date       | Author        | Description                                                                |
+|----------|------------|---------------|----------------------------------------------------------------------------|
+| 1        | 2026-10-30 | Codex         | Port logging builders, environment defaults, and categorized logger access |
+| 2        | 2026-10-30 | Codex         | Export the default configuration handle for application-owned disposal     |
+| 3        | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging                 |

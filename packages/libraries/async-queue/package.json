@@ -1,22 +1,30 @@
 {
     "name": "@whiteeclipse/async-queue",
     "version": "0.1.0-alpha.1",
-    "private": true,
     "description": "Sequential asynchronous operations with draining disposal.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/whiteeclipse-studio/hypatia.git",
+        "directory": "packages/libraries/async-queue"
+    },
     "license": "MIT",
     "type": "module",
     "exports": {
         ".": {
-            "types": "./src/index.ts",
-            "development": "./src/index.ts",
-            "default": "./src/index.ts"
+            "types": "./dist/index.d.ts",
+            "development": "./dist/index.js",
+            "default": "./dist/index.js"
         }
     },
     "files": [
-        "src"
+        "dist",
+        "README.md",
+        "LICENCE"
     ],
     "scripts": {
+        "build": "bun ../../../scripts/build-package.ts",
         "lint": "bun --conditions=development run --bun eslint .",
+        "prepack": "bun run build",
         "test": "vitest run src",
         "typecheck": "tsc -p tsconfig.json"
     },
@@ -30,5 +38,9 @@
         "eslint": "catalog:tooling",
         "typescript": "catalog:types",
         "vitest": "catalog:test"
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "alpha"
     }
 }

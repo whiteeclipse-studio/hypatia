@@ -1,51 +1,59 @@
 {
     "name": "@whiteeclipse/cache",
     "version": "0.1.0-alpha.1",
-    "private": true,
     "description": "Exploratory byte-oriented cache contracts and filesystem backend work in progress.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/whiteeclipse-studio/hypatia.git",
+        "directory": "packages/libraries/cache"
+    },
     "license": "MIT",
     "type": "module",
     "exports": {
         ".": {
-            "types": "./src/index.ts",
-            "development": "./src/index.ts",
-            "default": "./src/index.ts"
+            "types": "./dist/index.d.ts",
+            "development": "./dist/index.js",
+            "default": "./dist/index.js"
         },
         "./memory": {
-            "types": "./src/adapters/memory.ts",
-            "development": "./src/adapters/memory.ts",
-            "default": "./src/adapters/memory.ts"
+            "types": "./dist/adapters/memory.d.ts",
+            "development": "./dist/adapters/memory.js",
+            "default": "./dist/adapters/memory.js"
         },
         "./indexeddb": {
-            "types": "./src/adapters/indexeddb.ts",
-            "development": "./src/adapters/indexeddb.ts",
-            "default": "./src/adapters/indexeddb.ts"
+            "types": "./dist/adapters/indexeddb.d.ts",
+            "development": "./dist/adapters/indexeddb.js",
+            "default": "./dist/adapters/indexeddb.js"
         },
         "./aggregate": {
-            "types": "./src/adapters/aggregate.ts",
-            "development": "./src/adapters/aggregate.ts",
-            "default": "./src/adapters/aggregate.ts"
+            "types": "./dist/adapters/aggregate.d.ts",
+            "development": "./dist/adapters/aggregate.js",
+            "default": "./dist/adapters/aggregate.js"
         },
         "./reference-counted": {
-            "types": "./src/adapters/reference-counted.ts",
-            "development": "./src/adapters/reference-counted.ts",
-            "default": "./src/adapters/reference-counted.ts"
+            "types": "./dist/adapters/reference-counted.d.ts",
+            "development": "./dist/adapters/reference-counted.js",
+            "default": "./dist/adapters/reference-counted.js"
         },
         "./filesystem": {
             "browser": null,
-            "types": "./src/adapters/filesystem.ts",
+            "types": "./dist/adapters/filesystem.d.ts",
             "node": {
-                "development": "./src/adapters/filesystem.ts",
-                "default": "./src/adapters/filesystem.ts"
+                "development": "./dist/adapters/filesystem.js",
+                "default": "./dist/adapters/filesystem.js"
             },
             "default": null
         }
     },
     "files": [
-        "src"
+        "dist",
+        "README.md",
+        "LICENCE"
     ],
     "scripts": {
+        "build": "bun ../../../scripts/build-package.ts",
         "lint": "bun --conditions=development run --bun eslint .",
+        "prepack": "bun run build",
         "test": "vitest run src",
         "typecheck": "tsc -p tsconfig.json"
     },
@@ -72,5 +80,9 @@
         "zod": {
             "optional": true
         }
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "alpha"
     }
 }

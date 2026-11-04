@@ -2,6 +2,11 @@
     "name": "@whiteeclipse/docs-compiler",
     "version": "0.1.0-alpha.2",
     "description": "Hypatia-compatible extensible documentation compiler that produces Unified HAST artifacts.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/whiteeclipse-studio/hypatia.git",
+        "directory": "packages/platform/docs-compiler"
+    },
     "license": "MIT",
     "author": {
         "name": "White Eclipse",
@@ -14,69 +19,58 @@
     "type": "module",
     "imports": {
         "#compiler-cache-secondary": {
-            "browser": "./src/compiler/cache/indexeddb.ts",
-            "node": "./src/compiler/cache/filesystem.ts",
-            "default": "./src/compiler/cache/indexeddb.ts"
+            "browser": "./dist/compiler/cache/indexeddb.js",
+            "node": "./dist/compiler/cache/filesystem.js",
+            "default": "./dist/compiler/cache/indexeddb.js"
         },
         "#archive-reader-source": {
-            "browser": "./src/plugins/archive-reader/source.ts",
-            "node": "./src/plugins/archive-reader/filesystem-source.ts",
-            "bun": "./src/plugins/archive-reader/filesystem-source.ts",
-            "default": "./src/plugins/archive-reader/source.ts"
+            "browser": "./dist/plugins/archive-reader/source.js",
+            "node": "./dist/plugins/archive-reader/filesystem-source.js",
+            "bun": "./dist/plugins/archive-reader/filesystem-source.js",
+            "default": "./dist/plugins/archive-reader/source.js"
         }
     },
     "exports": {
         ".": {
-            "types": "./src/index.ts",
-            "default": "./src/index.ts"
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
         },
         "./packages/link-resolver": {
-            "types": "./src/plugins/link-resolver/index.ts",
-            "default": "./src/plugins/link-resolver/index.ts"
+            "types": "./dist/plugins/link-resolver/index.d.ts",
+            "default": "./dist/plugins/link-resolver/index.js"
         },
         "./packages/markdown-parser": {
             "browser": null,
-            "types": "./src/plugins/markdown-parser/index.ts",
-            "bun": "./src/plugins/markdown-parser/index.ts",
+            "types": "./dist/plugins/markdown-parser/index.d.ts",
+            "bun": "./dist/plugins/markdown-parser/index.js",
             "default": null
         },
         "./packages/archive-writer": {
             "browser": null,
-            "types": "./src/plugins/archive-writer/index.ts",
-            "bun": "./src/plugins/archive-writer/index.ts",
+            "types": "./dist/plugins/archive-writer/index.d.ts",
+            "bun": "./dist/plugins/archive-writer/index.js",
             "default": null
         },
         "./packages/filesystem-loader": {
             "browser": null,
-            "types": "./src/plugins/filesystem-loader/index.ts",
-            "bun": "./src/plugins/filesystem-loader/index.ts",
-            "default": null
-        },
-        "./packages/markdown-parser-plugin": {
-            "types": "./src/plugins/markdown-parser-plugin/index.ts",
-            "default": "./src/plugins/markdown-parser-plugin/index.ts"
-        },
-        "./packages/local-repository-plugin": {
-            "browser": null,
-            "types": "./src/plugins/local-repository-plugin/index.ts",
-            "node": {
-                "development": "./src/plugins/local-repository-plugin/index.ts",
-                "default": "./src/plugins/local-repository-plugin/index.ts"
-            },
+            "types": "./dist/plugins/filesystem-loader/index.d.ts",
+            "bun": "./dist/plugins/filesystem-loader/index.js",
             "default": null
         },
         "./packages/archive-reader": {
-            "types": "./src/plugins/archive-reader/index.ts",
-            "default": "./src/plugins/archive-reader/index.ts"
+            "types": "./dist/plugins/archive-reader/index.d.ts",
+            "default": "./dist/plugins/archive-reader/index.js"
         }
     },
     "files": [
         "dist",
-        "src",
+        "README.md",
         "LICENCE"
     ],
     "scripts": {
+        "build": "bun ../../../scripts/build-package.ts",
         "lint": "bun --conditions=development run --bun eslint .",
+        "prepack": "bun run build",
         "test": "vitest run src",
         "typecheck": "tsc -p tsconfig.json"
     },
@@ -124,5 +118,9 @@
     },
     "engines": {
         "bun": ">=1.4.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "alpha"
     }
 }

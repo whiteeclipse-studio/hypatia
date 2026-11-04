@@ -1,26 +1,36 @@
 {
     "name": "@whiteeclipse/core-ui",
     "version": "0.1.0-alpha.1",
-    "private": true,
     "description": "Shared Radix Themes-compatible styles for White Eclipse applications.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/whiteeclipse-studio/hypatia.git",
+        "directory": "packages/platform/core-ui"
+    },
     "license": "MIT",
     "sideEffects": [
         "**/*.css"
     ],
     "type": "module",
     "exports": {
-        "./styles.css": "./src/styles.css",
-        "./assets/white-eclipse-light.png": "./src/assets/white-eclipse-light.png",
-        "./assets/white-eclipse-dark.png": "./src/assets/white-eclipse-dark.png",
-        "./theme": "./src/theme.tsx"
+        "./styles.css": "./dist/styles.css",
+        "./assets/white-eclipse-light.png": "./dist/assets/white-eclipse-light.png",
+        "./assets/white-eclipse-dark.png": "./dist/assets/white-eclipse-dark.png",
+        "./theme": {
+            "types": "./dist/theme.d.ts",
+            "default": "./dist/theme.js"
+        }
     },
     "files": [
-        "src",
-        "dist/obsidian"
+        "dist",
+        "README.md",
+        "LICENCE"
     ],
     "scripts": {
+        "build": "bun ../../../scripts/build-package.ts",
         "build:obsidian": "bun run typecheck && bun scripts/build-obsidian.ts",
         "lint": "bun --conditions=development run --bun eslint .",
+        "prepack": "bun run build",
         "typecheck": "tsc -p tsconfig.json"
     },
     "dependencies": {
@@ -38,5 +48,9 @@
     "peerDependencies": {
         "@radix-ui/themes": "catalog:ui",
         "react": "catalog:ui"
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "alpha"
     }
 }

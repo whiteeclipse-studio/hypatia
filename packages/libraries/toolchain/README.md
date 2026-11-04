@@ -5,9 +5,13 @@ standard_revision: 1
 
 # @whiteeclipse/toolchain
 
-Shared ESLint and Prettier configurations for White Eclipse's JavaScript and TypeScript workspaces. This README covers `0.1.0-alpha.1`, a private workspace package that is not published to a registry.
+Shared ESLint and Prettier configurations for White Eclipse's JavaScript and TypeScript workspaces. This README covers
+`0.1.0-alpha.1`, an exploratory alpha package.
 
 ## Setup
+
+Install the exploratory release with `bun add --dev @whiteeclipse/toolchain@0.1.0-alpha.1`; the registry tag is `alpha`.
+The workspace instructions below apply when developing this repository.
 
 Add the package to a consuming workspace's development dependencies, then run `bun install`:
 
@@ -22,12 +26,15 @@ Add the package to a consuming workspace's development dependencies, then run `b
 Install compatible peers according to [package.json](./package.json):
 
 | Peer       | Supported versions |
-| ---------- | ------------------ |
-| ESLint     | `^10.10.0`         |
-| Prettier   | `^3.9.6`           |
-| TypeScript | `>=5.9.3 <6.1.0`   |
+|------------|--------------------|
+| ESLint     | `10.13.0`          |
+| Prettier   | `3.9.10`           |
+| TypeScript | `6.0.3`            |
 
-Run `bun run --cwd packages/libraries/toolchain build` from the repository root before consuming the package. Entrypoints select built `dist/*.js` files by default, adjacent `.d.ts` files for types, and source `.ts` files when the consumer enables the `development` condition. The examples run tools with Bun; the built configuration entrypoints also load through Node ESM.
+Run `bun run --cwd packages/libraries/toolchain build` from the repository root before consuming the package.
+Entrypoints select built `dist/*.js` files by default, adjacent `.d.ts` files for types, and built JavaScript when the
+consumer enables the `development` condition. The examples run tools with Bun; the built configuration entrypoints also
+load through Node ESM.
 
 Create `eslint.config.ts` at the workspace root:
 
@@ -96,7 +103,10 @@ JavaScript files, configuration files, and scripts receive Node globals. Source 
 
 ESLint ignores dependency directories, `dist`, `storybook-static`, `coverage`, `.idea`, and `.obsidian`. Prettier's file selection is controlled separately by the consumer's command targets and ignore file.
 
-See the [ESLint entrypoint](./src/eslint/index.ts), [rule groups](./src/eslint/plugins/), and [Prettier configuration](./src/prettier.ts) for complete settings.
+See
+the [ESLint entrypoint](https://github.com/whiteeclipse-studio/hypatia/blob/feature/website/packages/libraries/toolchain/src/eslint/index.ts), [rule groups](https://github.com/whiteeclipse-studio/hypatia/tree/feature/website/packages/libraries/toolchain/src/eslint/plugins),
+and [Prettier configuration](https://github.com/whiteeclipse-studio/hypatia/blob/feature/website/packages/libraries/toolchain/src/prettier.ts)
+for complete settings.
 
 ## Extending configurations
 
@@ -171,3 +181,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 4        | 2026-10-30 | Codex         | Document repository and workspace lint commands                    |
 | 5        | 2026-10-30 | Akane SHIMOKA | Clarify object-literal JSDoc exemptions and shared rule loading    |
 | 6        | 2026-11-04 | Akane SHIMOKA | Add Tailwind class sorting and the React component JSDoc exception |
+| 7        | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging         |

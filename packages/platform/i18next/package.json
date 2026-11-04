@@ -1,39 +1,45 @@
 {
     "name": "@whiteeclipse/i18next",
     "version": "0.1.0-alpha.1",
-    "private": true,
     "description": "Exploratory React localization and Vite YAML integration for RFC-0004.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/whiteeclipse-studio/hypatia.git",
+        "directory": "packages/platform/i18next"
+    },
     "license": "MIT",
     "type": "module",
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
-            "development": "./src/index.ts",
+            "development": "./dist/index.js",
             "default": "./dist/index.js"
         },
         "./vite": {
             "types": "./dist/vite/index.d.ts",
-            "development": "./src/vite/index.ts",
+            "development": "./dist/vite/index.js",
             "default": "./dist/vite/index.js"
         },
         "./vite/client": {
             "types": "./dist/vite/client.d.ts",
-            "development": "./src/vite/client.ts",
+            "development": "./dist/vite/client.js",
             "default": "./dist/vite/client.js"
         },
         "./catalogue": {
             "types": "./dist/catalogue/index.d.ts",
-            "development": "./src/catalogue/index.ts",
+            "development": "./dist/catalogue/index.js",
             "default": "./dist/catalogue/index.js"
         }
     },
     "files": [
         "dist",
-        "src"
+        "README.md",
+        "LICENCE"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.build.json",
+        "build": "bun ../../../scripts/build-package.ts",
         "lint": "bun --conditions=development run --bun eslint .",
+        "prepack": "bun run build",
         "test": "bun run build && vitest run",
         "typecheck": "tsc -p tsconfig.json"
     },
@@ -64,5 +70,9 @@
         "vite": {
             "optional": true
         }
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "alpha"
     }
 }

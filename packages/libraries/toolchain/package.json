@@ -1,28 +1,35 @@
 {
     "name": "@whiteeclipse/toolchain",
     "version": "0.1.0-alpha.1",
-    "private": true,
     "description": "Shared ESLint and Prettier configuration of White Eclipse.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/whiteeclipse-studio/hypatia.git",
+        "directory": "packages/libraries/toolchain"
+    },
+    "license": "MIT",
     "type": "module",
     "exports": {
         "./eslint": {
             "types": "./dist/eslint/index.d.ts",
-            "development": "./src/eslint/index.ts",
+            "development": "./dist/eslint/index.js",
             "default": "./dist/eslint/index.js"
         },
         "./prettier": {
             "types": "./dist/prettier.d.ts",
-            "development": "./src/prettier.ts",
+            "development": "./dist/prettier.js",
             "default": "./dist/prettier.js"
         }
     },
     "files": [
         "dist",
-        "src"
+        "README.md",
+        "LICENCE"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.build.json",
+        "build": "bun ../../../scripts/build-package.ts",
         "lint": "bun --conditions=development run --bun eslint .",
+        "prepack": "bun run build",
         "typecheck": "tsc -p tsconfig.json"
     },
     "dependencies": {
@@ -43,5 +50,9 @@
         "eslint": "catalog:tooling",
         "prettier": "catalog:tooling",
         "typescript": "catalog:types"
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "alpha"
     }
 }

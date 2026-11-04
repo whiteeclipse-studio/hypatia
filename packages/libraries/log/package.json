@@ -1,8 +1,12 @@
 {
     "name": "@whiteeclipse/log",
     "version": "0.1.0-alpha.1",
-    "private": true,
     "description": "Exploratory typed LogTape configuration builders and sink factories.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/whiteeclipse-studio/hypatia.git",
+        "directory": "packages/libraries/log"
+    },
     "license": "MIT",
     "sideEffects": [
         "./src/default.ts"
@@ -10,36 +14,40 @@
     "type": "module",
     "exports": {
         ".": {
-            "types": "./src/index.ts",
-            "development": "./src/index.ts",
-            "default": "./src/index.ts"
+            "types": "./dist/index.d.ts",
+            "development": "./dist/index.js",
+            "default": "./dist/index.js"
         },
         "./default": {
-            "types": "./src/default.ts",
-            "development": "./src/default.ts",
-            "default": "./src/default.ts"
+            "types": "./dist/default.d.ts",
+            "development": "./dist/default.js",
+            "default": "./dist/default.js"
         },
         "./sink/console": {
-            "types": "./src/configuration/factory/sink/console/index.ts",
-            "development": "./src/configuration/factory/sink/console/index.ts",
-            "default": "./src/configuration/factory/sink/console/index.ts"
+            "types": "./dist/configuration/factory/sink/console/index.d.ts",
+            "development": "./dist/configuration/factory/sink/console/index.js",
+            "default": "./dist/configuration/factory/sink/console/index.js"
         },
         "./sink/json": {
-            "types": "./src/configuration/factory/sink/json/index.ts",
-            "development": "./src/configuration/factory/sink/json/index.ts",
-            "default": "./src/configuration/factory/sink/json/index.ts"
+            "types": "./dist/configuration/factory/sink/json/index.d.ts",
+            "development": "./dist/configuration/factory/sink/json/index.js",
+            "default": "./dist/configuration/factory/sink/json/index.js"
         },
         "./sink/sentry": {
-            "types": "./src/configuration/factory/sink/sentry/index.ts",
-            "development": "./src/configuration/factory/sink/sentry/index.ts",
-            "default": "./src/configuration/factory/sink/sentry/index.ts"
+            "types": "./dist/configuration/factory/sink/sentry/index.d.ts",
+            "development": "./dist/configuration/factory/sink/sentry/index.js",
+            "default": "./dist/configuration/factory/sink/sentry/index.js"
         }
     },
     "files": [
-        "src"
+        "dist",
+        "README.md",
+        "LICENCE"
     ],
     "scripts": {
+        "build": "bun ../../../scripts/build-package.ts",
         "lint": "bun --conditions=development run --bun eslint .",
+        "prepack": "bun run build",
         "test": "vitest run src",
         "typecheck": "tsc -p tsconfig.json"
     },
@@ -64,5 +72,9 @@
         "@logtape/sentry": {
             "optional": true
         }
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "alpha"
     }
 }

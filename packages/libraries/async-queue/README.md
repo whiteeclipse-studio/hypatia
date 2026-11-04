@@ -5,11 +5,14 @@ standard_revision: 1
 
 # @whiteeclipse/async-queue
 
-Sequential asynchronous operations with draining disposal. This README covers the private `0.1.0-alpha.1` workspace
-package, extracted from the exploratory cache implementation. It uses `@whiteeclipse/log` for diagnostics and exposes
-TypeScript source rather than a built distribution.
+Sequential asynchronous operations with draining disposal. This README covers the `0.1.0-alpha.1` alpha
+package, extracted from the exploratory cache implementation. It uses `@whiteeclipse/log` for diagnostics and provides
+built JavaScript and TypeScript declarations.
 
 ## Setup
+
+Install the exploratory release with `bun add @whiteeclipse/async-queue@0.1.0-alpha.1`; the registry tag is `alpha`.
+The workspace instructions below apply when developing this repository.
 
 Add `"@whiteeclipse/async-queue": "workspace:*"` to a consuming workspace's dependencies and run `bun install` from the
 repository root.
@@ -77,7 +80,8 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 
 ## Revisions
 
-| Revision | Date       | Author | Description                                                |
-|----------|------------|--------|------------------------------------------------------------|
-| 1        | 2026-10-28 | Codex  | Extract the shared queue implementation and existing tests |
-| 2        | 2026-10-30 | Codex  | Add scoped queue lifecycle and action diagnostics          |
+| Revision | Date       | Author        | Description                                                |
+|----------|------------|---------------|------------------------------------------------------------|
+| 1        | 2026-10-28 | Codex         | Extract the shared queue implementation and existing tests |
+| 2        | 2026-10-30 | Codex         | Add scoped queue lifecycle and action diagnostics          |
+| 3        | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging |

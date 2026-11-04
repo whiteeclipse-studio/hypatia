@@ -16,12 +16,15 @@ The result is a Repository snapshot: a fixed collection of artifacts whose conte
 documentation websites and other tools a common starting point for presenting the material.
 
 This README describes the exploratory `0.1.0-alpha.2` implementation
-under [Hypatia draft RFC-0005](https://whiteeclipse.dev/hypatia/docs/internal/rfcs/0005-documentation-publication).
+under [Hypatia draft RFC-0005](https://github.com/whiteeclipse-studio/hypatia/blob/feature/website/docs/internal/rfcs/0005-documentation-publication.md).
 Acceptance and production publication approval remain pending.
-The [complete package reference](https://whiteeclipse.dev/hypatia/docs/internal/packages/docs-compiler/README.md)
+The [complete package reference](https://github.com/whiteeclipse-studio/hypatia/blob/feature/website/docs/internal/packages/docs-compiler/README.md)
 documents the current APIs and format.
 
 ## Setup
+
+Install the exploratory release with `bun add @whiteeclipse/docs-compiler@0.1.0-alpha.2`; the registry tag is `alpha`.
+The workspace instructions below apply when developing this repository.
 
 Use the repository workspace and install dependencies at its root:
 
@@ -31,7 +34,7 @@ cd packages/platform/docs-compiler
 ```
 
 Examples below run from this package directory. Source compilation, Markdown parsing, and archive writing require Bun
-`>=1.4.0` and the corresponding native APIs. The examples use package-local source imports; applications can import the
+`>=1.4.0` and the corresponding native APIs. The examples use the public package exports; applications import the
 compiler from `@whiteeclipse/docs-compiler`. Built-in plugins have explicit
 `@whiteeclipse/docs-compiler/packages/<name>` exports. There is no current CLI or Vite integration.
 
@@ -44,10 +47,10 @@ references.
 From the package directory:
 
 ```ts
-import { compile } from "./src";
-import { filesystemLoader } from "./src/plugins/filesystem-loader";
-import { markdownParser } from "./src/plugins/markdown-parser";
-import { linkResolver } from "./src/plugins/link-resolver";
+import { compile } from "@whiteeclipse/docs-compiler";
+import { filesystemLoader } from "@whiteeclipse/docs-compiler/packages/filesystem-loader";
+import { markdownParser } from "@whiteeclipse/docs-compiler/packages/markdown-parser";
+import { linkResolver } from "@whiteeclipse/docs-compiler/packages/link-resolver";
 
 await using snapshot = await compile({
     repositories: "../../..",
@@ -67,8 +70,8 @@ the original repository or running the Markdown parser again.
 Here’s an example for a browser worker, bundled from the package directory:
 
 ```ts
-import { compile } from "./src";
-import { archiveReader } from "./src/plugins/archive-reader";
+import { compile } from "@whiteeclipse/docs-compiler";
+import { archiveReader } from "@whiteeclipse/docs-compiler/packages/archive-reader";
 
 await using snapshot = await compile({
     repositories: "https://example.com/documentation.tgz",
@@ -173,7 +176,7 @@ the [serialization reference](https://whiteeclipse.dev/hypatia/docs/internal/pac
 for exact layout and validation boundaries. The writer collects repository entries before compression; the reader uses
 bounded in-memory archive parsing.
 
-The compiler imports scoped explicit-resource-management polyfills. Its package marks `src/polyfills.ts` as
+The compiler imports scoped explicit-resource-management polyfills. Its package marks `dist/polyfills.js` as
 side-effectful so bundlers retain those runtime definitions in browser workers. Browser builds still need to transpile
 `using` and `await using` for targets without syntax support.
 
@@ -198,3 +201,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | Revision | Date       | Author        | Description                                                            |
 |----------|------------|---------------|------------------------------------------------------------------------|
 | 1        | 2026-11-04 | Akane SHIMOKA | Introduce the compiler, plugins, browser examples, and watch transport |
+| 2        | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging             |

@@ -8,19 +8,25 @@ standard_revision: 1
 Blob-based caches with memory, temporary filesystem, IndexedDB, and aggregate adapters. Consumers store reusable copies
 under opaque string keys and recover data when entries are missing.
 
-This private `0.1.0-alpha.1` workspace package remains exploratory pre-production work associated
+This `0.1.0-alpha.1` alpha package remains exploratory pre-production work associated
 with [Hypatia RFC-0005 revision 1](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0005-documentation-publication.md#revisions);
 acceptance remains pending.
 
-See the [package documentation](https://whiteeclipse.dev/hypatia/internal/packages/cache) for cache concepts,
+See
+the [package documentation](https://github.com/whiteeclipse-studio/hypatia/blob/feature/website/docs/internal/packages/cache/README.md)
+for cache concepts,
 guarantees, and each adapter's behavior.
 Its [canonical sources](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/packages/cache/README.md)
 are available alongside the package; website publication is separate.
 
 ## Setup and usage
 
+Install the exploratory release with `bun add @whiteeclipse/cache@0.1.0-alpha.1`; the registry tag is `alpha`.
+The workspace instructions below apply when developing this repository.
+
 Add `"@whiteeclipse/cache": "workspace:*"` to a consuming workspace's dependencies and run `bun install` from the
-repository root. The package exposes TypeScript source and has no built distribution. Runtimes need standard Blob APIs
+repository root. The package ships built JavaScript and TypeScript declarations under `dist/`. Runtimes need standard
+Blob APIs
 and asynchronous disposal support; adapter-specific requirements are documented in the linked guide.
 
 ```ts
@@ -190,3 +196,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 14       | 2026-10-30 | Akane SHIMOKA | Replace the removed compiler inspection command with its resolution fixture                   |
 | 15       | 2026-11-03 | Codex         | Add reference-counted ownership of cached payloads                                            |
 | 16       | 2026-11-03 | Codex         | Configure IndexedDB database deletion on disposal                                             |
+| 17       | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging                                    |
