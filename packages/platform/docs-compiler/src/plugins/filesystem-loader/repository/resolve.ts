@@ -116,7 +116,7 @@ export async function resolveArtifact(
     }
 
     const path = relative(repository.directory, file).split(sep).join("/");
-    if (isExcluded(path, configuration) || (await realpath(file)) !== file) {
+    if (isExcluded(path, configuration) || (await realpath(file).catch(() => undefined)) !== file) {
         return undefined;
     }
 

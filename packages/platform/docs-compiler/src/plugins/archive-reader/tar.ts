@@ -183,7 +183,7 @@ function validateEnd(remainder: Uint8Array): void {
  */
 export async function readTar(
     archive: Blob,
-    configuration: Required<ArchiveReaderConfiguration>,
+    configuration: Required<Pick<ArchiveReaderConfiguration, "maxArchiveBytes" | "maxExpandedBytes" | "maxEntries">>,
     signal: AbortSignal,
 ): Promise<ReadonlyMap<string, Blob>> {
     const expanded = await readBoundedStream(

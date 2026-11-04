@@ -29,7 +29,7 @@ export function archiveReader(configuration: ArchiveReaderConfiguration = {}): C
     const sources = new Set<string>();
     return {
         name: "archive-reader",
-        resolveId(input, importer) {
+        async resolveId(input, importer) {
             if (importer !== undefined) {
                 return undefined;
             }
@@ -38,13 +38,26 @@ export function archiveReader(configuration: ArchiveReaderConfiguration = {}): C
                 return undefined;
             }
             sources.add(source);
-            return { type: "repository", id: source };
+            const reference = { type: "repository" as const, id: source };
+            if (configuration.subscribe !== undefined) {
+                const subscribe = configuration.subscribe;
+                await this.watch(reference, context =>
+                    subscribe(
+                        source,
+                        () => {
+                            context.invalidate(reference);
+                        },
+                        context.signal,
+                    ),
+                );
+            }
+            return reference;
         },
         async load(reference) {
             if (reference.type !== "repository" || !sources.has(reference.id)) {
                 return undefined;
             }
-            const stream = await openSource(reference.id, this.signal);
+            const stream = await (configuration.openSource ?? openSource)(reference.id, this.signal);
             const archive = await readBoundedStream(stream, options.maxArchiveBytes, this.signal);
             const entries = await readTar(archive, options, this.signal);
             return decodeRepository(entries, this);

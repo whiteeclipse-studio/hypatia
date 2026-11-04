@@ -9,7 +9,7 @@
         "url": "https://whiteeclipse.fr/"
     },
     "sideEffects": [
-        "./src/polyfills"
+        "./src/polyfills.ts"
     ],
     "type": "module",
     "imports": {
@@ -26,6 +26,10 @@
         }
     },
     "exports": {
+        ".": {
+            "types": "./src/index.ts",
+            "default": "./src/index.ts"
+        },
         "./packages/link-resolver": {
             "types": "./src/plugins/link-resolver/index.ts",
             "default": "./src/plugins/link-resolver/index.ts"

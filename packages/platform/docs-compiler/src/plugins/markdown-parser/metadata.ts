@@ -156,33 +156,42 @@ export function extractMetadata(
 ):
     | { type: "document"; metadata: DocumentArtifactMetadata }
     | { type: "translation"; metadata: TranslationArtifactMetadata } {
-    const title = tree.children.find(node => node.type === "element" && node.tagName === "h1");
-    const copyrightAndLicence = takeSection(tree, [
-        "Copyright and licence",
-        ...(configuration.headings?.copyrightAndLicence ?? []),
-    ]);
-    const revisions = readRevisions(takeSection(tree, ["Revisions", ...(configuration.headings?.revisions ?? [])]));
-    const common = {
-        ...frontmatter,
-        id: frontmatter["id"] ?? path,
-        title: title === undefined ? path : text(title).trim(),
-        copyrightAndLicence,
-        revisions,
-    };
-    if (Object.hasOwn(frontmatter, "source_id")) {
-        const metadata = translationArtifactMetadataSchema.parse({
+        const title = tree.children.find(node => node.type === "element" && node.tagName === "h1");
+        const copyrightAndLicence = takeSection(tree, [
+            "Copyright and licence",
+            ...(configuration.headings?.copyrightAndLicence ?? []),
+        ]);
+        const revisions = readRevisions(takeSection(tree, ["Revisions", ...(configuration.headings?.revisions ?? [])]));
+        const common = {
+            ...frontmatter,
+            id: frontmatter["id"] ?? path,
+            title: title === undefined ? path : text(title).trim(),
+            copyrightAndLicence,
+            revisions,
+        };
+
+        if (Object.hasOwn(frontmatter, "source_id")) {
+            const metadata = translationArtifactMetadataSchema.parse({
+                ...common,
+                sourceId: frontmatter["source_id"],
+                locale: translationLocale(frontmatter, path),
+            });
+            return { type: "translation" as const, metadata };
+        }
+
+        let navigable = Boolean(frontmatter["navigable"] ?? true);
+        if (path.includes("agents.md")) {
+            navigable = false;
+        } else if (path.includes("licence") || path.includes("license")) {
+            navigable = false;
+        }
+
+        const metadata = documentArtifactMetadataSchema.parse({
             ...common,
-            sourceId: frontmatter["source_id"],
-            locale: translationLocale(frontmatter, path),
+            navigable,
         });
-        return { type: "translation" as const, metadata };
+        return { type: "document" as const, metadata };
     }
-    const metadata = documentArtifactMetadataSchema.parse({
-        ...common,
-        navigable: frontmatter["navigable"] ?? !/(?:^|\/)agents\.md$/i.test(path),
-    });
-    return { type: "document" as const, metadata };
-}
 
 /**
  * Canonicalizes a declared translation locale or its filename suffix without source lookup.
