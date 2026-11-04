@@ -70,8 +70,10 @@ WEBSITE_CONFIG=website.deployment.config.ts bun run --cwd apps/website build
 
 Publication restrictions and production approval remain pending as described above; the prepared spec is not an
 approval.
-Ryugu's release workflow keeps the archive filename stable. A new website build fetches the latest archive; browser
-updates remain disabled because no CORS-enabled `archiveUrl` is configured.
+Ryugu's release workflow keeps the archive filename stable. A new website build fetches the latest archive directly
+from GitHub. Browser updates require a CORS-enabled `archiveUrl`; GitHub's release download redirects are blocked by
+browser CORS checks. The [archive reverse proxy](../reverse-proxy/README.md) provides a Worker endpoint for those
+updates. Set `archiveUrl` to its deployed address and rebuild the website after deploying the Worker.
 
 ```ts
 {
@@ -172,3 +174,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 5        | 2026-11-04 | Codex         | Document navigation payload regression checks                   |
 | 6        | 2026-11-04 | Codex         | Document development transforms for linked workspace JavaScript |
 | 7        | 2026-11-04 | Akane SHIMOKA | Document single-site deployment and Ryugu release archives      |
+| 8        | 2026-11-04 | Codex         | Link the archive Worker for CORS-enabled browser updates        |
