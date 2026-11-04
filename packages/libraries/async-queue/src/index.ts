@@ -9,34 +9,35 @@ import { getLogger } from "@whiteeclipse/log";
 const logger = getLogger(["whiteeclipse", "async-queue"]);
 let nextQueueId = 0;
 
-/** Orders operations and drains them before running final cleanup once. */
+/** Sequential operation queue with draining disposal. */
 export interface OperationQueue extends AsyncDisposable {
     /**
-     * Runs an action after previous actions settle, preserving its own result.
+     * Queues an action.
      *
-     * A rejected action does not block subsequent actions or final cleanup.
+     * Runs after earlier actions settle, even if they fail.
      *
-     * @param action Action to admit, including functions that throw synchronously.
-     * @returns The action's inferred result.
+     * @param action Action to run.
+     * @returns The action's result.
      * @rejects If disposal has started or the action fails.
      */
     run<Result>(action: () => Result | PromiseLike<Result>): Promise<Result>;
 
     /**
-     * Rejects new actions immediately, drains the queue, and runs cleanup once.
+     * Disposes the queue.
      *
-     * @returns Completion of the shared cleanup task, including on repeated calls.
-     * @rejects If final cleanup fails.
+     * Rejects new actions, drains the queue, and runs cleanup once.
+     *
+     * @returns The shared cleanup outcome, including on repeated calls.
+     * @rejects If cleanup fails.
      */
     [Symbol.asyncDispose](): Promise<void>;
 }
 
 /**
- * Creates a queue owning its final cleanup callback.
+ * Creates an operation queue.
  *
- * @param cleanup Cleanup to run after admitted operations settle.
- * @returns An asynchronously disposable operation queue.
- * @rejects Returned operations reject if disposed or if their actions or cleanup fail.
+ * @param cleanup Runs once after queued actions settle.
+ * @returns The operation queue.
  */
 export function createOperationQueue(cleanup: () => Promise<void>): OperationQueue {
     const queueId = ++nextQueueId;

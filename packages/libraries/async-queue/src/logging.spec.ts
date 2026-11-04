@@ -8,7 +8,7 @@ import { makeLogConfigurationBuilder } from "@whiteeclipse/log";
 import { createOperationQueue } from "./index.ts";
 
 
-/** Structured queue diagnostics captured without console or telemetry sinks. */
+/** Captured queue log records. */
 interface RecordedLog {
     level: string;
     rawMessage: string | TemplateStringsArray;
