@@ -1,7 +1,7 @@
 {
     "extends": "../../../tsconfig.base.json",
     "compilerOptions": {
-        "types": ["node"]
+        "types": ["@total-typescript/ts-reset", "node"]
     },
     "include": ["src", "*.config.ts"]
 }

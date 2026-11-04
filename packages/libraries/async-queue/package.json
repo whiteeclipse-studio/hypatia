@@ -24,6 +24,7 @@
         "@whiteeclipse/log": "workspace:*"
     },
     "devDependencies": {
+        "@total-typescript/ts-reset": "catalog:types",
         "@types/node": "catalog:types",
         "@whiteeclipse/toolchain": "workspace:*",
         "eslint": "catalog:tooling",

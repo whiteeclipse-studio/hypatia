@@ -12,17 +12,18 @@
         "typecheck": "bun run --cwd ../../packages/platform/i18next build && tsc -p tsconfig.json"
     },
     "dependencies": {
-        "@radix-ui/themes": "3.3.0",
+        "@radix-ui/themes": "catalog:ui",
         "@whiteeclipse/core-ui": "workspace:*",
         "@whiteeclipse/i18next": "workspace:*",
         "@whiteeclipse/log": "workspace:*",
-        "react": "19.3.1",
-        "react-dom": "19.3.1"
+        "react": "catalog:ui",
+        "react-dom": "catalog:ui"
     },
     "devDependencies": {
         "@storybook/addon-a11y": "10.6.2",
         "@storybook/react-vite": "10.6.2",
         "@tailwindcss/vite": "4.3.3",
+        "@total-typescript/ts-reset": "catalog:types",
         "@types/node": "catalog:types",
         "@types/react": "catalog:types",
         "@types/react-dom": "catalog:types",

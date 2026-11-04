@@ -10,6 +10,7 @@
         "lint": "bun --conditions=development run --bun eslint ."
     },
     "devDependencies": {
+        "@total-typescript/ts-reset": "catalog:types",
         "@types/node": "catalog:types",
         "@whiteeclipse/toolchain": "workspace:*",
         "eslint": "catalog:tooling",
@@ -18,37 +19,29 @@
     },
     "catalogs": {
         "types": {
-            "@types/hast": "3.0.5",
+            "@total-typescript/ts-reset": "0.6.1",
             "@types/bun": "1.4.4",
             "@types/node": "26.6.5",
             "@types/react": "19.3.0",
             "@types/react-dom": "19.3.0",
+            "type-fest": "5.10.0",
             "typescript": "6.0.3",
-            "zod": "4.6.7",
-            "@types/mdast": "4.0.4",
-            "typescript-event-target": "1.1.2"
+            "zod": "4.6.7"
         },
         "build": {
             "vite": "8.3.5"
         },
         "test": {
-            "vitest": "5.0.5",
-            "fake-indexeddb": "6.2.6"
+            "vitest": "5.0.5"
         },
         "tooling": {
             "eslint": "10.13.0",
             "prettier": "3.9.10"
         },
-        "markdown": {
-            "rehype": "13.0.2",
-            "unified": "11.0.5",
-            "remark-parse": "11.0.0",
-            "remark-frontmatter": "5.0.0",
-            "remark-gfm": "4.0.1",
-            "remark-wiki-link": "2.0.1",
-            "@r4ai/remark-callout": "0.6.2",
-            "remark-rehype": "11.1.2",
-            "unist-util-visit": "5.0.0"
+        "ui": {
+            "@radix-ui/themes": "3.3.0",
+            "react": "19.3.1",
+            "react-dom": "19.3.1"
         }
     }
 }

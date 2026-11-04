@@ -26,6 +26,11 @@
             "development": "./src/adapters/aggregate.ts",
             "default": "./src/adapters/aggregate.ts"
         },
+        "./reference-counted": {
+            "types": "./src/adapters/reference-counted.ts",
+            "development": "./src/adapters/reference-counted.ts",
+            "default": "./src/adapters/reference-counted.ts"
+        },
         "./filesystem": {
             "browser": null,
             "types": "./src/adapters/filesystem.ts",
@@ -50,10 +55,11 @@
         "idb": "8.0.4"
     },
     "devDependencies": {
+        "@total-typescript/ts-reset": "catalog:types",
         "@types/node": "catalog:types",
         "@whiteeclipse/toolchain": "workspace:*",
         "eslint": "catalog:tooling",
-        "fake-indexeddb": "catalog:test",
+        "fake-indexeddb": "6.2.6",
         "typescript": "catalog:types",
         "vite": "catalog:build",
         "vitest": "catalog:test",

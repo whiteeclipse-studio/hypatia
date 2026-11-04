@@ -49,6 +49,7 @@
     },
     "devDependencies": {
         "@logtape/sentry": "2.3.4",
+        "@total-typescript/ts-reset": "catalog:types",
         "@types/bun": "catalog:types",
         "@types/node": "catalog:types",
         "@whiteeclipse/toolchain": "workspace:*",
