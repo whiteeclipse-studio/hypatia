@@ -1,0 +1,112 @@
+name: hypatia
+static_sites:
+  - github:
+      repo: whiteeclipse-studio/hypatia
+      branch: feature/website
+      deploy_on_push: false
+    build_command: |
+      bun install --frozen-lockfile && \ 
+      bun run build:packages && \
+      WEBSITE_CONFIG=website.deployment.config.ts bun run --cwd apps/website build && \
+      cp apps/website/dist/docs/404.html apps/website/dist/404.html
+    source_dir: /
+    environment_slug: bun
+    envs:
+      - key: BUN_VERSION
+        value: 1.4.3
+        scope: BUILD_TIME
+        type: GENERAL
+    name: hypatia
+    output_dir: apps/website/dist
+    error_document: 404.html
+domains:
+  - domain: whiteeclipse.fr
+    type: PRIMARY
+    zone: whiteeclipse.fr
+  - domain: whiteeclipse.net
+    type: ALIAS
+    zone: whiteeclipse.net
+  - domain: whiteeclipse.dev
+    type: ALIAS
+    zone: whiteeclipse.dev
+  - domain: whiteeclipse.eu
+    type: ALIAS
+    zone: whiteeclipse.eu
+  - domain: shimoka.dev
+    type: ALIAS
+    zone: shimoka.dev
+  - domain: jb-caillaud.fr
+    type: ALIAS
+    zone: jb-caillaud.fr
+  - domain: cydonia.whiteeclipse.dev
+    type: ALIAS
+    zone: whiteeclipse.dev
+region: lon
+alerts:
+  - rule: DEPLOYMENT_FAILED
+  - rule: DOMAIN_FAILED
+ingress:
+  rules:
+    - match:
+        path:
+          prefix: /
+        authority:
+          exact: ${STARTER_DOMAIN}
+      redirect:
+        authority: whiteeclipse.fr
+        scheme: https
+        redirect_code: 301
+    - match:
+        path:
+          prefix: /
+        authority:
+          exact: whiteeclipse.net
+      redirect:
+        authority: whiteeclipse.fr
+        scheme: https
+        redirect_code: 301
+    - match:
+        path:
+          prefix: /
+        authority:
+          exact: whiteeclipse.eu
+      redirect:
+        authority: whiteeclipse.fr
+        scheme: https
+        redirect_code: 301
+    - match:
+        path:
+          prefix: /
+        authority:
+          exact: shimoka.dev
+      redirect:
+        authority: whiteeclipse.fr
+        scheme: https
+        redirect_code: 301
+    - match:
+        path:
+          prefix: /
+        authority:
+          exact: jb-caillaud.fr
+      redirect:
+        authority: whiteeclipse.fr
+        scheme: https
+        redirect_code: 301
+    - match:
+        path:
+          prefix: /
+        authority:
+          exact: whiteeclipse.dev
+      component:
+        name: hypatia
+        rewrite: /docs/
+    - match:
+        path:
+          prefix: /
+        authority:
+          exact: ""
+      component:
+        name: hypatia
+        rewrite: /landing/
+features:
+  - buildpack-stack=ubuntu-22
