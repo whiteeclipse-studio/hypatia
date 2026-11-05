@@ -1,4 +1,7 @@
-/* Copyright © 2026 White Eclipse. Released under the MIT License. */
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
 .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
 .workspace-tab-header.is-active .workspace-tab-header-inner-close-button {
     color: var(--gray-1);
@@ -40,7 +43,28 @@
 }
 
 @media print {
-    .workspace-leaf-content[data-type="markdown"] > .view-content {
-        background-image: none;
+    /* Chromium clips decoration at the page margin; keep spacing inside the page. */
+    @page {
+        margin: 0;
+    }
+
+    .print {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .print::before {
+        background-color: var(--gray-1);
+    }
+
+    .print .markdown-preview-view {
+        padding: 12mm;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+        background-color: transparent;
+    }
+
+    .print .page-break {
+        break-before: page;
     }
 }

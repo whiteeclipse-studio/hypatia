@@ -15,7 +15,7 @@ export default defineConfig(
         },
     },
     {
-        files: ["eslint.config.ts"],
+        files: ["eslint.config.ts", "scripts/**/*.ts"],
         languageOptions: {
             parserOptions: { projectService: false, project: "../../../tsconfig.json" },
         },

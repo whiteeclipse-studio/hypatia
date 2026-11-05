@@ -168,7 +168,21 @@ The native theme adapts the light and dark declarations from `src/palette.css` a
 
 The theme covers workspace surfaces, active tabs and navigation, fields, buttons, square switches, Markdown headings, code, tables, properties, and semantic callouts. Active tabs, files, and outline entries display a filled square. Properties retain Obsidian's inline editors and row-level focus treatment inside a padded panel; standalone fields use the continuous rectangular borders. The build reuses the shared background drawing, anchoring its 8px grid, paired arcs, and diagonal strokes to the viewport while preserving Obsidian's native scrolling and note widths. Corner frames expand on hover and focus; reduced-motion preferences remove these and switch transitions. Native task checkboxes retain Obsidian's check marks. Custom accent preferences are overridden by the neutral Core UI action and link colours. Other callout types and syntax highlighting retain Obsidian's semantic colours.
 
-The generated folder is disposable output. Edit source files and rebuild instead of maintaining a separate vault copy. Building does not install or activate the theme, and does not modify an existing **White Eclipse** theme. Review native editing, reading, settings, keyboard focus, mobile layouts, printing, and third-party plugins before production use. Full accessibility validation and owner acceptance remain pending.
+PDF exports retain the light background, grid, arcs, and diagonal strokes across the entire page. The theme overrides
+export page margins with zero outer margin and 12mm of internal padding, repeated at page breaks. To start a new page,
+insert this HTML block on its own line with blank lines before and after it:
+
+```html
+<div class="page-break"></div>
+```
+
+This hint affects printing only; it adds no visible separator in the note.
+
+The regular package build also bundles the Obsidian theme, so rebuilding the package preserves the standalone
+stylesheet. The generated folder is disposable output. Edit source files and rebuild instead of maintaining a separate
+vault copy. Building does not install or activate the theme, and does not modify an existing **White Eclipse** theme.
+Review native editing, reading, settings, keyboard focus, mobile layouts, printing, and third-party plugins before
+production use. Full accessibility validation and owner acceptance remain pending.
 
 The build follows Obsidian's [theme guidelines](https://github.com/obsidianmd/obsidian-developer-docs/blob/main/en/Themes/App%20themes/Theme%20guidelines.md) and [sample theme distribution](https://github.com/obsidianmd/obsidian-sample-theme).
 
@@ -205,3 +219,4 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 11       | 2026-10-29 | Akane SHIMOKA | Remove square markers from ghost buttons                                      |
 | 12       | 2026-11-04 | Akane SHIMOKA | Move the system-aware React theme boundary into Core UI                       |
 | 13       | 2026-11-04 | Akane SHIMOKA | Document alpha registry installation and release packaging                    |
+| 14       | 2026-11-05 | Akane SHIMOKA | Restore standalone Obsidian builds and preserve PDF backgrounds               |
