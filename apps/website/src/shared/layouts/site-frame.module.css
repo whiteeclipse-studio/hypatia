@@ -1,0 +1,13 @@
+/*
+ * Copyright © 2026 - White Eclipse
+ * Released under the MIT Licence.
+ */
+
+@media (display-mode: standalone) and (orientation: portrait) {
+    @supports (-webkit-touch-callout: none) {
+        /* Reserve a solid strip below the iOS status-bar blur. */
+        .header {
+            padding-top: calc(16px + env(safe-area-inset-top, 0px));
+        }
+    }
+}

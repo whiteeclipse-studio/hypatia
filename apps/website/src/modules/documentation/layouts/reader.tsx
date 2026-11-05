@@ -86,7 +86,7 @@ export function Reader({ index, route }: { index: ProjectIndex; route: string })
                     id="documentation-content"
                     tabIndex={-1}
                     ref={main}
-                    className="min-h-0 min-w-0 scrollbar-gutter-stable overflow-y-auto focus:outline-none motion-safe:scroll-smooth"
+                    className="min-h-0 min-w-0 scrollbar-gutter-stable overflow-y-auto overscroll-contain focus:outline-none motion-safe:scroll-smooth"
                     aria-busy={state.loading[key] ?? false}
                 >
                     <div className="sticky top-0 flex items-center justify-between gap-3 border-b border-(--gray-6) bg-(--gray-3) pr-[calc(0.5rem+env(safe-area-inset-right,0px))] pl-[calc(1rem+env(safe-area-inset-left,0px))] text-xs text-(--gray-11) md:flex-wrap md:gap-4 md:py-2 md:pr-[calc(0.5rem+env(safe-area-inset-right,0px))] md:pl-8 min-[68.75rem]:pr-8 [&_a]:text-inherit">

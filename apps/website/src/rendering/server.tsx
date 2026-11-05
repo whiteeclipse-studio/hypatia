@@ -2,6 +2,7 @@
  * Copyright © 2026 - White Eclipse
  * Released under the MIT Licence.
  */
+
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import { App } from "../app/app";
@@ -12,8 +13,8 @@ import type { Bootstrap } from "../modules/documentation/domain/types";
 import "../shared/theme/styles.css";
 
 
-const icons = `<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"><link rel="icon" type="image/x-icon" href="/favicon/favicon.ico"><link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"><link rel="apple-touch-icon" sizes="1024x1024" href="/favicon/apple-touch-icon.png">`;
 const landingMetadata = z.object({ title: z.string(), description: z.string() });
+
 /**
  * Renders one route using isolated documentation and localization state.
  *
@@ -66,17 +67,38 @@ export function htmlDocument(
                   catalogue[bootstrap.locale]?.["landing"]?.["metadata"] ?? catalogue["en"]?.["landing"]?.["metadata"],
               )
             : undefined;
+
     const title = metadata?.title ?? bootstrap.page?.title ?? "White Eclipse · Documentation";
     const description = metadata?.description ?? `${title} — White Eclipse documentation`;
-    const manifest = bootstrap.module === "landing" ? "" : '<link rel="manifest" href="/manifest.webmanifest">';
-    const viewport = "width=device-width, initial-scale=1, viewport-fit=cover";
-    const theme =
-        bootstrap.module === "landing"
-            ? ""
-            : '<meta name="theme-color" content="#f6f2e6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#211f26" media="(prefers-color-scheme: dark)">';
     const json = JSON.stringify(bootstrap)
         .replace(/</g, "\\u003c")
         .replace(/\u2028/g, "\\u2028")
         .replace(/\u2029/g, "\\u2029");
-    return `<!doctype html><html lang="${escapeHtml(bootstrap.locale)}" class="scheme-light-dark bg-[light-dark(#f6f2e6,#211f26)]"><head><meta charset="utf-8"><meta name="viewport" content="${viewport}">${theme}<meta name="description" content="${escapeHtml(description)}"><title>${escapeHtml(title)}</title><link rel="canonical" href="${escapeHtml(new URL(route, origin).href)}">${icons}${manifest}${assets}</head><body><div id="root"${fallback ? ' data-fallback="true"' : ""}>${body}</div><script id="bootstrap" type="application/json">${json}</script></body></html>`;
+
+    return `
+        <!doctype html>
+        <html lang="${escapeHtml(bootstrap.locale)}" class="scheme-light-dark bg-[light-dark(#f6f2e6,#211f26)] h-dvh overflow-hidden">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+                <meta name="theme-color" content="#f6f2e6" media="(prefers-color-scheme: light)">
+                <meta name="theme-color" content="#211f26" media="(prefers-color-scheme: dark)">
+                <meta name="description" content="${escapeHtml(description)}">
+                <title>${escapeHtml(title)}</title>
+                <link rel="canonical" href="${escapeHtml(new URL(route, origin).href)}">
+                <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+                <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+                <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+                <link rel="apple-touch-icon" sizes="1024x1024" href="/favicon/apple-touch-icon.png">
+                <link rel="manifest" href="/manifest.webmanifest">
+                ${assets}
+            </head>
+            <body>
+                <div id="root" class="[&>.radix-themes]:min-h-0" ${fallback ? ' data-fallback="true"' : ""}>
+                    ${body}
+                </div>
+                <script id="bootstrap" type="application/json">${json}</script>
+            </body>
+        </html>
+    `;
 }
