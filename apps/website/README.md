@@ -21,6 +21,12 @@ produce no link. Target titles follow the selected language with English fallbac
 by static pages, client navigation, and archive updates.
 The documentation domain root redirects to `/hypatia`, using an HTTP redirect in development, an HTML refresh with a
 fallback link in static output, and replacement navigation for client-side visits.
+Documentation pages link `/manifest.webmanifest`, which sets the installed app's identity, launch URL, and navigation
+scope to `/`. On `https://whiteeclipse.dev`, installations therefore launch from the domain root and keep project
+switching within the app. Root-relative URLs also support local documentation origins.
+The manifest and both modules' `apple-touch-icon` links use `/favicon/apple-touch-icon.png`, the supplied 1024 × 1024
+light Icon Composer PNG export. Browser tab favicons retain their existing artwork.
+The PNG is static and does not provide native Liquid Glass layers or automatic light/dark variants.
 
 This work explores
 draft [RFC-0002](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0002-tech-stack.md), [RFC-0004](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0004-internationalization.md),
@@ -175,3 +181,6 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 6        | 2026-11-04 | Codex         | Document development transforms for linked workspace JavaScript |
 | 7        | 2026-11-04 | Akane SHIMOKA | Document single-site deployment and Ryugu release archives      |
 | 8        | 2026-11-04 | Codex         | Link the archive Worker for CORS-enabled browser updates        |
+| 9        | 2026-11-05 | Codex         | Document the root-scoped documentation web app manifest         |
+| 10       | 2026-11-05 | Codex         | Document the supplied PWA and iOS Home Screen icon              |
+| 11       | 2026-11-05 | Codex         | Use the shared favicon touch icon for both website modules      |
