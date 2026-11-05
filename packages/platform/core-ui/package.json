@@ -13,10 +13,20 @@
     ],
     "type": "module",
     "exports": {
-        "./styles.css": "./dist/styles.css",
-        "./assets/white-eclipse-light.png": "./dist/assets/white-eclipse-light.png",
-        "./assets/white-eclipse-dark.png": "./dist/assets/white-eclipse-dark.png",
+        "./styles.css": {
+            "development": "./src/styles.css",
+            "default": "./dist/styles.css"
+        },
+        "./assets/white-eclipse-light.png": {
+            "development": "./src/assets/white-eclipse-light.png",
+            "default": "./dist/assets/white-eclipse-light.png"
+        },
+        "./assets/white-eclipse-dark.png": {
+            "development": "./src/assets/white-eclipse-dark.png",
+            "default": "./dist/assets/white-eclipse-dark.png"
+        },
         "./theme": {
+            "development": "./src/theme.tsx",
             "types": "./dist/theme.d.ts",
             "default": "./dist/theme.js"
         }

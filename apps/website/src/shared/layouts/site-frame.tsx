@@ -43,17 +43,17 @@ export function SiteFrame({
             <a className="fixed -top-25 left-4 z-100 bg-(--gray-1) p-4 focus:top-4" href="#documentation-content">
                 {t("skip")}
             </a>
-            <header className="flex min-h-16 shrink-0 flex-wrap items-center gap-x-5 gap-y-2 border-b border-(--gray-6) p-4 md:min-h-19 md:px-8">
+            <header className="flex min-h-0 shrink-0 flex-wrap items-center gap-x-5 gap-y-2 border-b border-(--gray-6) bg-(--gray-1) py-0 pt-[calc(env(safe-area-inset-top,0px))] pr-[calc(1rem+env(safe-area-inset-right,0px))] pl-[calc(1rem+env(safe-area-inset-left,0px))] lg:min-h-19 lg:pt-[calc(env(safe-area-inset-top,0px))] lg:pr-[calc(1rem+env(safe-area-inset-right,0px))] lg:pl-[calc(1rem+env(safe-area-inset-left,0px))]">
                 <a
                     href={landingOrigin}
-                    className="flex items-center gap-3 font-(family-name:--brand-font-family) text-base font-light tracking-wider text-inherit uppercase no-underline md:text-xl"
+                    className="flex items-center gap-3 font-(family-name:--brand-font-family) text-base font-light tracking-wider text-inherit uppercase no-underline lg:text-xl"
                 >
                     <img
                         src={appearance === "dark" ? darkLogo : lightLogo}
                         alt=""
                         width="64"
                         height="64"
-                        className="size-16 shrink-0"
+                        className="size-12 shrink-0 lg:size-16"
                     />
                     <span>White Eclipse</span>
                 </a>
@@ -64,7 +64,7 @@ export function SiteFrame({
                 <div className="ml-auto flex shrink-0 items-center gap-5">{headerActions}</div>
             </header>
             {children}
-            <footer className="flex min-h-16 shrink-0 items-center justify-between gap-4 border-t border-(--gray-6) px-4 py-3 text-xs text-(--gray-11) md:px-8 [&_a]:text-inherit">
+            <footer className="flex shrink-0 items-center justify-between gap-3 border-t border-(--gray-6) bg-(--gray-1) py-2 pr-[calc(1rem+env(safe-area-inset-right,0px))] pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] pl-[calc(1rem+env(safe-area-inset-left,0px))] text-xs text-(--gray-11) lg:pr-[calc(2rem+env(safe-area-inset-right,0px))] lg:pl-[calc(2rem+env(safe-area-inset-left,0px))] [&_a]:text-inherit">
                 <span>
                     Copyright © 2026 White Eclipse · <a href="/hypatia/licence/">MIT License</a>
                 </span>

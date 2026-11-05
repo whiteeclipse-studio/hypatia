@@ -18,11 +18,13 @@ export function LanguageSelector({ languages }: { languages: string[] }): ReactE
     const { locale, changeLocale } = useLocale();
     const { t } = useTranslation("website");
     const available = [...new Set([...languages, locale])].map(language => {
+        const name = new Intl.DisplayNames([language], { type: "language" }).of(language) ?? language;
         return {
             locale: language,
-            name: new Intl.DisplayNames([language], { type: "language" }).of(language) ?? language,
+            name: name.charAt(0).toLocaleUpperCase(language) + name.slice(1),
         };
     });
+
     /**
      * Changes the shared interface and document language.
      *
@@ -31,11 +33,13 @@ export function LanguageSelector({ languages }: { languages: string[] }): ReactE
     function select(language: string): void {
         void changeLocale(language);
     }
+
     const options = available.map(language => (
         <Select.Item key={language.locale} value={language.locale} lang={language.locale}>
             {language.name}
         </Select.Item>
     ));
+
     const buttons = available.map(language => (
         <button
             key={language.locale}
@@ -55,7 +59,7 @@ export function LanguageSelector({ languages }: { languages: string[] }): ReactE
         <>
             <div className="shrink-0 sm:hidden">
                 <Select.Root value={locale} onValueChange={select} size="1">
-                    <Select.Trigger aria-label={t("language")} />
+                    <Select.Trigger aria-label={t("language")} className="min-h-8" />
                     <Select.Content>{options}</Select.Content>
                 </Select.Root>
             </div>

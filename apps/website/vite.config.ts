@@ -2,11 +2,12 @@
  * Copyright © 2026 - White Eclipse
  * Released under the MIT Licence.
  */
+
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { i18nextPlugin } from "@whiteeclipse/i18next/vite";
 import { fileURLToPath } from "node:url";
-import { configuration } from "./src/server/configuration";
+import { configuration } from "./src/server/configuration.ts";
 
 
 export default defineConfig({
@@ -36,6 +37,9 @@ export default defineConfig({
             new URL(configuration.documentationOrigin).hostname,
             new URL(configuration.landingOrigin).hostname,
             "hypatia.local.whiteeclipse.dev",
+            "docs.hypatia.local.whiteeclipse.dev",
+            "hypatia.mac.whiteeclipse.dev",
+            "docs.hypatia.mac.whiteeclipse.dev",
         ],
     },
     build: { target: "es2022", manifest: true, outDir: "dist/docs", rolldownOptions: { input: "src/app/client.tsx" } },

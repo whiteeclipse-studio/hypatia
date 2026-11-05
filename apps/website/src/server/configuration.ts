@@ -5,8 +5,8 @@
 import { resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { z } from "zod";
-import defaults from "../../website.config";
-import type { WebsiteConfiguration } from "../app/configuration";
+import defaults from "../../website.config.ts";
+import type { WebsiteConfiguration } from "../app/configuration.ts";
 
 
 const sourceSchema = z.discriminatedUnion("kind", [

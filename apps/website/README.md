@@ -13,6 +13,15 @@ the layout, English/French copy and orbital artwork recovered from commit `25f35
 and installed Radix icons. The portfolio and studio links target page sections; blog and contact calls to action
 retain their unavailable placeholder state. The footer contact link remains a working email link.
 The documentation header's White Eclipse brand links to the configured `landingOrigin`.
+Clicking Update rotates its icon clockwise over two seconds with a decelerating finish. The animation runs
+alongside the update and respects reduced-motion preferences. The button stays disabled while an update is pending;
+if the update outlasts the animation, the normal loading spinner takes over. Repeated clicks after an update completes
+continue clockwise from the current rotation and always finish upright at zero degrees. Unmounting cancels the
+animation.
+After a successful manual update and the click animation, a checkmark replaces the icon for two seconds, with a
+success tooltip and screen-reader announcement. Failed updates retain the existing error feedback and show no check.
+Archive success follows the worker's completed check/publication; an unchanged archive also counts as up to date.
+Development success requires both a successful refresh request and a validated inventory reload.
 Optional frontmatter `parent`, `previous`, and `next` paths resolve relative to the declaring Markdown document.
 The reader shows an upward arrow icon and the parent title above the page title, with previous/next links below the
 article, following the Storybook reader's navigation styling. Each field works independently; missing, invalid, or
@@ -27,6 +36,18 @@ switching within the app. Root-relative URLs also support local documentation or
 The manifest and both modules' `apple-touch-icon` links use `/favicon/apple-touch-icon.png`, the supplied 1024 × 1024
 light Icon Composer PNG export. Browser tab favicons retain their existing artwork.
 The PNG is static and does not provide native Liquid Glass layers or automatic light/dark variants.
+The documentation shell uses dynamic viewport sizing and Tailwind utilities for safe-area padding around its
+header, footer, and reader contents. Core UI supplies the grid and geometric background.
+The root HTML element sets its background to the Core UI ivory or dark surface using Tailwind utilities and the
+system color scheme. The color is present in the server-rendered page before hydration. This targets white exposed
+areas around the page without adding fixed tint strips; it does not extend the grid into browser-owned regions.
+Physical iPhone verification of the resulting Safari tint remains pending.
+Metadata and mobile navigation dialogs constrain their height to the dynamic viewport. Their content regions scroll
+while titles and Close buttons stay in place. Revision tables retain a readable minimum width and scroll within the
+metadata content region. Authored tables keep native table semantics and natural column widths inside focusable,
+horizontally scrollable regions; table cells no longer inherit the article's arbitrary word-breaking rule.
+The mobile header uses a smaller brand mark; the breadcrumb path scrolls horizontally beside a labelled
+revision-history icon. Language menu names use an initial capital, including Français.
 
 This work explores
 draft [RFC-0002](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0002-tech-stack.md), [RFC-0004](https://github.com/whiteeclipse-studio/hypatia/blob/main/docs/internal/rfcs/0004-internationalization.md),
@@ -151,6 +172,12 @@ logic.
 Run `typecheck`, `lint`, and `build` from this workspace. Basic browser verification covers route navigation, metadata
 dialogs, responsive layout, and synthetic archive updates. No full unit or integration suite is introduced for this
 exploratory iteration.
+The mobile layout, revision dialog, and capitalized language options were checked in Safari Responsive Design Mode at
+414 × 896 CSS pixels. Physical iPhone 11 Safari toolbar and standalone PWA safe-area verification remains pending.
+Table and dialog overflow was checked on the running development site in Safari at 414 CSS pixels wide, including a
+310-pixel-high content viewport. A synthetic 32-row revision table scrolled inside its content region while the dialog
+and Close button stayed in place; the outer dialog had no horizontal or vertical overflow. Authored tables scrolled
+horizontally without increasing the reader or page width. Physical iPhone touch-gesture verification remains pending.
 
 Run the navigation payload regression checks with `bun test src/modules/documentation/domain/validation.test.ts`.
 They cover preservation through bootstrap and page-response validation, independently authored links, and malformed
@@ -184,3 +211,15 @@ Released under the [MIT License](https://whiteeclipse.dev/LICENCE).
 | 9        | 2026-11-05 | Codex         | Document the root-scoped documentation web app manifest         |
 | 10       | 2026-11-05 | Codex         | Document the supplied PWA and iOS Home Screen icon              |
 | 11       | 2026-11-05 | Codex         | Use the shared favicon touch icon for both website modules      |
+| 12       | 2026-11-05 | Codex         | Document compact mobile navigation and iOS safe-area handling   |
+| 13       | 2026-11-05 | Codex         | Extend the grid backdrop independently of the reader viewport   |
+| 14       | 2026-11-05 | Codex         | Paint the grid on the page canvas beyond the app shell          |
+| 15       | 2026-11-05 | Codex         | Avoid viewport-fixed decoration triggering Safari edge tint     |
+| 16       | 2026-11-05 | Codex         | Contain reader overscroll and match the exposed page canvas     |
+| 17       | 2026-11-05 | Codex         | Keep landscape surfaces full width while insetting controls     |
+| 18       | 2026-11-05 | Codex         | Express safe-area layout with Tailwind utilities                |
+| 19       | 2026-11-05 | Codex         | Supply theme-colored viewport edges for Safari toolbar tint     |
+| 20       | 2026-11-05 | Codex         | Set the root HTML background to the active system theme         |
+| 21       | 2026-11-05 | Codex         | Contain dialog scrolling and preserve readable table columns    |
+| 22       | 2026-11-05 | Codex         | Animate Update with a decelerating clockwise spin               |
+| 23       | 2026-11-05 | Codex         | Confirm successful manual updates with a temporary checkmark    |

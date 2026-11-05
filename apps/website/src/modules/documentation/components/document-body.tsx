@@ -15,7 +15,7 @@ const typography = [
     "[&_code]:font-(family-name:--code-font-family) [&_code]:bg-(--gray-3) [&_code]:px-1 [&_code]:py-[0.1rem] [&_code]:text-[0.875em]",
     "[&_pre]:overflow-x-auto [&_pre]:bg-(--gray-3) [&_pre]:p-5 [&_pre_code]:p-0",
     "[&_:is(blockquote,.callout)]:my-6 [&_:is(blockquote,.callout)]:border-l-3 [&_:is(blockquote,.callout)]:border-(--gray-8) [&_:is(blockquote,.callout)]:bg-(--gray-2) [&_:is(blockquote,.callout)]:px-5 [&_:is(blockquote,.callout)]:py-2",
-    "[&_table]:block [&_table]:max-w-full [&_table]:border-collapse [&_table]:overflow-x-auto [&_table]:text-sm",
+    "[&_table]:border-collapse [&_table]:text-sm",
     "[&_:is(td,th)]:border [&_:is(td,th)]:border-(--gray-6) [&_:is(td,th)]:px-3 [&_:is(td,th)]:py-2",
     "[&_img]:h-auto [&_img]:max-w-full",
 ].join(" ");

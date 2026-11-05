@@ -10,6 +10,7 @@ import { Link } from "react-router";
 import type { Root } from "hast";
 import type { ProjectIndex } from "../domain/types";
 import { destination } from "../domain/routes";
+import { ScrollableTable } from "./scrollable-table";
 import { safeTree } from "../../../rendering/sanitize";
 
 
@@ -74,6 +75,11 @@ export function DocumentContent({
         }
         return <img {...props} src={url} alt={alt ?? ""} loading="lazy" referrerPolicy="no-referrer" />;
     }
-    const processor = unified().use(rehypeReact, { Fragment, jsx, jsxs, components: { a: Anchor, img: Image } });
+    const processor = unified().use(rehypeReact, {
+        Fragment,
+        jsx,
+        jsxs,
+        components: { a: Anchor, img: Image, table: ScrollableTable },
+    });
     return processor.stringify(safeTree(tree));
 }

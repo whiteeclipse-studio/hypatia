@@ -4,8 +4,9 @@
  */
 import { httpStatus, timing } from "../../../shared/constants";
 import { type Bootstrap, type PageData, pageDataUrl, pageKey, type ProjectIndex } from "../domain/types";
-import { indexesSchema, pageSchema } from "../domain/validation";
+import { pageSchema } from "../domain/validation";
 import { createProjectWorkers } from "./project-workers";
+import { loadDevelopmentIndexes, refreshDevelopmentProject } from "./development-updates";
 
 
 /**
@@ -29,7 +30,7 @@ export interface DocumentationStore {
     stop(): void;
     ensureProject(index: ProjectIndex): void;
     ensurePage(index: ProjectIndex, route: string): Promise<void>;
-    update(index: ProjectIndex): void;
+    update(index: ProjectIndex): Promise<boolean>;
 }
 /**
  * Creates the documentation store and owns its browser resource lifetimes.
@@ -50,6 +51,7 @@ export function createDocumentationStore(bootstrap: Bootstrap): DocumentationSto
     let state = initial;
     const listeners = new Set<() => void>();
     const requests = new Map<string, Promise<void>>();
+    const updates = new Map<string, (success: boolean) => void>();
     let active = false;
     let stream: EventSource | undefined;
     let timer: ReturnType<typeof setInterval> | undefined;
@@ -63,6 +65,21 @@ export function createDocumentationStore(bootstrap: Bootstrap): DocumentationSto
         for (const listener of listeners) {
             listener();
         }
+    }
+    /**
+     * Completes a manual update only after its result has been published.
+     *
+     * @param id Project identifier.
+     * @param error Failure message, absent after success.
+     */
+    function completeUpdate(id: string, error?: string): void {
+        publish({
+            ...state,
+            updating: { ...state.updating, [id]: false },
+            errors: { ...state.errors, [id]: error },
+        });
+        updates.get(id)?.(error === undefined);
+        updates.delete(id);
     }
     const workers = createProjectWorkers({
         project(data) {
@@ -79,6 +96,10 @@ export function createDocumentationStore(bootstrap: Bootstrap): DocumentationSto
             });
         },
         status(id, updating, error) {
+            if (!updating) {
+                completeUpdate(id, error);
+                return;
+            }
             publish({
                 ...state,
                 updating: { ...state.updating, [id]: updating },
@@ -93,16 +114,14 @@ export function createDocumentationStore(bootstrap: Bootstrap): DocumentationSto
      * @rejects If loading, validation or resource cleanup fails.
      * @throws {Error} If the supplied input or current state is invalid.
      */
-    async function refreshIndexes(): Promise<void> {
+    async function refreshIndexes(): Promise<boolean> {
         try {
-            const response = await fetch("/__docs/indexes", { cache: "no-store" });
-            if (!response.ok) {
-                throw new Error(`Source refresh failed: ${response.status}`);
-            }
-            const indexes = indexesSchema.parse(await response.json());
+            const indexes = await loadDevelopmentIndexes();
             publish({ ...state, indexes });
+            return true;
         } catch (error) {
             publish({ ...state, errors: { ...state.errors, sources: String(error) } });
+            return false;
         }
     }
     return {
@@ -137,6 +156,10 @@ export function createDocumentationStore(bootstrap: Bootstrap): DocumentationSto
             stream?.close();
             clearInterval(timer);
             workers.stop();
+            for (const resolve of updates.values()) {
+                resolve(false);
+            }
+            updates.clear();
         },
         ensureProject(index: ProjectIndex) {
             if (!bootstrap.development && index.project.archiveUrl !== undefined) {
@@ -185,12 +208,37 @@ export function createDocumentationStore(bootstrap: Bootstrap): DocumentationSto
             requests.set(key, operation);
             return operation;
         },
-        update(index: ProjectIndex) {
-            if (bootstrap.development) {
-                void fetch(`/__docs/refresh?project=${encodeURIComponent(index.project.id)}`, { method: "POST" });
-            } else if (index.project.archiveUrl !== undefined) {
-                workers.update(index);
+        async update(index: ProjectIndex) {
+            const id = index.project.id;
+            if (state.updating[id] === true || (!bootstrap.development && index.project.archiveUrl === undefined)) {
+                return Promise.resolve(false);
             }
+            const result = new Promise<boolean>(resolve => {
+                updates.set(id, resolve);
+            });
+            publish({
+                ...state,
+                updating: { ...state.updating, [id]: true },
+                errors: { ...state.errors, [id]: undefined },
+            });
+            if (bootstrap.development) {
+                void refreshDevelopmentProject(id).then(
+                    indexes => {
+                        publish({ ...state, indexes });
+                        completeUpdate(id);
+                    },
+                    error => {
+                        completeUpdate(id, String(error));
+                    },
+                );
+            } else {
+                try {
+                    workers.update(index);
+                } catch (error) {
+                    completeUpdate(id, String(error));
+                }
+            }
+            return result;
         },
     };
 }

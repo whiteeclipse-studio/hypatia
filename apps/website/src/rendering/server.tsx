@@ -69,9 +69,14 @@ export function htmlDocument(
     const title = metadata?.title ?? bootstrap.page?.title ?? "White Eclipse · Documentation";
     const description = metadata?.description ?? `${title} — White Eclipse documentation`;
     const manifest = bootstrap.module === "landing" ? "" : '<link rel="manifest" href="/manifest.webmanifest">';
+    const viewport = "width=device-width, initial-scale=1, viewport-fit=cover";
+    const theme =
+        bootstrap.module === "landing"
+            ? ""
+            : '<meta name="theme-color" content="#f6f2e6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#211f26" media="(prefers-color-scheme: dark)">';
     const json = JSON.stringify(bootstrap)
         .replace(/</g, "\\u003c")
         .replace(/\u2028/g, "\\u2028")
         .replace(/\u2029/g, "\\u2029");
-    return `<!doctype html><html lang="${escapeHtml(bootstrap.locale)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="${escapeHtml(description)}"><title>${escapeHtml(title)}</title><link rel="canonical" href="${escapeHtml(new URL(route, origin).href)}">${icons}${manifest}${assets}</head><body><div id="root"${fallback ? ' data-fallback="true"' : ""}>${body}</div><script id="bootstrap" type="application/json">${json}</script></body></html>`;
+    return `<!doctype html><html lang="${escapeHtml(bootstrap.locale)}" class="scheme-light-dark bg-[light-dark(#f6f2e6,#211f26)]"><head><meta charset="utf-8"><meta name="viewport" content="${viewport}">${theme}<meta name="description" content="${escapeHtml(description)}"><title>${escapeHtml(title)}</title><link rel="canonical" href="${escapeHtml(new URL(route, origin).href)}">${icons}${manifest}${assets}</head><body><div id="root"${fallback ? ' data-fallback="true"' : ""}>${body}</div><script id="bootstrap" type="application/json">${json}</script></body></html>`;
 }

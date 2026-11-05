@@ -18,8 +18,10 @@ export function Breadcrumbs(props: BreadcrumbsProps): ReactElement {
     ));
 
     return (
-        <nav aria-label={t("breadcrumb")} className="min-w-0">
-            <ol className="m-0 flex list-none flex-wrap items-center gap-x-3 gap-y-1 p-0">{items}</ol>
+        <nav aria-label={t("breadcrumb")} className="min-w-0 flex-1 overflow-x-auto md:overflow-visible">
+            <ol className="m-0 flex min-h-11 list-none items-center gap-x-3 gap-y-1 p-0 whitespace-nowrap md:min-h-0 md:flex-wrap md:whitespace-normal">
+                {items}
+            </ol>
         </nav>
     );
 }
@@ -67,7 +69,7 @@ function BreadcrumbItem(props: BreadcrumbItemProps): ReactElement {
     }, [props.item.route, props.route, props.item.title]);
 
     return (
-        <li className="flex min-w-0 items-center gap-3">
+        <li className="flex min-w-0 shrink-0 items-center gap-3 md:shrink">
             {prefixSlash}
             {title}
         </li>

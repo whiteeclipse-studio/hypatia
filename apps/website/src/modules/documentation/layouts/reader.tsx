@@ -50,48 +50,53 @@ export function Reader({ index, route }: { index: ProjectIndex; route: string })
             }}
         />
     );
+
     return (
         <>
-            <div className="flex items-center justify-between border-b border-(--gray-6) bg-(--gray-2) px-5 py-3 md:hidden">
+            <div className="flex items-center justify-between border-b border-(--gray-6) bg-(--gray-2) py-3 pr-[calc(1.25rem+env(safe-area-inset-right,0px))] pl-[calc(1.25rem+env(safe-area-inset-left,0px))] md:hidden">
                 <Dialog.Root open={mobileOpen} onOpenChange={setMobileOpen}>
                     <Dialog.Trigger>
-                        <Button variant="ghost">{t("browse")}</Button>
+                        <Button variant="ghost" className="px-3 py-1">
+                            {t("browse")}
+                        </Button>
                     </Dialog.Trigger>
                     <Dialog.Content
-                        maxWidth="420px"
-                        className="flex max-h-[85dvh] flex-col [&_nav]:overflow-auto"
+                        maxWidth="min(420px, calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)))"
+                        className="flex max-h-[calc(100dvh-2*max(var(--space-6),6vh)-env(safe-area-inset-top,0px)-env(safe-area-inset-bottom,0px))] flex-col overflow-hidden"
                         onCloseAutoFocus={event => {
                             event.preventDefault();
                             main.current?.focus();
                         }}
                     >
-                        <Dialog.Title>{t("browse")}</Dialog.Title>
-                        <Dialog.Description>{t("project")}</Dialog.Description>
-                        {navigation}
+                        <Dialog.Title className="shrink-0">{t("browse")}</Dialog.Title>
+                        <Dialog.Description className="shrink-0">{t("project")}</Dialog.Description>
+                        <div className="min-h-0 flex-1 overflow-auto overscroll-contain">{navigation}</div>
                         <Dialog.Close>
-                            <Button>{t("close")}</Button>
+                            <Button className="shrink-0 self-start">{t("close")}</Button>
                         </Dialog.Close>
                     </Dialog.Content>
                 </Dialog.Root>
                 <Text size="1">{index.project.name}</Text>
             </div>
-            <div className="mx-auto grid min-h-0 w-full max-w-375 flex-1 grid-cols-[minmax(0,1fr)] md:grid-cols-[252px_minmax(0,1fr)] min-[68.75rem]:grid-cols-[252px_minmax(0,1fr)_192px]">
-                <aside className="hidden min-h-0 border-x border-(--gray-6) bg-(--gray-2) md:block">{navigation}</aside>
+            <div className="mx-auto grid min-h-0 w-full max-w-375 flex-1 grid-cols-[minmax(0,1fr)] md:grid-cols-[calc(252px+env(safe-area-inset-left,0px))_minmax(0,1fr)] min-[68.75rem]:grid-cols-[calc(252px+env(safe-area-inset-left,0px))_minmax(0,1fr)_calc(192px+env(safe-area-inset-right,0px))]">
+                <aside className="hidden min-h-0 border-x border-(--gray-6) bg-(--gray-2) md:block md:pl-[env(safe-area-inset-left,0px)]">
+                    {navigation}
+                </aside>
                 <main
                     id="documentation-content"
                     tabIndex={-1}
                     ref={main}
-                    className="min-h-0 min-w-0 [scrollbar-gutter:stable] overflow-y-auto bg-(--gray-1) focus:outline-none motion-safe:scroll-smooth"
+                    className="min-h-0 min-w-0 scrollbar-gutter-stable overflow-y-auto focus:outline-none motion-safe:scroll-smooth"
                     aria-busy={state.loading[key] ?? false}
                 >
-                    <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-4 border-b border-(--gray-6) bg-(--gray-1) px-8 py-4 text-xs text-(--gray-11) [&_a]:text-inherit">
+                    <div className="sticky top-0 flex items-center justify-between gap-3 border-b border-(--gray-6) bg-(--gray-3) pr-[calc(0.5rem+env(safe-area-inset-right,0px))] pl-[calc(1rem+env(safe-area-inset-left,0px))] text-xs text-(--gray-11) md:flex-wrap md:gap-4 md:py-2 md:pr-[calc(0.5rem+env(safe-area-inset-right,0px))] md:pl-8 min-[68.75rem]:pr-8 [&_a]:text-inherit">
                         <Breadcrumbs
                             index={index}
                             route={route}
                             locale={locale}
                             title={document?.title ?? page?.title}
                         />
-                        <div className="flex items-center gap-3">
+                        <div className="flex shrink-0 items-center gap-3">
                             {document !== undefined && (
                                 <Metadata kind="revisions" document={document} index={index} locale={locale} />
                             )}
@@ -102,7 +107,7 @@ export function Reader({ index, route }: { index: ProjectIndex; route: string })
                             {t("updateFailed")} {state.errors[index.project.id]}
                         </p>
                     )}
-                    <div className="mx-auto max-w-[76ch] px-6 py-8 md:px-10 md:pt-12">
+                    <div className="mx-auto max-w-[76ch] py-5 pr-[calc(1.5rem+env(safe-area-inset-right,0px))] pl-[calc(1.5rem+env(safe-area-inset-left,0px))] md:pt-12 md:pr-[calc(2.5rem+env(safe-area-inset-right,0px))] md:pl-10 min-[68.75rem]:pr-10">
                         {page === undefined ? (
                             <div role="status">
                                 {state.errors[key] ?? (
@@ -161,15 +166,12 @@ export function Reader({ index, route }: { index: ProjectIndex; route: string })
                                     {document !== undefined && (
                                         <Metadata kind="licence" document={document} index={index} locale={locale} />
                                     )}
-                                    <Text size="1" color="gray">
-                                        {t("exploratory")}
-                                    </Text>
                                 </div>
                             </>
                         )}
                     </div>
                 </main>
-                <aside className="hidden overflow-y-auto border-l border-(--gray-6) px-5 py-10 text-xs min-[68.75rem]:block">
+                <aside className="hidden overflow-y-auto border-l border-(--gray-6) py-10 pl-5 text-xs min-[68.75rem]:block min-[68.75rem]:pr-[calc(1.25rem+env(safe-area-inset-right,0px))]">
                     <Text size="1" color="gray" className="tracking-widest uppercase">
                         {t("contents")}
                     </Text>

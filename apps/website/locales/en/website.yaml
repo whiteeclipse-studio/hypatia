@@ -12,9 +12,11 @@ previous: Previous
 next: Next
 loading: Loading documentation…
 update: Update
+updateSucceeded: Documentation is up to date.
 updateFailed: Could not update documentation. Showing the available version.
 contents: On this page
 licence: Copyright and licence
+table: Table
 revisions: Revisions
 revision: Revision
 date: Date
